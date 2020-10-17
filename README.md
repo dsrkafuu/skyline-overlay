@@ -15,6 +15,13 @@ npm install
 npm start
 ```
 
+## Dependencies
+
+- Vite: <https://github.com/vitejs/vite>
+- Vue.js: <https://github.com/vuejs/vue-next>
+- Vuex: <https://github.com/vuejs/vuex/tree/4.0>
+- ffxiv-overlay-api: <https://github.com/amzrk2/ffxiv-overlay-api>
+
 ## LICENSE
 
 Released under `Apache License 2.0`, for more information read the [LICENSE](https://github.com/amzrk2/skyline-overlay/blob/main/LICENSE).
