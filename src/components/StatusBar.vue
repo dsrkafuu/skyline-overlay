@@ -20,6 +20,7 @@
 
 <script>
 import { computed } from 'vue';
+import spliter from '../plugins/spliter.js';
 
 export default {
   name: 'StatusBar',
@@ -30,13 +31,9 @@ export default {
     // get display data
     const duration = computed(() => (props.encounter ? props.encounter.duration : '00:00'));
     const zone = computed(() => (props.encounter ? props.encounter.zoneName : 'Skyline Overlay'));
-    const totalDPS = computed(() => (props.encounter ? props.encounter.dps : '0'));
+    const totalDPS = computed(() => (props.encounter ? spliter(props.encounter.dps) : '0'));
 
-    return {
-      duration,
-      zone,
-      totalDPS,
-    };
+    return { duration, zone, totalDPS };
   },
 };
 </script>

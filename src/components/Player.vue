@@ -4,7 +4,8 @@
     <div class="player-shadow">
       <div class="player-content">
         <span class="player-icon" v-text="data.job"></span>
-        <span class="player-data" v-text="data.dps"></span>
+        <span class="player-data" v-text="dps"></span>
+        <span class="counter">DPS</span>
       </div>
     </div>
     <div class="player-bar-wrapper">
@@ -20,6 +21,8 @@
 
 <script>
 import { computed } from 'vue';
+import spliter from '../plugins/spliter.js';
+
 export default {
   name: 'Player',
   props: {
@@ -28,6 +31,7 @@ export default {
   },
   setup(props) {
     /* computed datas */
+    const dps = spliter(props.data.dps);
     const maxHit = computed(() => {
       if (props.data.maxHitDamage) {
         return `${props.data.maxHit} - ${props.data.maxHitDamage}`;
@@ -35,9 +39,7 @@ export default {
       return props.data.maxHit;
     });
 
-    return {
-      maxHit,
-    };
+    return { dps, maxHit };
   },
 };
 </script>
@@ -52,11 +54,16 @@ export default {
   margin: 0 0.3rem;
   display: flex;
   flex-direction: column;
+  color: var(--color-text);
+  text-shadow: var(--shadow-text);
 }
 .player-id,
 .player-maxhit {
+  margin: 0.25rem;
   font-size: $font-size-sm;
   text-align: center;
+  white-space: nowrap;
+  position: relative;
 }
 
 .player-shadow {
@@ -74,11 +81,8 @@ export default {
 }
 .player-content {
   position: relative;
-  margin: 0.25rem 0.8rem;
-  color: var(--color-text);
-  text-shadow: var(--shadow-text);
-  display: flex;
-  flex-direction: row-reverse;
+  margin: 0.25rem 0.8rem 0.25rem 0.4rem;
+  text-align: right;
 }
 
 .player-icon {
