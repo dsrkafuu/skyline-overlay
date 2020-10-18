@@ -1,5 +1,9 @@
 @import './variables.scss';
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   font-size: $font-size-base;

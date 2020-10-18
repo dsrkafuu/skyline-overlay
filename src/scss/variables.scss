@@ -1,6 +1,6 @@
-$font-size-xs: 12px;
-$font-size-sm: 14px;
-$font-size-base: 16px;
+$font-size-xs: 10px;
+$font-size-sm: 12px;
+$font-size-base: 14px;
 
 $font-family-base: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', 'Arial',
   'Helvetica Neue', 'Helvetica', 'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans CN',
@@ -11,4 +11,8 @@ body {
   --color-text: #fff;
   --shadow-text: 0 0 0.25rem #000;
   --shadow-text-reverse: 0 0 0.25rem #fff;
+
+  --color-dps: rgba(244, 67, 54, 0.5);
+  --color-tank: rgba(32, 149, 243, 0.5);
+  --color-heal: rgba(139, 195, 74, 0.5);
 }

@@ -1,0 +1,13 @@
+.player .player-shadow::before {
+  background-color: var(--color-bg);
+}
+
+.player.job-dps .player-shadow::before {
+  background-color: var(--color-dps);
+}
+.player.job-tank .player-shadow::before {
+  background-color: var(--color-tank);
+}
+.player.job-heal .player-shadow::before {
+  background-color: var(--color-heal);
+}
