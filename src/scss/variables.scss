@@ -1,0 +1,14 @@
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+
+$font-family-base: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', 'Arial',
+  'Helvetica Neue', 'Helvetica', 'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans CN',
+  'Source Han Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+
+body {
+  --color-bg: rgba(0, 0, 0, 0.3);
+  --color-text: #fff;
+  --shadow-text: 0 0 0.25rem #000;
+  --shadow-text-reverse: 0 0 0.25rem #fff;
+}

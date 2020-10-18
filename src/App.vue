@@ -1,6 +1,5 @@
 <template>
-  <StatusBar :combatData="combatData"></StatusBar>
-  <img alt="Vue logo" src="./assets/logo.png" />
+  <StatusBar :data="combatData.extendData"></StatusBar>
 </template>
 
 <script>

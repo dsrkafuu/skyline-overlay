@@ -2,6 +2,8 @@
 
 A horizon FFXIV ACT overlay built with Vite & Vue 3 Composition API.
 
+It's basically a Vue & customized version of [horizoverlay](https://github.com/bsides/horizoverlay/) and has some of [ikegami](https://github.com/hibiyasleep/ikegami)'s features. The main purpose of building this project is to get familiar with Vue 3 & Composition API, which can also test my [ffxiv-overlay-api](https://github.com/amzrk2/ffxiv-overlay-api).
+
 ❗❗❗ WAITING FOR OFFICIAL RELEASE OF VUEX-V4 & VITE-V1, THIS WORK IN PROGRESS PROJECT IS STILL IN EARLY DEVELOPMENT STAGE. PLEASE SEND ISSUES IF YOU HAVE NICE IDEAS. ❗❗❗
 
 ## Contribute
