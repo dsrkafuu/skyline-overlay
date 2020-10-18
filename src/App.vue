@@ -1,6 +1,6 @@
 <template>
+  <StatusBar :combatData="combatData"></StatusBar>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <div>{{ combatData }}</div>
 </template>
 
 <script>
@@ -8,10 +8,15 @@ import OverlayAPI from 'ffxiv-overlay-api';
 import { reactive, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 /* mutations */
-import { UPDATE_COMBAT_DATA } from './store/mutations';
+import { UPDATE_COMBAT_DATA } from './store/mutations.js';
+/* components */
+import StatusBar from './components/StatusBar.vue';
 
 export default {
   name: 'App',
+  components: {
+    StatusBar,
+  },
   setup() {
     /* combat data */
     const { combatData, updateCombatData } = useCombatData();
