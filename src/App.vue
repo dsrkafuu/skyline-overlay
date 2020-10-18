@@ -1,24 +1,27 @@
 <template>
-  <StatusBar :data="combatData.extendData"></StatusBar>
+  <PlayerContainer :combatant="combatant" />
+  <StatusBar :encounter="encounter" />
 </template>
 
 <script>
 import OverlayAPI from 'ffxiv-overlay-api';
-import { reactive, computed, onMounted } from 'vue';
+import { reactive, computed, onMounted, unref } from 'vue';
 import { useStore } from 'vuex';
 /* mutations */
 import { UPDATE_COMBAT_DATA } from './store/mutations.js';
 /* components */
 import StatusBar from './components/StatusBar.vue';
+import PlayerContainer from './components/PlayerContainer.vue';
 
 export default {
   name: 'App',
   components: {
     StatusBar,
+    PlayerContainer,
   },
   setup() {
-    /* combat data */
-    const { combatData, updateCombatData } = useCombatData();
+    /* all data */
+    const { combatant, encounter, updateCombatData } = useCombatData();
 
     /* init overlay api and start polling data */
     const { overlay } = useOverlayAPI(updateCombatData);
@@ -27,19 +30,33 @@ export default {
     });
 
     return {
-      combatData,
+      combatant,
+      encounter,
     };
   },
 };
 
 function useCombatData() {
   const store = useStore();
+  // get combatData
   const combatData = computed(() => store.state.combatData);
+  // get combatant and encounter
+  const dataObj = {};
+  ['combatant', 'encounter'].forEach((key) => {
+    dataObj[key] = computed(() => {
+      if (combatData.value.type) {
+        return combatData.value.extendData[key];
+      }
+      return null;
+    });
+  });
+  // update function
   const updateCombatData = (combatData) => {
     store.commit(UPDATE_COMBAT_DATA, combatData);
   };
   return {
-    combatData,
+    combatant: dataObj.combatant,
+    encounter: dataObj.encounter,
     updateCombatData,
   };
 }

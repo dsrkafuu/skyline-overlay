@@ -24,34 +24,13 @@ import { computed } from 'vue';
 export default {
   name: 'StatusBar',
   props: {
-    data: Object,
+    encounter: Object,
   },
   setup(props) {
-    const dataStatus = computed(() => props.data && props.data.encounter);
-
-    const duration = computed(() => {
-      if (dataStatus.value) {
-        return props.data.encounter.duration;
-      } else {
-        return '00:00';
-      }
-    });
-
-    const zone = computed(() => {
-      if (dataStatus.value) {
-        return props.data.encounter.zoneName;
-      } else {
-        return 'Skyline Overlay';
-      }
-    });
-
-    const totalDPS = computed(() => {
-      if (dataStatus.value) {
-        return props.data.encounter.dps;
-      } else {
-        return '0';
-      }
-    });
+    // get display data
+    const duration = computed(() => (props.encounter ? props.encounter.duration : '00:00'));
+    const zone = computed(() => (props.encounter ? props.encounter.zoneName : 'Skyline Overlay'));
+    const totalDPS = computed(() => (props.encounter ? props.encounter.dps : '0'));
 
     return {
       duration,
