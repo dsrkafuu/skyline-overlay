@@ -38,14 +38,12 @@ export default {
 
 function useCombatData() {
   const store = useStore();
-  // get combatData
-  const combatData = computed(() => store.state.combatData);
-  // get combatant and encounter
+  // get combat data
   const dataObj = {};
   ['combatant', 'encounter'].forEach((key) => {
     dataObj[key] = computed(() => {
-      if (combatData.value.type) {
-        return combatData.value.extendData[key];
+      if (store.state.combatData.type) {
+        return store.state.combatData.extendData[key];
       }
       return null;
     });
@@ -55,8 +53,7 @@ function useCombatData() {
     store.commit(UPDATE_COMBAT_DATA, combatData);
   };
   return {
-    combatant: dataObj.combatant,
-    encounter: dataObj.encounter,
+    ...dataObj, // a plain object which has two ref that we can split
     updateCombatData,
   };
 }
@@ -69,6 +66,7 @@ function useOverlayAPI(updateCombatData) {
   overlay.addListener('CombatData', (data) => {
     updateCombatData(data);
   });
+  /* DEV - START */
   fetch('https://raw.githubusercontent.com/amzrk2/ffxiv-overlay-api/master/test/fake_cn.json')
     .then((response) => {
       return response.json();
@@ -80,6 +78,7 @@ function useOverlayAPI(updateCombatData) {
         overlay.simulateData();
       }, 10000);
     });
+  /* DEV - END */
   return { overlay };
 }
 </script>

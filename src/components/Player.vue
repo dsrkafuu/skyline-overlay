@@ -1,6 +1,9 @@
 <template>
-  <div class="player-wrapper">
-    <div class="player">PLAYER</div>
+  <div class="player">
+    <div class="player-id">ID</div>
+    <div class="player-shadow">
+      {{ player }}
+    </div>
   </div>
 </template>
 
@@ -8,10 +11,8 @@
 export default {
   name: 'Player',
   props: {
-    playerData: Object,
-  },
-  setup(props) {
-    return {};
+    player: String,
+    data: Object,
   },
 };
 </script>

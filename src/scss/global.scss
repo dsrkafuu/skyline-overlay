@@ -5,3 +5,8 @@ body {
   font-size: $font-size-base;
   font-family: $font-family-base;
 }
+
+span.counter {
+  font-size: $font-size-xs;
+  margin-left: 0.2rem;
+}

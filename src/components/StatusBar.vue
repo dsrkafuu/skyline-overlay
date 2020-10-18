@@ -1,6 +1,6 @@
 <template>
-  <div class="wrapper">
-    <div class="status-bar-wrapper">
+  <div class="status-bar-wrapper">
+    <div class="status-bar-shadow">
       <div class="status-bar">
         <div class="duration">
           <span v-text="duration"></span>
@@ -44,7 +44,7 @@ export default {
 <style lang="scss" scoped>
 @import '../scss/variables.scss';
 
-.wrapper {
+.status-bar-wrapper {
   margin-top: 0.25rem;
   width: 100%;
   display: flex;
@@ -52,7 +52,7 @@ export default {
   align-items: center;
   font-size: $font-size-sm;
 }
-.status-bar-wrapper {
+.status-bar-shadow {
   position: relative;
   flex: 0 1 30rem;
 
@@ -85,10 +85,5 @@ export default {
 }
 .numbers {
   flex: 0 0 auto;
-}
-
-.counter {
-  font-size: $font-size-xs;
-  margin-left: 0.2rem;
 }
 </style>

@@ -2,7 +2,7 @@ import { createStore } from 'vuex';
 /* mutations */
 import { UPDATE_COMBAT_DATA } from './mutations.js';
 
-export const store = createStore({
+const store = createStore({
   state: {
     combatData: {},
   },
@@ -12,3 +12,5 @@ export const store = createStore({
     },
   },
 });
+
+export default store;
