@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "ffxiv-overlay-api": "~3.0.1",
+    "normalize.css": "^8.0.1",
     "vue": "~3.0.1",
     "vuex": "4.0.0-beta.4"
   },

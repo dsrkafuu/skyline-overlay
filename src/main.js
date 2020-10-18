@@ -1,3 +1,4 @@
+import 'normalize.css';
 import './global.scss';
 
 import { createApp } from 'vue';
