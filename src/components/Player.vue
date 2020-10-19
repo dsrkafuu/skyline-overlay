@@ -3,7 +3,9 @@
     <div class="player-id" v-text="player"></div>
     <div class="player-shadow">
       <div class="player-content">
-        <span class="player-icon" v-text="data.job"></span>
+        <span class="player-icon">
+          <img :src="icons[data.job] || icons.ffxiv" />
+        </span>
         <span class="player-data" v-text="dps"></span>
         <span class="counter">DPS</span>
       </div>
@@ -22,6 +24,7 @@
 <script>
 import { computed } from 'vue';
 import spliter from '../plugins/spliter.js';
+import icons from '../plugins/icons.js';
 
 export default {
   name: 'Player',
@@ -39,7 +42,7 @@ export default {
       return props.data.maxHit;
     });
 
-    return { dps, maxHit };
+    return { icons, dps, maxHit };
   },
 };
 </script>
@@ -81,15 +84,23 @@ export default {
 }
 .player-content {
   position: relative;
-  margin: 0.25rem 0.8rem 0.25rem 0.4rem;
+  margin: 0.25rem 0.8rem 0.25rem 0.6rem;
+  height: 1.25rem;
+  line-height: 1.25rem;
   text-align: right;
 }
 
 .player-icon {
   position: absolute;
   left: 0;
-  top: -0.5rem;
-  width: 2.15rem;
-  height: 2.15rem;
+  top: -0.275rem;
+  width: 1.75rem;
+  height: 1.75rem;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>

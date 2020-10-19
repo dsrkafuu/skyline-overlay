@@ -61,7 +61,7 @@ function useCombatData() {
 function useOverlayAPI(updateCombatData) {
   const overlay = new OverlayAPI({
     extendData: true,
-    silentMode: true,
+    silentMode: false,
   });
   overlay.addListener('CombatData', (data) => {
     updateCombatData(data);
