@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import Player from './Player.vue';
+import Player from '../components/Player.vue';
 import { computed } from 'vue';
 
 export default {
-  name: 'PlayerContainer',
+  name: 'Combatant',
   components: {
     Player,
   },

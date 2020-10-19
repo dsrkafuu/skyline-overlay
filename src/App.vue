@@ -1,6 +1,6 @@
 <template>
-  <PlayerContainer :combatant="combatant" />
-  <StatusBar :encounter="encounter" />
+  <Combatant :combatant="combatant" />
+  <Encounter :encounter="encounter" />
 </template>
 
 <script>
@@ -10,14 +10,14 @@ import { useStore } from 'vuex';
 /* mutations */
 import { UPDATE_COMBAT_DATA } from './store/mutations.js';
 /* components */
-import StatusBar from './components/StatusBar.vue';
-import PlayerContainer from './components/PlayerContainer.vue';
+import Combatant from './views/Combatant.vue';
+import Encounter from './views/Encounter.vue';
 
 export default {
   name: 'App',
   components: {
-    StatusBar,
-    PlayerContainer,
+    Combatant,
+    Encounter,
   },
   setup() {
     /* all data */
@@ -61,23 +61,24 @@ function useCombatData() {
 function useOverlayAPI(updateCombatData) {
   const overlay = new OverlayAPI({
     extendData: true,
-    silentMode: false,
+    silentMode: process.env.NODE_ENV === 'production',
   });
   overlay.addListener('CombatData', (data) => {
     updateCombatData(data);
   });
   /* DEV - START */
-  fetch('https://raw.githubusercontent.com/amzrk2/ffxiv-overlay-api/master/test/fake_cn.json')
-    .then((response) => {
-      return response.json();
-    })
-    .then((fakeData) => {
-      overlay.simulateData(fakeData);
-      setTimeout(() => {
-        // Disable simulation
-        overlay.simulateData();
-      }, 10000);
-    });
+  process.env.NODE_ENV === 'development' &&
+    fetch('https://raw.githubusercontent.com/amzrk2/ffxiv-overlay-api/master/test/fake_cn.json')
+      .then((response) => {
+        return response.json();
+      })
+      .then((fakeData) => {
+        overlay.simulateData(fakeData);
+        setTimeout(() => {
+          // Disable simulation
+          overlay.simulateData();
+        }, 10000);
+      });
   /* DEV - END */
   return { overlay };
 }
