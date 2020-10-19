@@ -7,12 +7,16 @@ $font-family-base: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI',
   'Source Han Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
 
 body {
-  --color-bg: rgba(0, 0, 0, 0.3);
+  --color-bg: rgba(163, 163, 162, 0.6);
   --color-text: #fff;
   --shadow-text: 0 0 0.25rem #000;
   --shadow-text-reverse: 0 0 0.25rem #fff;
 
-  --color-dps: rgba(244, 67, 54, 0.5);
-  --color-tank: rgba(32, 149, 243, 0.5);
-  --color-heal: rgba(139, 195, 74, 0.5);
+  --color-dps: rgba(232, 107, 121, 0.6);
+  --color-tank: rgba(138, 162, 211, 0.65);
+  --color-heal: rgba(123, 170, 23, 0.6);
+
+  --color-dpsb: rgba(244, 67, 54, 0.5);
+  --color-tankb: rgba(32, 149, 243, 0.5);
+  --color-healb: rgba(139, 195, 74, 0.5);
 }
