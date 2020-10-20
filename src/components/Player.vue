@@ -16,7 +16,8 @@
       </div>
     </div>
     <div class="player-maxhit">
-      <span v-text="maxHit"></span>
+      <span v-text="data.maxHit"></span>
+      <span v-text="`&nbsp;-&nbsp;${data.maxHitDamage}`"></span>
     </div>
   </div>
 </template>
@@ -35,14 +36,8 @@ export default {
   setup(props) {
     /* computed datas */
     const dps = computed(() => spliter(props.data.dps));
-    const maxHit = computed(() => {
-      if (props.data.maxHitDamage) {
-        return `${props.data.maxHit} - ${props.data.maxHitDamage}`;
-      }
-      return props.data.maxHit;
-    });
 
-    return { icons, dps, maxHit };
+    return { icons, dps };
   },
 };
 </script>
@@ -53,7 +48,7 @@ export default {
 
 .player {
   flex: 0 0 auto;
-  width: 8.5rem;
+  width: 9rem;
   margin: 0 0.2rem;
   display: flex;
   flex-direction: column;
@@ -62,10 +57,24 @@ export default {
 }
 .player-id,
 .player-maxhit {
-  margin: 0.25rem;
+  line-height: 1.5rem;
   font-size: $font-size-sm;
   text-align: center;
   white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.player-maxhit {
+  & > span:first-child {
+    flex: 0 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  & > span:last-child {
+    flex: 0 0 auto;
+  }
 }
 
 .player-content {
