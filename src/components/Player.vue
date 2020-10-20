@@ -17,7 +17,7 @@
     </div>
     <div class="player-maxhit">
       <span v-text="data.maxHit"></span>
-      <span v-text="`&nbsp;-&nbsp;${data.maxHitDamage}`"></span>
+      <span v-if="data.maxHitDamage" v-text="`&nbsp;-&nbsp;${data.maxHitDamage}`"></span>
     </div>
   </div>
 </template>
