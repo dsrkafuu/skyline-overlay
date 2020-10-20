@@ -1,6 +1,6 @@
 <template>
   <Combatant :combatant="combatant" />
-  <Encounter :encounter="encounter" />
+  <Encounter :encounter="encounter" :active="active === 'true' ? true : false" />
 </template>
 
 <script>
@@ -21,7 +21,7 @@ export default {
   },
   setup() {
     /* all data */
-    const { combatant, encounter, updateCombatData } = useCombatData();
+    const { combatant, encounter, active, updateCombatData } = useCombatData();
 
     /* init overlay api and start polling data */
     const { overlay } = useOverlayAPI(updateCombatData);
@@ -32,6 +32,7 @@ export default {
     return {
       combatant,
       encounter,
+      active,
     };
   },
 };
@@ -48,12 +49,14 @@ function useCombatData() {
       return null;
     });
   });
+  const active = computed(() => store.state.combatData.isActive || 'false');
   // update function
   const updateCombatData = (combatData) => {
     store.commit(UPDATE_COMBAT_DATA, combatData);
   };
   return {
     ...dataObj, // a plain object which has two ref that we can split
+    active,
     updateCombatData,
   };
 }

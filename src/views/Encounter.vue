@@ -1,10 +1,10 @@
 <template>
-  <div class="status">
-    <div class="status-shadow">
+  <div class="status-container">
+    <div class="status">
+      <div class="status-duration" :class="active && 'active'">
+        <span v-text="duration"></span>
+      </div>
       <div class="status-content">
-        <div class="duration">
-          <span v-text="duration"></span>
-        </div>
         <div class="zone">
           <span v-text="zone"></span>
         </div>
@@ -31,6 +31,7 @@ export default {
   name: 'Encounter',
   props: {
     encounter: Object,
+    active: Boolean,
   },
   setup(props) {
     // get display data
@@ -51,7 +52,7 @@ export default {
 <style lang="scss" scoped>
 @import '../scss/variables.scss';
 
-.status {
+.status-container {
   margin-top: 0.3rem;
   width: 100%;
   display: flex;
@@ -59,66 +60,64 @@ export default {
   align-items: center;
   font-size: $font-size-sm;
 }
-.status-shadow {
-  position: relative;
+.status {
   flex: 0 0 30rem;
   display: flex;
-
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    transform: skew(-30deg);
-    background-color: var(--color-bg);
-  }
+  color: var(--color-text);
+  text-shadow: var(--shadow-text);
 }
 .status-content {
   flex: 1 0 auto;
-  position: relative;
-  margin: 0.25rem 0.75rem;
+  padding: 0.25rem 0.75rem;
   display: flex;
   flex-wrap: nowrap;
-  color: var(--color-text);
-  text-shadow: var(--shadow-text);
-  height: 1.1rem;
+  height: var(--height-status);
   line-height: 1.1rem;
+  background-color: var(--color-bg);
 }
 
-.duration {
-  flex: 0 0 auto;
+.status-duration {
+  height: var(--height-status);
   width: 3.25rem;
+  line-height: var(--height-status);
+  text-align: center;
+  &:not(.active) {
+    background-color: var(--color-cover);
+  }
+  &.active {
+    background-color: var(--color-active);
+  }
 }
+
+.status-buttons {
+  cursor: pointer;
+  background-color: var(--color-cover);
+  position: relative;
+  height: var(--height-status);
+  width: 3.2rem;
+  display: flex;
+  & > div {
+    position: relative;
+    flex: 0 0 auto;
+    height: var(--height-status);
+    width: var(--height-status);
+    &:hover {
+      background-color: var(--color-cover);
+    }
+  }
+  ::v-deep(svg) {
+    height: 1.1rem;
+    width: 1.1rem;
+    margin: 0.25rem;
+    fill: #ffffff;
+  }
+}
+
 .zone {
   flex: 1 1 auto;
   text-align: left;
 }
 .numbers {
   flex: 0 0 auto;
-}
-
-.status-buttons {
-  background-color: var(--color-cover);
-  position: relative;
-  height: 1.6rem;
-  width: 3.2rem;
-  margin-right: 0.75rem;
-  display: flex;
-  & > div {
-    position: relative;
-    flex: 0 0 auto;
-    height: 1.6rem;
-    width: 1.6rem;
-    &:hover {
-      background-color: var(--color-cover);
-    }
-  }
-  ::v-deep svg {
-    height: 1.1rem;
-    width: 1.1rem;
-    margin: 0.25rem;
-    fill: #ffffff;
-  }
 }
 </style>

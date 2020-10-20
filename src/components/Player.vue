@@ -1,12 +1,12 @@
 <template>
   <div class="player" :class="`job-${data.jobType}`">
     <div class="player-id" v-text="player"></div>
-    <div class="player-shadow">
-      <div class="player-content">
-        <span class="player-icon">
-          <img :src="icons[data.job] || icons.ffxiv" />
-        </span>
-        <span class="player-data" v-text="dps"></span>
+    <div class="player-content">
+      <span class="player-icon">
+        <img :src="icons[data.job] || icons.ffxiv" />
+      </span>
+      <div class="player-data">
+        <span class="player-num" v-text="dps"></span>
         <span class="counter">DPS</span>
       </div>
     </div>
@@ -53,8 +53,8 @@ export default {
 
 .player {
   flex: 0 0 auto;
-  width: 10rem;
-  margin: 0 0.3rem;
+  width: 8.5rem;
+  margin: 0 0.2rem;
   display: flex;
   flex-direction: column;
   color: var(--color-text);
@@ -66,25 +66,14 @@ export default {
   font-size: $font-size-sm;
   text-align: center;
   white-space: nowrap;
-  position: relative;
 }
 
-.player-shadow {
-  position: relative;
-  flex: 0 0 auto;
-
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    transform: skew(-30deg);
-  }
-}
 .player-content {
   position: relative;
-  margin: 0.25rem 0.8rem 0.25rem 0.6rem;
+  padding: 0.25rem 0.6rem;
+  box-shadow: var(--shadow-box);
+}
+.player-data {
   height: 1.25rem;
   line-height: 1.25rem;
   text-align: right;
@@ -93,9 +82,10 @@ export default {
 .player-icon {
   position: absolute;
   left: 0;
-  top: -0.275rem;
-  width: 1.75rem;
-  height: 1.75rem;
+  top: 0.025rem;
+  left: 0.35rem;
+  width: 1.7rem;
+  height: 1.7rem;
 
   img {
     display: block;
