@@ -34,7 +34,7 @@ export default {
   },
   setup(props) {
     /* computed datas */
-    const dps = spliter(props.data.dps);
+    const dps = computed(() => spliter(props.data.dps));
     const maxHit = computed(() => {
       if (props.data.maxHitDamage) {
         return `${props.data.maxHit} - ${props.data.maxHitDamage}`;
