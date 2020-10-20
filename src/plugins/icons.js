@@ -42,6 +42,7 @@ import min from '../assets/icons/min.png';
 import btn from '../assets/icons/btn.png';
 import fsh from '../assets/icons/fsh.png';
 /* ffxiv */
+import blu from '../assets/icons/blu.png';
 import ffxiv from '../assets/icons/ffxiv.png';
 
 const icons = {
@@ -90,6 +91,7 @@ const icons = {
   fsh,
   /* ffxiv */
   ffxiv,
+  blu,
 };
 
 export default icons;
