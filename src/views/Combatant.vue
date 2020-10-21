@@ -30,6 +30,6 @@ export default {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 </style>
