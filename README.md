@@ -26,6 +26,8 @@ npm start
 
 ## LICENSE
 
+<img align="right" alt="FOSSA Status" src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Famzrk2%2Fskyline-overlay.svg?type=large" />
+
 Released under `Apache License 2.0`, for more information read the [LICENSE](https://github.com/amzrk2/skyline-overlay/blob/main/LICENSE).
 
-> Copyright © 2020-present DSRKafuU <amzrk2.cc>
+**Copyright © 2020-present DSRKafuU <https://amzrk2.cc/>**
