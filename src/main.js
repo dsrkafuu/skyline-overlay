@@ -2,8 +2,8 @@ import 'normalize.css';
 import './scss/global.scss';
 
 import { createApp } from 'vue';
-import App from './App.vue';
+import Skyline from './Skyline.vue';
 
 import store from './store';
 
-createApp(App).use(store).mount('#app');
+createApp(Skyline).use(store).mount('#app');

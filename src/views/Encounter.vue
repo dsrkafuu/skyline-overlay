@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="status-buttons">
-        <div class="buttons-end" v-html="icons.refresh"></div>
+        <div class="buttons-end" v-html="icons.refresh" @click="handleEndEncounter"></div>
         <div class="buttons-settings" v-html="icons.settings"></div>
       </div>
     </div>
@@ -23,13 +23,19 @@
 
 <script>
 import { computed } from 'vue';
+// plugins
 import spliter from '../plugins/spliter.js';
+import { logInfo } from '../plugins/logger.js';
+// constants
+import { FLICK_TIMEOUT } from '../store/constants.js';
+// icons
 import iRefresh from '../assets/svgs/refresh.js';
 import iSettings from '../assets/svgs/settings.js';
 
 export default {
   name: 'Encounter',
   props: {
+    overlay: Object,
     encounter: Object,
     active: Boolean,
   },
@@ -44,7 +50,20 @@ export default {
       refresh: iRefresh,
       settings: iSettings,
     };
-    return { icons, duration, zone, totalDPS };
+
+    // end encounter
+    let flickEndEncounter = null;
+    const handleEndEncounter = () => {
+      if (flickEndEncounter) {
+        clearTimeout(flickEndEncounter);
+      }
+      flickEndEncounter = setTimeout(() => {
+        logInfo('Encounter ended');
+        props.overlay.endEncounter();
+      }, FLICK_TIMEOUT);
+    };
+
+    return { icons, duration, zone, totalDPS, handleEndEncounter };
   },
 };
 </script>

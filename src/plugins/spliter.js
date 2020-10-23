@@ -1,3 +1,5 @@
+/* dps number spliter */
+
 export default (str) => {
   const arr = str.split('.');
   if (arr && arr.length === 2) {

@@ -1,11 +1,11 @@
 <template>
   <Combatant :combatant="combatant" />
-  <Encounter :encounter="encounter" :active="active === 'true' ? true : false" />
+  <Encounter :overlay="overlay" :encounter="encounter" :active="active === 'true' ? true : false" />
 </template>
 
 <script>
 import OverlayAPI from 'ffxiv-overlay-api';
-import { reactive, computed, onMounted, unref } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 /* mutations */
 import { UPDATE_COMBAT_DATA } from './store/mutations.js';
@@ -14,7 +14,7 @@ import Combatant from './views/Combatant.vue';
 import Encounter from './views/Encounter.vue';
 
 export default {
-  name: 'App',
+  name: 'Skyline',
   components: {
     Combatant,
     Encounter,
@@ -30,6 +30,7 @@ export default {
     });
 
     return {
+      overlay,
       combatant,
       encounter,
       active,
