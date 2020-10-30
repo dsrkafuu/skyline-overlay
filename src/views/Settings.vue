@@ -1,5 +1,5 @@
 <template>
-  <div class="settings-container">
+  <div class="settings-container" v-if="showSettings">
     <div class="settings">
       <div class="settings-content">SETTINGS HERE</div>
     </div>
@@ -7,10 +7,18 @@
 </template>
 
 <script>
+// hooks
+import useSettings from '../hooks/useSettings.js';
+
 export default {
   name: 'Settings',
   setup() {
-    return {};
+    // show settings
+    const { showSettings } = useSettings();
+
+    return {
+      showSettings,
+    };
   },
 };
 </script>

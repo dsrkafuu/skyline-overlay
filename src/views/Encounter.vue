@@ -17,7 +17,7 @@
         <div class="buttons-end" @click="handleEndEncounter">
           <img :src="svgRefresh" />
         </div>
-        <div class="buttons-settings">
+        <div class="buttons-settings" @click="updateShowSettings">
           <img :src="svgSetting" />
         </div>
       </div>
@@ -31,6 +31,7 @@ import spliter from '../plugins/spliter.js';
 import { logInfo } from '../plugins/logger.js';
 // hooks
 import useCombatData from '../hooks/useCombatData.js';
+import useSettings from '../hooks/useSettings.js';
 // constants
 import { FLICK_TIMEOUT } from '../store/constants.js';
 // icons
@@ -68,12 +69,16 @@ export default {
       }, FLICK_TIMEOUT);
     };
 
+    // control settings
+    const { updateShowSettings } = useSettings();
+
     return {
       active,
       duration,
       zone,
       totalDPS,
       handleEndEncounter,
+      updateShowSettings,
       // icons
       svgRefresh,
       svgSetting,
