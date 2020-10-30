@@ -24,13 +24,13 @@
 
 <script>
 import { computed } from 'vue';
-import spliter from '../plugins/spliter.js';
+import splitNumber from '../plugins/splitNumber.js';
 import icons from '../plugins/icons.js';
 
 /**
  * single play grid
  * @param {String} playerName player name
- * @param {Object} data player data object
+ * @param {Object} data data obj
  */
 export default {
   name: 'Player',
@@ -40,7 +40,7 @@ export default {
   },
   setup(props) {
     // player dps
-    const dps = computed(() => spliter(props.data.dps));
+    const dps = computed(() => splitNumber(props.data.dps));
 
     return {
       dps,

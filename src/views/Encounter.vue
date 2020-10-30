@@ -27,7 +27,7 @@
 
 <script>
 import { computed } from 'vue';
-import spliter from '../plugins/spliter.js';
+import splitNumber from '../plugins/splitNumber.js';
 import { logInfo } from '../plugins/logger.js';
 // hooks
 import useCombatData from '../hooks/useCombatData.js';
@@ -55,7 +55,7 @@ export default {
     const { encounter } = useCombatData();
     const duration = computed(() => encounter.value?.duration || '00:00');
     const zone = computed(() => encounter.value?.zoneName || 'Skyline Overlay');
-    const totalDPS = computed(() => spliter(encounter.value?.dps) || '0');
+    const totalDPS = computed(() => splitNumber(encounter.value?.dps) || '0');
 
     // end encounter
     let flickEndEncounter = null;

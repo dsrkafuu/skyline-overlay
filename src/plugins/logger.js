@@ -9,7 +9,7 @@ export function logInfo(info, ...params) {
 
 /**
  * log error
- * @param {Error} err
+ * @param {any} err
  * @param {...any} params
  */
 export function logError(err, ...params) {

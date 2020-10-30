@@ -10,6 +10,9 @@
 // hooks
 import useSettings from '../hooks/useSettings.js';
 
+/**
+ * settings container
+ */
 export default {
   name: 'Settings',
   setup() {
