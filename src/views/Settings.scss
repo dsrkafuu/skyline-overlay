@@ -1,0 +1,21 @@
+@import '../scss/variables.scss';
+
+.settings-container {
+  margin-top: 0.3rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: $font-size-sm;
+}
+
+.settings {
+  flex: 0 0 30rem;
+  color: var(--color-text);
+  text-shadow: var(--shadow-text);
+  background-color: var(--color-bg);
+}
+
+.settings-content {
+  margin: 0.5rem;
+}

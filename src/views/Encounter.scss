@@ -1,0 +1,71 @@
+@import '../scss/variables.scss';
+
+.status-container {
+  margin-top: 0.3rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: $font-size-sm;
+}
+
+.status {
+  flex: 0 0 30rem;
+  display: flex;
+  color: var(--color-text);
+  text-shadow: var(--shadow-text);
+}
+
+.status-content {
+  flex: 1 0 auto;
+  padding: 0.25rem 0.75rem;
+  display: flex;
+  flex-wrap: nowrap;
+  height: var(--height-status);
+  line-height: 1.1rem;
+  background-color: var(--color-bg);
+}
+
+.status-duration {
+  height: var(--height-status);
+  width: 3.25rem;
+  line-height: var(--height-status);
+  text-align: center;
+  &:not(.active) {
+    background-color: var(--color-cover);
+  }
+  &.active {
+    background-color: var(--color-active);
+  }
+}
+
+.status-buttons {
+  cursor: pointer;
+  background-color: var(--color-cover);
+  position: relative;
+  height: var(--height-status);
+  width: 3.2rem;
+  display: flex;
+  & > div {
+    position: relative;
+    flex: 0 0 auto;
+    height: var(--height-status);
+    width: var(--height-status);
+    &:hover {
+      background-color: var(--color-cover);
+    }
+  }
+  img {
+    height: 1.1rem;
+    width: 1.1rem;
+    margin: 0.25rem;
+  }
+}
+
+.zone {
+  flex: 1 1 auto;
+  text-align: left;
+}
+.numbers {
+  flex: 0 0 auto;
+}

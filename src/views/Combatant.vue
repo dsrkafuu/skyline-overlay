@@ -4,36 +4,36 @@
       class="player-item"
       v-for="(value, key) of combatant"
       :key="key"
-      :player="key"
+      :playerName="key"
       :data="value"
     />
   </div>
 </template>
 
 <script>
+// hooks
+import useCombatData from '../hooks/useCombatData.js';
+// components
 import Player from '../components/Player.vue';
-import { computed } from 'vue';
 
 /**
  * all combatants wrapper
- * @param {Object} combatant data from api
  */
 export default {
   name: 'Combatant',
   components: {
     Player,
   },
-  props: {
-    combatant: Object,
+  setup() {
+    // get combat data
+    const { combatant } = useCombatData();
+
+    return {
+      combatant,
+    };
   },
 };
 </script>
 
-<style lang="scss" scoped>
-.player-container {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: flex-start;
-}
+<style lang="scss" scoped src="./Combatant.scss">
 </style>
