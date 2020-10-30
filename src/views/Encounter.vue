@@ -14,8 +14,12 @@
         </div>
       </div>
       <div class="status-buttons">
-        <div class="buttons-end" v-html="icons.refresh" @click="handleEndEncounter"></div>
-        <div class="buttons-settings" v-html="icons.settings"></div>
+        <div class="buttons-end" @click="handleEndEncounter">
+          <img :src="icons.refresh" />
+        </div>
+        <div class="buttons-settings">
+          <img :src="icons.setting" />
+        </div>
       </div>
     </div>
   </div>
@@ -23,15 +27,20 @@
 
 <script>
 import { computed } from 'vue';
-// plugins
 import spliter from '../plugins/spliter.js';
 import { logInfo } from '../plugins/logger.js';
 // constants
 import { FLICK_TIMEOUT } from '../store/constants.js';
 // icons
-import iRefresh from '../assets/svgs/refresh.js';
-import iSettings from '../assets/svgs/settings.js';
+import svgRefresh from '../assets/svgs/refresh.svg';
+import svgSetting from '../assets/svgs/setting.svg';
 
+/**
+ * encounter bar
+ * @param {Object} overlay api instance
+ * @param {Object} encounter from api
+ * @param {Boolean} active battle active status
+ */
 export default {
   name: 'Encounter',
   props: {
@@ -45,12 +54,6 @@ export default {
     const zone = computed(() => (props.encounter ? props.encounter.zoneName : 'Skyline Overlay'));
     const totalDPS = computed(() => (props.encounter ? spliter(props.encounter.dps) : '0'));
 
-    // icons
-    const icons = {
-      refresh: iRefresh,
-      settings: iSettings,
-    };
-
     // end encounter
     let flickEndEncounter = null;
     const handleEndEncounter = () => {
@@ -63,7 +66,16 @@ export default {
       }, FLICK_TIMEOUT);
     };
 
-    return { icons, duration, zone, totalDPS, handleEndEncounter };
+    return {
+      icons: {
+        refresh: svgRefresh,
+        setting: svgSetting,
+      },
+      duration,
+      zone,
+      totalDPS,
+      handleEndEncounter,
+    };
   },
 };
 </script>
@@ -79,12 +91,14 @@ export default {
   align-items: center;
   font-size: $font-size-sm;
 }
+
 .status {
   flex: 0 0 30rem;
   display: flex;
   color: var(--color-text);
   text-shadow: var(--shadow-text);
 }
+
 .status-content {
   flex: 1 0 auto;
   padding: 0.25rem 0.75rem;
@@ -124,11 +138,10 @@ export default {
       background-color: var(--color-cover);
     }
   }
-  ::v-deep(svg) {
+  img {
     height: 1.1rem;
     width: 1.1rem;
     margin: 0.25rem;
-    fill: #ffffff;
   }
 }
 

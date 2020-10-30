@@ -6,10 +6,10 @@
 <script>
 import OverlayAPI from 'ffxiv-overlay-api';
 import { computed, onMounted } from 'vue';
+// store
 import { useStore } from 'vuex';
-/* mutations */
 import { UPDATE_COMBAT_DATA } from './store/mutations.js';
-/* components */
+// components
 import Combatant from './views/Combatant.vue';
 import Encounter from './views/Encounter.vue';
 
@@ -20,10 +20,9 @@ export default {
     Encounter,
   },
   setup() {
-    /* all data */
+    // all data from store
     const { combatant, encounter, active, updateCombatData } = useCombatData();
-
-    /* init overlay api and start polling data */
+    // init overlay api and start polling data
     const { overlay } = useOverlayAPI(updateCombatData);
     onMounted(() => {
       overlay.startEvent();

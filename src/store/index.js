@@ -1,5 +1,5 @@
 import { createStore } from 'vuex';
-/* mutations */
+// mutations
 import { UPDATE_COMBAT_DATA } from './mutations.js';
 
 const store = createStore({

@@ -27,6 +27,11 @@ import { computed } from 'vue';
 import spliter from '../plugins/spliter.js';
 import icons from '../plugins/icons.js';
 
+/**
+ * single play grid
+ * @param {String} player player name
+ * @param {Object} data player data object
+ */
 export default {
   name: 'Player',
   props: {
@@ -34,7 +39,7 @@ export default {
     data: Object,
   },
   setup(props) {
-    /* computed datas */
+    // player dps
     const dps = computed(() => spliter(props.data.dps));
 
     return { icons, dps };
@@ -44,7 +49,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '../scss/variables.scss';
-@import '../scss/jobtypes.scss';
 
 .player {
   flex: 0 0 auto;
@@ -54,7 +58,19 @@ export default {
   flex-direction: column;
   color: var(--color-text);
   text-shadow: var(--shadow-text);
+
+  // job type color
+  &.job-dps .player-content {
+    background-color: var(--color-dps);
+  }
+  &.job-tank .player-content {
+    background-color: var(--color-tank);
+  }
+  &.job-heal .player-content {
+    background-color: var(--color-heal);
+  }
 }
+
 .player-id,
 .player-maxhit {
   line-height: 1.5rem;
@@ -66,6 +82,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 .player-maxhit {
   & > span:first-child {
     flex: 0 1 auto;
@@ -81,7 +98,9 @@ export default {
   position: relative;
   padding: 0.25rem 0.6rem;
   box-shadow: var(--shadow-box);
+  background-color: var(--color-bg);
 }
+
 .player-data {
   height: 1.25rem;
   line-height: 1.25rem;

@@ -14,6 +14,10 @@
 import Player from '../components/Player.vue';
 import { computed } from 'vue';
 
+/**
+ * all combatants wrapper
+ * @param {Object} combatant data from api
+ */
 export default {
   name: 'Combatant',
   components: {
