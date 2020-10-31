@@ -23,14 +23,14 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, toRefs } from 'vue';
 import splitNumber from '../plugins/splitNumber.js';
 import icons from '../plugins/icons.js';
 
 /**
  * single play grid
- * @param {String} playerName player name
- * @param {Object} data data obj
+ * @param {String} playerName (ref) player name
+ * @param {Object} data (reactive) data obj
  */
 export default {
   name: 'Player',
@@ -39,10 +39,13 @@ export default {
     data: Object,
   },
   setup(props) {
+    // player name
+    const { playerName } = toRefs(props);
     // player dps
     const dps = computed(() => splitNumber(props.data.dps));
 
     return {
+      playerName,
       dps,
       //icons
       icons,

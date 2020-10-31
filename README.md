@@ -6,6 +6,8 @@ It's basically a Vue & customized version of [horizoverlay](https://github.com/b
 
 ❗❗❗ WAITING FOR OFFICIAL RELEASE OF VUEX-V4 & VITE-V1, THIS WORK IN PROGRESS PROJECT IS STILL IN EARLY DEVELOPMENT STAGE. PLEASE SEND ISSUES IF YOU HAVE NICE IDEAS. ❗❗❗
 
+❗❗❗ DEVELOPMENT DEMO: `https://skyline.amzrk2.cc/` ❗❗❗
+
 ## Contribute
 
 Clone this repo, install packages and run the development server:

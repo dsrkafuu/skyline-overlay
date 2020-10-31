@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, unref, toRefs } from 'vue';
 import splitNumber from '../plugins/splitNumber.js';
 import { logInfo } from '../plugins/logger.js';
 // hooks
@@ -53,19 +53,20 @@ export default {
 
     // encounter datas
     const { encounter } = useCombatData();
-    const duration = computed(() => encounter.value?.duration || '00:00');
-    const zone = computed(() => encounter.value?.zoneName || 'Skyline Overlay');
-    const totalDPS = computed(() => splitNumber(encounter.value?.dps) || '0');
+    const duration = computed(() => unref(encounter)?.duration || '00:00');
+    const zone = computed(() => unref(encounter)?.zoneName || 'Skyline Overlay');
+    const totalDPS = computed(() => splitNumber(unref(encounter)?.dps) || '0');
 
     // end encounter
     let flickEndEncounter = null;
+    const { overlay } = toRefs(props);
     const handleEndEncounter = () => {
       if (flickEndEncounter) {
         clearTimeout(flickEndEncounter);
       }
       flickEndEncounter = setTimeout(() => {
         logInfo('Encounter ended');
-        props.overlay && props.overlay.endEncounter();
+        unref(overlay) && unref(overlay).endEncounter();
       }, FLICK_TIMEOUT);
     };
 
