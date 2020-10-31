@@ -35,8 +35,8 @@ import icons from '../plugins/icons.js';
 export default {
   name: 'Player',
   props: {
-    playerName: String,
-    data: Object,
+    playerName: { type: String, required: true },
+    data: { type: Object, required: true },
   },
   setup(props) {
     // player name

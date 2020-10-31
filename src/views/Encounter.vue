@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { computed, unref, toRefs } from 'vue';
+import { computed, unref } from 'vue';
 import splitNumber from '../plugins/splitNumber.js';
 import { logInfo } from '../plugins/logger.js';
 // hooks
@@ -45,7 +45,7 @@ import svgSetting from '../assets/svgs/setting.svg';
 export default {
   name: 'Encounter',
   props: {
-    overlay: Object,
+    overlay: { type: Object, required: true },
   },
   setup(props) {
     // active status
@@ -59,14 +59,15 @@ export default {
 
     // end encounter
     let flickEndEncounter = null;
-    const { overlay } = toRefs(props);
+    // props.overlay is a plain object, no need `toRefs`
+    const { overlay } = props;
     const handleEndEncounter = () => {
       if (flickEndEncounter) {
         clearTimeout(flickEndEncounter);
       }
       flickEndEncounter = setTimeout(() => {
         logInfo('Encounter ended');
-        unref(overlay) && unref(overlay).endEncounter();
+        overlay && overlay.endEncounter();
       }, FLICK_TIMEOUT);
     };
 
