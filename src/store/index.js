@@ -1,11 +1,14 @@
 import { createStore } from 'vuex';
 // mutations
-import { UPDATE_COMBAT_DATA, SWITCH_SETTINGS } from './mutations.js';
+import { UPDATE_COMBAT_DATA, SWITCH_SETTINGS, UPDATE_SETTINS } from './mutations.js';
 
 const store = createStore({
   state: {
     combatData: {},
     showSettings: false,
+    settings: {
+      showRanks: false,
+    },
   },
   mutations: {
     // update combat data
@@ -15,6 +18,10 @@ const store = createStore({
     // switch settings status
     [SWITCH_SETTINGS](state) {
       state.showSettings = !state.showSettings;
+    },
+    // update settings
+    [UPDATE_SETTINS](state, payload) {
+      state.settings = Object.assign({}, state.settings, payload);
     },
   },
 });
