@@ -2,8 +2,9 @@
   <div class="player-container">
     <Player
       class="player-item"
-      v-for="(value, key) of combatant"
+      v-for="(value, key, index) of combatant"
       :key="key"
+      :index="index"
       :playerName="key"
       :data="value"
     />
@@ -27,7 +28,7 @@ export default {
   setup() {
     // get combat data
     const { combatant } = useCombatData();
-
+    console.log(combatant)
     return {
       combatant,
     };

@@ -1,6 +1,6 @@
 <template>
   <div class="player" :class="`job-${data.jobType}`">
-    <div class="player-id" v-text="playerName"></div>
+    <div class="player-id" v-text="player"></div>
     <div class="player-content">
       <span class="player-icon">
         <img :src="icons[data.job] || icons.ffxiv" />
@@ -26,6 +26,8 @@
 import { computed, toRefs } from 'vue';
 import splitNumber from '../plugins/splitNumber.js';
 import icons from '../plugins/icons.js';
+// hooks
+import useSettings from '../hooks/useSettings.js';
 
 /**
  * single play grid
@@ -35,17 +37,29 @@ import icons from '../plugins/icons.js';
 export default {
   name: 'Player',
   props: {
+    index: { type: Number, required: true },
     playerName: { type: String, required: true },
     data: { type: Object, required: true },
   },
   setup(props) {
+    // get settings
+    const { settings } = useSettings();
+
     // player name
-    const { playerName } = toRefs(props);
+    const { index, playerName } = toRefs(props);
+    const player = computed(() => {
+      if (settings.value.showRanks) {
+        return `${index.value}. ${playerName.value}`;
+      } else {
+        return playerName.value;
+      }
+    });
+
     // player dps
     const dps = computed(() => splitNumber(props.data.dps));
 
     return {
-      playerName,
+      player,
       dps,
       //icons
       icons,

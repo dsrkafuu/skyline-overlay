@@ -59,15 +59,13 @@ export default {
 
     // end encounter
     let flickEndEncounter = null;
-    // props.overlay is a plain object, no need `toRefs`
-    const { overlay } = props;
     const handleEndEncounter = () => {
       if (flickEndEncounter) {
         clearTimeout(flickEndEncounter);
       }
       flickEndEncounter = setTimeout(() => {
         logInfo('Encounter ended');
-        overlay && overlay.endEncounter();
+        props.overlay && props.overlay.endEncounter();
       }, FLICK_TIMEOUT);
     };
 
