@@ -28,7 +28,7 @@ export default {
   setup() {
     // get combat data
     const { combatant } = useCombatData();
-    console.log(combatant)
+
     return {
       combatant,
     };
