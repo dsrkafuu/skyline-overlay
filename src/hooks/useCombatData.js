@@ -13,8 +13,8 @@ function useCombatData() {
   const active = computed(() => store.state.combatData?.isActive === 'true');
 
   // combat datas
-  const combatant = computed(() => store.state.combatData?.extendData?.combatant || null);
-  const encounter = computed(() => store.state.combatData?.extendData?.encounter || null);
+  const combatant = computed(() => store.state.combatData?.extendData?.combatant);
+  const encounter = computed(() => store.state.combatData?.extendData?.encounter);
 
   /**
    * update combat data
