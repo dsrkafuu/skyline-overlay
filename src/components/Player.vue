@@ -48,10 +48,14 @@ export default {
     // player name
     const { index, playerName } = toRefs(props);
     const player = computed(() => {
+      let name = playerName.value;
+      // if custom name
+      name === 'YOU' && (name = settings.value.youName);
+      // if show ranks
       if (settings.value.showRanks) {
-        return `${index.value}. ${playerName.value}`;
+        return `${index.value}. ${name}`;
       } else {
-        return playerName.value;
+        return name;
       }
     });
 

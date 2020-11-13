@@ -8,6 +8,7 @@ const store = createStore({
     showSettings: false,
     settings: {
       showRanks: false,
+      youName: 'YOU',
     },
   },
   mutations: {

@@ -1,0 +1,13 @@
+@import '../scss/variables.scss';
+
+.input {
+  display: inline-block;
+  border: none;
+  outline: none;
+  background-color: var(--color-form-bg);
+  color: var(--color-form-text);
+  height: 1.6rem;
+  line-height: 1.6rem;
+  padding: 0 0.3rem;
+  min-width: 0;
+}

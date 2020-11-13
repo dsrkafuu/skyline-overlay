@@ -10,12 +10,41 @@
 }
 
 .settings {
-  flex: 0 0 30rem;
+  flex: 0 0 25rem;
   color: var(--color-text);
   text-shadow: var(--shadow-text);
   background-color: var(--color-bg);
 }
 
 .settings-content {
+  position: relative;
   margin: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.settings-line {
+  flex: 1 1 100%;
+}
+.settings-line + .settings-line {
+  margin-top: 0.5rem;
+}
+
+.settings-select {
+  display: flex;
+  justify-content: space-between;
+  span {
+    line-height: 1.6rem;
+  }
+}
+.settings-input {
+  display: flex;
+  justify-content: space-between;
+  span {
+    line-height: 1.6rem;
+  }
+  ::v-deep(.input) {
+    width: 10rem;
+    text-align: right;
+  }
 }
