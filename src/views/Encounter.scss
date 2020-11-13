@@ -1,7 +1,7 @@
 @import '../scss/variables.scss';
 
 .status-container {
-  margin-top: 0.3rem;
+  margin-top: $padding-md;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -18,18 +18,18 @@
 
 .status-content {
   flex: 1 0 auto;
-  padding: 0.25rem 0.75rem;
+  padding: $padding-sm $padding-xl;
   display: flex;
   flex-wrap: nowrap;
-  height: var(--height-status);
+  height: $size-encounter;
   line-height: 1.1rem;
   background-color: var(--color-bg);
 }
 
 .status-duration {
-  height: var(--height-status);
-  width: 3.25rem;
-  line-height: var(--height-status);
+  height: $size-encounter;
+  width: $size-encounter * 2 + 0.05rem;
+  line-height: $size-encounter;
   text-align: center;
   &:not(.active) {
     background-color: var(--color-cover);
@@ -43,14 +43,14 @@
   cursor: pointer;
   background-color: var(--color-cover);
   position: relative;
-  height: var(--height-status);
-  width: 3.2rem;
+  height: $size-encounter;
+  width: $size-encounter * 2;
   display: flex;
   & > div {
     position: relative;
     flex: 0 0 auto;
-    height: var(--height-status);
-    width: var(--height-status);
+    height: $size-encounter;
+    width: $size-encounter;
     &:hover {
       background-color: var(--color-cover);
     }

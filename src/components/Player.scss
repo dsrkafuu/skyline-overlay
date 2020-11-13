@@ -3,7 +3,7 @@
 .player {
   flex: 0 0 auto;
   width: 9rem;
-  margin: 0 0.2rem;
+  margin: 0 $padding-xs;
   display: flex;
   flex-direction: column;
   color: var(--color-text);

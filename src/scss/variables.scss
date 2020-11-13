@@ -2,25 +2,35 @@ $font-size-xs: 10px;
 $font-size-sm: 12px;
 $font-size-base: 14px;
 
+$size-encounter: 1.6rem;
+$size-form: 1.6rem;
+
+$padding-xs: 0.2rem;
+$padding-sm: 0.25rem;
+$padding-md: 0.3rem;
+$padding-lg: 0.5rem;
+$padding-xl: 0.75rem;
+
 $font-family-base: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', 'Arial',
   'Helvetica Neue', 'Helvetica', 'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans CN',
   'Source Han Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
 
 body {
+  // global
   --color-bg: rgba(145, 145, 145, 0.6);
-  --color-cover: rgba(170, 170, 169, 0.6);
-  --color-active: rgba(123, 170, 23, 0.6);
-  --color-text: #fff;
+  --color-text: #ffffff;
+  --shadow-text: 0 0 0.25rem #000;
+  // combatant
   --color-dps: rgba(232, 107, 121, 0.6);
   --color-tank: rgba(138, 162, 211, 0.65);
   --color-heal: rgba(123, 170, 23, 0.6);
   --color-dpsb: rgba(244, 67, 54, 0.5);
   --color-tankb: rgba(32, 149, 243, 0.5);
   --color-healb: rgba(139, 195, 74, 0.5);
-  --shadow-text: 0 0 0.25rem #000;
-  --height-status: 1.6rem;
-
+  // encounter
+  --color-cover: rgba(170, 170, 169, 0.6);
+  --color-active: rgba(123, 170, 23, 0.6);
+  // settings
   --color-form-bg: #777777;
   --color-form-bg-active: #eeeeee;
-  --color-form-text: #ffffff;
 }

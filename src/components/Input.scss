@@ -5,9 +5,9 @@
   border: none;
   outline: none;
   background-color: var(--color-form-bg);
-  color: var(--color-form-text);
-  height: 1.6rem;
-  line-height: 1.6rem;
-  padding: 0 0.3rem;
+  color: var(--color-text);
+  height: $size-form;
+  line-height: $size-form;
+  padding: 0 $padding-md;
   min-width: 0;
 }

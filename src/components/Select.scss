@@ -3,16 +3,16 @@
 .select {
   display: flex;
   cursor: pointer;
-  height: 1.6rem;
-  width: 3.2rem;
+  height: $size-form;
+  width: $size-form * 2;
   display: flex;
-  background-color: #777777;
+  background-color: var(--color-form-bg);
   & > div {
     flex: 0 0 auto;
-    height: 1.6rem;
-    width: 1.6rem;
+    height: $size-form;
+    width: $size-form;
     &.active {
-      background-color: #eeeeee;
+      background-color: var(--color-form-bg-active);
     }
   }
   svg {

@@ -1,7 +1,7 @@
 @import '../scss/variables.scss';
 
 .settings-container {
-  margin-top: 0.3rem;
+  margin-top: $padding-md;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -18,7 +18,7 @@
 
 .settings-content {
   position: relative;
-  margin: 0.5rem;
+  margin: $padding-lg;
   display: flex;
   flex-wrap: wrap;
 }
@@ -27,21 +27,21 @@
   flex: 1 1 100%;
 }
 .settings-line + .settings-line {
-  margin-top: 0.5rem;
+  margin-top: $padding-md;
 }
 
 .settings-select {
   display: flex;
   justify-content: space-between;
   span {
-    line-height: 1.6rem;
+    line-height: $size-form;
   }
 }
 .settings-input {
   display: flex;
   justify-content: space-between;
   span {
-    line-height: 1.6rem;
+    line-height: $size-form;
   }
   ::v-deep(.input) {
     width: 10rem;
