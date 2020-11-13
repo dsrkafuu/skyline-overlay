@@ -51,6 +51,8 @@ export default {
       let name = playerName.value;
       // if custom name
       name === 'YOU' && (name = settings.value.youName);
+      // prevent empty
+      name === '' && (name = 'YOU');
       // if show ranks
       if (settings.value.showRanks) {
         return `${index.value}. ${name}`;
