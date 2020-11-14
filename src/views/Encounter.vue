@@ -15,10 +15,10 @@
       </div>
       <div class="status-buttons">
         <div class="buttons-end" @click="handleEndEncounter">
-          <img :src="svgRefresh" />
+          <IRefresh color="#ffffff" />
         </div>
         <div class="buttons-settings" @click="updateShowSettings">
-          <img :src="svgSetting" />
+          <ISetting color="#ffffff" />
         </div>
       </div>
     </div>
@@ -35,8 +35,8 @@ import useSettings from '../hooks/useSettings.js';
 // constants
 import { FLICK_TIMEOUT } from '../store/constants.js';
 // icons
-import svgRefresh from '../assets/svgs/refresh.svg';
-import svgSetting from '../assets/svgs/setting.svg';
+import IRefresh from '../assets/svgs/IRefresh.vue';
+import ISetting from '../assets/svgs/ISetting.vue';
 
 /**
  * encounter bar
@@ -80,8 +80,8 @@ export default {
       handleEndEncounter,
       updateShowSettings,
       // icons
-      svgRefresh,
-      svgSetting,
+      IRefresh,
+      ISetting,
     };
   },
 };
