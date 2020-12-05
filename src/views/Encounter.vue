@@ -2,19 +2,19 @@
   <div class="status-container">
     <div class="status">
       <div class="status-duration" :class="active && 'active'">
-        <span v-text="duration"></span>
+        <span>{{ duration }}</span>
       </div>
       <div class="status-content">
         <div class="zone">
-          <span v-text="zone"></span>
+          <span>{{ zoneName }}</span>
         </div>
         <div class="numbers">
-          <span v-text="totalDPS"></span>
+          <span>{{ totalDPS }}</span>
           <span class="counter">DPS</span>
         </div>
       </div>
       <div class="status-buttons">
-        <div class="buttons-end" @click="handleEndEncounter">
+        <div class="buttons-end" @click="handleClearOverlay">
           <IRefresh color="#ffffff" />
         </div>
         <div class="buttons-settings" @click="updateShowSettings">
@@ -27,13 +27,10 @@
 
 <script>
 import { computed } from 'vue';
-import splitNumber from '../plugins/splitNumber.js';
 import { logInfo } from '../plugins/logger.js';
 // hooks
 import useCombatData from '../hooks/useCombatData.js';
 import useSettings from '../hooks/useSettings.js';
-// constants
-import { FLICK_TIMEOUT } from '../store/constants.js';
 // icons
 import IRefresh from '../assets/svgs/IRefresh.vue';
 import ISetting from '../assets/svgs/ISetting.vue';
@@ -52,21 +49,18 @@ export default {
     const { active } = useCombatData();
 
     // encounter datas
-    const { encounter } = useCombatData();
+    const { encounter, updateCombatData } = useCombatData();
     const duration = computed(() => encounter.value?.duration || '00:00');
-    const zone = computed(() => encounter.value?.zoneName || 'Skyline Overlay');
-    const totalDPS = computed(() => splitNumber(encounter.value?.dps) || '0');
+    const zoneName = computed(() => encounter.value?.zoneName || 'Skyline Overlay');
+    const totalDPS = computed(() => encounter.value?.dps || 0);
 
-    // end encounter
-    let flickEndEncounter = null;
-    const handleEndEncounter = () => {
-      if (flickEndEncounter) {
-        clearTimeout(flickEndEncounter);
-      }
-      flickEndEncounter = setTimeout(() => {
-        logInfo('Encounter ended');
-        props.overlay && props.overlay.endEncounter();
-      }, FLICK_TIMEOUT);
+    /**
+     * clear overlay data
+     */
+    const handleClearOverlay = () => {
+      logInfo('Overlay cleared');
+      typeof props.overlay.endEncounter === 'function' && props.overlay.endEncounter();
+      updateCombatData({});
     };
 
     // control settings
@@ -75,9 +69,9 @@ export default {
     return {
       active,
       duration,
-      zone,
+      zoneName,
       totalDPS,
-      handleEndEncounter,
+      handleClearOverlay,
       updateShowSettings,
       // icons
       IRefresh,

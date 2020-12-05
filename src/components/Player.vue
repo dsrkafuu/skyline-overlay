@@ -1,12 +1,12 @@
 <template>
   <div class="player" :class="`job-${data.jobType}`">
-    <div class="player-id" v-text="player"></div>
+    <div class="player-id">{{ dispName }}</div>
     <div class="player-content">
       <span class="player-icon">
         <img :src="icons[data.job] || icons.ffxiv" />
       </span>
       <div class="player-data">
-        <span class="player-num" v-text="dps"></span>
+        <span class="player-num">{{ data.dps || 0 }}</span>
         <span class="counter">DPS</span>
       </div>
     </div>
@@ -16,15 +16,16 @@
       </div>
     </div>
     <div class="player-maxhit">
-      <span v-text="data.maxHit"></span>
-      <span v-if="data.maxHitDamage" v-text="`&nbsp;-&nbsp;${data.maxHitDamage}`"></span>
+      <span>{{ data.maxHit }}</span>
+      <span v-if="data.maxHitDamage">
+        {{ `&nbsp;-&nbsp;${data.maxHitDamage}` }}
+      </span>
     </div>
   </div>
 </template>
 
 <script>
-import { computed, toRefs } from 'vue';
-import splitNumber from '../plugins/splitNumber.js';
+import { computed } from 'vue';
 import icons from '../plugins/icons.js';
 // hooks
 import useSettings from '../hooks/useSettings.js';
@@ -38,7 +39,6 @@ export default {
   name: 'Player',
   props: {
     index: { type: Number, required: true },
-    playerName: { type: String, required: true },
     data: { type: Object, required: true },
   },
   setup(props) {
@@ -46,27 +46,22 @@ export default {
     const { settings } = useSettings();
 
     // player name
-    const { index, playerName } = toRefs(props);
-    const player = computed(() => {
-      let name = playerName.value;
+    const dispName = computed(() => {
+      let dispName = props.data.name;
       // if custom name
-      name === 'YOU' && (name = settings.value.youName);
+      dispName === 'YOU' && (dispName = settings.value.youName);
       // prevent empty
-      name === '' && (name = 'YOU');
+      dispName === '' && (dispName = 'YOU');
       // if show ranks
       if (settings.value.showRanks) {
-        return `${index.value}. ${name}`;
+        return `${props.index}. ${dispName}`;
       } else {
-        return name;
+        return dispName;
       }
     });
 
-    // player dps
-    const dps = computed(() => splitNumber(props.data.dps));
-
     return {
-      player,
-      dps,
+      dispName,
       //icons
       icons,
     };

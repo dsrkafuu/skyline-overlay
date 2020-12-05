@@ -2,7 +2,7 @@
  * check if development
  * @returns {Boolean}
  */
-function isDevelopment() {
+function isDev() {
   const process = window.process;
   if (process && process?.env?.NODE_ENV === 'development') {
     return true;
@@ -10,4 +10,4 @@ function isDevelopment() {
   return false;
 }
 
-export default isDevelopment;
+export default isDev;

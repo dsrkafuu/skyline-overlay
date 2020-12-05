@@ -1,5 +1,5 @@
 import OverlayAPI from 'ffxiv-overlay-api';
-import isDevelopment from '../plugins/isDevelopment.js';
+import isDev from '../plugins/isDev.js';
 
 /**
  * get overlay api
@@ -12,14 +12,14 @@ function useOverlayAPI(updateCombatData) {
   } else {
     overlay = new OverlayAPI({
       extendData: true,
-      silentMode: !isDevelopment(),
+      silentMode: !isDev(),
     });
     overlay.addListener('CombatData', (data) => {
       updateCombatData(data);
     });
     window.overlay = overlay;
     /* DEV - START */
-    isDevelopment() &&
+    isDev() &&
       fetch('https://raw.githubusercontent.com/amzrk2/ffxiv-overlay-api/master/test/fake_cn.json')
         .then((response) => {
           return response.json();
