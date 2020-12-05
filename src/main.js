@@ -1,5 +1,6 @@
 // css
 import 'normalize.css';
+import './scss/themes.scss';
 import './scss/global.scss';
 // vue
 import { createApp } from 'vue';
