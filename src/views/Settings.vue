@@ -4,7 +4,14 @@
       <div class="settings-content">
         <div class="settings-line settings-select">
           <span>显示名次</span>
-          <Switch v-model="showRanks"></Switch>
+          <Switch v-model="showRanks">
+            <template v-slot:true="{ color }">
+              <ICheck :color="color" />
+            </template>
+            <template v-slot:false="{ color }">
+              <IClose :color="color" />
+            </template>
+          </Switch>
         </div>
         <div class="settings-line settings-input">
           <span>自定义 ID</span>
@@ -22,6 +29,9 @@ import useSettings from '../hooks/useSettings.js';
 // components
 import Switch from '../components/Switch.vue';
 import Input from '../components/Input.vue';
+// icons
+import ICheck from '../assets/svgs/ICheck.vue';
+import IClose from '../assets/svgs/IClose.vue';
 
 /**
  * settings container
@@ -31,6 +41,8 @@ export default {
   components: {
     Switch,
     Input,
+    ICheck,
+    IClose,
   },
   setup() {
     // show settings

@@ -43,7 +43,7 @@
   span {
     line-height: $size-form;
   }
-  ::v-deep(.input) {
+  .input {
     width: 10rem;
     text-align: right;
   }
