@@ -18,7 +18,7 @@ import IClose from '../assets/svgs/IClose.vue';
  * custom select component, use with `v-model`
  */
 export default {
-  name: 'Select',
+  name: 'Switch',
   components: {
     ICheck,
     IClose,
@@ -43,5 +43,5 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped src="./Select.scss">
+<style lang="scss" src="./Switch.scss">
 </style>

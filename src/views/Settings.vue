@@ -4,7 +4,7 @@
       <div class="settings-content">
         <div class="settings-line settings-select">
           <span>显示名次</span>
-          <Select v-model="showRanks" />
+          <Switch v-model="showRanks"></Switch>
         </div>
         <div class="settings-line settings-input">
           <span>自定义 ID</span>
@@ -20,7 +20,7 @@ import { computed } from 'vue';
 // hooks
 import useSettings from '../hooks/useSettings.js';
 // components
-import Select from '../components/Select.vue';
+import Switch from '../components/Switch.vue';
 import Input from '../components/Input.vue';
 
 /**
@@ -29,7 +29,7 @@ import Input from '../components/Input.vue';
 export default {
   name: 'Settings',
   components: {
-    Select,
+    Switch,
     Input,
   },
   setup() {
@@ -64,5 +64,5 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped src="./Settings.scss">
+<style lang="scss" src="./Settings.scss">
 </style>

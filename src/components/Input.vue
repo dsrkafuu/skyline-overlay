@@ -29,5 +29,5 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped src="./Input.scss">
+<style lang="scss" src="./Input.scss">
 </style>

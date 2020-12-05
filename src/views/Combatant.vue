@@ -35,5 +35,5 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped src="./Combatant.scss">
+<style lang="scss" src="./Combatant.scss">
 </style>

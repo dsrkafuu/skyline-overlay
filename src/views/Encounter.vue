@@ -81,5 +81,5 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped src="./Encounter.scss">
+<style lang="scss" src="./Encounter.scss">
 </style>
