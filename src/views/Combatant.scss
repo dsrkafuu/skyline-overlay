@@ -1,6 +1,9 @@
+@import '../scss/variables.scss';
+
 .player-container {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: flex-start;
+  margin-bottom: $padding-md;
 }

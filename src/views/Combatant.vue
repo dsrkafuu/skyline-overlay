@@ -1,5 +1,5 @@
 <template>
-  <div class="player-container">
+  <div class="player-container" v-if="combatant && combatant.length > 0">
     <Player
       class="player-item"
       v-for="(item, index) of combatant"
