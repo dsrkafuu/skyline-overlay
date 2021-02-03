@@ -1,5 +1,5 @@
 // deps
-import OverlayAPI from 'ffxiv-overlay-api';
+import { OverlayAPI } from 'ffxiv-overlay-api';
 import { isDev } from '../utils/isDev.js';
 
 /**

@@ -1,23 +1,23 @@
 {
   "name": "skyline",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",
     "build": "cross-env NODE_ENV=production vite build"
   },
   "dependencies": {
-    "ffxiv-overlay-api": "3.1.0",
-    "normalize.css": "8.0.1",
-    "vue": "3.0.5",
-    "vuex": "4.0.0"
+    "ffxiv-overlay-api": "~3.2.0",
+    "normalize.css": "~8.0.1",
+    "vue": "~3.0.5",
+    "vuex": "~4.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.1.4",
-    "@vue/compiler-sfc": "3.0.5",
-    "cross-env": "7.0.3",
-    "eslint": "7.19.0",
-    "eslint-plugin-vue": "7.5.0",
-    "sass": "1.32.6",
+    "@vue/compiler-sfc": "~3.0.5",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.19.0",
+    "eslint-plugin-vue": "^7.5.0",
+    "sass": "^1.32.6",
     "vite": "2.0.0-beta.62"
   }
 }

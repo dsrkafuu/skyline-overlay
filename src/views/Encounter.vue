@@ -27,7 +27,7 @@
 
 <script>
 // deps
-import OverlayAPI from 'ffxiv-overlay-api';
+import { OverlayAPI } from 'ffxiv-overlay-api';
 import { computed } from 'vue';
 import { logInfo } from '../utils/loggers.js';
 // hooks
