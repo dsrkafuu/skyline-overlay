@@ -21,6 +21,7 @@ import IClose from '../assets/svgs/IClose.vue';
 /**
  * custom select component, use with `v-model`
  * receives two icon componets, fallbacks to `ICheck` and `IClose`
+ * @param {boolean} modelValue
  */
 export default {
   name: 'Switch',
@@ -29,7 +30,10 @@ export default {
     IClose,
   },
   props: {
-    modelValue: { type: Boolean, required: true },
+    modelValue: {
+      type: Boolean,
+      required: true,
+    },
   },
   setup(props, context) {
     // handle value change
@@ -38,6 +42,7 @@ export default {
         context.emit('update:modelValue', value);
       }
     };
+
     return {
       handleClick,
     };

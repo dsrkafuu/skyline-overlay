@@ -1,10 +1,14 @@
 <template>
+  <!-- combatant container -->
   <Combatant />
+  <!-- encounter and control bar -->
   <Encounter :overlay="overlay" />
+  <!-- settings -->
   <Settings />
 </template>
 
 <script>
+// deps
 import { onMounted } from 'vue';
 // hooks
 import useCombatData from './hooks/useCombatData.js';
@@ -22,9 +26,11 @@ export default {
     Settings,
   },
   setup() {
-    // init overlay api and start polling data
+    // init overlay api
     const { updateCombatData } = useCombatData();
     const { overlay } = useOverlayAPI(updateCombatData);
+
+    // start pulling data
     onMounted(() => {
       overlay.startEvent();
     });

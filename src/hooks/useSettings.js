@@ -1,3 +1,4 @@
+// deps
 import { computed } from 'vue';
 // store
 import { useStore } from 'vuex';

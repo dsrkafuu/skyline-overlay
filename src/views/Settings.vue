@@ -23,6 +23,7 @@
 </template>
 
 <script>
+// deps
 import { computed } from 'vue';
 // hooks
 import useSettings from '../hooks/useSettings.js';

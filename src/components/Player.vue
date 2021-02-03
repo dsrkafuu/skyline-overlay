@@ -3,7 +3,7 @@
     <div class="player-id">{{ dispName }}</div>
     <div class="player-content">
       <span class="player-icon">
-        <img :src="icons[data.job] || icons.ffxiv" />
+        <img :src="jobIcons[data.job] || jobIcons.ffxiv" />
       </span>
       <div class="player-data">
         <span class="player-num">{{ data.dps || 0 }}</span>
@@ -25,21 +25,28 @@
 </template>
 
 <script>
+// deps
 import { computed } from 'vue';
-import icons from '../plugins/icons.js';
+import jobIcons from '../plugins/jobIcons.js';
 // hooks
 import useSettings from '../hooks/useSettings.js';
 
 /**
  * single play grid
- * @param {String} playerName (ref) player name
+ * @param {string} playerName (ref) player name
  * @param {Object} data (reactive) data obj
  */
 export default {
   name: 'Player',
   props: {
-    index: { type: Number, required: true },
-    data: { type: Object, required: true },
+    index: {
+      type: Number,
+      required: true,
+    },
+    data: {
+      type: Object,
+      required: true,
+    },
   },
   setup(props) {
     // get settings
@@ -62,8 +69,8 @@ export default {
 
     return {
       dispName,
-      //icons
-      icons,
+      // job icons
+      jobIcons,
     };
   },
 };

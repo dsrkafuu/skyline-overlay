@@ -5,6 +5,7 @@
 <script>
 /**
  * custom input component, use with `v-model`
+ * @param {string} modelValue
  */
 export default {
   name: 'Input',

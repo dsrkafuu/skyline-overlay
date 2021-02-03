@@ -26,8 +26,10 @@
 </template>
 
 <script>
+// deps
+import OverlayAPI from 'ffxiv-overlay-api';
 import { computed } from 'vue';
-import { logInfo } from '../plugins/logger.js';
+import { logInfo } from '../utils/loggers.js';
 // hooks
 import useCombatData from '../hooks/useCombatData.js';
 import useSettings from '../hooks/useSettings.js';
@@ -37,12 +39,15 @@ import ISetting from '../assets/svgs/ISetting.vue';
 
 /**
  * encounter bar
- * @param {Object} overlay overlay instance
+ * @param {OverlayAPI} overlay overlay instance
  */
 export default {
   name: 'Encounter',
   props: {
-    overlay: { type: Object, required: true },
+    overlay: {
+      type: OverlayAPI,
+      required: true,
+    },
   },
   setup(props) {
     // active status
@@ -58,7 +63,7 @@ export default {
      * clear overlay data
      */
     const handleClearOverlay = () => {
-      logInfo('Overlay cleared');
+      logInfo('overlay cleared');
       typeof props.overlay.endEncounter === 'function' && props.overlay.endEncounter();
       updateCombatData({});
     };

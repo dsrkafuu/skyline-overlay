@@ -1,13 +1,11 @@
 /**
- * check if development
- * @returns {Boolean}
+ * check if in development mode
+ * @returns {boolean}
  */
-function isDev() {
+export function isDev() {
   const process = window.process;
   if (process && process?.env?.NODE_ENV === 'development') {
     return true;
   }
   return false;
 }
-
-export default isDev;

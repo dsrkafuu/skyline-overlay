@@ -1,11 +1,13 @@
+// deps
 import OverlayAPI from 'ffxiv-overlay-api';
-import isDev from '../plugins/isDev.js';
+import { isDev } from '../utils/isDev.js';
 
 /**
  * get overlay api
  * @param {Function} updateCombatData callback function to update data
  */
 function useOverlayAPI(updateCombatData) {
+  // check overlay status
   let overlay = null;
   if (window.overlay) {
     overlay = window.overlay;

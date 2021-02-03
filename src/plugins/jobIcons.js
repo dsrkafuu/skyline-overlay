@@ -45,7 +45,7 @@ import fsh from '../assets/icons/fsh.png';
 import blu from '../assets/icons/blu.png';
 import ffxiv from '../assets/icons/ffxiv.png';
 
-const icons = {
+export default {
   /* dps */
   acn,
   arc,
@@ -93,5 +93,3 @@ const icons = {
   ffxiv,
   blu,
 };
-
-export default icons;
