@@ -28,6 +28,8 @@ npm start
 
 ## LICENSE
 
+<a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fdsrkafuu%2Fskyline-overlay?ref=badge_large" alt="FOSSA Status"><img align="right" src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdsrkafuu%2Fskyline-overlay.svg?type=large"/></a>
+
 Released under `Apache License 2.0`, for more information read the [LICENSE](https://github.com/dsrkafuu/skyline-overlay/blob/main/LICENSE).
 
 **Copyright © 2020-present DSRKafuU <https://dsrkafuu.co/>**
