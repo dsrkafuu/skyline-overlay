@@ -17,6 +17,10 @@
           <span>自定义 ID</span>
           <Input v-model.trim="youName" />
         </div>
+        <div class="settings-line settings-copy">
+          <span>{{ `Copyright ${new Date().getFullYear()}` }}</span>
+          <a href="https://dsrkafuu.co" target="_blank" rel="noopener">DSRKafuU</a>
+        </div>
       </div>
     </div>
   </div>

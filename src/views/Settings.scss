@@ -37,6 +37,7 @@
     line-height: $size-form;
   }
 }
+
 .settings-input {
   display: flex;
   justify-content: space-between;
@@ -46,5 +47,18 @@
   .input {
     width: 10rem;
     text-align: right;
+  }
+}
+
+.settings-copy {
+  display: flex;
+  justify-content: space-between;
+  span,
+  a {
+    line-height: $size-form;
+  }
+  a {
+    text-decoration: underline;
+    color: var(--color-text);
   }
 }
