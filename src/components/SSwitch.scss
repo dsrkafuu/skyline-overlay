@@ -1,26 +1,25 @@
-@import '../scss/variables.scss';
-
-.select {
+.s-switch {
   display: flex;
   cursor: pointer;
   height: $size-form;
   width: $size-form * 2;
   display: flex;
+  color: var(--color-form-fg);
   background-color: var(--color-form-bg);
 
-  & > div {
+  .btn {
     flex: 0 0 auto;
     height: $size-form;
     width: $size-form;
+    transition: all 150ms ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
     &.active {
+      color: var(--color-form-fg-active);
       background-color: var(--color-form-bg-active);
     }
-  }
-
-  svg {
-    height: 1.1rem;
-    width: 1.1rem;
-    margin: 0.25rem;
   }
 }

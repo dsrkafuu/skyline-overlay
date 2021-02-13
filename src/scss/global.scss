@@ -1,5 +1,3 @@
-@import './variables.scss';
-
 * {
   box-sizing: border-box;
 }
@@ -11,7 +9,6 @@ body {
   user-select: none;
 }
 
-span.counter {
-  font-size: $font-size-xs;
-  margin-left: 0.2rem;
+#root {
+  display: block;
 }

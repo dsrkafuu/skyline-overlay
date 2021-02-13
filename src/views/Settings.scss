@@ -1,64 +1,38 @@
-@import '../scss/variables.scss';
-
-.settings-container {
-  margin-top: $padding-md;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: $font-size-sm;
-}
-
 .settings {
-  flex: 0 0 25rem;
-  color: var(--color-text);
-  text-shadow: var(--shadow-text);
-  background-color: var(--color-bg);
-}
-
-.settings-content {
-  position: relative;
-  margin: $padding-lg;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.settings-line {
-  flex: 1 1 100%;
-}
-.settings-line + .settings-line {
   margin-top: $padding-md;
-}
+  font-size: $font-size-sm;
+  flex: 0 0 25rem;
+  color: var(--color-fg);
+  background-color: var(--color-bg);
+  text-shadow: var(--shadow-text);
 
-.settings-select {
-  display: flex;
-  justify-content: space-between;
-  span {
-    line-height: $size-form;
+  .content {
+    position: relative;
+    margin: $padding-lg;
+    display: flex;
+    flex-wrap: wrap;
   }
-}
 
-.settings-input {
-  display: flex;
-  justify-content: space-between;
-  span {
-    line-height: $size-form;
-  }
-  .input {
-    width: 10rem;
-    text-align: right;
-  }
-}
+  .row {
+    flex: 1 1 100%;
+    display: flex;
+    justify-content: space-between;
 
-.settings-copy {
-  display: flex;
-  justify-content: space-between;
-  span,
-  a {
-    line-height: $size-form;
-  }
-  a {
-    text-decoration: underline;
-    color: var(--color-text);
+    &:not(:first-child) {
+      margin-top: $padding-md;
+    }
+
+    .title {
+      line-height: $size-form;
+    }
+
+    .s-input {
+      width: 10rem;
+      text-align: right;
+    }
+
+    .s-link {
+      line-height: $size-form;
+    }
   }
 }

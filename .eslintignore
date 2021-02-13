@@ -1,0 +1,5 @@
+assets/**
+dist/**
+public/**
+cleanup.js
+vite.config.js

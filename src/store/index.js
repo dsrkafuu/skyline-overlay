@@ -1,37 +1,24 @@
-// deps
-import { createStore } from 'vuex';
-// mutations
-import { UPDATE_COMBAT_DATA, SWITCH_SETTINGS, UPDATE_SETTINS } from './mutations.js';
+/**
+ * [NOTES]
+ *
+ * http://bit.ly/373tW7R
+ * write code that "mutates" inside the reducer is allowed,
+ * like `state.list.push(item)` thanks to that RTK uses Immer to wrap the states,
+ * which will safely return a correct immutably updated result
+ *
+ * http://bit.ly/3aXI03L
+ * redux "ducks" pattern,
+ * put all your action creators and reducers in one file,
+ * do named exports of the action creators,
+ * and a default export of the reducer function
+ */
 
-const store = createStore({
-  state: {
-    combatData: {},
+import { configureStore } from '@reduxjs/toolkit';
 
-    showSettings: false,
-    settings: {
-      showRanks: false,
-      youName: 'YOU',
-    },
-  },
+import rootReducer from './reducer';
 
-  mutations: {
-    // update combat data
-    // payload: { combatant, encounter, ... }
-    [UPDATE_COMBAT_DATA](state, payload) {
-      state.combatData = payload;
-    },
-
-    // switch settings status
-    [SWITCH_SETTINGS](state) {
-      state.showSettings = !state.showSettings;
-    },
-
-    // update settings
-    // payload: { showRanks, youName, ... }
-    [UPDATE_SETTINS](state, payload) {
-      state.settings = Object.assign({}, state.settings, payload);
-    },
-  },
+const store = configureStore({
+  reducer: rootReducer,
 });
 
 export default store;

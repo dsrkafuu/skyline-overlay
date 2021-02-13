@@ -1,29 +1,37 @@
-# ☁ skyline-overlay ☁
+<h1 align="center">
+  <br />
+  <img src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/assets/logo.svg" alt="Skyline Logo" width="128" />
+  <br /><br />
+  Skyline Overlay
+  <br /><br />
+</h1>
 
-A horizon FFXIV ACT overlay built with Vite & Vue 3 Composition API.
+<h4 align="center">A horizon FFXIV miniparse overlay built with React & Vite.</h4>
 
-It's basically a Vue & customized version of [horizoverlay](https://github.com/bsides/horizoverlay/) and has some of [ikegami](https://github.com/hibiyasleep/ikegami)'s features. The main purpose of building this project is to get familiar with Vue 3 & Composition API, which can also test my [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
+It's basically a customized version of [horizoverlay](https://github.com/bsides/horizoverlay/) and has some of [ikegami](https://github.com/hibiyasleep/ikegami)'s features. The main purpose of building this project is to try to use React with Redux Toolkit (RTK) & Vite, which can also test my [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
 
-❗❗❗ WAITING FOR OFFICIAL RELEASE OF VITE 2, THIS WORK IN PROGRESS PROJECT IS STILL IN EARLY DEVELOPMENT STAGE. PLEASE SEND ISSUES IF YOU HAVE NICE IDEAS. ❗❗❗
+## Overlay Link
 
-❗❗❗ DEVELOPMENT DEMO: `https://skyline.dsrkafuu.co/` ❗❗❗
+```
+https://skyline.dsrkafuu.co
+```
 
 ## Contribute
 
 Clone this repo, install packages and run the development server:
 
 ```bash
-git clone https://github.com/amzrk2/skyline-overlay.git
+git clone https://github.com/dsrkafuu/skyline-overlay.git
 cd skyline-overlay
 npm install
 npm start
 ```
 
-## Dependencies
+## Major Dependencies
 
-- Vite: <https://github.com/vitejs/vite>
-- Vue.js: <https://github.com/vuejs/vue-next>
-- Vuex: <https://github.com/vuejs/vuex/tree/4.0>
+- React: <https://reactjs.org/>
+- Redux Toolkit (RTK): <https://redux-toolkit.js.org>
+- Vite: <https://vitejs.dev>
 - ffxiv-overlay-api: <https://github.com/dsrkafuu/ffxiv-overlay-api>
 
 ## LICENSE
@@ -32,4 +40,4 @@ npm start
 
 Released under `Apache License 2.0`, for more information read the [LICENSE](https://github.com/dsrkafuu/skyline-overlay/blob/main/LICENSE).
 
-**Copyright © 2020-present DSRKafuU <https://dsrkafuu.co/>**
+**Copyright © 2020-present DSRKafuU (<https://dsrkafuu.co>)**
