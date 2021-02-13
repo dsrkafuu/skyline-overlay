@@ -1,6 +1,6 @@
 <h1 align="center">
   <br />
-  <img src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/assets/logo.svg" alt="Skyline Logo" width="128" />
+  <img src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/logo.svg" alt="Skyline Logo" width="128" />
   <br /><br />
   Skyline Overlay
   <br /><br />
