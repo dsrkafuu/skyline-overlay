@@ -11,9 +11,9 @@
 .s-link {
   color: var(--color-fg);
   text-decoration: underline;
-  transition: all 150ms ease;
   padding-left: 0.2rem;
   padding-right: 0.2rem;
+  @include transitionColor();
 
   &:hover {
     color: var(--color-form-fg-active);

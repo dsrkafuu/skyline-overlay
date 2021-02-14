@@ -4,9 +4,9 @@
 
 html,
 body {
-  font-size: $font-size-base;
   font-family: $font-family-base;
   user-select: none;
+  transition: font-size 150ms ease-out;
 }
 
 #root {

@@ -1,10 +1,11 @@
-$font-size-xs: 10px;
-$font-size-sm: 12px;
+$font-size-xs: 0.7143rem; // 10px
+$font-size-sm: 0.8571rem; // 12px
 $font-size-base: 14px;
 
 $size-combatant: 5rem;
 $size-encounter: 1.6rem;
 $size-form: 1.6rem;
+$size-form-minwidth: 8rem;
 
 $padding-xs: 0.2rem;
 $padding-sm: 0.25rem;
@@ -14,3 +15,14 @@ $padding-xl: 0.75rem;
 
 $font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB',
   'Source Han Sans CN', 'Source Han Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+
+@mixin transitionColor {
+  transition-duration: 150ms;
+  transition-timing-function: ease;
+  transition-property: color, background-color;
+}
+@mixin transitionSize {
+  transition-duration: 150ms;
+  transition-timing-function: ease;
+  transition-property: font-size;
+}

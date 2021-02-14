@@ -11,7 +11,7 @@
     line-height: $size-encounter;
     text-align: center;
     background-color: var(--color-cover);
-    transition: all 150ms ease;
+    @include transitionColor();
 
     &.active {
       background-color: var(--color-active);
@@ -51,11 +51,11 @@
       flex: 0 0 auto;
       height: $size-encounter;
       width: $size-encounter;
-      transition: all 150ms ease;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
+      @include transitionColor();
 
       &:hover {
         color: var(--color-form-fg-active);

@@ -22,7 +22,6 @@ function SInput({ value, onChange }) {
       onBlur={() => setFocused(false)}
       type='text'
       autoComplete='off'
-      autoFocus='off'
     />
   );
 }

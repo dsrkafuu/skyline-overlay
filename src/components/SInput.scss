@@ -7,8 +7,8 @@
   height: $size-form;
   line-height: $size-form;
   padding: 0 $padding-md;
-  min-width: 0;
-  transition: all 150ms ease;
+  min-width: $size-form-minwidth;
+  @include transitionColor();
 
   &.active {
     color: var(--color-form-fg-active);

@@ -1,11 +1,20 @@
-.s-switch {
-  display: flex;
-  cursor: pointer;
+.s-input-number {
+  display: inline-flex;
   height: $size-form;
-  width: $size-form * 2;
-  display: flex;
+  min-width: $size-form-minwidth;
   color: var(--color-form-fg);
   background-color: var(--color-form-bg);
+
+  & > div {
+    display: inline-block;
+  }
+
+  div.value {
+    flex: 1 1 auto;
+    text-align: right;
+    line-height: $size-form;
+    padding: 0 0.3rem;
+  }
 
   .btn {
     flex: 0 0 auto;
@@ -15,9 +24,10 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    cursor: pointer;
     @include transitionColor();
 
-    &.active {
+    &:hover {
       color: var(--color-form-fg-active);
       background-color: var(--color-form-bg-active);
     }

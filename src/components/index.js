@@ -1,4 +1,5 @@
 import SInput from './SInput';
+import SInputNumber from './SInputNumber';
 import SSwitch from './SSwitch';
 
-export { SInput, SSwitch };
+export { SInput, SInputNumber, SSwitch };
