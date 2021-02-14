@@ -34,8 +34,8 @@ function CombatantGrid({ player, index }) {
         </div>
       </div>
       <div className='maxhit'>
-        <span>{maxHit}</span>
-        {maxHitDamage > 0 && <span>&nbsp;-&nbsp;{maxHitDamage}</span>}
+        <span>&nbsp;{maxHit}&nbsp;</span>
+        {maxHitDamage > 0 && <span>-&nbsp;{maxHitDamage}&nbsp;</span>}
       </div>
     </div>
   );
