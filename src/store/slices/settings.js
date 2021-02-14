@@ -4,6 +4,8 @@ const initialState = {
   // settings container display
   showSettings: false,
 
+  // sort data
+  sort: -1,
   // show rank number before id
   showRanks: false,
   // which to represent as 'YOU'
@@ -17,6 +19,14 @@ const slice = createSlice({
   reducers: {
     toggleSettings(state) {
       state.showSettings = !state.showSettings;
+    },
+
+    /**
+     * @param {{ payload: { value } }} action
+     */
+    updateSort(state, action) {
+      const { value } = action.payload;
+      state.sort = Number(value) || -1;
     },
 
     /**
