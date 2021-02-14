@@ -1,12 +1,12 @@
 <h1 align="center">
-  <br />
-  <img src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/logo.svg" alt="Skyline Logo" width="128" />
-  <br /><br />
+  <img src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/logo.svg" alt="Skyline Logo" width="128" /><br />
   Skyline Overlay
-  <br /><br />
+  <br />
 </h1>
 
 <h4 align="center">A horizon FFXIV miniparse overlay built with React & Vite.</h4>
+
+<br />
 
 It's basically a customized version of [horizoverlay](https://github.com/bsides/horizoverlay/) and has some of [ikegami](https://github.com/hibiyasleep/ikegami)'s features. The main purpose of building this project is to try to use React with Redux Toolkit (RTK) & Vite, which can also test my [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
 
