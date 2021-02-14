@@ -9,7 +9,6 @@ import * as jobIcons from '@/assets/icons';
 function CombatantGrid({ player, index }) {
   // get data
   const { jobType, job, name, dps, maxHit, maxHitDamage } = player;
-  console.log(player);
 
   // computed data
   const showRanks = useSelector((state) => state.settings.showRanks);
