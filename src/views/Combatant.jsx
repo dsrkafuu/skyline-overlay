@@ -9,13 +9,10 @@ function Combatant() {
   const combatant = useSelector((state) => state.combat.combatant);
 
   // get sort settings
-  const sort = useSelector((state) => state.settings.sort);
-  const sortedCombatant = [...combatant].sort((a, b) => {
-    // move lb to the end
-    if (!a.job) return 1;
-    if (!b.job) return -1;
-    return sort.rule * (a[sort.key] - b[sort.key]);
-  });
+  const sortRule = useSelector((state) => state.settings.sortRule);
+  const sortedCombatant = [...combatant].sort(
+    (a, b) => sortRule.value * (a[sortRule.key] - b[sortRule.key])
+  );
 
   return (
     <Fragment>

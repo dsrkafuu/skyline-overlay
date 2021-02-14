@@ -3,16 +3,14 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import './SSwitch.scss';
 
-import { ICheckmark, IClose } from '@/assets/svgs';
-
-function SSwitch({ value, onChange }) {
+function SSwitch({ value, onChange, ITrue, IFalse }) {
   return (
     <div className='s-switch'>
       <div className={classNames('btn', { active: value })} onClick={() => onChange(true)}>
-        <ICheckmark />
+        <ITrue />
       </div>
       <div className={classNames('btn', { active: !value })} onClick={() => onChange(false)}>
-        <IClose />
+        <IFalse />
       </div>
     </div>
   );
@@ -21,6 +19,8 @@ function SSwitch({ value, onChange }) {
 SSwitch.propTypes = {
   value: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
+  ITrue: PropTypes.elementType.isRequired,
+  IFalse: PropTypes.elementType.isRequired,
 };
 
 export default SSwitch;

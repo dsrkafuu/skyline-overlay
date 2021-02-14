@@ -5,7 +5,7 @@ const initialState = {
   showSettings: false,
 
   // sort data
-  sort: { key: 'dps', rule: -1 },
+  sortRule: { key: 'dps', value: -1 },
   // show rank number before id
   showRanks: false,
   // which to represent as 'YOU'
@@ -22,11 +22,12 @@ const slice = createSlice({
     },
 
     /**
-     * @param {{ payload: { key, rule } }} action
+     * @param {{ payload: { key, value } }} action
      */
-    updateSort(state, action) {
-      const { key, rule } = action.payload;
-      state.sort = { key: String(key), rule: Number(rule) };
+    updateSortRule(state, action) {
+      const { key, value } = action.payload;
+      key && (state.sortRule.key = String(key));
+      value && (state.sortRule.value = String(value));
     },
 
     /**
@@ -47,6 +48,6 @@ const slice = createSlice({
   },
 });
 
-export const { toggleSettings, updateShowRanks, updateYouName } = slice.actions;
+export const { toggleSettings, updateSortRule, updateShowRanks, updateYouName } = slice.actions;
 
 export default slice.reducer;
