@@ -13,7 +13,7 @@ It's basically a customized version of [horizoverlay](https://github.com/bsides/
 ## Overlay Link
 
 ```
-https://skyline.dsrkafuu.co
+https://skyline.dsrkafuu.su
 ```
 
 ## Contribute
@@ -40,4 +40,4 @@ npm start
 
 Released under `Apache License 2.0`, for more information read the [LICENSE](https://github.com/dsrkafuu/skyline-overlay/blob/main/LICENSE).
 
-**Copyright © 2020-present DSRKafuU (<https://dsrkafuu.co>)**
+**Copyright © 2020-present DSRKafuU (<https://dsrkafuu.su>)**
