@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { setLS, getLS } from '@/utils/storage';
 
 const initialState = {
   // settings container display
@@ -14,7 +15,18 @@ const initialState = {
 
   /* layout */
   zoom: 1,
+
+  /* local storage saved settings */
+  ...(getLS('settings') || {}),
 };
+
+/**
+ * save settings to local storage
+ * @param {Object} state
+ */
+function saveSettings(state) {
+  setLS('settings', state);
+}
 
 const slice = createSlice({
   name: 'settings',
@@ -23,6 +35,7 @@ const slice = createSlice({
   reducers: {
     toggleSettings(state) {
       state.showSettings = !state.showSettings;
+      saveSettings(state);
     },
 
     /* data */
@@ -33,6 +46,7 @@ const slice = createSlice({
       const { key, value } = action.payload;
       key && (state.sortRule.key = String(key));
       value && (state.sortRule.value = String(value));
+      saveSettings(state);
     },
     /**
      * @param {{ payload: { value } }} action
@@ -40,6 +54,7 @@ const slice = createSlice({
     updateShowRanks(state, action) {
       const { value } = action.payload;
       state.showRanks = Boolean(value);
+      saveSettings(state);
     },
     /**
      * @param {{ payload: { value } }} action
@@ -47,6 +62,7 @@ const slice = createSlice({
     updateYouName(state, action) {
       const { value } = action.payload;
       state.youName = `${value}`;
+      saveSettings(state);
     },
 
     /* layout */
@@ -57,6 +73,7 @@ const slice = createSlice({
       const { value } = action.payload;
       state.zoom = Number(value);
       document.documentElement.style.fontSize = `${Number(value) * 14}px`;
+      saveSettings(state);
     },
   },
 });
