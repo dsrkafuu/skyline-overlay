@@ -1,11 +1,11 @@
 * {
   box-sizing: border-box;
+  user-select: none;
 }
 
 html,
 body {
   font-family: $font-family-base;
-  user-select: none;
   transition: font-size 150ms ease-out;
 }
 

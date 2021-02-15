@@ -21,6 +21,7 @@
     line-height: $size-form;
     text-align: center;
     cursor: pointer;
+    @include transitionColor();
 
     &.active {
       text-shadow: none;

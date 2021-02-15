@@ -19,7 +19,7 @@ $font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'H
 @mixin transitionColor {
   transition-duration: 150ms;
   transition-timing-function: ease;
-  transition-property: color, background-color;
+  transition-property: color, background-color, text-shadow;
 }
 @mixin transitionSize {
   transition-duration: 150ms;
