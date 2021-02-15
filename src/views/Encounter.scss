@@ -5,7 +5,7 @@
   color: var(--color-fg);
   text-shadow: var(--shadow-text);
 
-  .duration {
+  &-duration {
     height: $size-encounter;
     width: $size-encounter * 2 + 0.05rem;
     line-height: $size-encounter;
@@ -18,7 +18,7 @@
     }
   }
 
-  .content {
+  &-content {
     flex: 1 0 auto;
     padding: $padding-sm $padding-xl;
     display: flex;
@@ -26,18 +26,18 @@
     height: $size-encounter;
     line-height: 1.1rem;
     background-color: var(--color-bg);
-
-    .zone {
-      flex: 1 1 auto;
-      text-align: left;
-    }
-
-    .numbers {
-      flex: 0 0 auto;
-    }
   }
 
-  .buttons {
+  &-zone {
+    flex: 1 1 auto;
+    text-align: left;
+  }
+
+  &-numbers {
+    flex: 0 0 auto;
+  }
+
+  &-buttons {
     cursor: pointer;
     color: var(--color-form-fg);
     background-color: var(--color-cover);

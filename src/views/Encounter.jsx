@@ -29,19 +29,19 @@ function Encounter({ overlay }) {
 
   return (
     <div className='encounter'>
-      <div className={classNames('duration', { active })}>
+      <div className={classNames('encounter-duration', { active })}>
         <span>{duration}</span>
       </div>
-      <div className='content'>
-        <div className='zone'>
+      <div className='encounter-content'>
+        <div className='encounter-zone'>
           <span>{zoneName}</span>
         </div>
-        <div className='numbers'>
+        <div className='encounter-numbers'>
           <span className='s-number'>{totalDPS}</span>
           <span className='s-counter'>DPS</span>
         </div>
       </div>
-      <div className='buttons'>
+      <div className='encounter-buttons'>
         <div className='btn' onClick={handleReset}>
           <IRefresh />
         </div>

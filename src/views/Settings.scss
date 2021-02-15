@@ -6,24 +6,45 @@
   background-color: var(--color-bg);
   text-shadow: var(--shadow-text);
 
-  .content {
+  &-tab {
+    background-color: var(--color-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: $size-form;
+  }
+
+  &-tabitem {
+    flex: 1 1 auto;
+    padding: 0 $padding-lg;
+    height: $size-form;
+    line-height: $size-form;
+    text-align: center;
+    cursor: pointer;
+
+    &.active {
+      text-shadow: none;
+      color: var(--color-form-fg-active);
+      background-color: var(--color-form-bg-active);
+    }
+  }
+
+  &-about,
+  &-data,
+  &-layout {
     position: relative;
     margin: $padding-lg;
     display: flex;
     flex-wrap: wrap;
   }
 
-  .row {
+  &-row {
     flex: 1 1 100%;
     display: flex;
     justify-content: space-between;
 
     &:not(:first-child) {
       margin-top: $padding-md;
-    }
-
-    .title {
-      line-height: $size-form;
     }
 
     .s-input {
@@ -34,5 +55,9 @@
     .s-link {
       line-height: $size-form;
     }
+  }
+
+  &-title {
+    line-height: $size-form;
   }
 }

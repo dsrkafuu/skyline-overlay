@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import './CombatantGrid.scss';
 
 import * as jobIcons from '@/assets/icons';
 
