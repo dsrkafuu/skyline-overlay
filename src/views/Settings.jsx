@@ -1,6 +1,7 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import classNames from 'classnames';
+import { CSSTransition } from 'react-transition-group';
 import './Settings.scss';
 
 import SettingsAbout from './SettingsAbout';
@@ -14,30 +15,35 @@ const Components = [
 ];
 
 function Settings() {
+  const transRef = useRef();
   const [activeTab, setActiveTab] = useState(0);
 
   // settings data
   const showSettings = useSelector((state) => state.settings.showSettings);
 
   return (
-    <Fragment>
-      {showSettings && (
-        <div className='settings'>
-          <div className='settings-tab'>
-            {Components.map((val, index) => (
-              <div
-                className={classNames('settings-tabitem', { active: index === activeTab })}
-                key={val.title}
-                onClick={() => setActiveTab(index)}
-              >
-                {val.title}
-              </div>
-            ))}
-          </div>
-          {Components[activeTab].component}
+    <CSSTransition
+      classNames='fade'
+      in={showSettings}
+      timeout={150}
+      unmountOnExit
+      nodeRef={transRef}
+    >
+      <div className='settings' ref={transRef}>
+        <div className='settings-tab'>
+          {Components.map((val, index) => (
+            <div
+              className={classNames('settings-tabitem', { active: index === activeTab })}
+              key={`tab-${val.title}`}
+              onClick={() => setActiveTab(index)}
+            >
+              {val.title}
+            </div>
+          ))}
         </div>
-      )}
-    </Fragment>
+        <div className='settings-content'>{Components[activeTab].component}</div>
+      </div>
+    </CSSTransition>
   );
 }
 

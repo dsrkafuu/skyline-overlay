@@ -38,12 +38,19 @@ svg.icon {
 }
 
 // animations
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 150ms ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
+.fade-enter {
   opacity: 0;
+
+  &-active {
+    opacity: 1;
+    transition: opacity 150ms ease;
+  }
+}
+.fade-exit {
+  opacity: 1;
+
+  &-active {
+    opacity: 0;
+    transition: opacity 150ms ease;
+  }
 }
