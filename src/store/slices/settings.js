@@ -14,7 +14,7 @@ const initialState = {
   /* display */
   showRanks: false, // show rank number before id
   youName: 'YOU', // which to represent as 'YOU'
-  shortName: { first: true, last: false },
+  shortName: { first: false, last: false },
 
   /* general */
   lang: 'en-US',
