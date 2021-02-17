@@ -14,11 +14,27 @@ function Combatant() {
     (a, b) => sortRule.value * (a[sortRule.key] - b[sortRule.key])
   );
 
+  // limit player numbers and show lb
+  const playerLimit = useSelector((state) => state.settings.playerLimit);
+  const showLB = useSelector((state) => state.settings.showLB);
+  const dispCombatant = [];
+  for (let i = 0; i < sortedCombatant.length; i++) {
+    const p = sortedCombatant[i];
+    if (p.name === 'Limit Break' && !p.job) {
+      dispCombatant.LB = p;
+    } else if (dispCombatant.length < playerLimit) {
+      dispCombatant.push(p);
+    }
+  }
+  if (showLB && dispCombatant.LB) {
+    dispCombatant.push(dispCombatant.LB);
+  }
+
   return (
     <Fragment>
       {Boolean(combatant) && combatant.length > 0 && (
         <div className='combatant'>
-          {sortedCombatant.map((value, index) => (
+          {dispCombatant.map((value, index) => (
             <CombatantGrid player={value} index={index} key={value.name} />
           ))}
         </div>

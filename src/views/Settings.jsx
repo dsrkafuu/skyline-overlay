@@ -7,7 +7,7 @@ import './Settings.scss';
 
 import SettingsAbout from './SettingsAbout';
 import SettingsData from './SettingsData';
-import SettingsLayout from './SettingsLayout';
+import SettingsGeneral from './SettingsGeneral';
 
 function Settings() {
   const { t } = useTranslation(); // i18n support
@@ -15,7 +15,7 @@ function Settings() {
   const Components = [
     { title: t('About'), component: <SettingsAbout /> },
     { title: t('Data'), component: <SettingsData /> },
-    { title: t('General'), component: <SettingsLayout /> },
+    { title: t('General'), component: <SettingsGeneral /> },
   ];
 
   const transRef = useRef(); // ref for react-transition-group

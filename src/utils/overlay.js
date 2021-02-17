@@ -1,4 +1,4 @@
-import { OverlayAPI } from 'ffxiv-overlay-api';
+import OverlayAPI from 'ffxiv-overlay-api';
 
 import { OVERLAY_INITED, OVERLAY_CALLBACK } from './constants';
 import { isDev } from './env';

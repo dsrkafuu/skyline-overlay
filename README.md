@@ -16,6 +16,21 @@ It's basically a customized version of [horizoverlay](https://github.com/bsides/
 https://skyline.dsrkafuu.su
 ```
 
+## To-do List
+
+- [x] Combatent sort - v1.1.0
+- [x] UI zoom - v1.2.0
+- [x] Multi-lingual support - v1.3.0
+- [x] Combatant number limit - v1.4.0
+- [x] Switch show LB - v1.4.0
+- [x] Short playername - v1.4.0
+- [ ] Custom font family
+- [ ] Custom digit decimal
+- [ ] Detailed data for each player
+- [ ] Custom main display property
+- [ ] Themes
+- [ ] C/D/CD tickers (maybe)
+
 ## Contribute
 
 Clone this repo, install packages and run the development server:

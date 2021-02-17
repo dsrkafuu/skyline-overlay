@@ -15,30 +15,22 @@ function SettingsLayout() {
   // datas
   const lang = useSelector((state) => state.settings.lang);
   const zoom = useSelector((state) => state.settings.zoom);
-  /**
-   * @param {number} value
-   */
-  function handleChangeLang(value) {
-    dispatch(updateLang({ value }));
-  }
-  /**
-   * @param {number} value
-   */
-  function handleChangeZoom(value) {
-    dispatch(updateZoom({ value }));
-  }
 
   return (
     <div className='settings-layout'>
       <div className='settings-row'>
         <span className='settings-title'>{t('Language')}</span>
-        <SSelect value={lang} onChange={handleChangeLang} kvPairs={langs} />
+        <SSelect
+          value={lang}
+          onChange={(value) => dispatch(updateLang({ value }))}
+          kvPairs={langs}
+        />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('UI Scale')}</span>
         <SInputNumber
           value={zoom}
-          onChange={handleChangeZoom}
+          onChange={(value) => dispatch(updateZoom({ value }))}
           min={0.5}
           max={4}
           step={0.25}

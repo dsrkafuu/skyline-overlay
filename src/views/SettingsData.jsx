@@ -2,8 +2,14 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { updateSortRule, updateShowRanks, updateYouName } from '@/store/slices/settings';
-import { SInput, SSwitch } from '@/components';
+import {
+  updateSortRule,
+  updatePlayerLimit,
+  updateShowLB,
+  updateShowRanks,
+  updateYouName,
+} from '@/store/slices/settings';
+import { SInput, SSwitch, SInputNumber } from '@/components';
 import { IChevronDown, IChevronUp, ICheckmark, IClose } from '@/assets/svgs';
 
 function SettingsData() {
@@ -12,6 +18,8 @@ function SettingsData() {
 
   // datas
   const sortRule = useSelector((state) => state.settings.sortRule);
+  const playerLimit = useSelector((state) => state.settings.playerLimit);
+  const showLB = useSelector((state) => state.settings.showLB);
   const showRanks = useSelector((state) => state.settings.showRanks);
   const youName = useSelector((state) => state.settings.youName);
 
@@ -21,18 +29,6 @@ function SettingsData() {
   function handleChangeSortRuleValue(value) {
     value = value ? -1 : 1;
     dispatch(updateSortRule({ value }));
-  }
-  /**
-   * @param {boolean} value
-   */
-  function handleChangeShowRanks(value) {
-    dispatch(updateShowRanks({ value }));
-  }
-  /**
-   * @param {string} value
-   */
-  function handleChangeYouName(value) {
-    dispatch(updateYouName({ value }));
   }
 
   return (
@@ -47,17 +43,37 @@ function SettingsData() {
         />
       </div>
       <div className='settings-row'>
+        <span className='settings-title'>{t('Max Combatants')}</span>
+        <SInputNumber
+          value={playerLimit}
+          onChange={(value) => dispatch(updatePlayerLimit({ value }))}
+          min={1}
+          max={24}
+          step={1}
+          accuracy={0}
+        />
+      </div>
+      <div className='settings-row'>
+        <span className='settings-title'>{t('Show Limit Break')}</span>
+        <SSwitch
+          value={showLB}
+          onChange={(value) => dispatch(updateShowLB({ value }))}
+          ITrue={ICheckmark}
+          IFalse={IClose}
+        />
+      </div>
+      <div className='settings-row'>
         <span className='settings-title'>{t('Show Ranks')}</span>
         <SSwitch
           value={showRanks}
-          onChange={handleChangeShowRanks}
+          onChange={(value) => dispatch(updateShowRanks({ value }))}
           ITrue={ICheckmark}
           IFalse={IClose}
         />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Custom ID')}</span>
-        <SInput value={youName} onChange={handleChangeYouName} />
+        <SInput value={youName} onChange={(value) => dispatch(updateYouName({ value }))} />
       </div>
     </div>
   );

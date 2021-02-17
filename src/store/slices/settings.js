@@ -7,14 +7,13 @@ const initialState = {
   showSettings: false,
 
   /* data */
-  // sort data
-  sortRule: { key: 'dps', value: -1 },
-  // show rank number before id
-  showRanks: false,
-  // which to represent as 'YOU'
-  youName: 'YOU',
+  sortRule: { key: 'dps', value: -1 }, // sort data
+  playerLimit: 8, // combatant limit
+  showLB: true,
+  showRanks: false, // show rank number before id
+  youName: 'YOU', // which to represent as 'YOU'
 
-  /* layout */
+  /* general */
   lang: 'en-US',
   zoom: 1,
 
@@ -48,6 +47,22 @@ const slice = createSlice({
       const { key, value } = action.payload;
       key && (state.sortRule.key = String(key));
       value && (state.sortRule.value = String(value));
+      saveSettings(state);
+    },
+    /**
+     * @param {{ payload: { value } }} action
+     */
+    updatePlayerLimit(state, action) {
+      const { value } = action.payload;
+      state.playerLimit = Number(value) > 0 ? Number(value) : initialState.playerLimit;
+      saveSettings(state);
+    },
+    /**
+     * @param {{ payload: { value } }} action
+     */
+    updateShowLB(state, action) {
+      const { value } = action.payload;
+      state.showLB = Boolean(value);
       saveSettings(state);
     },
     /**
@@ -92,6 +107,8 @@ const slice = createSlice({
 export const {
   toggleSettings,
   updateSortRule,
+  updatePlayerLimit,
+  updateShowLB,
   updateShowRanks,
   updateYouName,
   updateLang,

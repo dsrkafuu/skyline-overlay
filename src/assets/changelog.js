@@ -1,5 +1,14 @@
 export const changelog = [
   {
+    version: 'v1.4.0',
+    date: 1613547282876,
+    notes: [
+      'new: combatant number limit',
+      'new: switch show limit break',
+      'new: short combatant name support',
+    ],
+  },
+  {
     version: 'v1.3.0',
     date: 1613542026242,
     notes: ['new: multi-lingual support', 'new: custom select component'],
