@@ -18,6 +18,13 @@ It's basically a customized version of [horizoverlay](https://github.com/bsides/
 https://skyline.dsrkafuu.su
 ```
 
+Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin), only these browsers below are officially supported:
+
+- Chrome (Chromium) >= 80 (OverlayPlugin included)
+- Firefox >= 80
+- Safari >= 13 (macOS >= 10.15)
+- Edge >= 80 (new Edge with Chromium)
+
 ## To-do List
 
 - [x] Combatent sort - v1.1.0

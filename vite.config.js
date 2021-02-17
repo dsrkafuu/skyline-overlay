@@ -27,4 +27,7 @@ export default {
       },
     },
   },
+  build: {
+    target: ['chrome80', 'firefox80', 'safari13', 'edge80'],
+  },
 };

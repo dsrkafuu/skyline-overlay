@@ -1,8 +1,8 @@
 export const changelog = [
   {
     version: 'v1.4.1',
-    date: 1613560467666,
-    notes: ['fix: html iso language code'],
+    date: 1613562336719,
+    notes: ['fix: html iso language code', 'update: build target'],
   },
   {
     version: 'v1.4.0',
