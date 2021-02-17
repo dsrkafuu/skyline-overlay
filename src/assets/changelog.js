@@ -1,7 +1,12 @@
 export const changelog = [
   {
+    version: 'v1.4.1',
+    date: 1613560467666,
+    notes: ['fix: html iso language code'],
+  },
+  {
     version: 'v1.4.0',
-    date: 1613547282876,
+    date: 1613557282876,
     notes: [
       'new: combatant number limit',
       'new: switch show limit break',

@@ -17,7 +17,7 @@ const initialState = {
   shortName: { first: false, last: false },
 
   /* general */
-  lang: 'en-US',
+  lang: 'en',
   zoom: 1,
 
   // merge local storage saved settings
@@ -104,6 +104,7 @@ const slice = createSlice({
       const { value } = action.payload;
       state.lang = value;
       i18n.changeLanguage(value);
+      document.documentElement.setAttribute('lang', value);
       saveSettings(state);
     },
     /**

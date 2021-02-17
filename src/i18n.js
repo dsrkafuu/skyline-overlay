@@ -5,11 +5,15 @@ import { getLS } from './utils/storage';
 
 import lang from './lang';
 
+// get initial language from storage
+const lng = (getLS('settings') || {}).lang || 'en';
+document.documentElement.setAttribute('lang', lng);
+
 i18n.use(initReactI18next).init({
   resources: lang,
   // get initial language from storage
-  lng: (getLS('settings') || {}).lang || 'en-US',
-  fallbackLng: 'en-US',
+  lng,
+  fallbackLng: 'en',
 
   debug: isDev(),
   interpolation: {

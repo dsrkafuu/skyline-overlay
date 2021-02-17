@@ -1,9 +1,9 @@
-import enUS from './en-US.json';
-import jaJP from './ja-JP.json';
-import zhCN from './zh-CN.json';
+import en from './en.json';
+import ja from './ja.json';
+import zh from './zh.json';
 
 export default {
-  'en-US': { translation: enUS },
-  'ja-JP': { translation: jaJP },
-  'zh-CN': { translation: zhCN },
+  en: { translation: en },
+  ja: { translation: ja },
+  zh: { translation: zh },
 };

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-hans" style="font-size: 14px">
+<html lang="en" style="font-size: 14px">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="x-dns-prefetch-control" content="on" />
@@ -10,6 +10,17 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WPCN48BP2Z"></script>
+    <script>
+      if (/dsrkafuu\.su$/.exec(location.hostname)) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-WPCN48BP2Z');
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
