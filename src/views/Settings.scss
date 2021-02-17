@@ -57,11 +57,15 @@
     }
 
     .s-link {
+      display: inline-block;
+      height: $size-form;
       line-height: $size-form;
     }
   }
 
   &-title {
+    display: inline-block;
+    height: $size-form;
     line-height: $size-form;
   }
 }
