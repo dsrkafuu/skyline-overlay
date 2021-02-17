@@ -1,5 +1,10 @@
 export const changelog = [
   {
+    version: 'v1.3.0',
+    date: 1613542026242,
+    notes: ['new: multi-lingual support', 'new: custom select component'],
+  },
+  {
     version: 'v1.2.0',
     date: 1613373308393,
     notes: [

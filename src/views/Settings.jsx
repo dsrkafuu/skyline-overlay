@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
@@ -8,14 +9,16 @@ import SettingsAbout from './SettingsAbout';
 import SettingsData from './SettingsData';
 import SettingsLayout from './SettingsLayout';
 
-const Components = [
-  { title: 'About', component: <SettingsAbout /> },
-  { title: 'Data', component: <SettingsData /> },
-  { title: 'Layout', component: <SettingsLayout /> },
-];
-
 function Settings() {
-  const transRef = useRef();
+  const { t } = useTranslation(); // i18n support
+
+  const Components = [
+    { title: t('About'), component: <SettingsAbout /> },
+    { title: t('Data'), component: <SettingsData /> },
+    { title: t('General'), component: <SettingsLayout /> },
+  ];
+
+  const transRef = useRef(); // ref for react-transition-group
   const [activeTab, setActiveTab] = useState(0);
 
   // settings data

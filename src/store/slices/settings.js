@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import i18n from '@/i18n';
 import { setLS, getLS } from '@/utils/storage';
 
 const initialState = {
@@ -14,9 +15,10 @@ const initialState = {
   youName: 'YOU',
 
   /* layout */
+  lang: 'en-US',
   zoom: 1,
 
-  /* local storage saved settings */
+  // merge local storage saved settings
   ...(getLS('settings') || {}),
 };
 
@@ -69,6 +71,15 @@ const slice = createSlice({
     /**
      * @param {{ payload: { value } }} action
      */
+    updateLang(state, action) {
+      const { value } = action.payload;
+      state.lang = value;
+      i18n.changeLanguage(value);
+      saveSettings(state);
+    },
+    /**
+     * @param {{ payload: { value } }} action
+     */
     updateZoom(state, action) {
       const { value } = action.payload;
       state.zoom = Number(value);
@@ -83,6 +94,7 @@ export const {
   updateSortRule,
   updateShowRanks,
   updateYouName,
+  updateLang,
   updateZoom,
 } = slice.actions;
 

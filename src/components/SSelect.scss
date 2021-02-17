@@ -1,0 +1,50 @@
+.s-select {
+  position: relative;
+  height: $size-form;
+  line-height: $size-form;
+  min-width: $size-form-minwidth;
+  text-align: center;
+  cursor: pointer;
+
+  &-value {
+    color: var(--color-form-fg);
+    background-color: var(--color-form-bg);
+    display: flex;
+
+    .disp {
+      flex: 1 1 auto;
+    }
+
+    .btn {
+      flex: 0 0 auto;
+      height: $size-form;
+      width: $size-form;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      @include transitionColor();
+    }
+
+    &.active {
+      color: var(--color-form-fg-active);
+      background-color: var(--color-form-bg-active);
+      text-shadow: none;
+    }
+  }
+
+  &-options {
+    position: absolute;
+    top: $size-form;
+    color: var(--color-form-fg);
+    background-color: var(--color-form-bg);
+    z-index: 99;
+    width: 100%;
+  }
+
+  &-option:hover {
+    color: var(--color-form-fg-active);
+    background-color: var(--color-form-bg-active);
+    text-shadow: none;
+  }
+}
