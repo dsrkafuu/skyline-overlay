@@ -12,11 +12,20 @@ function CombatantGrid({ player, index }) {
   // computed data
   const showRanks = useSelector((state) => state.settings.showRanks);
   const youName = useSelector((state) => state.settings.youName);
+  const shortName = useSelector((state) => state.settings.shortName);
 
-  // display name (YOU and ranks)
+  // display name
   let dispName = name;
   dispName === 'YOU' && (dispName = youName); // if custom name
   dispName === '' && (dispName = 'YOU'); // prevent empty
+  // checker whether to shorten
+  const splitName = dispName.split(' ');
+  if (splitName.length === 2) {
+    shortName.first && splitName[0].charAt(0) && (splitName[0] = `${splitName[0].charAt(0)}.`);
+    shortName.last && splitName[1].charAt(0) && (splitName[1] = `${splitName[1].charAt(0)}.`);
+    dispName = splitName.join(' ');
+  }
+  // apply ranks if
   showRanks && (dispName = `${index}. ${dispName}`); // if show ranks
 
   return (

@@ -37,6 +37,7 @@
 
   &-about,
   &-data,
+  &-display,
   &-layout {
     display: flex;
     flex-wrap: wrap;
@@ -51,11 +52,6 @@
       margin-top: $padding-md;
     }
 
-    .s-input {
-      width: 10rem;
-      text-align: right;
-    }
-
     .s-link {
       display: inline-block;
       height: $size-form;
@@ -67,5 +63,16 @@
     display: inline-block;
     height: $size-form;
     line-height: $size-form;
+  }
+}
+
+.settings-display {
+  .s-input {
+    width: 10rem;
+    text-align: right;
+  }
+
+  .s-select {
+    width: 10rem;
   }
 }

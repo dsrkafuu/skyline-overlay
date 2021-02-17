@@ -23,7 +23,7 @@ logInfo('api initialized');
 
 // [DEBUG]
 isDev() &&
-  fetch('https://cdn.jsdelivr.net/gh/dsrkafuu/ffxiv-overlay-api@3/test/fake_cn.json')
+  fetch('https://cdn.jsdelivr.net/gh/dsrkafuu/ffxiv-overlay-api@3/test/fake.json')
     .then((res) => res.json())
     .then((obj) => {
       let time = 1;

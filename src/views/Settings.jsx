@@ -7,6 +7,7 @@ import './Settings.scss';
 
 import SettingsAbout from './SettingsAbout';
 import SettingsData from './SettingsData';
+import SettingsDisplay from './SettingsDisplay';
 import SettingsGeneral from './SettingsGeneral';
 
 function Settings() {
@@ -15,6 +16,7 @@ function Settings() {
   const Components = [
     { title: t('About'), component: <SettingsAbout /> },
     { title: t('Data'), component: <SettingsData /> },
+    { title: t('Display'), component: <SettingsDisplay /> },
     { title: t('General'), component: <SettingsGeneral /> },
   ];
 

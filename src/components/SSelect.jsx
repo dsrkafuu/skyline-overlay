@@ -6,27 +6,18 @@ import './SSelect.scss';
 
 import { IChevronDown, IChevronUp } from '@/assets/svgs';
 
-function SSelect({ value, onChange, kvPairs }) {
+function SSelect({ value, onChange, map }) {
   const transRef = useRef(); // ref for react-transition-group
 
   const [active, setActive] = useState(false);
-  const dispText = (() => {
-    let s = '';
-    for (let i = 0; i < kvPairs.length; i++) {
-      if (kvPairs[i][0] === value) {
-        s = kvPairs[i][1];
-        return s;
-      }
-    }
-    return s;
-  })();
 
   /**
    * @param {string} value
+   * @param {any} data
    */
-  function handleChange(value) {
+  function handleChange(value, data) {
     setActive(false);
-    onChange(value);
+    onChange(value, data);
   }
 
   return (
@@ -35,14 +26,18 @@ function SSelect({ value, onChange, kvPairs }) {
         className={classNames('s-select-value', { active })}
         onClick={() => setActive((val) => !val)}
       >
-        <div className='disp'>{dispText}</div>
+        <div className='disp'>{map[value].text}</div>
         <div className='btn'>{active ? <IChevronUp /> : <IChevronDown />}</div>
       </div>
       <CSSTransition classNames='fade' in={active} timeout={150} unmountOnExit nodeRef={transRef}>
         <div className='s-select-options' ref={transRef}>
-          {kvPairs.map((pair) => (
-            <div className='s-select-option' onClick={() => handleChange(pair[0])} key={pair[0]}>
-              {pair[1]}
+          {Object.keys(map).map((key) => (
+            <div
+              className='s-select-option'
+              onClick={() => handleChange(key, map[key].data)}
+              key={key}
+            >
+              {map[key].text}
             </div>
           ))}
         </div>
@@ -54,7 +49,12 @@ function SSelect({ value, onChange, kvPairs }) {
 SSelect.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  kvPairs: PropTypes.array.isRequired,
+  map: PropTypes.shape({
+    [PropTypes.string]: PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      data: PropTypes.any,
+    }),
+  }).isRequired,
 };
 
 export default SSelect;

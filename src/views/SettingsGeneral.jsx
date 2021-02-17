@@ -6,7 +6,13 @@ import { updateZoom, updateLang } from '@/store/slices/settings';
 import { SInputNumber, SSelect } from '@/components';
 
 import rawLang from '@/lang';
-const langs = Object.keys(rawLang).map((key) => [key, rawLang[key].translation.LANG]);
+const langMap = {};
+Object.keys(rawLang).forEach((key) => {
+  langMap[key] = {
+    text: rawLang[key].translation.LANG,
+    // no data needed, use kay as data
+  };
+});
 
 function SettingsLayout() {
   const { t } = useTranslation(); // i18n support
@@ -20,11 +26,7 @@ function SettingsLayout() {
     <div className='settings-layout'>
       <div className='settings-row'>
         <span className='settings-title'>{t('Language')}</span>
-        <SSelect
-          value={lang}
-          onChange={(value) => dispatch(updateLang({ value }))}
-          kvPairs={langs}
-        />
+        <SSelect value={lang} onChange={(value) => dispatch(updateLang({ value }))} map={langMap} />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('UI Scale')}</span>
