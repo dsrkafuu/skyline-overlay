@@ -1,5 +1,10 @@
 export const changelog = [
   {
+    version: 'v1.5.0',
+    date: NaN,
+    notes: ['new: custom font-family'],
+  },
+  {
     version: 'v1.4.1',
     date: 1613562336719,
     notes: ['fix: html iso language code', 'update: build target'],
