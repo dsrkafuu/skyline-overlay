@@ -7,10 +7,10 @@ import { SInput, SSwitch, SSelect } from '@/components';
 import { ICheckmark, IClose } from '@/assets/svgs';
 
 const shortNameMap = {
-  'F-F': { text: 'Skyline Overlay', data: { first: false, last: false } },
-  'F-T': { text: 'Skyline O.', data: { first: false, last: true } },
-  'T-F': { text: 'S. Overlay', data: { first: true, last: false } },
-  'T-T': { text: 'S. O.', data: { first: true, last: true } },
+  'F-F': { text: 'First Last', data: { first: false, last: false } },
+  'F-T': { text: 'First L.', data: { first: false, last: true } },
+  'T-F': { text: 'F. Last', data: { first: true, last: false } },
+  'T-T': { text: 'F. L.', data: { first: true, last: true } },
 };
 
 function SettingsDisplay() {

@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: swap;
+  src: local('Inter Regular'),
+    url('https://cdn.jsdelivr.net/gh/dsrkafuu/dsr-cdn@1.1/fonts/inter/inter-regular.woff2')
+      format('woff2');
+}
+
 $font-size-xs: 0.7143rem; // 10px
 $font-size-sm: 0.8571rem; // 12px
 $font-size-base: 14px;
@@ -13,9 +22,6 @@ $padding-sm: 0.25rem;
 $padding-md: 0.3rem;
 $padding-lg: 0.5rem;
 $padding-xl: 0.75rem;
-
-$font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB',
-  'Source Han Sans CN', 'Source Han Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
 
 @mixin transitionColor {
   transition-duration: 150ms;

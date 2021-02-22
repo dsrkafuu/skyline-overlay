@@ -66,13 +66,10 @@
   }
 }
 
-.settings-display {
-  .s-input {
-    width: 10rem;
-    text-align: right;
-  }
-
-  .s-select {
-    width: 10rem;
+.settings {
+  &-general {
+    .s-input {
+      width: 12rem;
+    }
   }
 }

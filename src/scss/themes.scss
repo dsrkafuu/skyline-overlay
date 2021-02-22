@@ -16,8 +16,10 @@ body {
   // settings
   --color-form-fg: #ffffff;
   --color-form-fg-active: #333333;
+  --color-form-fg-selection: #ffffff;
   --color-form-bg: #555555;
   --color-form-bg-active: #eeeeee;
+  --color-form-bg-selection: #8aa2d3;
 }
 
 body[data-theme='horizoverlay'] {

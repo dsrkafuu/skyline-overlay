@@ -7,11 +7,18 @@
   height: $size-form;
   line-height: $size-form;
   padding: 0 $padding-md;
-  min-width: $size-form-minwidth;
+  width: $size-form-minwidth;
+  user-select: auto;
   @include transitionColor();
+  text-align: center;
 
   &.active {
     color: var(--color-form-fg-active);
     background-color: var(--color-form-bg-active);
+  }
+
+  &::selection {
+    color: var(--color-form-fg-selection);
+    background-color: var(--color-form-bg-selection);
   }
 }

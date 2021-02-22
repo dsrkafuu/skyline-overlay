@@ -2,8 +2,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { updateZoom, updateLang } from '@/store/slices/settings';
-import { SInputNumber, SSelect } from '@/components';
+import { updateZoom, updateLang, updateFont } from '@/store/slices/settings';
+import { SInputNumber, SSelect, SInput } from '@/components';
 
 import rawLang from '@/lang';
 const langMap = {};
@@ -21,9 +21,10 @@ function SettingsLayout() {
   // datas
   const lang = useSelector((state) => state.settings.lang);
   const zoom = useSelector((state) => state.settings.zoom);
+  const font = useSelector((state) => state.settings.font);
 
   return (
-    <div className='settings-layout'>
+    <div className='settings-general'>
       <div className='settings-row'>
         <span className='settings-title'>{t('Language')}</span>
         <SSelect value={lang} onChange={(value) => dispatch(updateLang({ value }))} map={langMap} />
@@ -38,6 +39,10 @@ function SettingsLayout() {
           step={0.25}
           accuracy={2}
         />
+      </div>
+      <div className='settings-row'>
+        <span className='settings-title'>{t('Font Family')}</span>
+        <SInput value={font} onChange={(value) => dispatch(updateFont({ value }))} />
       </div>
     </div>
   );

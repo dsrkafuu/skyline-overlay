@@ -19,10 +19,15 @@ const initialState = {
   /* general */
   lang: 'en',
   zoom: 1,
+  font: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
 
   // merge local storage saved settings
   ...(getLS('settings') || {}),
 };
+// apply initial state to dom
+document.documentElement.setAttribute('lang', initialState.lang);
+document.documentElement.style.fontSize = `${Number(initialState.zoom) * 14}px`;
+document.documentElement.style.fontFamily = initialState.font;
 
 /**
  * save settings to local storage
@@ -116,6 +121,15 @@ const slice = createSlice({
       document.documentElement.style.fontSize = `${Number(value) * 14}px`;
       saveSettings(state);
     },
+    /**
+     * @param {{ payload: { value } }} action
+     */
+    updateFont(state, action) {
+      const { value } = action.payload;
+      state.font = value;
+      document.documentElement.style.fontFamily = value;
+      saveSettings(state);
+    },
   },
 });
 
@@ -129,6 +143,7 @@ export const {
   updateShortName,
   updateLang,
   updateZoom,
+  updateFont,
 } = slice.actions;
 
 export default slice.reducer;
