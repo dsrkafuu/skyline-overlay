@@ -21,6 +21,9 @@ function Encounter({ overlay }) {
   );
   const totalDPS = useSelector((state) => state.combat.encounter.dps || 0);
 
+  /**
+   * reset all combat data
+   */
   function handleReset() {
     overlay.endEncounter();
     dispatch(clearCombat());

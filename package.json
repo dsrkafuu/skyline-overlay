@@ -1,6 +1,6 @@
 {
   "name": "skyline-overlay",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "A horizon FFXIV miniparse overlay built with React & Vite.",
   "scripts": {
     "lint": "eslint --ext \".jsx,.js\" src/",
@@ -14,7 +14,7 @@
     "@reduxjs/toolkit": "~1.5.0",
     "classnames": "~2.2.6",
     "ffxiv-overlay-api": "~3.4.1",
-    "i18next": "~19.8.8",
+    "i18next": "~19.8.9",
     "normalize.css": "~8.0.1",
     "prop-types": "~15.7.2",
     "react": "~17.0.1",
@@ -31,7 +31,7 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "glob": "^7.1.6",
-    "sass": "^1.32.7",
-    "vite": "2.0.0-beta.69"
+    "sass": "^1.32.8",
+    "vite": "2.0.1"
   }
 }
