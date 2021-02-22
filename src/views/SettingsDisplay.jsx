@@ -1,10 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector, useDispatch } from 'react-redux';
 
-import { updateShowRanks, updateYouName, updateShortName } from '@/store/slices/settings';
 import { SInput, SSwitch, SSelect } from '@/components';
 import { ICheckmark, IClose } from '@/assets/svgs';
+import useSettings from '@/hooks/useSettings';
 
 const shortNameMap = {
   'F-F': { text: 'First Last', data: { first: false, last: false } },
@@ -15,13 +14,12 @@ const shortNameMap = {
 
 function SettingsDisplay() {
   const { t } = useTranslation(); // i18n support
-  const dispatch = useDispatch();
 
   // datas
-  const showRanks = useSelector((state) => state.settings.showRanks);
-  const youName = useSelector((state) => state.settings.youName);
-  const { first, last } = useSelector((state) => state.settings.shortName);
-  const shortName = (() => {
+  const [showRanks, setShowRanks] = useSettings('showRanks');
+  const [youName, setYouName] = useSettings('youName');
+  const [{ first, last }, setShortName] = useSettings('shortName');
+  const shortNameValue = (() => {
     return `${first ? 'T' : 'F'}-${last ? 'T' : 'F'}`;
   })();
 
@@ -31,20 +29,20 @@ function SettingsDisplay() {
         <span className='settings-title'>{t('Show Ranks')}</span>
         <SSwitch
           value={showRanks}
-          onChange={(value) => dispatch(updateShowRanks({ value }))}
+          onChange={(value) => setShowRanks(value)}
           ITrue={ICheckmark}
           IFalse={IClose}
         />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Custom ID')}</span>
-        <SInput value={youName} onChange={(value) => dispatch(updateYouName({ value }))} />
+        <SInput value={youName} onChange={(value) => setYouName(value)} />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Shorten Name')}</span>
         <SSelect
-          value={shortName}
-          onChange={(value, data) => dispatch(updateShortName(data))}
+          value={shortNameValue}
+          onChange={(value, data) => setShortName(data)}
           map={shortNameMap}
         />
       </div>

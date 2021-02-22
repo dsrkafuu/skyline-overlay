@@ -58,36 +58,36 @@ const slice = createSlice({
       saveSettings(state);
     },
     /**
-     * @param {{ payload: { value } }} action
+     * @param {{ payload: value }} action
      */
     updatePlayerLimit(state, action) {
-      const { value } = action.payload;
+      const value = action.payload;
       state.playerLimit = Number(value) > 0 ? Number(value) : initialState.playerLimit;
       saveSettings(state);
     },
     /**
-     * @param {{ payload: { value } }} action
+     * @param {{ payload: value }} action
      */
     updateShowLB(state, action) {
-      const { value } = action.payload;
+      const value = action.payload;
       state.showLB = Boolean(value);
       saveSettings(state);
     },
 
     /* display */
     /**
-     * @param {{ payload: { value } }} action
+     * @param {{ payload: value }} action
      */
     updateShowRanks(state, action) {
-      const { value } = action.payload;
+      const value = action.payload;
       state.showRanks = Boolean(value);
       saveSettings(state);
     },
     /**
-     * @param {{ payload: { value } }} action
+     * @param {{ payload: value }} action
      */
     updateYouName(state, action) {
-      const { value } = action.payload;
+      const value = action.payload;
       state.youName = `${value}`;
       saveSettings(state);
     },
@@ -103,29 +103,29 @@ const slice = createSlice({
 
     /* layout */
     /**
-     * @param {{ payload: { value } }} action
+     * @param {{ payload: value }} action
      */
     updateLang(state, action) {
-      const { value } = action.payload;
+      const value = action.payload;
       state.lang = value;
       i18n.changeLanguage(value);
       document.documentElement.setAttribute('lang', value);
       saveSettings(state);
     },
     /**
-     * @param {{ payload: { value } }} action
+     * @param {{ payload: value }} action
      */
     updateZoom(state, action) {
-      const { value } = action.payload;
+      const value = action.payload;
       state.zoom = Number(value);
       document.documentElement.style.fontSize = `${Number(value) * 14}px`;
       saveSettings(state);
     },
     /**
-     * @param {{ payload: { value } }} action
+     * @param {{ payload: value }} action
      */
     updateFont(state, action) {
-      const { value } = action.payload;
+      const value = action.payload;
       state.font = value;
       document.documentElement.style.fontFamily = value;
       saveSettings(state);
@@ -133,8 +133,9 @@ const slice = createSlice({
   },
 });
 
+export const { toggleSettings } = slice.actions;
+
 export const {
-  toggleSettings,
   updateSortRule,
   updatePlayerLimit,
   updateShowLB,

@@ -33,7 +33,7 @@ Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin)
 - [x] Combatant number limit - v1.4.0
 - [x] Switch show LB - v1.4.0
 - [x] Short playername - v1.4.0
-- [ ] Custom font family
+- [x] Custom font family - v1.5.0
 - [ ] Custom digit decimal
 - [ ] Detailed data for each player
 - [ ] Custom main display property

@@ -2,7 +2,7 @@ export const changelog = [
   {
     version: 'v1.5.0',
     date: NaN,
-    notes: ['new: custom font-family'],
+    notes: ['new: custom font-family', 'fix: default font-family'],
   },
   {
     version: 'v1.4.1',

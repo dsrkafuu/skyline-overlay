@@ -1,27 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector, useDispatch } from 'react-redux';
 
-import { updateSortRule, updatePlayerLimit, updateShowLB } from '@/store/slices/settings';
 import { SSwitch, SInputNumber } from '@/components';
 import { IChevronDown, IChevronUp, ICheckmark, IClose } from '@/assets/svgs';
+import useSettings from '@/hooks/useSettings';
 
 function SettingsData() {
-  const { t } = useTranslation(); // i18n support
-  const dispatch = useDispatch();
+  const { t } = useTranslation(); // i18n
 
-  // datas
-  const sortRule = useSelector((state) => state.settings.sortRule);
-  const playerLimit = useSelector((state) => state.settings.playerLimit);
-  const showLB = useSelector((state) => state.settings.showLB);
-
-  /**
-   * @param {boolean} value
-   */
-  function handleChangeSortRuleValue(value) {
-    value = value ? -1 : 1;
-    dispatch(updateSortRule({ value }));
-  }
+  const [sortRule, setSortRule] = useSettings('sortRule');
+  const [playerLimit, setPlayerLimit] = useSettings('playerLimit');
+  const [showLB, setShowLB] = useSettings('showLB');
 
   return (
     <div className='settings-data'>
@@ -29,7 +18,7 @@ function SettingsData() {
         <span className='settings-title'>{t('Sort Rule')}</span>
         <SSwitch
           value={sortRule.value < 0}
-          onChange={handleChangeSortRuleValue}
+          onChange={(value) => setSortRule(value ? -1 : 1)}
           ITrue={IChevronDown}
           IFalse={IChevronUp}
         />
@@ -38,7 +27,7 @@ function SettingsData() {
         <span className='settings-title'>{t('Max Combatants')}</span>
         <SInputNumber
           value={playerLimit}
-          onChange={(value) => dispatch(updatePlayerLimit({ value }))}
+          onChange={(value) => setPlayerLimit(value)}
           min={1}
           max={24}
           step={1}
@@ -49,7 +38,7 @@ function SettingsData() {
         <span className='settings-title'>{t('Show Limit Break')}</span>
         <SSwitch
           value={showLB}
-          onChange={(value) => dispatch(updateShowLB({ value }))}
+          onChange={(value) => setShowLB(value)}
           ITrue={ICheckmark}
           IFalse={IClose}
         />
