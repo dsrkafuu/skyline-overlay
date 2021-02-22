@@ -27,7 +27,13 @@ const initialState = {
 // apply initial state to dom
 document.documentElement.setAttribute('lang', initialState.lang);
 document.documentElement.style.fontSize = `${Number(initialState.zoom) * 14}px`;
-document.documentElement.style.fontFamily = initialState.font;
+// empty font settings fallback
+if (`${initialState.font}`.trim() === '') {
+  document.documentElement.style.fontFamily =
+    '"Inter", -apple-system, BlinkMacSystemFont, sans-serif';
+} else {
+  document.documentElement.style.fontFamily = initialState.font;
+}
 
 /**
  * save settings to local storage
@@ -127,7 +133,12 @@ const slice = createSlice({
     updateFont(state, action) {
       const value = action.payload;
       state.font = value;
-      document.documentElement.style.fontFamily = value;
+      // empty font settings fallback
+      if (`${value}`.trim() === '') {
+        document.documentElement.style.fontFamily = initialState.font;
+      } else {
+        document.documentElement.style.fontFamily = `${value}`.trim();
+      }
       saveSettings(state);
     },
   },

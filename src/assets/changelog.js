@@ -1,5 +1,10 @@
 export const changelog = [
   {
+    version: 'v1.5.1',
+    date: 1613977652975,
+    notes: ['fix: empty font-family fallback'],
+  },
+  {
     version: 'v1.5.0',
     date: 1613976451183,
     notes: ['new: custom font-family', 'fix: default font-family', 'new: common settings hook'],
