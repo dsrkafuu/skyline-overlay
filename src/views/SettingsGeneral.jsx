@@ -3,15 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { SInputNumber, SSelect, SInput } from '@/components';
 import useSettings from '@/hooks/useSettings';
-
-import rawLang from '@/lang';
-const langMap = {};
-Object.keys(rawLang).forEach((key) => {
-  langMap[key] = {
-    text: rawLang[key].translation.LANG,
-    // no data needed, use kay as data
-  };
-});
+import { MAP_LANG } from '@/utils/constants';
 
 function SettingsLayout() {
   const { t } = useTranslation(); // i18n support
@@ -25,7 +17,7 @@ function SettingsLayout() {
     <div className='settings-general'>
       <div className='settings-row'>
         <span className='settings-title'>{t('Language')}</span>
-        <SSelect value={lang} onChange={(value) => setLang(value)} map={langMap} />
+        <SSelect value={lang} onChange={(value) => setLang(value)} map={MAP_LANG} />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('UI Scale')}</span>

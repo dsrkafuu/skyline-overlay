@@ -1,5 +1,10 @@
 export const changelog = [
   {
+    version: 'v1.5.2',
+    date: NaN,
+    notes: ['fix: select component map', 'update: migrating to pnpm'],
+  },
+  {
     version: 'v1.5.1',
     date: 1613977652975,
     notes: ['fix: empty font-family fallback'],

@@ -47,10 +47,10 @@ function SSelect({ value, onChange, map }) {
 }
 
 SSelect.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onChange: PropTypes.func.isRequired,
   map: PropTypes.shape({
-    [PropTypes.string]: PropTypes.shape({
+    [PropTypes.oneOfType([PropTypes.string, PropTypes.number])]: PropTypes.shape({
       text: PropTypes.string.isRequired,
       data: PropTypes.any,
     }),

@@ -4,13 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { SInput, SSwitch, SSelect } from '@/components';
 import { ICheckmark, IClose } from '@/assets/svgs';
 import useSettings from '@/hooks/useSettings';
-
-const shortNameMap = {
-  'F-F': { text: 'First Last', data: { first: false, last: false } },
-  'F-T': { text: 'First L.', data: { first: false, last: true } },
-  'T-F': { text: 'F. Last', data: { first: true, last: false } },
-  'T-T': { text: 'F. L.', data: { first: true, last: true } },
-};
+import { MAP_SHORT_NAME } from '@/utils/constants';
 
 function SettingsDisplay() {
   const { t } = useTranslation(); // i18n support
@@ -19,9 +13,7 @@ function SettingsDisplay() {
   const [showRanks, setShowRanks] = useSettings('showRanks');
   const [youName, setYouName] = useSettings('youName');
   const [{ first, last }, setShortName] = useSettings('shortName');
-  const shortNameValue = (() => {
-    return `${first ? 'T' : 'F'}-${last ? 'T' : 'F'}`;
-  })();
+  const shortNameValue = Number(first) + Number(last) || 0;
 
   return (
     <div className='settings-display'>
@@ -43,7 +35,7 @@ function SettingsDisplay() {
         <SSelect
           value={shortNameValue}
           onChange={(value, data) => setShortName(data)}
-          map={shortNameMap}
+          map={MAP_SHORT_NAME}
         />
       </div>
     </div>
