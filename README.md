@@ -50,9 +50,8 @@ Clone this repo, install packages and run the development server:
 ```bash
 git clone https://github.com/dsrkafuu/skyline-overlay.git
 cd skyline-overlay
-npm install -g pnpm
-pnpm install
-pnpm run dev
+npm install
+npm run dev
 ```
 
 ## Major Dependencies

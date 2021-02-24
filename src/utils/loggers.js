@@ -3,7 +3,7 @@
  * @param {...any} args
  */
 export function logInfo(...args) {
-  console.info('%c [skyline-overlay]', 'color: #8aa2d3', ...args);
+  console.info('%c[skyline-overlay]', 'color: #8aa2d3', ...args);
 }
 
 /**

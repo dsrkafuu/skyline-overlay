@@ -1,8 +1,8 @@
 export const changelog = [
   {
     version: 'v1.5.2',
-    date: 1614066557396,
-    notes: ['fix: select component map', 'update: migrating to pnpm'],
+    date: 1614145032628,
+    notes: ['fix: select component map', 'fix: console logger'],
   },
   {
     version: 'v1.5.1',

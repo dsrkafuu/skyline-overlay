@@ -3,7 +3,6 @@
   "version": "1.5.2",
   "description": "A horizon FFXIV miniparse overlay built with React & Vite.",
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "lint": "eslint --ext \".jsx,.js\" src/",
     "compile": "vite build",
     "cleanup": "node ./cleanup.js",
