@@ -1,8 +1,8 @@
 export const changelog = [
   {
     version: 'v1.6.1',
-    date: 1614242899946,
-    notes: ['fix: combatant ranks index', 'fix: missing translations'],
+    date: 1614243402296,
+    notes: ['fix: combatant ranks index', 'fix: missing translations', 'fix: realse date'],
   },
   {
     version: 'v1.6.0',
