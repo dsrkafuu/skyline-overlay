@@ -26,7 +26,7 @@ function CombatantGrid({ player, index }) {
     dispName = splitName.join(' ');
   }
   // apply ranks if
-  showRanks && (dispName = `${index}. ${dispName}`); // if show ranks
+  showRanks && (dispName = `${index + 1}. ${dispName}`); // if show ranks
 
   return (
     <div className={classNames('combatant-grid', `job-${jobType || 'others'}`)}>
