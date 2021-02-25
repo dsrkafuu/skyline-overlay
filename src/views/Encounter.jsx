@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Encounter.scss';
 
-import { version } from '@/assets/changelog';
+import { latest } from '@/assets/changelog';
 import { clearCombat } from '@/store/slices/combat';
 import { toggleSettings } from '@/store/slices/settings';
 import { IRefresh, ISettings } from '@/assets/svgs';
@@ -17,7 +17,7 @@ function Encounter({ overlay }) {
   const active = useSelector((state) => state.combat.active);
   const duration = useSelector((state) => state.combat.encounter.duration || '00:00');
   const zoneName = useSelector(
-    (state) => state.combat.encounter.zoneName || `Skyline Overlay ${version}`
+    (state) => state.combat.encounter.zoneName || `Skyline Overlay ${latest.version}`
   );
   const totalDPS = useSelector((state) => state.combat.encounter.dps || 0);
 

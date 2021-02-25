@@ -1,7 +1,7 @@
 export const changelog = [
   {
     version: 'v1.6.1',
-    date: NaN,
+    date: 1614242899946,
     notes: ['fix: combatant ranks index', 'fix: missing translations'],
   },
   {
@@ -70,4 +70,4 @@ export const changelog = [
   },
 ];
 
-export const version = changelog[0].version;
+export const latest = changelog[0];
