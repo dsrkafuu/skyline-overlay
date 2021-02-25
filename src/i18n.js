@@ -14,6 +14,7 @@ i18n.use(initReactI18next).init({
   // get initial language from storage
   lng,
   fallbackLng: 'en',
+  keySeparator: false,
 
   debug: isDev(),
   interpolation: {

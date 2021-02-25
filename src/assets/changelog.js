@@ -1,5 +1,10 @@
 export const changelog = [
   {
+    version: 'v1.6.1',
+    date: NaN,
+    notes: ['fix: combatant ranks index', 'fix: missing translations'],
+  },
+  {
     version: 'v1.6.0',
     date: 1614145032628,
     notes: ['new: custom themes support'],
