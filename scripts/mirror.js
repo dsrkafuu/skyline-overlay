@@ -28,3 +28,11 @@ files.forEach((val) => {
     }
   }
 });
+
+// license and readme
+const l = path.resolve(__dirname, '../LICENSE');
+const lt = path.resolve(__dirname, '../.mirror/LICENSE');
+fs.copyFileSync(l, lt);
+const r = path.resolve(__dirname, '../README.md');
+const rt = path.resolve(__dirname, '../.mirror/README.md');
+fs.copyFileSync(r, rt);
