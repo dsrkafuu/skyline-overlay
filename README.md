@@ -53,7 +53,15 @@ npm install
 npm run dev
 ```
 
-### Adding Custom Themes
+### Add Translations
+
+Please use [ISO 639-1:2002](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) defined 2-letter code as filename, use `ja` as an example:
+
+1. Create a new `ja.json` file in `@/src/lang`, use `en.json` as a template
+2. Import `ja.json` in `@/src/lang/index.js`
+3. Add a new lang in `@/src/lang/index.js` exported map, like `ja: { translation: ja },`
+
+### Add Custom Themes
 
 1. Create a new `your-theme-filename.scss` file in `@/src/themes`, use `default.scss` and `ikegami.scss` as examples
 2. Import `your-theme-filename.scss` in `@/src/themes/index.js`
