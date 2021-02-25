@@ -13,34 +13,33 @@
 
 It's basically a customized version of [horizoverlay](https://github.com/bsides/horizoverlay/) and has some of [ikegami](https://github.com/hibiyasleep/ikegami)'s features. The main purpose of building this project is to try to use React with Redux Toolkit (RTK) & Vite, which can also test my [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
 
-<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview.jpg" alt="Skyline Preview" />
+<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-v1.6.0.jpg" alt="Skyline Preview" />
 
 ## Overlay Link
 
-```
-https://skyline.dsrkafuu.su
-```
+- Global: `https://skyline.dsrkafuu.su`
+- China Mainland: `https://dsrkafuu.gitee.io/skyline-overlay`
 
-Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin), only these browsers below are officially supported:
+Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin). For WebSocket mode, only these browsers below are officially supported:
 
-- Chrome (Chromium) >= 80 (OverlayPlugin included)
+- Chrome (Chromium) >= 80
 - Firefox >= 80
 - Safari >= 13 (macOS >= 10.15)
 - Edge >= 80 (new Edge with Chromium)
 
 ## To-do List
 
-- [x] Combatent sort - v1.1.0
-- [x] UI zoom - v1.2.0
-- [x] Multi-lingual support - v1.3.0
-- [x] Combatant number limit - v1.4.0
-- [x] Switch show LB - v1.4.0
-- [x] Short playername - v1.4.0
-- [x] Custom font family - v1.5.0
+- [x] Combatent sort - v1.1.x
+- [x] UI zoom - v1.2.x
+- [x] Multi-lingual support - v1.3.x
+- [x] Combatant number limit - v1.4.x
+- [x] Switch show LB - v1.4.x
+- [x] Short playername - v1.4.x
+- [x] Custom font family - v1.5.x
+- [x] Themes - v1.6.x
 - [ ] Custom digit decimal
 - [ ] Detailed data for each player
 - [ ] Custom main display property
-- [ ] Themes
 - [ ] C/D/CD tickers (maybe)
 
 ## Contribute
@@ -53,6 +52,12 @@ cd skyline-overlay
 npm install
 npm run dev
 ```
+
+### Adding Custom Themes
+
+1. Create a new `your-theme-filename.scss` file in `@/src/themes`, use `default.scss` and `ikegami.scss` as examples
+2. Import `your-theme-filename.scss` in `@/src/themes/index.js`
+3. Add a new theme in `@/src/themes/index.js` exported map, like `'your-theme-filename': { text: 'The New Theme' }`
 
 ## Major Dependencies
 
