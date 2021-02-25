@@ -7,6 +7,7 @@ import svgr from '@svgr/rollup';
  * @type { import('vite').UserConfig }
  */
 export default {
+  base: process.env.BASE_URL || '/',
   plugins: [
     reactRefresh(),
     // https://react-svgr.com/docs/options/

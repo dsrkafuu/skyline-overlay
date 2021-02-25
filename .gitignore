@@ -1,6 +1,7 @@
 # output
 dist/
 dist-ssr/
+.mirror/
 
 # vite
 *.local

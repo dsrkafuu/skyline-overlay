@@ -11,6 +11,6 @@ const glob = require('glob');
 
 const svgs = glob.sync('dist/assets/*.svg');
 svgs.forEach((val) => {
-  const p = path.resolve(__dirname, val);
-  fs.unlinkSync(p);
+  const p = path.resolve(__dirname, '../', val);
+  fs.rmSync(p, { force: true });
 });

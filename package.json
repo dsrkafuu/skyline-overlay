@@ -1,25 +1,27 @@
 {
   "name": "skyline-overlay",
-  "version": "1.5.2",
+  "version": "1.5.4",
   "description": "A horizon FFXIV miniparse overlay built with React & Vite.",
   "scripts": {
-    "lint": "eslint --ext \".jsx,.js\" src/",
-    "compile": "vite build",
-    "cleanup": "node ./cleanup.js",
-    "build": "cross-env NODE_ENV=production npm run lint && npm run compile && npm run cleanup",
+    "_lint": "eslint --ext \".jsx,.js\" src/",
+    "_compile": "vite build",
+    "_cleanup": "node ./scripts/cleanup.js",
+    "_mirror": "node ./scripts/mirror.js",
+    "build": "cross-env NODE_ENV=production npm-run-all _lint _compile _cleanup",
     "dev": "cross-env NODE_ENV=development vite",
-    "serve": "cross-env NODE_ENV=production vite preview"
+    "serve": "cross-env NODE_ENV=production vite preview",
+    "mirror": "cross-env NODE_ENV=production BASE_URL=/skyline-overlay/ npm-run-all build _mirror"
   },
   "dependencies": {
     "@reduxjs/toolkit": "~1.5.0",
     "classnames": "~2.2.6",
     "ffxiv-overlay-api": "~3.4.1",
-    "i18next": "~19.8.9",
+    "i18next": "~19.9.0",
     "normalize.css": "~8.0.1",
     "prop-types": "~15.7.2",
     "react": "~17.0.1",
     "react-dom": "~17.0.1",
-    "react-i18next": "~11.8.7",
+    "react-i18next": "~11.8.8",
     "react-redux": "~7.2.2",
     "react-transition-group": "~4.4.1"
   },
@@ -31,7 +33,8 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "glob": "^7.1.6",
+    "npm-run-all": "^4.1.5",
     "sass": "^1.32.8",
-    "vite": "2.0.2"
+    "vite": "^2.0.3"
   }
 }

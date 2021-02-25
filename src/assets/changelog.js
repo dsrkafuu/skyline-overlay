@@ -1,5 +1,10 @@
 export const changelog = [
   {
+    version: 'v1.5.3',
+    date: 1614145032628,
+    notes: ['new: china mainland mirror support'],
+  },
+  {
     version: 'v1.5.2',
     date: 1614145032628,
     notes: ['fix: select component map', 'fix: console logger'],

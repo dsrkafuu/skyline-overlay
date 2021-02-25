@@ -1,5 +1,5 @@
 assets/**
 dist/**
 public/**
-cleanup.js
+scripts/**
 vite.config.js
