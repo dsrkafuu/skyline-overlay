@@ -4,6 +4,7 @@
   min-width: $size-form-minwidth;
   color: var(--color-form-fg);
   background-color: var(--color-form-bg);
+  text-shadow: var(--shadow-form);
 
   & > div {
     display: inline-block;

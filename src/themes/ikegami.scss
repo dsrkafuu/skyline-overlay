@@ -1,0 +1,93 @@
+body[data-theme='ikegami'] {
+  // global
+  --color-fg: #ffffff;
+  --color-bg: rgba(17, 17, 17, 0.5);
+  --shadow: 0 0 0.3429rem #000000;
+
+  // combatant
+  --color-combatant-fg: var(--color-fg);
+  --color-combatant-bg-dps: #bd0f49;
+  --color-combatant-bg-tank: #177ccf;
+  --color-combatant-bg-heal: #5f9933;
+  --color-combatant-bg-others: #404040;
+  --shadow-combatant: var(--shadow);
+
+  // encounter
+  --color-encounter-fg: var(--color-fg);
+  --color-encounter-bg: var(--color-bg);
+  --color-cover-fg: #82c4f8;
+  --color-cover-fg-active: #82c4f8;
+  --color-cover-bg: var(--color-bg);
+  --color-cover-bg-active: var(--color-bg);
+  --shadow-encounter: var(--shadow);
+  --shadow-encounter-active: var(--shadow);
+
+  // settings
+  --color-settings-fg: var(--color-fg);
+  --color-settings-bg: #404040;
+  --color-settings-tab-fg: var(--color-fg);
+  --color-settings-tab-bg: var(--color-bg);
+  --color-settings-tab-fg-active: unset;
+  --color-settings-tab-bg-active: unset;
+  --shadow-settings: none;
+  --shadow-settings-tab: none;
+  --shadow-settings-tab-active: none;
+
+  // components
+  --color-form-fg: var(--color-fg);
+  --color-form-fg-active: var(--color-fg);
+  --color-form-fg-selection: #404040;
+  --color-form-bg: #404040;
+  --color-form-bg-active: #404040;
+  --color-form-bg-selection: var(--color-fg);
+  --shadow-form: none;
+  --shadow-form-active: none;
+  --shadow-form-selection: none;
+
+  // extends
+  .settings-tabitem {
+    flex: 0 0 auto;
+
+    &.active {
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 0.1rem;
+        background-color: #ffffff;
+      }
+    }
+  }
+
+  .s-input {
+    border: 1px solid #ffffff;
+  }
+
+  .s-input-number,
+  .s-switch {
+    gap: 0.15rem;
+
+    & > div {
+      border: 1px solid #ffffff;
+    }
+
+    .btn:hover {
+      color: #404040;
+      background-color: #ffffff;
+    }
+  }
+
+  .s-select {
+    &-value {
+      border: 1px solid #ffffff;
+    }
+
+    &-options {
+      border: 1px solid #ffffff;
+    }
+  }
+}

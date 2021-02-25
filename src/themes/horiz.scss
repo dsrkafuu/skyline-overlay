@@ -1,0 +1,46 @@
+body[data-theme='horiz'] {
+  // global
+  --color-fg: #ffffff;
+  --color-bg: rgba(0, 0, 0, 0.3);
+  --shadow: 0 0 0.3571rem #000000;
+
+  // combatant
+  --color-combatant-fg: var(--color-fg);
+  --color-combatant-bg-dps: rgba(244, 67, 54, 0.5);
+  --color-combatant-bg-tank: rgba(32, 149, 243, 0.5);
+  --color-combatant-bg-heal: rgba(139, 195, 74, 0.5);
+  --color-combatant-bg-others: var(--color-bg);
+  --shadow-combatant: var(--shadow);
+
+  // encounter
+  --color-encounter-fg: var(--color-fg);
+  --color-encounter-bg: var(--color-bg);
+  --color-cover-fg: var(--color-fg);
+  --color-cover-fg-active: var(--color-fg);
+  --color-cover-bg: rgba(170, 170, 169, 0.65);
+  --color-cover-bg-active: var(--color-cover-bg);
+  --shadow-encounter: var(--shadow);
+  --shadow-encounter-active: var(--shadow);
+
+  // settings
+  --color-settings-fg: var(--color-fg);
+  --color-settings-bg: #555555;
+  --color-settings-tab-fg: var(--color-fg);
+  --color-settings-tab-bg: var(--color-bg);
+  --color-settings-tab-fg-active: #ffffff;
+  --color-settings-tab-bg-active: #555555;
+  --shadow-settings: var(--shadow);
+  --shadow-settings-tab: var(--shadow);
+  --shadow-settings-tab-active: var(--shadow);
+
+  // components
+  --color-form-fg: #333333;
+  --color-form-fg-active: var(--color-fg);
+  --color-form-fg-selection: var(--color-fg);
+  --color-form-bg: #eeeeee;
+  --color-form-bg-active: #333333;
+  --color-form-bg-selection: rgba(32, 149, 243, 0.5);
+  --shadow-form: none;
+  --shadow-form-active: none;
+  --shadow-form-selection: none;
+}

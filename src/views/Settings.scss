@@ -2,12 +2,14 @@
   margin-top: $padding-md;
   font-size: $font-size-sm;
   flex: 0 0 25rem;
-  color: var(--color-fg);
-  background-color: var(--color-bg);
-  text-shadow: var(--shadow-text);
+  color: var(--color-settings-fg);
+  background-color: var(--color-settings-bg);
+  text-shadow: var(--shadow-settings);
 
   &-tab {
-    background-color: var(--color-bg);
+    color: var(--color-settings-tab-fg);
+    background-color: var(--color-settings-tab-bg);
+    text-shadow: var(--shadow-settings-tab);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,9 +26,9 @@
     @include transitionColor();
 
     &.active {
-      text-shadow: none;
-      color: var(--color-form-fg-active);
-      background-color: var(--color-form-bg-active);
+      text-shadow: var(--shadow-settings-tab-active);
+      color: var(--color-settings-tab-fg-active);
+      background-color: var(--color-settings-tab-bg-active);
     }
   }
 
@@ -67,9 +69,11 @@
 }
 
 .settings {
-  &-general {
-    .s-input {
-      width: 12rem;
-    }
+  &-theme .s-select {
+    width: 10rem;
+  }
+
+  &-font .s-input {
+    width: 12rem;
   }
 }

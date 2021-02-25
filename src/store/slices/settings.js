@@ -17,6 +17,7 @@ const initialState = {
   shortName: { first: false, last: false },
 
   /* general */
+  theme: 'default',
   lang: 'en',
   zoom: 1,
   font: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
@@ -24,6 +25,12 @@ const initialState = {
   // merge local storage saved settings
   ...(getLS('settings') || {}),
 };
+// apply theme to dom
+if (initialState.theme === 'default') {
+  document.body.removeAttribute('data-theme');
+} else {
+  document.body.setAttribute('data-theme', initialState.theme);
+}
 // apply initial state to dom
 document.documentElement.setAttribute('lang', initialState.lang);
 document.documentElement.style.fontSize = `${Number(initialState.zoom) * 14}px`;
@@ -111,6 +118,19 @@ const slice = createSlice({
     /**
      * @param {{ payload: value }} action
      */
+    updateTheme(state, action) {
+      const value = action.payload;
+      state.theme = value;
+      if (value === 'default') {
+        document.body.removeAttribute('data-theme');
+      } else {
+        document.body.setAttribute('data-theme', value);
+      }
+      saveSettings(state);
+    },
+    /**
+     * @param {{ payload: value }} action
+     */
     updateLang(state, action) {
       const value = action.payload;
       state.lang = value;
@@ -153,6 +173,7 @@ export const {
   updateShowRanks,
   updateYouName,
   updateShortName,
+  updateTheme,
   updateLang,
   updateZoom,
   updateFont,

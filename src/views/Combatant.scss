@@ -11,18 +11,21 @@
     margin: 0 $padding-xs;
     display: flex;
     flex-direction: column;
-    color: var(--color-fg);
-    text-shadow: var(--shadow-text);
+    color: var(--color-combatant-fg);
+    text-shadow: var(--shadow-combatant);
 
     // job type colors
     &.job-dps .content {
-      background-color: var(--color-dps);
+      background-color: var(--color-combatant-bg-dps);
     }
     &.job-tank .content {
-      background-color: var(--color-tank);
+      background-color: var(--color-combatant-bg-tank);
     }
     &.job-heal .content {
-      background-color: var(--color-heal);
+      background-color: var(--color-combatant-bg-heal);
+    }
+    &.job-others .content {
+      background-color: var(--color-combatant-bg-others);
     }
 
     .id,
@@ -51,8 +54,7 @@
     .content {
       position: relative;
       padding: 0.25rem 0.6rem;
-      box-shadow: var(--shadow-box);
-      background-color: var(--color-bg);
+      background-color: var(--color-combatant-bg-others);
     }
 
     .data {

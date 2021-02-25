@@ -1,0 +1,46 @@
+body {
+  // global
+  --color-fg: #ffffff;
+  --color-bg: rgba(145, 145, 145, 0.5);
+  --shadow: 0 0 0.25rem #000000;
+
+  // combatant
+  --color-combatant-fg: var(--color-fg);
+  --color-combatant-bg-dps: rgba(232, 107, 121, 0.5);
+  --color-combatant-bg-tank: rgba(138, 162, 211, 0.6);
+  --color-combatant-bg-heal: rgba(123, 170, 23, 0.5);
+  --color-combatant-bg-others: var(--color-bg);
+  --shadow-combatant: var(--shadow);
+
+  // encounter
+  --color-encounter-fg: var(--color-fg);
+  --color-encounter-bg: var(--color-bg);
+  --color-cover-fg: var(--color-fg);
+  --color-cover-fg-active: var(--color-fg);
+  --color-cover-bg: rgba(170, 170, 169, 0.55);
+  --color-cover-bg-active: var(--color-combatant-bg-heal);
+  --shadow-encounter: var(--shadow);
+  --shadow-encounter-active: var(--shadow);
+
+  // settings
+  --color-settings-fg: var(--color-fg);
+  --color-settings-bg: var(--color-bg);
+  --color-settings-tab-fg: var(--color-fg);
+  --color-settings-tab-bg: var(--color-bg);
+  --color-settings-tab-fg-active: #333333;
+  --color-settings-tab-bg-active: #eeeeee;
+  --shadow-settings: var(--shadow);
+  --shadow-settings-tab: var(--shadow);
+  --shadow-settings-tab-active: none;
+
+  // components
+  --color-form-fg: var(--color-fg);
+  --color-form-fg-active: #333333;
+  --color-form-fg-selection: var(--color-fg);
+  --color-form-bg: #555555;
+  --color-form-bg-active: #eeeeee;
+  --color-form-bg-selection: #8aa2d3;
+  --shadow-form: var(--shadow);
+  --shadow-form-active: none;
+  --shadow-form-selection: none;
+}

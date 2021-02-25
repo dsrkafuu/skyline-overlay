@@ -24,3 +24,6 @@ const shortNameMap = {
   3: { text: 'F. L.', data: { first: true, last: true } },
 };
 export const MAP_SHORT_NAME = shortNameMap;
+// themes map
+import themes from '@/themes';
+export const MAP_THEMES = themes;

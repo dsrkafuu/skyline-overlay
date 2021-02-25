@@ -11,13 +11,16 @@
   user-select: auto;
   @include transitionColor();
   text-align: center;
+  text-shadow: var(--shadow-form);
 
   &.active {
+    text-shadow: var(--shadow-form-active);
     color: var(--color-form-fg-active);
     background-color: var(--color-form-bg-active);
   }
 
   &::selection {
+    text-shadow: var(--shadow-form-selection);
     color: var(--color-form-fg-selection);
     background-color: var(--color-form-bg-selection);
   }

@@ -10,6 +10,7 @@
 // links
 .s-link {
   color: var(--color-fg);
+  text-shadow: var(--shadow);
   text-decoration: underline;
   padding-left: 0.2rem;
   padding-right: 0.2rem;
@@ -18,7 +19,7 @@
   &:hover {
     color: var(--color-form-fg-active);
     background-color: var(--color-form-bg-active);
-    text-shadow: none;
+    text-shadow: var(--shadow-form-active);
   }
 }
 

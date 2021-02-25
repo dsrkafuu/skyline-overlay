@@ -2,19 +2,21 @@
   font-size: $font-size-sm;
   flex: 0 0 25rem;
   display: flex;
-  color: var(--color-fg);
-  text-shadow: var(--shadow-text);
 
   &-duration {
     height: $size-encounter;
     width: $size-encounter * 2 + 0.05rem;
     line-height: $size-encounter;
     text-align: center;
-    background-color: var(--color-cover);
+    color: var(--color-cover-fg);
+    background-color: var(--color-cover-bg);
+    text-shadow: var(--shadow-encounter);
     @include transitionColor();
 
     &.active {
-      background-color: var(--color-active);
+      color: var(--color-cover-fg-active);
+      background-color: var(--color-cover-bg-active);
+      text-shadow: var(--shadow-encounter-active);
     }
   }
 
@@ -25,7 +27,9 @@
     flex-wrap: nowrap;
     height: $size-encounter;
     line-height: 1.1rem;
-    background-color: var(--color-bg);
+    color: var(--color-encounter-fg);
+    background-color: var(--color-encounter-bg);
+    text-shadow: var(--shadow-encounter);
   }
 
   &-zone {
@@ -39,8 +43,8 @@
 
   &-buttons {
     cursor: pointer;
-    color: var(--color-form-fg);
-    background-color: var(--color-cover);
+    color: var(--color-cover-fg);
+    background-color: var(--color-cover-bg);
     position: relative;
     height: $size-encounter;
     width: $size-encounter * 2;

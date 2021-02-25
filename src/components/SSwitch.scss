@@ -2,7 +2,7 @@
   display: flex;
   cursor: pointer;
   height: $size-form;
-  width: $size-form * 2;
+  min-width: $size-form * 2;
   display: flex;
   color: var(--color-form-fg);
   background-color: var(--color-form-bg);
