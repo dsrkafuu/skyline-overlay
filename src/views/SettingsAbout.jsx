@@ -25,8 +25,26 @@ function SettingsAbout() {
 
   return (
     <div className='settings-about'>
+      {/*
       <div className='settings-row'>
         <span className='settings-title'>{t('Thanks for Using')}</span>
+      </div>
+      */}
+      <div className='settings-row'>
+        <span className='settings-title'>
+          <Trans i18nKey='Need Help'>
+            We need
+            <a
+              className='s-link'
+              href='https://github.com/dsrkafuu/skyline-overlay#add-translations'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              help
+            </a>
+            from more community translators!
+          </Trans>
+        </span>
       </div>
       <div className='settings-row'>
         <span className='settings-title'>
@@ -36,7 +54,7 @@ function SettingsAbout() {
               className='s-link'
               href='https://github.com/dsrkafuu/skyline-overlay/issues'
               target='_blank'
-              rel='noreferrer'
+              rel='noopener noreferrer'
             >
               raise an issue
             </a>
@@ -50,7 +68,7 @@ function SettingsAbout() {
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{`Copyright ${new Date().getFullYear()} Apache-2.0 License`}</span>
-        <a className='s-link' href='https://dsrkafuu.su' target='_blank' rel='noreferrer'>
+        <a className='s-link' href='https://dsrkafuu.su' target='_blank' rel='noopener noreferrer'>
           DSRKafuU
         </a>
       </div>
