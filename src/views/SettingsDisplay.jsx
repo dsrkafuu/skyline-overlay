@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { SInput, SSwitch, SSelect } from '@/components';
-import { ICheckmark, IClose } from '@/assets/svgs';
 import useSettings from '@/hooks/useSettings';
 import { MAP_SHORT_NAME } from '@/utils/constants';
 
@@ -20,21 +19,11 @@ function SettingsDisplay() {
     <div className='settings-display'>
       <div className='settings-row'>
         <span className='settings-title'>{t('Show Ranks')}</span>
-        <SSwitch
-          value={showRanks}
-          onChange={(value) => setShowRanks(value)}
-          ITrue={ICheckmark}
-          IFalse={IClose}
-        />
+        <SSwitch value={showRanks} onChange={(value) => setShowRanks(value)} />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Highlight Self')}</span>
-        <SSwitch
-          value={hlYou}
-          onChange={(value) => setHlYou(value)}
-          ITrue={ICheckmark}
-          IFalse={IClose}
-        />
+        <SSwitch value={hlYou} onChange={(value) => setHlYou(value)} />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Custom ID')}</span>

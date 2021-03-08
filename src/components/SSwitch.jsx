@@ -3,7 +3,9 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import './SSwitch.scss';
 
-function SSwitch({ value, onChange, ITrue, IFalse }) {
+import { ICheckmark, IClose } from '@/assets/svgs';
+
+function SSwitch({ value, onChange, ITrue = ICheckmark, IFalse = IClose }) {
   return (
     <div className='s-switch'>
       <div className={classNames('btn', { active: value })} onClick={() => onChange(true)}>

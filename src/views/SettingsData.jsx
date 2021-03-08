@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { SSwitch, SInputNumber } from '@/components';
-import { IChevronDown, IChevronUp, ICheckmark, IClose } from '@/assets/svgs';
+import { IChevronDown, IChevronUp } from '@/assets/svgs';
 import useSettings from '@/hooks/useSettings';
 
 function SettingsData() {
@@ -36,12 +36,7 @@ function SettingsData() {
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Show Limit Break')}</span>
-        <SSwitch
-          value={showLB}
-          onChange={(value) => setShowLB(value)}
-          ITrue={ICheckmark}
-          IFalse={IClose}
-        />
+        <SSwitch value={showLB} onChange={(value) => setShowLB(value)} />
       </div>
     </div>
   );
