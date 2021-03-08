@@ -1,5 +1,16 @@
 export const changelog = [
   {
+    version: 'v1.7.0',
+    date: 1615197516478,
+    notes: [
+      'feat: self highlight',
+      'feat: default icons for s-switch',
+      'feat: hps display',
+      'fix: border radius on webkit',
+      'chore: update about page',
+    ],
+  },
+  {
     version: 'v1.6.1',
     date: 1614243402296,
     notes: ['fix: combatant ranks index', 'fix: missing translations', 'fix: realse date'],

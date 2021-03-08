@@ -11,7 +11,7 @@
 ![](https://img.shields.io/badge/ffxiv%20tested-5.45-orange)
 ![](https://img.shields.io/github/license/dsrkafuu/skyline-overlay)
 
-It's basically a customized version of [horizoverlay](https://github.com/bsides/horizoverlay/) and has some of [ikegami](https://github.com/hibiyasleep/ikegami)'s features. The main purpose of building this project is to try to use React with Redux Toolkit (RTK) & Vite, which can also test my [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
+An extended version from [horizoverlay](https://github.com/bsides/horizoverlay/) with some of [ikegami](https://github.com/hibiyasleep/ikegami)'s features. The main purpose of building this project is to use React with Redux Toolkit (RTK) & Vite, which can also test the [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
 
 <img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-v1.6.0.jpg" alt="Skyline Preview" />
 
@@ -37,9 +37,10 @@ Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin)
 - [x] Short playername - v1.4.x
 - [x] Custom font family - v1.5.x
 - [x] Themes - v1.6.x
+- [x] HPS display - v1.7.0
+- [x] Highlight self - v1.7.0
 - [ ] Custom digit decimal
 - [ ] Detailed data for each player
-- [ ] Custom main display property
 - [ ] C/D/CD tickers (maybe)
 
 ## Contribute
