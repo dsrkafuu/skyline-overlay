@@ -7,6 +7,7 @@ export const OVERLAY_CALLBACK = '_SKYLINE_OVERLAY_CALLBACK';
 export const STORAGE_KEY = '_SKYLINE_DATA';
 
 // value maps for selection
+
 // languages
 import rawLang from '@/lang';
 const langMap = {};
@@ -16,7 +17,8 @@ Object.keys(rawLang).forEach((key) => {
   };
 });
 export const MAP_LANG = langMap;
-// short names
+
+// short names map
 const shortNameMap = {
   0: { text: 'First Last', data: { first: false, last: false } },
   1: { text: 'First L.', data: { first: false, last: true } },
@@ -24,6 +26,7 @@ const shortNameMap = {
   3: { text: 'F. L.', data: { first: true, last: true } },
 };
 export const MAP_SHORT_NAME = shortNameMap;
+
 // themes map
 import themes from '@/themes';
 export const MAP_THEMES = themes;

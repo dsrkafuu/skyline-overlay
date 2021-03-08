@@ -21,8 +21,8 @@ function SSwitch({ value, onChange, ITrue = ICheckmark, IFalse = IClose }) {
 SSwitch.propTypes = {
   value: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
-  ITrue: PropTypes.elementType.isRequired,
-  IFalse: PropTypes.elementType.isRequired,
+  ITrue: PropTypes.elementType,
+  IFalse: PropTypes.elementType,
 };
 
 export default SSwitch;

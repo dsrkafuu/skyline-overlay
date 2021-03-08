@@ -10,6 +10,7 @@ const initialState = {
   sortRule: { key: 'dps', value: -1 }, // sort data
   playerLimit: 8, // combatant limit
   showLB: true,
+  showHPS: false,
 
   /* display */
   showRanks: false, // show rank number before id
@@ -85,6 +86,14 @@ const slice = createSlice({
     updateShowLB(state, action) {
       const value = action.payload;
       state.showLB = Boolean(value);
+      saveSettings(state);
+    },
+    /**
+     * @param {{ payload: value }} action
+     */
+    updateShowHPS(state, action) {
+      const value = action.payload;
+      state.showHPS = Boolean(value);
       saveSettings(state);
     },
 
@@ -179,6 +188,7 @@ export const {
   updateSortRule,
   updatePlayerLimit,
   updateShowLB,
+  updateShowHPS,
   updateShowRanks,
   updateHlYou,
   updateYouName,

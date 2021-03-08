@@ -11,6 +11,7 @@ function SettingsData() {
   const [sortRule, setSortRule] = useSettings('sortRule');
   const [playerLimit, setPlayerLimit] = useSettings('playerLimit');
   const [showLB, setShowLB] = useSettings('showLB');
+  const [showHPS, setShowHPS] = useSettings('showHPS');
 
   return (
     <div className='settings-data'>
@@ -37,6 +38,10 @@ function SettingsData() {
       <div className='settings-row'>
         <span className='settings-title'>{t('Show Limit Break')}</span>
         <SSwitch value={showLB} onChange={(value) => setShowLB(value)} />
+      </div>
+      <div className='settings-row'>
+        <span className='settings-title'>{t('Show HPS')}</span>
+        <SSwitch value={showHPS} onChange={(value) => setShowHPS(value)} />
       </div>
     </div>
   );

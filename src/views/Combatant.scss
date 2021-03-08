@@ -69,7 +69,6 @@
 
     .job-icon {
       position: absolute;
-      left: 0;
       top: 0.025rem;
       left: 0.35rem;
       width: 1.7rem;
@@ -79,6 +78,25 @@
         display: block;
         width: 100%;
         height: 100%;
+      }
+    }
+
+    &-extend {
+      width: 11.5rem;
+
+      .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .job-icon {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+        top: -0.3rem;
+        width: 1.5rem;
+        height: 1.5rem;
       }
     }
   }

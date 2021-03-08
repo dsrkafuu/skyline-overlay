@@ -3,20 +3,21 @@ import { useSelector } from 'react-redux';
 import './Combatant.scss';
 
 import CombatantGrid from './CombatantGrid';
+import useSettings from '@/hooks/useSettings';
 
 function Combatant() {
   // get combatant data from store
   const combatant = useSelector((state) => state.combat.combatant);
 
   // get sort settings
-  const sortRule = useSelector((state) => state.settings.sortRule);
+  const [sortRule] = useSettings('sortRule');
   const sortedCombatant = [...combatant].sort(
     (a, b) => sortRule.value * (a[sortRule.key] - b[sortRule.key])
   );
 
   // limit player numbers and show lb
-  const playerLimit = useSelector((state) => state.settings.playerLimit);
-  const showLB = useSelector((state) => state.settings.showLB);
+  const [playerLimit] = useSettings('playerLimit');
+  const [showLB] = useSettings('showLB');
   const dispCombatant = [];
   for (let i = 0; i < sortedCombatant.length; i++) {
     const p = sortedCombatant[i];

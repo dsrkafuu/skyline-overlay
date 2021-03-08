@@ -1,21 +1,19 @@
 import React from 'react';
 import classNames from 'classnames';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import * as jobIcons from '@/assets/icons';
+import useSettings from '@/hooks/useSettings';
+import { fmtNumber } from '@/utils/formatters';
 
 function CombatantGrid({ player, index }) {
   // get data
-  const { jobType, job, name, dps, maxHit, maxHitDamage } = player;
-
-  // computed data
-  const showRanks = useSelector((state) => state.settings.showRanks);
-  const hlYou = useSelector((state) => state.settings.hlYou);
-  const youName = useSelector((state) => state.settings.youName);
-  const shortName = useSelector((state) => state.settings.shortName);
+  const { jobType, job, name, dps, hps, maxHit, maxHitDamage } = player;
+  const gridClass = ['combatant-grid']; // grid classnames
 
   // display name
+  const [youName] = useSettings('youName');
+  const [shortName] = useSettings('shortName');
   let dispName = name;
   dispName === 'YOU' && (dispName = youName); // if custom name
   dispName === '' && (dispName = 'YOU'); // prevent empty
@@ -26,24 +24,35 @@ function CombatantGrid({ player, index }) {
     shortName.last && splitName[1].charAt(0) && (splitName[1] = `${splitName[1].charAt(0)}.`);
     dispName = splitName.join(' ');
   }
+
   // apply ranks if
+  const [showRanks] = useSettings('showRanks');
   showRanks && (dispName = `${index + 1}. ${dispName}`); // if show ranks
 
   // class names related to job
-  const jobClass = [
-    `job-${jobType || 'others'}`, // job
-    { 'job-self': hlYou && name === 'YOU' }, // highlight
-  ];
+  const [hlYou] = useSettings('hlYou');
+  gridClass.push(`job-${jobType || 'others'}`); // job
+  gridClass.push({ 'job-self': hlYou && name === 'YOU' }); // highlight
+
+  // sub display prop
+  const [showHPS] = useSettings('showHPS');
+  gridClass.push({ 'combatant-grid-extend': showHPS }); // extended grid
 
   return (
-    <div className={classNames('combatant-grid', jobClass)}>
+    <div className={classNames(...gridClass)}>
       <div className='id'>{dispName}</div>
       <div className='content'>
+        {showHPS && (
+          <div className='data'>
+            <span className='s-number'>{fmtNumber(hps) || 0}</span>
+            <span className='s-counter'>HPS</span>
+          </div>
+        )}
         <span className='job-icon'>
           <img src={jobIcons[job] || jobIcons.ffxiv} />
         </span>
         <div className='data'>
-          <span className='s-number'>{dps || 0}</span>
+          <span className='s-number'>{(showHPS ? fmtNumber(dps) : dps) || 0}</span>
           <span className='s-counter'>DPS</span>
         </div>
       </div>
@@ -61,6 +70,7 @@ CombatantGrid.propTypes = {
     job: PropTypes.string,
     name: PropTypes.string.isRequired,
     dps: PropTypes.number.isRequired,
+    hps: PropTypes.number.isRequired,
     maxHit: PropTypes.string,
     maxHitDamage: PropTypes.number,
   }).isRequired,

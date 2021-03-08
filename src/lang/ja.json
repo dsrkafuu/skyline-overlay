@@ -2,14 +2,19 @@
   "LANG": "日本語",
 
   "About": "情報",
+  "Thanks for Using": "Thanks for using this immature software.",
+  "Request Issue": "Please <1>raise an issue</1> if you have questions or ideas.",
+  "Release Date": "Release Date",
 
   "Data": "データ",
   "Sort Rule": "ソートルール",
   "Max Combatants": "最大戦闘員数",
   "Show Limit Break": "Limit Break 表示",
+  "Show HPS": "Show HPS",
 
   "Display": "表示",
   "Show Ranks": "ランク表示",
+  "Highlight Self": "Highlight Self",
   "Custom ID": "カスタム ID",
   "Shorten Name": "名前をイニシャルで表示",
 
