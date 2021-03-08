@@ -23,7 +23,7 @@ logInfo('api initialized');
 
 // [DEBUG]
 isDev() &&
-  fetch('https://cdn.jsdelivr.net/gh/dsrkafuu/ffxiv-overlay-api@3/test/fake.json')
+  fetch('https://cdn.jsdelivr.net/gh/dsrkafuu/ffxiv-overlay-api@3/test/fake_cn.json')
     .then((res) => res.json())
     .then((obj) => {
       let time = 1;
@@ -36,6 +36,9 @@ isDev() &&
           obj.Encounter.encdps += Number(dps);
         });
         obj.Encounter.encdps = `${obj.Encounter.encdps}`;
+        obj.Combatant['YOU'].name = obj.Combatant['光之战士一号'];
+        obj.Combatant['YOU'].name = 'YOU';
+        delete obj.Combatant['光之战士一号'];
         overlay.simulateData(obj);
         time++;
       }, 1000);

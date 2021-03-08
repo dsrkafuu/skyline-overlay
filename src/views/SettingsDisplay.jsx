@@ -11,6 +11,7 @@ function SettingsDisplay() {
 
   // datas
   const [showRanks, setShowRanks] = useSettings('showRanks');
+  const [hlYou, setHlYou] = useSettings('hlYou');
   const [youName, setYouName] = useSettings('youName');
   const [{ first, last }, setShortName] = useSettings('shortName');
   const shortNameValue = Number(first) + Number(last) || 0;
@@ -22,6 +23,15 @@ function SettingsDisplay() {
         <SSwitch
           value={showRanks}
           onChange={(value) => setShowRanks(value)}
+          ITrue={ICheckmark}
+          IFalse={IClose}
+        />
+      </div>
+      <div className='settings-row'>
+        <span className='settings-title'>{t('Highlight Self')}</span>
+        <SSwitch
+          value={hlYou}
+          onChange={(value) => setHlYou(value)}
           ITrue={ICheckmark}
           IFalse={IClose}
         />

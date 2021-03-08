@@ -11,6 +11,7 @@ function CombatantGrid({ player, index }) {
 
   // computed data
   const showRanks = useSelector((state) => state.settings.showRanks);
+  const hlYou = useSelector((state) => state.settings.hlYou);
   const youName = useSelector((state) => state.settings.youName);
   const shortName = useSelector((state) => state.settings.shortName);
 
@@ -28,8 +29,14 @@ function CombatantGrid({ player, index }) {
   // apply ranks if
   showRanks && (dispName = `${index + 1}. ${dispName}`); // if show ranks
 
+  // class names related to job
+  const jobClass = [
+    `job-${jobType || 'others'}`, // job
+    { 'job-self': hlYou && name === 'YOU' }, // highlight
+  ];
+
   return (
-    <div className={classNames('combatant-grid', `job-${jobType || 'others'}`)}>
+    <div className={classNames('combatant-grid', jobClass)}>
       <div className='id'>{dispName}</div>
       <div className='content'>
         <span className='job-icon'>

@@ -27,6 +27,10 @@
     &.job-others .content {
       background-color: var(--color-combatant-bg-others);
     }
+    // self highlight color
+    &.job-self .content {
+      background-color: var(--color-combatant-bg-self);
+    }
 
     .id,
     .maxhit {

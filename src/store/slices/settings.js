@@ -13,6 +13,7 @@ const initialState = {
 
   /* display */
   showRanks: false, // show rank number before id
+  hlYou: true, // highlight 'YOU'
   youName: 'YOU', // which to represent as 'YOU'
   shortName: { first: false, last: false },
 
@@ -99,6 +100,14 @@ const slice = createSlice({
     /**
      * @param {{ payload: value }} action
      */
+    updateHlYou(state, action) {
+      const value = action.payload;
+      state.hlYou = Boolean(value);
+      saveSettings(state);
+    },
+    /**
+     * @param {{ payload: value }} action
+     */
     updateYouName(state, action) {
       const value = action.payload;
       state.youName = `${value}`;
@@ -171,6 +180,7 @@ export const {
   updatePlayerLimit,
   updateShowLB,
   updateShowRanks,
+  updateHlYou,
   updateYouName,
   updateShortName,
   updateTheme,
