@@ -14,6 +14,7 @@
 An extended version from [horizoverlay](https://github.com/bsides/horizoverlay/) with some of [ikegami](https://github.com/hibiyasleep/ikegami)'s features. The main purpose of building this project is to use React with Redux Toolkit (RTK) & Vite, which can also test the [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
 
 <img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-v1.6.0.jpg" alt="Skyline Preview" />
+<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-v1.7.1.jpg" alt="Skyline Extended Preview" />
 
 ## Overlay Link
 
