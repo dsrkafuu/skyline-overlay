@@ -1,12 +1,13 @@
 export const changelog = [
   {
     version: 'v1.7.1',
-    date: 1615275745017,
+    date: 1615276591428,
     notes: [
+      'feat(api): legacy websocket param support',
+      'feat(lang): german translation',
       'fix(data): sort rule setter',
       'fix(style): horiz theme form active color scheme',
       'fix(style): ikegami theme form active bg',
-      'feat(api): legacy websocket param support',
     ],
   },
   {

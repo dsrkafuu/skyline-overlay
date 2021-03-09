@@ -64,7 +64,7 @@ Please use [ISO 639-1:2002](https://en.wikipedia.org/wiki/List_of_ISO_639-1_code
 
 Community translators:
 
-- German: @Slightlyxz
+- German: [@Slightlyxz](https://github.com/Slightlyxz)
 
 ### Add Custom Themes
 
