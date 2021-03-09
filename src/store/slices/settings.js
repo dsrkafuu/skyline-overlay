@@ -69,7 +69,7 @@ const slice = createSlice({
     updateSortRule(state, action) {
       const { key, value } = action.payload;
       key && (state.sortRule.key = String(key));
-      value && (state.sortRule.value = String(value));
+      value && (state.sortRule.value = Number(value));
       saveSettings(state);
     },
     /**

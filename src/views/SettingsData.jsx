@@ -19,7 +19,7 @@ function SettingsData() {
         <span className='settings-title'>{t('Sort Rule')}</span>
         <SSwitch
           value={sortRule.value < 0}
-          onChange={(value) => setSortRule(value ? -1 : 1)}
+          onChange={(value) => setSortRule({ key: 'dps', value: value ? -1 : 1 })}
           ITrue={IChevronDown}
           IFalse={IChevronUp}
         />
