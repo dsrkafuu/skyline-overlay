@@ -35,11 +35,11 @@ body[data-theme='horiz'] {
   --shadow-settings-tab-active: var(--shadow);
 
   // components
-  --color-form-fg: #333333;
-  --color-form-fg-active: var(--color-fg);
+  --color-form-fg: var(--color-fg);
+  --color-form-fg-active: #333333;
   --color-form-fg-selection: var(--color-fg);
-  --color-form-bg: #eeeeee;
-  --color-form-bg-active: #333333;
+  --color-form-bg: #333333;
+  --color-form-bg-active: #eeeeee;
   --color-form-bg-selection: rgba(32, 149, 243, 0.5);
   --shadow-form: none;
   --shadow-form-active: none;
