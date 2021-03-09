@@ -15,7 +15,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "~1.5.0",
     "classnames": "~2.2.6",
-    "ffxiv-overlay-api": "~3.4.1",
+    "ffxiv-overlay-api": "~3.4.2",
     "i18next": "~19.9.1",
     "normalize.css": "~8.0.1",
     "prop-types": "~15.7.2",
