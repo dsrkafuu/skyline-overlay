@@ -1,5 +1,15 @@
 export const changelog = [
   {
+    version: 'v1.7.1',
+    date: 1615275745017,
+    notes: [
+      'fix(data): sort rule setter',
+      'fix(style): horiz theme form active color scheme',
+      'fix(style): ikegami theme form active bg',
+      'feat(api): legacy websocket param support',
+    ],
+  },
+  {
     version: 'v1.7.0',
     date: 1615197516478,
     notes: [
