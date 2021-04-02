@@ -7,6 +7,9 @@ import './themes';
 import './scss/global.scss';
 import './scss/utils.scss';
 
+import ga from './plugins/ga';
+ga();
+
 import './i18n';
 import App from './App';
 import store from './store';
