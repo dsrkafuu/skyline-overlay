@@ -14,6 +14,7 @@ function SettingsDisplay() {
   const [youName, setYouName] = useSettings('youName');
   const [{ first, last }, setShortName] = useSettings('shortName');
   const shortNameValue = Number(first) + Number(last) || 0;
+  const [blurName, setBlurName] = useSettings('blurName');
 
   return (
     <div className='settings-display'>
@@ -36,6 +37,10 @@ function SettingsDisplay() {
           onChange={(value, data) => setShortName(data)}
           map={MAP_SHORT_NAME}
         />
+      </div>
+      <div className='settings-row'>
+        <span className='settings-title'>{t('Blur Name')}</span>
+        <SSwitch value={blurName} onChange={(value) => setBlurName(value)} />
       </div>
     </div>
   );

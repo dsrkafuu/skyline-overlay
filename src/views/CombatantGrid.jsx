@@ -24,6 +24,7 @@ function CombatantGrid({ player, index }) {
     shortName.last && splitName[1].charAt(0) && (splitName[1] = `${splitName[1].charAt(0)}.`);
     dispName = splitName.join(' ');
   }
+  const [blurName] = useSettings('blurName');
 
   // apply ranks if
   const [showRanks] = useSettings('showRanks');
@@ -40,7 +41,7 @@ function CombatantGrid({ player, index }) {
 
   return (
     <div className={classNames(...gridClass)}>
-      <div className='id'>{dispName}</div>
+      <div className={classNames('id', { blur: blurName })}>{dispName}</div>
       <div className='content'>
         {showHPS && (
           <div className='data'>

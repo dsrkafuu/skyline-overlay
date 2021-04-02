@@ -17,6 +17,7 @@ const initialState = {
   hlYou: true, // highlight 'YOU'
   youName: 'YOU', // which to represent as 'YOU'
   shortName: { first: false, last: false },
+  blurName: false,
 
   /* general */
   theme: 'default',
@@ -131,6 +132,14 @@ const slice = createSlice({
       state.shortName.last = Boolean(last);
       saveSettings(state);
     },
+    /**
+     * @param {{ payload: value }} action
+     */
+    updateBlurName(state, action) {
+      const value = action.payload;
+      state.blurName = Boolean(value);
+      saveSettings(state);
+    },
 
     /* layout */
     /**
@@ -193,6 +202,7 @@ export const {
   updateHlYou,
   updateYouName,
   updateShortName,
+  updateBlurName,
   updateTheme,
   updateLang,
   updateZoom,
