@@ -13,28 +13,28 @@
     "mirror": "cross-env NODE_ENV=production BASE_URL=/skyline-overlay/ npm-run-all build _mirror"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "~1.5.0",
-    "classnames": "~2.2.6",
+    "@reduxjs/toolkit": "~1.5.1",
+    "classnames": "~2.3.0",
     "ffxiv-overlay-api": "~3.4.2",
-    "i18next": "~19.9.1",
+    "i18next": "~20.1.0",
     "normalize.css": "~8.0.1",
     "prop-types": "~15.7.2",
-    "react": "~17.0.1",
-    "react-dom": "~17.0.1",
-    "react-i18next": "~11.8.9",
-    "react-redux": "~7.2.2",
+    "react": "~17.0.2",
+    "react-dom": "~17.0.2",
+    "react-i18next": "~11.8.12",
+    "react-redux": "~7.2.3",
     "react-transition-group": "~4.4.1"
   },
   "devDependencies": {
     "@svgr/rollup": "^5.5.0",
-    "@vitejs/plugin-react-refresh": "^1.3.1",
+    "@vitejs/plugin-react-refresh": "^1.3.2",
     "cross-env": "^7.0.3",
-    "eslint": "^7.21.0",
-    "eslint-plugin-react": "^7.22.0",
+    "eslint": "^7.23.0",
+    "eslint-plugin-react": "^7.23.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "glob": "^7.1.6",
     "npm-run-all": "^4.1.5",
     "sass": "^1.32.8",
-    "vite": "^2.0.5"
+    "vite": "^2.1.5"
   }
 }
