@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { memo, Fragment, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Combatant, Encounter, Settings } from './views';
@@ -29,4 +29,4 @@ function App() {
   );
 }
 
-export default App;
+export default memo(App);

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { memo, useState, useRef, useCallback } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
@@ -15,10 +15,13 @@ function SSelect({ value, onChange, map }) {
    * @param {string} value
    * @param {any} data
    */
-  function handleChange(value, data) {
-    setActive(false);
-    onChange(value, data);
-  }
+  const handleChange = useCallback(
+    (value, data) => {
+      setActive(false);
+      onChange(value, data);
+    },
+    [onChange]
+  );
 
   return (
     <div className='s-select'>
@@ -57,4 +60,4 @@ SSelect.propTypes = {
   }).isRequired,
 };
 
-export default SSelect;
+export default memo(SSelect);

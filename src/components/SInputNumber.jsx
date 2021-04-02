@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import './SInputNumber.scss';
 
@@ -7,7 +7,7 @@ import { IAdd, IRemove } from '@/assets/svgs';
 function SNumber({ value, onChange, min = 0, max = 100, step = 1, accuracy = 0 }) {
   const dispValue = value.toFixed(accuracy);
 
-  function handlePlus() {
+  const handlePlus = useCallback(() => {
     let newValue = value + step;
     if (!Number.isNaN(accuracy)) {
       newValue = Number(newValue.toFixed(accuracy));
@@ -15,9 +15,9 @@ function SNumber({ value, onChange, min = 0, max = 100, step = 1, accuracy = 0 }
     if (newValue <= max || newValue - max < Number.EPSILON) {
       onChange(newValue);
     }
-  }
+  }, [accuracy, max, onChange, step, value]);
 
-  function handleMinus() {
+  const handleMinus = useCallback(() => {
     let newValue = value - step;
     if (!Number.isNaN(accuracy)) {
       newValue = Number(newValue.toFixed(accuracy));
@@ -25,7 +25,7 @@ function SNumber({ value, onChange, min = 0, max = 100, step = 1, accuracy = 0 }
     if (newValue >= min || min - newValue < Number.EPSILON) {
       onChange(newValue);
     }
-  }
+  }, [accuracy, min, onChange, step, value]);
 
   return (
     <div className='s-input-number'>
@@ -49,4 +49,4 @@ SNumber.propTypes = {
   accuracy: PropTypes.number,
 };
 
-export default SNumber;
+export default memo(SNumber);

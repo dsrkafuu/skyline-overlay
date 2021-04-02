@@ -1,27 +1,27 @@
-import React from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 
 import { latest } from '@/assets/changelog';
 import useSettings from '@/hooks/useSettings';
 
-/**
- * @param {Date} date
- * @param {string} lang
- */
-function toDate(date, lang) {
-  try {
-    return date.toLocaleString(lang);
-  } catch {
-    return date.toLocaleString();
-  }
-}
-
 function SettingsAbout() {
   const { t } = useTranslation(); // i18n
 
+  /**
+   * @param {Date} date
+   * @param {string} lang
+   */
+  const toDate = useCallback((date, lang) => {
+    try {
+      return date.toLocaleString(lang);
+    } catch {
+      return date.toLocaleString();
+    }
+  }, []);
+
   // data
   const [lang] = useSettings('lang');
-  const date = toDate(new Date(latest.date), lang);
+  const date = useMemo(() => toDate(new Date(latest.date), lang), [lang, toDate]);
 
   return (
     <div className='settings-about'>
@@ -76,4 +76,4 @@ function SettingsAbout() {
   );
 }
 
-export default SettingsAbout;
+export default memo(SettingsAbout);

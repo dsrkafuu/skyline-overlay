@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { memo, useMemo, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import classNames from 'classnames';
@@ -13,12 +13,15 @@ import SettingsGeneral from './SettingsGeneral';
 function Settings() {
   const { t } = useTranslation(); // i18n support
 
-  const Components = [
-    { title: t('About'), component: <SettingsAbout /> },
-    { title: t('Data'), component: <SettingsData /> },
-    { title: t('Display'), component: <SettingsDisplay /> },
-    { title: t('General'), component: <SettingsGeneral /> },
-  ];
+  const Components = useMemo(
+    () => [
+      { title: t('About'), component: <SettingsAbout /> },
+      { title: t('Data'), component: <SettingsData /> },
+      { title: t('Display'), component: <SettingsDisplay /> },
+      { title: t('General'), component: <SettingsGeneral /> },
+    ],
+    [t]
+  );
 
   const transRef = useRef(); // ref for react-transition-group
   const [activeTab, setActiveTab] = useState(0);
@@ -52,4 +55,4 @@ function Settings() {
   );
 }
 
-export default Settings;
+export default memo(Settings);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -14,21 +14,22 @@ function CombatantGrid({ player, index }) {
   // display name
   const [youName] = useSettings('youName');
   const [shortName] = useSettings('shortName');
-  let dispName = name;
-  dispName === 'YOU' && (dispName = youName); // if custom name
-  dispName === '' && (dispName = 'YOU'); // prevent empty
-  // checker whether to shorten
-  const splitName = dispName.split(' ');
-  if (splitName.length === 2) {
-    shortName.first && splitName[0].charAt(0) && (splitName[0] = `${splitName[0].charAt(0)}.`);
-    shortName.last && splitName[1].charAt(0) && (splitName[1] = `${splitName[1].charAt(0)}.`);
-    dispName = splitName.join(' ');
-  }
-  const [blurName] = useSettings('blurName');
-
-  // apply ranks if
   const [showRanks] = useSettings('showRanks');
-  showRanks && (dispName = `${index + 1}. ${dispName}`); // if show ranks
+  const dispName = useMemo(() => {
+    let res = name;
+    res === 'YOU' && (res = youName); // if custom name
+    res === '' && (res = 'YOU'); // prevent empty
+    // checker whether to shorten
+    const splitName = res.split(' ');
+    if (splitName.length === 2) {
+      shortName.first && splitName[0].charAt(0) && (splitName[0] = `${splitName[0].charAt(0)}.`);
+      shortName.last && splitName[1].charAt(0) && (splitName[1] = `${splitName[1].charAt(0)}.`);
+      res = splitName.join(' ');
+    }
+    showRanks && (res = `${index + 1}. ${res}`); // if show ranks
+    return res;
+  }, [index, name, shortName.first, shortName.last, showRanks, youName]);
+  const [blurName] = useSettings('blurName');
 
   // class names related to job
   const [hlYou] = useSettings('hlYou');
@@ -78,4 +79,4 @@ CombatantGrid.propTypes = {
   index: PropTypes.number.isRequired,
 };
 
-export default CombatantGrid;
+export default memo(CombatantGrid);

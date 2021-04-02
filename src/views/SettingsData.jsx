@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { SSwitch, SInputNumber } from '@/components';
@@ -47,4 +47,4 @@ function SettingsData() {
   );
 }
 
-export default SettingsData;
+export default memo(SettingsData);

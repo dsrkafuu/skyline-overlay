@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -24,11 +24,11 @@ function Encounter({ overlay }) {
   /**
    * reset all combat data
    */
-  function handleReset() {
+  const handleReset = useCallback(() => {
     overlay.endEncounter();
     dispatch(clearCombat());
     logInfo('overlay cleared');
-  }
+  }, [dispatch, overlay]);
 
   return (
     <div className='encounter'>
@@ -62,4 +62,4 @@ Encounter.propTypes = {
   }).isRequired,
 };
 
-export default Encounter;
+export default memo(Encounter);

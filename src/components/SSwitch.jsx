@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import './SSwitch.scss';
@@ -25,4 +25,4 @@ SSwitch.propTypes = {
   IFalse: PropTypes.elementType,
 };
 
-export default SSwitch;
+export default memo(SSwitch);

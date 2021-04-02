@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { memo, Fragment, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import './Combatant.scss';
 
@@ -11,25 +11,29 @@ function Combatant() {
 
   // get sort settings
   const [sortRule] = useSettings('sortRule');
-  const sortedCombatant = [...combatant].sort(
-    (a, b) => sortRule.value * (a[sortRule.key] - b[sortRule.key])
+  const sortedCombatant = useMemo(
+    () => [...combatant].sort((a, b) => sortRule.value * (a[sortRule.key] - b[sortRule.key])),
+    [combatant, sortRule.key, sortRule.value]
   );
 
   // limit player numbers and show lb
   const [playerLimit] = useSettings('playerLimit');
   const [showLB] = useSettings('showLB');
-  const dispCombatant = [];
-  for (let i = 0; i < sortedCombatant.length; i++) {
-    const p = sortedCombatant[i];
-    if (p.name === 'Limit Break' && !p.job) {
-      dispCombatant.LB = p;
-    } else if (dispCombatant.length < playerLimit) {
-      dispCombatant.push(p);
+  const dispCombatant = useMemo(() => {
+    const res = [];
+    for (let i = 0; i < sortedCombatant.length; i++) {
+      const p = sortedCombatant[i];
+      if (p.name === 'Limit Break' && !p.job) {
+        res.LB = p;
+      } else if (res.length < playerLimit) {
+        res.push(p);
+      }
     }
-  }
-  if (showLB && dispCombatant.LB) {
-    dispCombatant.push(dispCombatant.LB);
-  }
+    if (showLB && res.LB) {
+      res.push(res.LB);
+    }
+    return res;
+  }, [playerLimit, showLB, sortedCombatant]);
 
   return (
     <Fragment>
@@ -44,4 +48,4 @@ function Combatant() {
   );
 }
 
-export default Combatant;
+export default memo(Combatant);

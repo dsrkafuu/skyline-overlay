@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { SInput, SSwitch, SSelect } from '@/components';
@@ -13,7 +13,7 @@ function SettingsDisplay() {
   const [hlYou, setHlYou] = useSettings('hlYou');
   const [youName, setYouName] = useSettings('youName');
   const [{ first, last }, setShortName] = useSettings('shortName');
-  const shortNameValue = Number(first) + Number(last) || 0;
+  const shortNameValue = useMemo(() => Number(first) + Number(last) || 0, [first, last]);
   const [blurName, setBlurName] = useSettings('blurName');
 
   return (
@@ -46,4 +46,4 @@ function SettingsDisplay() {
   );
 }
 
-export default SettingsDisplay;
+export default memo(SettingsDisplay);

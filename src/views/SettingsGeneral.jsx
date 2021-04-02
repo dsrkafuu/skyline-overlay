@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { SInputNumber, SSelect, SInput } from '@/components';
@@ -43,4 +43,4 @@ function SettingsLayout() {
   );
 }
 
-export default SettingsLayout;
+export default memo(SettingsLayout);

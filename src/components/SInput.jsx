@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import './SInput.scss';
@@ -7,11 +7,14 @@ function SInput({ value, onChange }) {
   const [focused, setFocused] = useState(false);
 
   /**
-   * @param {import('react').BaseSyntheticEvent} e
+   * @param {React.BaseSyntheticEvent} e
    */
-  function handleInput(e) {
-    onChange(e.target.value);
-  }
+  const handleInput = useCallback(
+    (e) => {
+      onChange(e.target.value);
+    },
+    [onChange]
+  );
 
   return (
     <input
@@ -31,4 +34,4 @@ SInput.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export default SInput;
+export default memo(SInput);
