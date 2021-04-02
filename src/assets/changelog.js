@@ -1,5 +1,10 @@
 export const changelog = [
   {
+    version: 'v1.7.2',
+    date: 1617341740429,
+    notes: ['feat(style): blur name support', 'refactor: performance optimization'],
+  },
+  {
     version: 'v1.7.1',
     date: 1615276591428,
     notes: [
