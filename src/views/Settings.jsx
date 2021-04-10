@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
-import './Settings.scss';
 
+import './Settings.scss';
 import SettingsAbout from './SettingsAbout';
 import SettingsData from './SettingsData';
 import SettingsDisplay from './SettingsDisplay';

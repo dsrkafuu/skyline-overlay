@@ -1,24 +1,23 @@
-import React, { memo, Fragment, useMemo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import './Combatant.scss';
 
+import './Combatant.scss';
 import CombatantGrid from './CombatantGrid';
-import useSettings from '@/hooks/useSettings';
 
 function Combatant() {
   // get combatant data from store
   const combatant = useSelector((state) => state.combat.combatant);
 
   // get sort settings
-  const [sortRule] = useSettings('sortRule');
+  const sortRule = useSelector((state) => state.settings.sortRule);
   const sortedCombatant = useMemo(
     () => [...combatant].sort((a, b) => sortRule.value * (a[sortRule.key] - b[sortRule.key])),
     [combatant, sortRule.key, sortRule.value]
   );
 
   // limit player numbers and show lb
-  const [playerLimit] = useSettings('playerLimit');
-  const [showLB] = useSettings('showLB');
+  const playerLimit = useSelector((state) => state.settings.playerLimit);
+  const showLB = useSelector((state) => state.settings.showLB);
   const dispCombatant = useMemo(() => {
     const res = [];
     for (let i = 0; i < sortedCombatant.length; i++) {
@@ -36,7 +35,7 @@ function Combatant() {
   }, [playerLimit, showLB, sortedCombatant]);
 
   return (
-    <Fragment>
+    <>
       {Boolean(combatant) && combatant.length > 0 && (
         <div className='combatant'>
           {dispCombatant.map((value, index) => (
@@ -44,7 +43,7 @@ function Combatant() {
           ))}
         </div>
       )}
-    </Fragment>
+    </>
   );
 }
 

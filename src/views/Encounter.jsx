@@ -2,8 +2,8 @@ import React, { memo, useCallback } from 'react';
 import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import './Encounter.scss';
 
+import './Encounter.scss';
 import { latest } from '@/assets/changelog';
 import { clearCombat } from '@/store/slices/combat';
 import { toggleSettings } from '@/store/slices/settings';

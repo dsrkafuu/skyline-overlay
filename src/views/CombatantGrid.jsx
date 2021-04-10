@@ -1,9 +1,9 @@
 import React, { memo, useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import * as jobIcons from '@/assets/icons';
-import useSettings from '@/hooks/useSettings';
 import { fmtNumber } from '@/utils/formatters';
 
 function CombatantGrid({ player, index }) {
@@ -12,9 +12,9 @@ function CombatantGrid({ player, index }) {
   const gridClass = ['combatant-grid']; // grid classnames
 
   // display name
-  const [youName] = useSettings('youName');
-  const [shortName] = useSettings('shortName');
-  const [showRanks] = useSettings('showRanks');
+  const youName = useSelector((state) => state.settings.youName);
+  const shortName = useSelector((state) => state.settings.shortName);
+  const showRanks = useSelector((state) => state.settings.showRanks);
   const dispName = useMemo(() => {
     let res = name;
     res === 'YOU' && (res = youName); // if custom name
@@ -29,15 +29,15 @@ function CombatantGrid({ player, index }) {
     showRanks && (res = `${index + 1}. ${res}`); // if show ranks
     return res;
   }, [index, name, shortName.first, shortName.last, showRanks, youName]);
-  const [blurName] = useSettings('blurName');
+  const blurName = useSelector((state) => state.settings.blurName);
 
   // class names related to job
-  const [hlYou] = useSettings('hlYou');
+  const hlYou = useSelector((state) => state.settings.hlYou);
   gridClass.push(`job-${jobType || 'others'}`); // job
   gridClass.push({ 'job-self': hlYou && name === 'YOU' }); // highlight
 
   // sub display prop
-  const [showHPS] = useSettings('showHPS');
+  const showHPS = useSelector((state) => state.settings.showHPS);
   gridClass.push({ 'combatant-grid-extend': showHPS }); // extended grid
 
   return (

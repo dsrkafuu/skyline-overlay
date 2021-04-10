@@ -1,8 +1,8 @@
 import React, { memo, useCallback, useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import { useTranslation, Trans } from 'react-i18next';
 
 import { latest } from '@/assets/changelog';
-import useSettings from '@/hooks/useSettings';
 
 function SettingsAbout() {
   const { t } = useTranslation(); // i18n
@@ -20,7 +20,7 @@ function SettingsAbout() {
   }, []);
 
   // data
-  const [lang] = useSettings('lang');
+  const lang = useSelector((state) => state.settings.lang);
   const date = useMemo(() => toDate(new Date(latest.date), lang), [lang, toDate]);
 
   return (
