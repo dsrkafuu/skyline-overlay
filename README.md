@@ -18,8 +18,7 @@ An extended version from [horizoverlay](https://github.com/bsides/horizoverlay/)
 
 ## Overlay Link
 
-- Global: `https://skyline.dsrkafuu.su`
-- China Mainland: `https://dsrkafuu.gitee.io/skyline-overlay`
+- CloudFlare: `https://skyline.dsrkafuu.su`
 
 Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin). For WebSocket mode, only these browsers below are officially supported:
 

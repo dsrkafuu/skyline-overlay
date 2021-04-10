@@ -6,11 +6,9 @@
     "_lint": "eslint --ext \".jsx,.js\" src/",
     "_compile": "vite build",
     "_cleanup": "node ./scripts/cleanup.js",
-    "_mirror": "node ./scripts/mirror.js",
     "build": "cross-env NODE_ENV=production npm-run-all _lint _compile _cleanup",
     "dev": "cross-env NODE_ENV=development vite",
-    "serve": "cross-env NODE_ENV=production vite preview",
-    "mirror": "cross-env NODE_ENV=production BASE_URL=/skyline-overlay/ npm-run-all build _mirror"
+    "serve": "cross-env NODE_ENV=production vite preview"
   },
   "dependencies": {
     "@reduxjs/toolkit": "~1.5.1",
