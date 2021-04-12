@@ -11,6 +11,7 @@ const initialState = {
   playerLimit: 8, // combatant limit
   showLB: true,
   showHPS: false,
+  extendDetail: false,
 
   /* display */
   showRanks: false, // show rank number before id
@@ -95,6 +96,14 @@ const slice = createSlice({
     updateShowHPS(state, action) {
       const value = action.payload;
       state.showHPS = Boolean(value);
+      saveSettings(state);
+    },
+    /**
+     * @param {{ payload: value }} action
+     */
+    updateExtendDetail(state, action) {
+      const value = action.payload;
+      state.extendDetail = Boolean(value);
       saveSettings(state);
     },
 
@@ -198,6 +207,7 @@ export const {
   updatePlayerLimit,
   updateShowLB,
   updateShowHPS,
+  updateExtendDetail,
   updateShowRanks,
   updateHlYou,
   updateYouName,

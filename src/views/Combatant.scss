@@ -6,6 +6,7 @@
   height: $size-combatant;
 
   &-grid {
+    position: relative;
     flex: 0 0 auto;
     width: 9rem;
     margin: 0 $padding-xs;
@@ -15,26 +16,27 @@
     text-shadow: var(--shadow-combatant);
 
     // job type colors
-    &.job-dps .content {
+    &.job-dps &-content {
       background-color: var(--color-combatant-bg-dps);
     }
-    &.job-tank .content {
+    &.job-tank &-content {
       background-color: var(--color-combatant-bg-tank);
     }
-    &.job-heal .content {
+    &.job-heal &-content {
       background-color: var(--color-combatant-bg-heal);
     }
-    &.job-others .content {
+    &.job-others &-content {
       background-color: var(--color-combatant-bg-others);
     }
     // self highlight color
-    &.job-self .content {
+    &.job-self &-content {
       background-color: var(--color-combatant-bg-self);
     }
 
-    .id,
-    .maxhit {
-      line-height: 1.5rem;
+    &-id,
+    &-maxhit {
+      line-height: 1.55rem;
+      height: 1.55rem;
       font-size: $font-size-sm;
       text-align: center;
       white-space: nowrap;
@@ -44,11 +46,11 @@
       align-items: center;
 
       &.blur {
-        filter: blur(0.25rem);
+        filter: blur(0.2rem);
       }
     }
 
-    .maxhit {
+    &-maxhit {
       & > span:first-child {
         flex: 0 1 auto;
         overflow: hidden;
@@ -59,13 +61,14 @@
       }
     }
 
-    .content {
+    &-content {
+      height: 1.75rem;
       position: relative;
       padding: 0.25rem 0.6rem;
       background-color: var(--color-combatant-bg-others);
     }
 
-    .data {
+    &-data {
       height: 1.25rem;
       line-height: 1.25rem;
       text-align: right;
@@ -88,10 +91,11 @@
     &-extend {
       width: 11.5rem;
 
-      .content {
+      .combatant-grid-content {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        backdrop-filter: blur(0.1rem);
       }
 
       .job-icon {
@@ -103,5 +107,74 @@
         height: 1.5rem;
       }
     }
+  }
+
+  &-detail {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 1.55rem;
+    padding-top: 2rem;
+    z-index: 99;
+    font-size: 0.8571rem;
+
+    &-inner {
+      padding: 0.25rem 0.5rem;
+      backdrop-filter: blur(0.1rem);
+      background-color: var(--color-combatant-bg-others);
+    }
+
+    &-section {
+      padding: 0.25rem 0;
+    }
+    &-section + &-section {
+      border-top: 0.125rem solid #ffffff;
+    }
+
+    &-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      line-height: 1.25;
+
+      &-pct .s-counter {
+        display: inline-block;
+        text-align: right;
+        width: 1.5rem;
+        overflow: visible;
+        white-space: nowrap;
+      }
+
+      & > div:first-child,
+      & > span:first-child {
+        flex: 1 1 auto;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      & > div:last-child,
+      & > span:last-child {
+        flex: 0 0 auto;
+        overflow: visible;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .job-dps .locked .combatant-detail-inner {
+    background-color: var(--color-combatant-bg-dps);
+  }
+  .job-tank .locked .combatant-detail-inner {
+    background-color: var(--color-combatant-bg-tank);
+  }
+  .job-heal .locked .combatant-detail-inner {
+    background-color: var(--color-combatant-bg-heal);
+  }
+  .job-others .locked .combatant-detail-inner {
+    background-color: var(--color-combatant-bg-others);
+  }
+  // self highlight color
+  .job-self .locked .combatant-detail-inner {
+    background-color: var(--color-combatant-bg-self);
   }
 }

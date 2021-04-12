@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { SInput, SSwitch, SSelect } from '@/components';
@@ -14,6 +14,7 @@ import {
 
 function SettingsDisplay() {
   const { t } = useTranslation(); // i18n support
+  const dispatch = useDispatch();
 
   // datas
   const showRanks = useSelector((state) => state.settings.showRanks);
@@ -27,27 +28,27 @@ function SettingsDisplay() {
     <div className='settings-display'>
       <div className='settings-row'>
         <span className='settings-title'>{t('Show Ranks')}</span>
-        <SSwitch value={showRanks} onChange={(value) => updateShowRanks(value)} />
+        <SSwitch value={showRanks} onChange={(value) => dispatch(updateShowRanks(value))} />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Highlight Self')}</span>
-        <SSwitch value={hlYou} onChange={(value) => updateHlYou(value)} />
+        <SSwitch value={hlYou} onChange={(value) => dispatch(updateHlYou(value))} />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Custom ID')}</span>
-        <SInput value={youName} onChange={(value) => updateYouName(value)} />
+        <SInput value={youName} onChange={(value) => dispatch(updateYouName(value))} />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Shorten Name')}</span>
         <SSelect
           value={shortNameValue}
-          onChange={(value, data) => updateShortName(data)}
+          onChange={(value, data) => dispatch(updateShortName(data))}
           map={MAP_SHORT_NAME}
         />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Blur Name')}</span>
-        <SSwitch value={blurName} onChange={(value) => updateBlurName(value)} />
+        <SSwitch value={blurName} onChange={(value) => dispatch(updateBlurName(value))} />
       </div>
     </div>
   );

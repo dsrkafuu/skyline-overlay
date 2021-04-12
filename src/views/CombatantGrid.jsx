@@ -1,8 +1,10 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo, useMemo, useState, useRef, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { CSSTransition } from 'react-transition-group';
 
+import CombatantDetail from './CombatantDetail';
 import * as jobIcons from '@/assets/icons';
 import { fmtNumber } from '@/utils/formatters';
 
@@ -40,12 +42,27 @@ function CombatantGrid({ player, index }) {
   const showHPS = useSelector((state) => state.settings.showHPS);
   gridClass.push({ 'combatant-grid-extend': showHPS }); // extended grid
 
+  const transMaxHitRef = useRef(); // ref for react-transition-group
+  const transDetailRef = useRef(); // ref for react-transition-group
+  // detail controls data
+  const needDetail = useMemo(() => name !== 'Limit Break', [name]);
+  const [showDetail, setShowDetail] = useState(false);
+  const [lockDetail, setLockDetail] = useState(false);
+  // detail controls controllers
+  const onDetailEnter = useCallback(() => !showDetail && setShowDetail(true), [showDetail]);
+  const onDetailLeave = useCallback(() => !lockDetail && showDetail && setShowDetail(false), [
+    lockDetail,
+    showDetail,
+  ]);
+  const onSwitchDetailLock = useCallback(() => setLockDetail((val) => !val), []);
+
   return (
     <div className={classNames(...gridClass)}>
-      <div className={classNames('id', { blur: blurName })}>{dispName}</div>
-      <div className='content'>
+      <div className={classNames('combatant-grid-id', { blur: blurName })}>{dispName}</div>
+
+      <div className='combatant-grid-content' onMouseEnter={onDetailEnter}>
         {showHPS && (
-          <div className='data'>
+          <div className='combatant-grid-data'>
             <span className='s-number'>{fmtNumber(hps) || 0}</span>
             <span className='s-counter'>HPS</span>
           </div>
@@ -53,15 +70,42 @@ function CombatantGrid({ player, index }) {
         <span className='job-icon'>
           <img src={jobIcons[job] || jobIcons.ffxiv} />
         </span>
-        <div className='data'>
+        <div className='combatant-grid-data'>
           <span className='s-number'>{(showHPS ? fmtNumber(dps) : dps) || 0}</span>
           <span className='s-counter'>DPS</span>
         </div>
       </div>
-      <div className='maxhit'>
-        <span>&nbsp;{maxHit}&nbsp;</span>
-        {maxHitDamage > 0 && <span>-&nbsp;{maxHitDamage}&nbsp;</span>}
-      </div>
+
+      <CSSTransition
+        classNames='fade'
+        in={!needDetail || !(lockDetail || showDetail)}
+        timeout={150}
+        unmountOnExit
+        nodeRef={transMaxHitRef}
+      >
+        <div className='combatant-grid-maxhit' ref={transMaxHitRef}>
+          <span>&nbsp;{maxHit}&nbsp;</span>
+          {maxHitDamage > 0 && <span>-&nbsp;{maxHitDamage}&nbsp;</span>}
+        </div>
+      </CSSTransition>
+
+      {needDetail && (
+        <CSSTransition
+          classNames='fade'
+          in={lockDetail || showDetail}
+          timeout={150}
+          unmountOnExit
+          nodeRef={transDetailRef}
+        >
+          <CombatantDetail
+            ref={transDetailRef}
+            player={player}
+            locked={lockDetail}
+            onMouseLeave={onDetailLeave}
+            onClick={onSwitchDetailLock}
+          />
+        </CSSTransition>
+      )}
     </div>
   );
 }
