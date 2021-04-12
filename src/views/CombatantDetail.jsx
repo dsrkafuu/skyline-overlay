@@ -46,15 +46,17 @@ const CombatantDetail = memo(
         { key: '过量', value: showHPS ? overHeal : fmtNumber(overHeal), pct: overHealPct },
       ]);
       !showHPS && rowData[rowData.length - 1].unshift({ key: '治疗', value: hps, ps: 'HPS' });
+      // damage
+      rowData.push([{ key: '伤害', value: showHPS ? damage : fmtNumber(damage), pct: damagePct }]);
       // c & d & cd
       rowData.push([
         { key: '直击', value: directHits, pct: directHitPct },
         { key: '暴击', value: critHits, pct: critHitPct },
         { key: '直暴', value: directCritHits, pct: directCritHitPct },
       ]);
-      // damage
-      rowData.push([{ key: '伤害', value: showHPS ? damage : fmtNumber(damage), pct: damagePct }]);
+      // max hit
       if (extendDetail) {
+        rowData.push([]);
         maxHit && rowData[rowData.length - 1].push({ key: maxHit, value: maxHitDamage });
         maxHeal && rowData[rowData.length - 1].push({ key: maxHeal, value: maxHealDamage });
       }
