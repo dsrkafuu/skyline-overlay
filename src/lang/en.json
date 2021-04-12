@@ -1,6 +1,13 @@
 {
   "LANG": "English",
 
+  "Heal": "Heal",
+  "Overheal": "Overheal",
+  "Damage": "Damage",
+  "Direct": "Direct",
+  "Critical !": "Critical !",
+  "DC !!!": "DC !!!",
+
   "About": "About",
   "Thanks for Using": "Thanks for using this immature software.",
   "Need Help": "We need <1>help</1> from more community translators!",

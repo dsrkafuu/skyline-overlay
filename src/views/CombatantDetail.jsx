@@ -1,12 +1,13 @@
 import React, { memo, forwardRef, useMemo } from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import { fmtNumber } from '@/utils/formatters';
-
 const CombatantDetail = memo(
   forwardRef(({ player, locked, ...props }, ref) => {
+    const { t } = useTranslation(); // i18n
+
     // settings
     const showHPS = useSelector((state) => state.settings.showHPS);
     const extendDetail = useSelector((state) => state.settings.extendDetail);
@@ -18,15 +19,10 @@ const CombatantDetail = memo(
         last30DPS,
         last60DPS,
         hps,
-        overHeal,
         overHealPct,
-        directHits,
         directHitPct,
-        critHits,
         critHitPct,
-        directCritHits,
         directCritHitPct,
-        damage,
         damagePct,
         maxHit,
         maxHitDamage,
@@ -42,17 +38,15 @@ const CombatantDetail = memo(
           { key: '60s', ps: 'DPS', value: last60DPS },
         ]);
       // overheal & hps
-      rowData.push([
-        { key: '过量', value: showHPS ? overHeal : fmtNumber(overHeal), pct: overHealPct },
-      ]);
-      !showHPS && rowData[rowData.length - 1].unshift({ key: '治疗', value: hps, ps: 'HPS' });
+      rowData.push([{ key: t('Overheal'), value: overHealPct, pct: true }]);
+      !showHPS && rowData[rowData.length - 1].unshift({ key: t('Heal'), value: hps, ps: 'HPS' });
       // damage
-      rowData.push([{ key: '伤害', value: showHPS ? damage : fmtNumber(damage), pct: damagePct }]);
+      rowData.push([{ key: t('Damage'), value: damagePct, pct: true }]);
       // c & d & cd
       rowData.push([
-        { key: '直击', value: directHits, pct: directHitPct },
-        { key: '暴击', value: critHits, pct: critHitPct },
-        { key: '直暴', value: directCritHits, pct: directCritHitPct },
+        { key: t('Direct'), value: directHitPct, pct: true },
+        { key: t('Critical !'), value: critHitPct, pct: true },
+        { key: t('DC !!!'), value: directCritHitPct, pct: true },
       ]);
       // max hit
       if (extendDetail) {
@@ -62,7 +56,7 @@ const CombatantDetail = memo(
       }
 
       return rowData;
-    }, [extendDetail, player, showHPS]);
+    }, [extendDetail, player, showHPS, t]);
 
     return (
       <div className={classNames(['combatant-detail', { locked }])} ref={ref} {...props}>
@@ -80,8 +74,8 @@ const CombatantDetail = memo(
                   )) ||
                     (row.pct && (
                       <div className='combatant-detail-row-pct'>
-                        <span className='s-number'>{row.value}</span>
-                        <span className='s-counter'>{row.pct}</span>&nbsp;
+                        <span className='s-number'>{row.value?.split('%')[0]}</span>
+                        <span className='s-counter'>%</span>&nbsp;
                       </div>
                     )) || <span>{row.value}&nbsp;</span>}
                 </div>
