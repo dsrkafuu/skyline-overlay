@@ -4,7 +4,7 @@ export const OVERLAY_INITED = '_SKYLINE_OVERLAY_INITED';
 export const OVERLAY_CALLBACK = '_SKYLINE_OVERLAY_CALLBACK';
 
 // local storage key
-export const STORAGE_KEY = '_SKYLINE_DATA';
+export const STORAGE_KEY = `_SKYLINE_DATA_V2`;
 
 // value maps for selection
 
