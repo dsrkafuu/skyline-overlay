@@ -1,5 +1,14 @@
 export const changelog = [
   {
+    version: 'v1.8.0',
+    date: 1618282015002,
+    notes: [
+      'feat: detail panel',
+      'feat: custom css support',
+      'chore: self highlight color adjustment',
+    ],
+  },
+  {
     version: 'v1.7.2',
     date: 1617341740429,
     notes: ['feat(style): blur name support', 'refactor: performance optimization'],
