@@ -9,7 +9,6 @@
   "DC !!!": "DC !!!",
 
   "About": "About",
-  "Thanks for Using": "Thanks for using this immature software.",
   "Need Help": "We need <1>help</1> from more community translators!",
   "Request Issue": "Please <1>raise an issue</1> if you have questions or ideas.",
   "Release Date": "Release Date",
@@ -32,5 +31,5 @@
   "Theme": "Theme",
   "Language": "Language",
   "UI Scale": "UI Scale",
-  "Font Family": "Font Family"
+  "Custom CSS": "Custom CSS"
 }

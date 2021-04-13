@@ -1,4 +1,4 @@
-import React, { memo, Fragment, useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Combatant, Encounter, Settings } from './views';
@@ -15,7 +15,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Fragment>
+    <>
       <div className='s-container'>
         <Combatant />
       </div>
@@ -25,7 +25,7 @@ function App() {
       <div className='s-container'>
         <Settings />
       </div>
-    </Fragment>
+    </>
   );
 }
 

@@ -9,7 +9,6 @@
   "DC !!!": "直爆 !!!",
 
   "About": "关于",
-  "Thanks for Using": "感谢尝试使用这个不够成熟的悬浮窗。",
   "Need Help": "我们需要更多社区翻译者的<1>帮助</1>！",
   "Request Issue": "如果你有疑问或建议请<1>提出 issue</1>。",
   "Release Date": "发布日期",
@@ -32,5 +31,5 @@
   "Theme": "主题",
   "Language": "语言",
   "UI Scale": "界面缩放",
-  "Font Family": "自定义字体"
+  "Custom CSS": "自定义 CSS"
 }

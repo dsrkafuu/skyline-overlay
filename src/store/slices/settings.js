@@ -24,7 +24,7 @@ const initialState = {
   theme: 'default',
   lang: 'en',
   zoom: 1,
-  font: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+  customCSS: '#root {}',
 
   // merge local storage saved settings
   ...(getLS('settings') || {}),
@@ -38,13 +38,11 @@ if (initialState.theme === 'default') {
 // apply initial state to dom
 document.documentElement.setAttribute('lang', initialState.lang);
 document.documentElement.style.fontSize = `${Number(initialState.zoom) * 14}px`;
-// empty font settings fallback
-if (`${initialState.font}`.trim() === '') {
-  document.documentElement.style.fontFamily =
-    '"Inter", -apple-system, BlinkMacSystemFont, sans-serif';
-} else {
-  document.documentElement.style.fontFamily = initialState.font;
-}
+// apply initial style
+const customStyles = document.createElement('style');
+customStyles.setAttribute('id', 'skyline-ccss');
+customStyles.innerHTML = initialState.customCSS;
+document.head.appendChild(customStyles);
 
 /**
  * save settings to local storage
@@ -186,14 +184,12 @@ const slice = createSlice({
     /**
      * @param {{ payload: value }} action
      */
-    updateFont(state, action) {
+    updateCustomCSS(state, action) {
       const value = action.payload;
-      state.font = value;
-      // empty font settings fallback
-      if (`${value}`.trim() === '') {
-        document.documentElement.style.fontFamily = initialState.font;
-      } else {
-        document.documentElement.style.fontFamily = `${value}`.trim();
+      state.customCSS = value;
+      const customStyles = document.querySelector('#skyline-ccss');
+      if (customStyles) {
+        customStyles.innerHTML = value;
       }
       saveSettings(state);
     },
@@ -216,7 +212,7 @@ export const {
   updateTheme,
   updateLang,
   updateZoom,
-  updateFont,
+  updateCustomCSS,
 } = slice.actions;
 
 export default slice.reducer;

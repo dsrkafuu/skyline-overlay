@@ -25,7 +25,9 @@ Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin)
 - Chrome (Chromium) >= 80
 - Safari >= 13 (macOS >= 10.15)
 - Edge >= 80 (new Edge with Chromium)
-- Firefox >= 80 (CSS backdrop filter not supported)
+- Firefox >= 80
+
+> Note that `backdrop-filter` support needs to be enabled manually on Firefox, check [Can I use](https://caniuse.com/css-backdrop-filter) for more details.
 
 ## To-do List
 
@@ -39,9 +41,10 @@ Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin)
 - [x] Themes - v1.6.x
 - [x] HPS display - v1.7.x
 - [x] Highlight self - v1.7.x
-- [ ] Custom digit decimal
 - [ ] Detailed data for each player
-- [ ] C/D/CD tickers (maybe)
+- [ ] Custom CSS
+- [ ] Custom digit decimal
+- [ ] C/D/CD tickers
 
 ## Contribute
 
