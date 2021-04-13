@@ -41,8 +41,8 @@ Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin)
 - [x] Themes - v1.6.x
 - [x] HPS display - v1.7.x
 - [x] Highlight self - v1.7.x
-- [ ] Detailed data for each player
-- [ ] Custom CSS
+- [x] Detailed data for each player - v1.8.x
+- [x] Custom CSS - v1.8.x
 - [ ] Custom digit decimal
 - [ ] C/D/CD tickers
 
