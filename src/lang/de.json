@@ -1,6 +1,13 @@
 {
   "LANG": "Deutsch",
 
+  "Heal": "Heilung",
+  "Overheal": "Überheilung",
+  "Damage": "Schaden",
+  "Direct": "Direkt",
+  "Critical !": "Kritisch !",
+  "DC !!!": "DirektK !!!",
+
   "About": "Über",
   "Need Help": "Hilf uns das Overlay in weitere <1>Sprachen</1> zu übersetzen!",
   "Request Issue": "Fragen oder Ideen? <1>Eröffne ein Ticket</1> für weitere Hilfe.",
@@ -11,16 +18,18 @@
   "Max Combatants": "Maximale Teilnehmer",
   "Show Limit Break": "Limitrausch anzeigen",
   "Show HPS": "HPS anzeigen",
+  "Extend Detail": "Erweiterte Details",
 
   "Display": "Anzeige",
   "Show Ranks": "Ränge anzeigen",
   "Highlight Self": "Eigene DPS hervorheben",
   "Custom ID": "Benutzerdefinierter Name",
   "Shorten Name": "Namen abkürzen",
-  "Blur Name": "Blur Name",
+  "Blur Name": "Namen unschärfe",
 
   "General": "Allgemein",
   "Theme": "Theme",
   "Language": "Sprache",
-  "UI Scale": "UI Skalierung"
+  "UI Scale": "UI Skalierung",
+  "Custom CSS": "Custom CSS"
 }
