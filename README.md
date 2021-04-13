@@ -23,9 +23,9 @@ An extended version from [horizoverlay](https://github.com/bsides/horizoverlay/)
 Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin). For WebSocket mode, only these browsers below are officially supported:
 
 - Chrome (Chromium) >= 80
-- Firefox >= 80
 - Safari >= 13 (macOS >= 10.15)
 - Edge >= 80 (new Edge with Chromium)
+- Firefox >= 80 (CSS backdrop filter not supported)
 
 ## To-do List
 
@@ -37,8 +37,8 @@ Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin)
 - [x] Short playername - v1.4.x
 - [x] Custom font family - v1.5.x
 - [x] Themes - v1.6.x
-- [x] HPS display - v1.7.0
-- [x] Highlight self - v1.7.0
+- [x] HPS display - v1.7.x
+- [x] Highlight self - v1.7.x
 - [ ] Custom digit decimal
 - [ ] Detailed data for each player
 - [ ] C/D/CD tickers (maybe)
