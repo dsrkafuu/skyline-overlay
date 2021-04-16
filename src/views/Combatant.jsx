@@ -12,7 +12,7 @@ function Combatant() {
   const sortRule = useSelector((state) => state.settings.sortRule);
   const sortedCombatant = useMemo(
     () => [...combatant].sort((a, b) => sortRule.value * (a[sortRule.key] - b[sortRule.key])),
-    [combatant, sortRule.key, sortRule.value]
+    [combatant, sortRule]
   );
 
   // limit player numbers and show lb

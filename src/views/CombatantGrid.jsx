@@ -30,7 +30,7 @@ function CombatantGrid({ player, index }) {
     }
     showRanks && (res = `${index + 1}. ${res}`); // if show ranks
     return res;
-  }, [index, name, shortName.first, shortName.last, showRanks, youName]);
+  }, [index, name, shortName, showRanks, youName]);
   const blurName = useSelector((state) => state.settings.blurName);
 
   // class names related to job
