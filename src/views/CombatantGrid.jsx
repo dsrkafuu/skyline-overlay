@@ -49,8 +49,14 @@ function CombatantGrid({ player, index }) {
   const [showDetail, setShowDetail] = useState(false);
   const [lockDetail, setLockDetail] = useState(false);
   // detail controls controllers
-  const onDetailEnter = useCallback(() => setShowDetail(true), []);
-  const onDetailLeave = useCallback(() => !lockDetail && setShowDetail(false), [lockDetail]);
+  const [timer, setTimer] = useState(null);
+  const onDetailEnter = useCallback(() => {
+    timer && clearTimeout(timer);
+    setShowDetail(true);
+  }, [timer]);
+  const onDetailLeave = useCallback(() => {
+    setTimer(setTimeout(() => !lockDetail && setShowDetail(false), 300));
+  }, [lockDetail]);
   const onSwitchDetailLock = useCallback(() => setLockDetail((val) => !val), []);
 
   return (
