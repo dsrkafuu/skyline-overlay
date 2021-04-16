@@ -1,6 +1,6 @@
 {
   "name": "skyline-overlay",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "description": "A horizon FFXIV miniparse overlay built with React & Vite.",
   "scripts": {
     "_lint": "eslint --ext \".jsx,.js\" src/",

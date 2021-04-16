@@ -1,5 +1,14 @@
 export const changelog = [
   {
+    version: 'v1.8.1',
+    date: 1618553863587,
+    notes: [
+      'chore: optimize detail panel behavior',
+      'chore: update German translation',
+      'build: migrate to CloudFlare Pages',
+    ],
+  },
+  {
     version: 'v1.8.0',
     date: 1618282015002,
     notes: [
