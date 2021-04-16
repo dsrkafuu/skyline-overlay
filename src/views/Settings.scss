@@ -23,7 +23,7 @@
     line-height: $size-form;
     text-align: center;
     cursor: pointer;
-    @include transitionColor();
+    @include transition();
 
     &.active {
       text-shadow: var(--shadow-settings-tab-active);

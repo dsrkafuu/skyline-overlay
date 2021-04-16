@@ -60,29 +60,27 @@ const CombatantDetail = memo(
 
     return (
       <div className={classNames(['combatant-detail', { locked }])} ref={ref} {...props}>
-        <div className='combatant-detail-inner'>
-          {sections.map((section, idx) => (
-            <div className='combatant-detail-section' key={idx}>
-              {section.map((row) => (
-                <div className='combatant-detail-row' key={row.key}>
-                  <span>&nbsp;{row.key}&nbsp;</span>
-                  {(row.ps && (
-                    <div className='combatant-detail-row-counter'>
-                      <span className='s-number'>{row.value}</span>
-                      <span className='s-counter'>{row.ps}</span>&nbsp;
+        {sections.map((section, idx) => (
+          <div className='combatant-detail-section' key={idx}>
+            {section.map((row) => (
+              <div className='combatant-detail-row' key={row.key}>
+                <span>&nbsp;{row.key}&nbsp;</span>
+                {(row.ps && (
+                  <div className='combatant-detail-row-counter'>
+                    <span className='s-number'>{row.value}</span>
+                    <span className='s-counter'>{row.ps}</span>&nbsp;
+                  </div>
+                )) ||
+                  (row.pct && (
+                    <div className='combatant-detail-row-pct'>
+                      <span className='s-number'>{row.value?.split('%')[0]}</span>
+                      <span className='s-counter'>%</span>&nbsp;
                     </div>
-                  )) ||
-                    (row.pct && (
-                      <div className='combatant-detail-row-pct'>
-                        <span className='s-number'>{row.value?.split('%')[0]}</span>
-                        <span className='s-counter'>%</span>&nbsp;
-                      </div>
-                    )) || <span>{row.value}&nbsp;</span>}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
+                  )) || <span>{row.value}&nbsp;</span>}
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
     );
   })

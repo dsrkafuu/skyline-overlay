@@ -14,13 +14,6 @@ $padding-md: 0.3rem;
 $padding-lg: 0.5rem;
 $padding-xl: 0.75rem;
 
-@mixin transitionColor {
-  transition-duration: 150ms;
-  transition-timing-function: ease;
-  transition-property: color, background-color, text-shadow;
-}
-@mixin transitionSize {
-  transition-duration: 150ms;
-  transition-timing-function: ease;
-  transition-property: font-size;
+@mixin transition {
+  transition: all 150ms ease;
 }

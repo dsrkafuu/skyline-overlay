@@ -49,18 +49,20 @@ function CombatantGrid({ player, index }) {
   const [showDetail, setShowDetail] = useState(false);
   const [lockDetail, setLockDetail] = useState(false);
   // detail controls controllers
-  const onDetailEnter = useCallback(() => !showDetail && setShowDetail(true), [showDetail]);
-  const onDetailLeave = useCallback(() => !lockDetail && showDetail && setShowDetail(false), [
-    lockDetail,
-    showDetail,
-  ]);
+  const onDetailEnter = useCallback(() => setShowDetail(true), []);
+  const onDetailLeave = useCallback(() => !lockDetail && setShowDetail(false), [lockDetail]);
   const onSwitchDetailLock = useCallback(() => setLockDetail((val) => !val), []);
 
   return (
     <div className={classNames(...gridClass)}>
       <div className={classNames('combatant-grid-id', { blur: blurName })}>{dispName}</div>
 
-      <div className='combatant-grid-content' onMouseEnter={onDetailEnter}>
+      <div
+        className='combatant-grid-content'
+        onMouseEnter={onDetailEnter}
+        onMouseLeave={onDetailLeave}
+        onClick={onSwitchDetailLock}
+      >
         {showHPS && (
           <div className='combatant-grid-data'>
             <span className='s-number'>{fmtNumber(hps) || 0}</span>
@@ -89,23 +91,20 @@ function CombatantGrid({ player, index }) {
         </div>
       </CSSTransition>
 
-      {needDetail && (
-        <CSSTransition
-          classNames='fade'
-          in={lockDetail || showDetail}
-          timeout={150}
-          unmountOnExit
-          nodeRef={transDetailRef}
-        >
-          <CombatantDetail
-            ref={transDetailRef}
-            player={player}
-            locked={lockDetail}
-            onMouseLeave={onDetailLeave}
-            onClick={onSwitchDetailLock}
-          />
-        </CSSTransition>
-      )}
+      <CSSTransition
+        classNames='fade'
+        in={needDetail && (lockDetail || showDetail)}
+        timeout={150}
+        unmountOnExit
+        nodeRef={transDetailRef}
+      >
+        <CombatantDetail
+          ref={transDetailRef}
+          player={player}
+          locked={lockDetail}
+          onClick={onSwitchDetailLock}
+        />
+      </CSSTransition>
     </div>
   );
 }

@@ -9,7 +9,7 @@
   padding: 0 $padding-md;
   width: $size-form-minwidth;
   user-select: auto;
-  @include transitionColor();
+  @include transition();
   text-align: center;
   text-shadow: var(--shadow-form);
   border-radius: 0;

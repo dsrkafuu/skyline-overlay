@@ -42,7 +42,7 @@ isDev() &&
         overlay.simulateData(obj);
         time++;
       }, 1000);
-      setTimeout(() => clearInterval(int), 30 * 1000 + 500);
+      setTimeout(() => clearInterval(int), 10 * 1000 + 500);
     });
 
 export { overlay };
