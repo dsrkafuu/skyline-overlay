@@ -46,7 +46,7 @@
       align-items: center;
 
       &.blur {
-        filter: blur(0.2rem);
+        filter: blur(0.25rem);
       }
     }
 
@@ -95,7 +95,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        backdrop-filter: blur(0.1rem);
+        backdrop-filter: blur(0.125rem);
       }
 
       .job-icon {
@@ -117,7 +117,7 @@
     z-index: 99;
     font-size: 0.8571rem;
     padding: 0.25rem 0.5rem;
-    backdrop-filter: blur(0.1rem);
+    backdrop-filter: blur(0.125rem);
     background-color: var(--color-combatant-bg-others);
     @include transition();
 
