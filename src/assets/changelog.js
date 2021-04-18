@@ -1,5 +1,10 @@
 export const changelog = [
   {
+    version: 'v1.8.2',
+    date: 1618730966539,
+    notes: ['chore: adjust job type classname'],
+  },
+  {
     version: 'v1.8.1',
     date: 1618553863587,
     notes: [
