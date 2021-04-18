@@ -35,8 +35,9 @@ function CombatantGrid({ player, index }) {
 
   // class names related to job
   const hlYou = useSelector((state) => state.settings.hlYou);
-  gridClass.push(`job-${jobType || 'others'}`); // job
   gridClass.push({ 'job-self': hlYou && name === 'YOU' }); // highlight
+  gridClass.push(`job-${job || 'others'}`); // job
+  gridClass.push(`jobtype-${jobType || 'others'}`); // jobtype
 
   // sub display prop
   const showHPS = useSelector((state) => state.settings.showHPS);

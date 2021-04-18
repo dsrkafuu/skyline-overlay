@@ -16,20 +16,20 @@
     text-shadow: var(--shadow-combatant);
 
     // job type colors
-    &.job-dps &-content {
+    &.jobtype-dps &-content {
       background-color: var(--color-combatant-bg-dps);
     }
-    &.job-tank &-content {
+    &.jobtype-tank &-content {
       background-color: var(--color-combatant-bg-tank);
     }
-    &.job-heal &-content {
+    &.jobtype-heal &-content {
       background-color: var(--color-combatant-bg-heal);
     }
-    &.job-others &-content {
+    &.jobtype-others &-content {
       background-color: var(--color-combatant-bg-others);
     }
     // self highlight color
-    &.job-self &-content {
+    &.jobtype-self &-content {
       background-color: var(--color-combatant-bg-self);
     }
 
@@ -157,20 +157,20 @@
     }
   }
 
-  .job-dps .combatant-detail.locked {
+  .jobtype-dps .combatant-detail.locked {
     background-color: var(--color-combatant-bg-dps);
   }
-  .job-tank .combatant-detail.locked {
+  .jobtype-tank .combatant-detail.locked {
     background-color: var(--color-combatant-bg-tank);
   }
-  .job-heal .combatant-detail.locked {
+  .jobtype-heal .combatant-detail.locked {
     background-color: var(--color-combatant-bg-heal);
   }
-  .job-others .combatant-detail.locked {
+  .jobtype-others .combatant-detail.locked {
     background-color: var(--color-combatant-bg-others);
   }
   // self highlight color
-  .job-self .combatant-detail.locked {
+  .jobtype-self .combatant-detail.locked {
     background-color: var(--color-combatant-bg-self);
   }
 }
