@@ -29,7 +29,7 @@
       background-color: var(--color-combatant-bg-others);
     }
     // self highlight color
-    &.jobtype-self &-content {
+    &.job-self &-content {
       background-color: var(--color-combatant-bg-self);
     }
 
@@ -170,7 +170,7 @@
     background-color: var(--color-combatant-bg-others);
   }
   // self highlight color
-  .jobtype-self .combatant-detail.locked {
+  .job-self .combatant-detail.locked {
     background-color: var(--color-combatant-bg-self);
   }
 }
