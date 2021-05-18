@@ -8,7 +8,7 @@
 <br />
 
 ![](https://img.shields.io/github/package-json/v/dsrkafuu/skyline-overlay)
-![](https://img.shields.io/badge/ffxiv%20tested-5.45-orange)
+![](https://img.shields.io/badge/ffxiv%20tested-5.5-orange)
 ![](https://img.shields.io/github/license/dsrkafuu/skyline-overlay)
 
 An extended version from [horizoverlay](https://github.com/bsides/horizoverlay/) with some of [ikegami](https://github.com/hibiyasleep/ikegami)'s features. The main purpose of building this project is to use React with Redux Toolkit (RTK) & Vite, which can also test the [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
