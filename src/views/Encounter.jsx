@@ -1,38 +1,34 @@
-import React, { memo, useCallback } from 'react';
-import classNames from 'classnames';
-import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
+import cn from 'classnames';
+import { observer } from 'mobx-react-lite';
 
 import './Encounter.scss';
 import { latest } from '@/assets/changelog';
-import { clearCombat } from '@/store/slices/combat';
-import { toggleSettings } from '@/store/slices/settings';
 import { IRefresh, ISettings } from '@/assets/svgs';
 import { logInfo } from '@/utils/loggers';
+import useStore from '@/hooks/useStore';
 
 function Encounter({ overlay }) {
-  const dispatch = useDispatch();
+  const { combat, settings } = useStore();
 
   // encounter data
-  const active = useSelector((state) => state.combat.active);
-  const duration = useSelector((state) => state.combat.encounter.duration || '00:00');
-  const zoneName = useSelector(
-    (state) => state.combat.encounter.zoneName || `Skyline Overlay ${latest.version}`
-  );
-  const totalDPS = useSelector((state) => state.combat.encounter.dps || 0);
+  const active = combat.active;
+  const duration = combat.encounter.duration || '00:00';
+  const zoneName = combat.encounter.zoneName || `Skyline Overlay ${latest.version}`;
+  const totalDPS = combat.encounter.dps || 0;
 
   /**
    * reset all combat data
    */
   const handleReset = useCallback(() => {
     overlay.endEncounter();
-    dispatch(clearCombat());
+    combat.clearCombat();
     logInfo('overlay cleared');
-  }, [dispatch, overlay]);
+  }, [combat, overlay]);
 
   return (
     <div className='encounter'>
-      <div className={classNames('encounter-duration', { active })}>
+      <div className={cn('encounter-duration', { active })}>
         <span>{duration}</span>
       </div>
       <div className='encounter-content'>
@@ -48,7 +44,7 @@ function Encounter({ overlay }) {
         <div className='btn' onClick={handleReset}>
           <IRefresh />
         </div>
-        <div className='btn' onClick={() => dispatch(toggleSettings())}>
+        <div className='btn' onClick={() => settings.toggleSettings()}>
           <ISettings />
         </div>
       </div>
@@ -56,10 +52,4 @@ function Encounter({ overlay }) {
   );
 }
 
-Encounter.propTypes = {
-  overlay: PropTypes.shape({
-    endEncounter: PropTypes.func.isRequired,
-  }).isRequired,
-};
-
-export default memo(Encounter);
+export default observer(Encounter);

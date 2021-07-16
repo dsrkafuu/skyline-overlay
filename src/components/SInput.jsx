@@ -1,6 +1,5 @@
 import React, { memo, useCallback, useState } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import cn from 'classnames';
 import './SInput.scss';
 
 function SInput({ value, onChange }) {
@@ -18,7 +17,7 @@ function SInput({ value, onChange }) {
 
   return (
     <input
-      className={classNames('s-input', { active: focused })}
+      className={cn('s-input', { active: focused })}
       value={value}
       onInput={handleInput}
       onFocus={() => setFocused(true)}
@@ -28,10 +27,5 @@ function SInput({ value, onChange }) {
     />
   );
 }
-
-SInput.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
 
 export default memo(SInput);

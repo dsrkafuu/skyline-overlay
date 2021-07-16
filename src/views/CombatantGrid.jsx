@@ -1,22 +1,21 @@
-import React, { memo, useMemo, useState, useRef, useCallback } from 'react';
-import { useSelector } from 'react-redux';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import React, { useMemo, useState, useRef, useCallback } from 'react';
+import { observer } from 'mobx-react-lite';
+import cn from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 
 import CombatantDetail from './CombatantDetail';
 import * as jobIcons from '@/assets/icons';
 import { fmtNumber } from '@/utils/formatters';
+import useStore from '@/hooks/useStore';
 
 function CombatantGrid({ player, index }) {
   // get data
   const { jobType, job, name, dps, hps, maxHit, maxHitDamage } = player;
   const gridClass = ['combatant-grid']; // grid classnames
+  const { settings } = useStore();
+  const { youName, shortName, showRanks, blurName, hlYou, showHPS } = settings;
 
   // display name
-  const youName = useSelector((state) => state.settings.youName);
-  const shortName = useSelector((state) => state.settings.shortName);
-  const showRanks = useSelector((state) => state.settings.showRanks);
   const dispName = useMemo(() => {
     let res = name;
     res === 'YOU' && (res = youName); // if custom name
@@ -31,16 +30,13 @@ function CombatantGrid({ player, index }) {
     showRanks && (res = `${index + 1}. ${res}`); // if show ranks
     return res;
   }, [index, name, shortName, showRanks, youName]);
-  const blurName = useSelector((state) => state.settings.blurName);
 
   // class names related to job
-  const hlYou = useSelector((state) => state.settings.hlYou);
   gridClass.push({ 'job-self': hlYou && name === 'YOU' }); // highlight
   gridClass.push(`job-${job || 'others'}`); // job
   gridClass.push(`jobtype-${jobType || 'others'}`); // jobtype
 
   // sub display prop
-  const showHPS = useSelector((state) => state.settings.showHPS);
   gridClass.push({ 'combatant-grid-extend': showHPS }); // extended grid
 
   const transMaxHitRef = useRef(); // ref for react-transition-group
@@ -61,8 +57,8 @@ function CombatantGrid({ player, index }) {
   const onSwitchDetailLock = useCallback(() => setLockDetail((val) => !val), []);
 
   return (
-    <div className={classNames(...gridClass)}>
-      <div className={classNames('combatant-grid-id', { blur: blurName })}>{dispName}</div>
+    <div className={cn(...gridClass)}>
+      <div className={cn('combatant-grid-id', { blur: blurName })}>{dispName}</div>
 
       <div
         className='combatant-grid-content'
@@ -116,17 +112,4 @@ function CombatantGrid({ player, index }) {
   );
 }
 
-CombatantGrid.propTypes = {
-  player: PropTypes.shape({
-    jobType: PropTypes.string,
-    job: PropTypes.string,
-    name: PropTypes.string.isRequired,
-    dps: PropTypes.number.isRequired,
-    hps: PropTypes.number.isRequired,
-    maxHit: PropTypes.string,
-    maxHitDamage: PropTypes.number,
-  }).isRequired,
-  index: PropTypes.number.isRequired,
-};
-
-export default memo(CombatantGrid);
+export default observer(CombatantGrid);

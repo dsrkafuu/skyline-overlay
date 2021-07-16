@@ -1,7 +1,7 @@
-import React, { memo, useMemo, useState, useRef } from 'react';
+import React, { useMemo, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import classNames from 'classnames';
+import { observer } from 'mobx-react-lite';
+import cn from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 
 import './Settings.scss';
@@ -9,9 +9,10 @@ import SettingsAbout from './SettingsAbout';
 import SettingsData from './SettingsData';
 import SettingsDisplay from './SettingsDisplay';
 import SettingsGeneral from './SettingsGeneral';
+import useStore from '@/hooks/useStore';
 
 function Settings() {
-  const { t } = useTranslation(); // i18n support
+  const { t } = useTranslation();
 
   const Components = useMemo(
     () => [
@@ -27,12 +28,14 @@ function Settings() {
   const [activeTab, setActiveTab] = useState(0);
 
   // settings data
-  const showSettings = useSelector((state) => state.settings.showSettings);
+  const {
+    settings: { showSettings },
+  } = useStore();
 
   return (
     <CSSTransition
       classNames='fade'
-      in={showSettings}
+      in={Boolean(showSettings)}
       timeout={150}
       unmountOnExit
       nodeRef={transRef}
@@ -41,7 +44,7 @@ function Settings() {
         <div className='settings-tab'>
           {Components.map((val, index) => (
             <div
-              className={classNames('settings-tabitem', { active: index === activeTab })}
+              className={cn('settings-tabitem', { active: index === activeTab })}
               key={`tab-${val.title}`}
               onClick={() => setActiveTab(index)}
             >
@@ -55,4 +58,4 @@ function Settings() {
   );
 }
 
-export default memo(Settings);
+export default observer(Settings);

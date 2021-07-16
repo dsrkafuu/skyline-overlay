@@ -1,10 +1,9 @@
 import React, { memo, useCallback } from 'react';
-import PropTypes from 'prop-types';
 import './SInputNumber.scss';
 
 import { IAdd, IRemove } from '@/assets/svgs';
 
-function SNumber({ value, onChange, min = 0, max = 100, step = 1, accuracy = 0 }) {
+function SInputNumber({ value, onChange, min = 0, max = 100, step = 1, accuracy = 0 }) {
   const dispValue = value.toFixed(accuracy);
 
   const handlePlus = useCallback(() => {
@@ -40,13 +39,4 @@ function SNumber({ value, onChange, min = 0, max = 100, step = 1, accuracy = 0 }
   );
 }
 
-SNumber.propTypes = {
-  value: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired,
-  min: PropTypes.number,
-  max: PropTypes.number,
-  step: PropTypes.number,
-  accuracy: PropTypes.number,
-};
-
-export default memo(SNumber);
+export default memo(SInputNumber);

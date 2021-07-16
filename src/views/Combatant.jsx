@@ -1,23 +1,24 @@
-import React, { memo, useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useMemo } from 'react';
+import { observer } from 'mobx-react-lite';
 
 import './Combatant.scss';
 import CombatantGrid from './CombatantGrid';
+import useStore from '@/hooks/useStore';
 
 function Combatant() {
-  // get combatant data from store
-  const combatant = useSelector((state) => state.combat.combatant);
+  // get data from store
+  const {
+    combat: { combatant },
+    settings: { sortRule, playerLimit, showLB },
+  } = useStore();
 
-  // get sort settings
-  const sortRule = useSelector((state) => state.settings.sortRule);
+  // parse sort settings
   const sortedCombatant = useMemo(
     () => [...combatant].sort((a, b) => sortRule.value * (a[sortRule.key] - b[sortRule.key])),
     [combatant, sortRule]
   );
 
   // limit player numbers and show lb
-  const playerLimit = useSelector((state) => state.settings.playerLimit);
-  const showLB = useSelector((state) => state.settings.showLB);
   const dispCombatant = useMemo(() => {
     const res = [];
     for (let i = 0; i < sortedCombatant.length; i++) {
@@ -47,4 +48,4 @@ function Combatant() {
   );
 }
 
-export default memo(Combatant);
+export default observer(Combatant);

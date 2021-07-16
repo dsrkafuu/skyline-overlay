@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 
 import 'normalize.css';
 import './themes';
@@ -10,15 +9,15 @@ import './scss/utils.scss';
 import ga from './plugins/ga';
 ga();
 
+import { StoreContext, store } from './store';
 import './i18n';
 import App from './App';
-import store from './store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <StoreContext.Provider value={store}>
       <App />
-    </Provider>
+    </StoreContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

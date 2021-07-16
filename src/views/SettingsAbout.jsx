@@ -1,11 +1,12 @@
-import React, { memo, useCallback, useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useCallback, useMemo } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
+import { observer } from 'mobx-react-lite';
 
 import { latest } from '@/assets/changelog';
+import useStore from '@/hooks/useStore';
 
 function SettingsAbout() {
-  const { t } = useTranslation(); // i18n
+  const { t } = useTranslation();
 
   /**
    * @param {Date} date
@@ -19,8 +20,9 @@ function SettingsAbout() {
     }
   }, []);
 
-  // data
-  const lang = useSelector((state) => state.settings.lang);
+  const {
+    settings: { lang },
+  } = useStore();
   const date = useMemo(() => toDate(new Date(latest.date), lang), [lang, toDate]);
 
   return (
@@ -76,4 +78,4 @@ function SettingsAbout() {
   );
 }
 
-export default memo(SettingsAbout);
+export default observer(SettingsAbout);

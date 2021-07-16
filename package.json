@@ -1,6 +1,6 @@
 {
   "name": "skyline-overlay",
-  "version": "1.8.3",
+  "version": "2.0.0",
   "description": "A horizon FFXIV miniparse overlay built with React & Vite.",
   "scripts": {
     "_lint": "eslint --ext \".jsx,.js\" src/",
@@ -11,28 +11,31 @@
     "serve": "cross-env NODE_ENV=production vite preview"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "~1.5.1",
     "classnames": "~2.3.1",
     "ffxiv-overlay-api": "~3.4.2",
-    "i18next": "~20.2.4",
+    "i18next": "~20.3.3",
+    "mobx": "^6.3.2",
+    "mobx-react-lite": "^3.2.0",
     "normalize.css": "~8.0.1",
-    "prop-types": "~15.7.2",
     "react": "~17.0.2",
     "react-dom": "~17.0.2",
-    "react-i18next": "~11.8.15",
-    "react-redux": "~7.2.4",
-    "react-transition-group": "~4.4.1"
+    "react-i18next": "~11.11.3",
+    "react-transition-group": "~4.4.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/eslint-parser": "^7.14.7",
+    "@babel/preset-react": "^7.14.5",
     "@svgr/rollup": "^5.5.0",
-    "@vitejs/plugin-react-refresh": "^1.3.3",
+    "@vitejs/plugin-react-refresh": "^1.3.5",
     "cross-env": "^7.0.3",
-    "eslint": "^7.26.0",
-    "eslint-plugin-react": "^7.23.2",
+    "eslint": "^7.30.0",
+    "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "glob": "^7.1.7",
     "npm-run-all": "^4.1.5",
-    "sass": "^1.32.13",
-    "vite": "^2.3.3"
+    "prettier": "^2.3.2",
+    "sass": "^1.35.2",
+    "vite": "^2.4.2"
   }
 }

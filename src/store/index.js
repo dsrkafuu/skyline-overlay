@@ -1,24 +1,33 @@
-/**
- * [NOTES]
- *
- * http://bit.ly/373tW7R
- * write code that "mutates" inside the reducer is allowed,
- * like `state.list.push(item)` thanks to that RTK uses Immer to wrap the states,
- * which will safely return a correct immutably updated result
- *
- * http://bit.ly/3aXI03L
- * redux "ducks" pattern,
- * put all your action creators and reducers in one file,
- * do named exports of the action creators,
- * and a default export of the reducer function
- */
+import { createContext } from 'react';
+import { configure } from 'mobx';
 
-import { configureStore } from '@reduxjs/toolkit';
+// store modules
+import Combat from './modules/Combat';
+import Settings from './modules/Settings';
 
-import rootReducer from './reducer';
-
-const store = configureStore({
-  reducer: rootReducer,
+// strict mobx linter
+configure({
+  enforceActions: 'always',
+  computedRequiresReaction: true,
+  reactionRequiresObservable: true,
+  observableRequiresReaction: true,
+  // disableErrorBoundaries: true,
 });
 
-export default store;
+/**
+ * @class
+ * combined root store
+ */
+class Store {
+  /**
+   * @constructor
+   */
+  constructor() {
+    this.combat = new Combat(this);
+    this.settings = new Settings(this);
+  }
+}
+
+// init store instance
+export const store = new Store();
+export const StoreContext = createContext(store);
