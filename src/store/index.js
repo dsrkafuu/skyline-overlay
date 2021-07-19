@@ -2,7 +2,7 @@ import { createContext } from 'react';
 import { configure } from 'mobx';
 
 // store modules
-import Combat from './modules/Combat';
+import API from './modules/API';
 import Settings from './modules/Settings';
 
 // strict mobx linter
@@ -23,7 +23,7 @@ class Store {
    * @constructor
    */
   constructor() {
-    this.combat = new Combat(this);
+    this.api = new API(this);
     this.settings = new Settings(this);
   }
 }

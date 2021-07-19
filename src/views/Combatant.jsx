@@ -8,7 +8,7 @@ import useStore from '@/hooks/useStore';
 function Combatant() {
   // get data from store
   const {
-    combat: { combatant },
+    api: { combatant },
     settings: { sortRule, playerLimit, showLB },
   } = useStore();
 

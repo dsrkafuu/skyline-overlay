@@ -1,31 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-import OverlayAPI from 'ffxiv-overlay-api';
 
 import { Combatant, Encounter, Settings } from './views';
 import useStore from './hooks/useStore';
-import { logInfo } from './utils/loggers';
 import { isDev } from './utils/env';
 
 function App() {
-  const { combat } = useStore();
+  const {
+    api: { overlay },
+  } = useStore();
 
-  // init overlay api
-  const [overlay] = useState(
-    () =>
-      new OverlayAPI({
-        extendData: true,
-        silentMode: true,
-      })
-  );
+  // debug mock data
   useEffect(() => {
-    overlay.addListener('CombatData', (obj) => {
-      combat.updateCombat(obj.extendData);
-    });
-    overlay.startEvent();
-    logInfo('api initialized');
-
-    // debug mock data
     isDev() &&
       fetch('https://cdn.jsdelivr.net/gh/dsrkafuu/ffxiv-overlay-api@3/test/fake_cn.json')
         .then((res) => res.json())
@@ -48,7 +34,7 @@ function App() {
           }, 1000);
           setTimeout(() => clearInterval(int), 10 * 1000 + 500);
         });
-  }, [combat, overlay]);
+  }, [overlay]);
 
   return (
     <>
@@ -56,7 +42,7 @@ function App() {
         <Combatant />
       </div>
       <div className='s-container'>
-        <Encounter overlay={overlay} />
+        <Encounter />
       </div>
       <div className='s-container'>
         <Settings />

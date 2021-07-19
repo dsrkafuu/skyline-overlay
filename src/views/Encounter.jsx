@@ -8,23 +8,23 @@ import { IRefresh, ISettings } from '@/assets/svgs';
 import { logInfo } from '@/utils/loggers';
 import useStore from '@/hooks/useStore';
 
-function Encounter({ overlay }) {
-  const { combat, settings } = useStore();
+function Encounter() {
+  const { api, settings } = useStore();
+  const { active, encounter, overlay } = api;
 
   // encounter data
-  const active = combat.active;
-  const duration = combat.encounter.duration || '00:00';
-  const zoneName = combat.encounter.zoneName || `Skyline Overlay ${latest.version}`;
-  const totalDPS = combat.encounter.dps || 0;
+  const duration = encounter.duration || '00:00';
+  const zoneName = encounter.zoneName || `Skyline Overlay ${latest.version}`;
+  const totalDPS = encounter.dps || 0;
 
   /**
    * reset all combat data
    */
   const handleReset = useCallback(() => {
     overlay.endEncounter();
-    combat.clearCombat();
+    api.clearCombat();
     logInfo('overlay cleared');
-  }, [combat, overlay]);
+  }, [api, overlay]);
 
   return (
     <div className='encounter'>
