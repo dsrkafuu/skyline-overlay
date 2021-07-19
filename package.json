@@ -1,7 +1,10 @@
 {
+  "private": true,
   "name": "skyline-overlay",
   "version": "2.0.0",
   "description": "A horizon FFXIV miniparse overlay built with React & Vite.",
+  "license": "MPL-2.0",
+  "author": "DSRKafuU <dsrkafuu@outlook.com> (https://dsrkafuu.su)",
   "scripts": {
     "_lint": "eslint --ext \".jsx,.js\" src/",
     "_compile": "vite build",
