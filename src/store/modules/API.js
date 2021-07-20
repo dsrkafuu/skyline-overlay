@@ -9,8 +9,9 @@ class API {
   overlay = new OverlayAPI({
     extendData: true,
     silentMode: true,
+    seperateLB: true,
   });
-  data = { isActive: false, encounter: {}, combatant: [] };
+  data = { isActive: false, encounter: {}, limitBreak: null, combatant: [] };
 
   /** @mobx computed */
 
@@ -19,6 +20,9 @@ class API {
   }
   get encounter() {
     return this.data.encounter;
+  }
+  get lb() {
+    return this.data.limitBreak;
   }
   get combatant() {
     return this.data.combatant;
@@ -60,6 +64,9 @@ class API {
    */
   updateCombat(payload) {
     if (payload.isActive !== undefined && payload.encounter && payload.combatant) {
+      if (!payload.limitBreak) {
+        payload.limitBreak = null;
+      }
       this.data = payload;
     }
   }
@@ -67,7 +74,7 @@ class API {
    * clear combat data
    */
   clearCombat() {
-    this.data = { isActive: false, encounter: {}, combatant: [] };
+    this.data = { isActive: false, encounter: {}, limitBreak: null, combatant: [] };
   }
 }
 

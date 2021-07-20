@@ -8,38 +8,30 @@ import useStore from '@/hooks/useStore';
 function Combatant() {
   // get data from store
   const {
-    api: { combatant },
+    api: { combatant, lb },
     settings: { sortRule, playerLimit, showLB },
   } = useStore();
 
-  // parse sort settings
-  const sortedCombatant = useMemo(
-    () => [...combatant].sort((a, b) => sortRule.value * (a[sortRule.key] - b[sortRule.key])),
-    [combatant, sortRule]
-  );
-
-  // limit player numbers and show lb
-  const dispCombatant = useMemo(() => {
+  // parse combatant settings
+  const sortedCombatant = useMemo(() => {
+    const sorted = [...combatant].sort(
+      (a, b) => sortRule.value * (a[sortRule.key] - b[sortRule.key])
+    );
     const res = [];
-    for (let i = 0; i < sortedCombatant.length; i++) {
-      const p = sortedCombatant[i];
-      if (p.name === 'Limit Break' && !p.job) {
-        res.LB = p;
-      } else if (res.length < playerLimit) {
-        res.push(p);
-      }
+    for (let i = 0; i < playerLimit; i++) {
+      sorted[i] && sorted[i].name && res.push(sorted[i]);
     }
-    if (showLB && res.LB) {
-      res.push(res.LB);
+    if (showLB && lb && lb.name === 'Limit Break') {
+      res.push(lb);
     }
     return res;
-  }, [playerLimit, showLB, sortedCombatant]);
+  }, [combatant, lb, playerLimit, showLB, sortRule]);
 
   return (
     <>
       {Boolean(combatant) && combatant.length > 0 && (
         <div className='combatant'>
-          {dispCombatant.map((value, index) => (
+          {sortedCombatant.map((value, index) => (
             <CombatantGrid player={value} index={index} key={value.name} />
           ))}
         </div>
