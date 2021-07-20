@@ -4,13 +4,25 @@ import cn from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 
 import CombatantDetail from './CombatantDetail';
+import CombatantTicker from './CombatantTicker';
 import * as jobIcons from '@/assets/icons';
 import { fmtNumber } from '@/utils/formatters';
 import useStore from '@/hooks/useStore';
 
 function CombatantGrid({ player, index }) {
   // get data
-  const { jobType, job, name, dps, hps, maxHit, maxHitDamage } = player;
+  const {
+    jobType,
+    job,
+    name,
+    dps,
+    hps,
+    maxHit,
+    maxHitDamage,
+    directHitPct,
+    critHitPct,
+    directCritHitPct,
+  } = player;
   const gridClass = ['combatant-grid']; // grid classnames
   const { settings } = useStore();
   const { youName, shortName, showRanks, blurName, hlYou, showHPS } = settings;
@@ -80,6 +92,8 @@ function CombatantGrid({ player, index }) {
           <span className='s-counter'>DPS</span>
         </div>
       </div>
+
+      <CombatantTicker d={directHitPct} c={critHitPct} dc={directCritHitPct} />
 
       <CSSTransition
         classNames='fade'

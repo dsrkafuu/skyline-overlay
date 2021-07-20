@@ -173,4 +173,24 @@
   .job-self .combatant-detail.locked {
     background-color: var(--color-combatant-bg-self);
   }
+
+  &-ticker {
+    width: 100%;
+    height: 0.25rem;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: stretch;
+    margin-bottom: 0.1rem;
+
+    &-d {
+      background-color: greenyellow;
+    }
+    &-c {
+      background-color: yellow;
+    }
+    &-dc {
+      background-color: orange;
+    }
+  }
 }
