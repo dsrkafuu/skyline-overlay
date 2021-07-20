@@ -1,5 +1,5 @@
 import { logError } from './loggers';
-import { STORAGE_KEY } from './constants';
+import { STORAGE_PREFIX } from './constants';
 
 /**
  * set local storage
@@ -7,9 +7,7 @@ import { STORAGE_KEY } from './constants';
  */
 export function setLS(key, value) {
   try {
-    const data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-    data[key] = value;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    localStorage.setItem(STORAGE_PREFIX + key.toUpperCase(), JSON.stringify(value));
   } catch (e) {
     logError(e);
   }
@@ -22,8 +20,7 @@ export function setLS(key, value) {
  */
 export function getLS(key) {
   try {
-    const data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-    return data[key];
+    return JSON.parse(localStorage.getItem(STORAGE_PREFIX + key.toUpperCase())) || null;
   } catch (e) {
     logError(e);
     return null;

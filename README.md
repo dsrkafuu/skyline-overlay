@@ -11,7 +11,7 @@
 ![](https://img.shields.io/badge/ffxiv%20tested-5.5-orange)
 ![](https://img.shields.io/github/license/dsrkafuu/skyline-overlay)
 
-An extended version from [horizoverlay](https://github.com/bsides/horizoverlay/) with some of [ikegami](https://github.com/hibiyasleep/ikegami)'s features. The main purpose of building this project is to use React with Redux Toolkit (RTK) & Vite, which can also test the [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
+An extended version from [horizoverlay](https://github.com/bsides/horizoverlay/) with some of [ikegami](https://github.com/hibiyasleep/ikegami)'s features. The project is based on React with MobX & Vite, and the dedicated [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
 
 <img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-v1.6.0.jpg" alt="Skyline Preview" />
 <img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-v1.7.1.jpg" alt="Skyline Extended Preview" />
@@ -78,7 +78,7 @@ Community translators:
 ## Major Dependencies
 
 - React: <https://reactjs.org/>
-- Redux Toolkit (RTK): <https://redux-toolkit.js.org>
+- MobX: <https://mobx.js.org>
 - Vite: <https://vitejs.dev>
 - ffxiv-overlay-api: <https://github.com/dsrkafuu/ffxiv-overlay-api>
 
@@ -86,6 +86,6 @@ Community translators:
 
 <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fdsrkafuu%2Fskyline-overlay?ref=badge_large" alt="FOSSA Status"><img align="right" src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdsrkafuu%2Fskyline-overlay.svg?type=large"/></a>
 
-Released under `Apache License 2.0`, for more information read the [LICENSE](https://github.com/dsrkafuu/skyline-overlay/blob/main/LICENSE).
+Released under `Mozilla Public License 2.0`, for more information read the [LICENSE](https://github.com/dsrkafuu/skyline-overlay/blob/main/LICENSE).
 
 **Copyright © 2020-present DSRKafuU (<https://dsrkafuu.su>)**
