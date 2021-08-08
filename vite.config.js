@@ -1,12 +1,12 @@
 import path from 'path';
+import { defineConfig } from 'vite';
 import reactRefresh from '@vitejs/plugin-react-refresh';
 import svgr from '@svgr/rollup';
 
 /**
  * https://vitejs.dev/config/
- * @type { import('vite').UserConfig }
  */
-export default {
+export default defineConfig({
   base: process.env.BASE_URL || '/',
   plugins: [
     reactRefresh(),
@@ -29,6 +29,8 @@ export default {
     },
   },
   build: {
+    emptyOutDir: true,
     target: ['chrome80', 'firefox80', 'safari13', 'edge80'],
+    sourcemap: true,
   },
-};
+});
