@@ -2,7 +2,15 @@ export const changelog = [
   {
     version: 'v2.0.0',
     date: 1628403175588,
-    notes: [],
+    notes: [
+      'feat: migrate to google fonts',
+      'feat: migrate to mobx',
+      'feat: add combatant ticker',
+      'fix: body overflow',
+      'fix: encounter & settings styles',
+      'chore: update overlay api',
+      'chore: update license',
+    ],
   },
   {
     version: 'v1.8.2',

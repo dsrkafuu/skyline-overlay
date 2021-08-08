@@ -183,13 +183,13 @@
     margin-bottom: 1px;
 
     &-d {
-      background-color: greenyellow;
+      background-color: var(--color-combatant-ticker-d);
     }
     &-c {
-      background-color: yellow;
+      background-color: var(--color-combatant-ticker-c);
     }
     &-dc {
-      background-color: orange;
+      background-color: var(--color-combatant-ticker-dc);
     }
   }
 }
