@@ -6,9 +6,9 @@
   backdrop-filter: $filter;
 
   &-duration {
-    height: $size-encounter;
-    width: $size-encounter * 2 + 1px;
-    line-height: $size-encounter;
+    height: $size-form;
+    width: $size-form * 2 + 1px;
+    line-height: $size-form;
     text-align: center;
     color: var(--color-cover-fg);
     background-color: var(--color-cover-bg);
@@ -27,7 +27,7 @@
     padding: $padding-sm $padding-xl;
     display: flex;
     flex-wrap: nowrap;
-    height: $size-encounter;
+    height: $size-form;
     line-height: 15px;
     color: var(--color-encounter-fg);
     background-color: var(--color-encounter-bg);
@@ -48,15 +48,15 @@
     color: var(--color-cover-fg);
     background-color: var(--color-cover-bg);
     position: relative;
-    height: $size-encounter;
-    width: $size-encounter * 2;
+    height: $size-form;
+    width: $size-form * 2;
     display: flex;
 
     .btn {
       position: relative;
       flex: 0 0 auto;
-      height: $size-encounter;
-      width: $size-encounter;
+      height: $size-form;
+      width: $size-form;
       display: flex;
       justify-content: center;
       align-items: center;
