@@ -36,6 +36,7 @@ class Settings {
   sortRule = { key: 'dps', value: -1 }; // sort data
   playerLimit = 8; // combatant limit
   showLB = true;
+  showTickers = true;
   showHPS = false;
   extendDetail = false;
 
@@ -107,6 +108,7 @@ class Settings {
     }
   }
   updateShowLB = getAction('showLB');
+  updateShowTickers = getAction('showTickers');
   updateShowHPS = getAction('showHPS');
   updateExtendDetail = getAction('extendDetail');
 

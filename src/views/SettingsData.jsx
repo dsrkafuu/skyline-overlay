@@ -10,9 +10,15 @@ function SettingsData() {
   const { t } = useTranslation();
   const { settings } = useStore();
 
-  const { sortRule, playerLimit, showLB, showHPS, extendDetail } = settings;
-  const { updateSortRule, updatePlayerLimit, updateShowLB, updateShowHPS, updateExtendDetail } =
-    settings;
+  const { sortRule, playerLimit, showLB, showTickers, showHPS, extendDetail } = settings;
+  const {
+    updateSortRule,
+    updatePlayerLimit,
+    updateShowLB,
+    updateShowTickers,
+    updateShowHPS,
+    updateExtendDetail,
+  } = settings;
 
   return (
     <div className='settings-data'>
@@ -39,6 +45,10 @@ function SettingsData() {
       <div className='settings-row'>
         <span className='settings-title'>{t('Show Limit Break')}</span>
         <SSwitch value={showLB} onChange={(value) => updateShowLB(value)} />
+      </div>
+      <div className='settings-row'>
+        <span className='settings-title'>{t('Show Tickers')}</span>
+        <SSwitch value={showTickers} onChange={(value) => updateShowTickers(value)} />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Show HPS')}</span>

@@ -25,7 +25,7 @@ function CombatantGrid({ player, index }) {
   } = player;
   const gridClass = ['combatant-grid']; // grid classnames
   const { settings } = useStore();
-  const { youName, shortName, showRanks, blurName, hlYou, showHPS } = settings;
+  const { youName, shortName, showRanks, blurName, hlYou, showHPS, showTickers } = settings;
 
   // display name
   const dispName = useMemo(() => {
@@ -93,7 +93,7 @@ function CombatantGrid({ player, index }) {
         </div>
       </div>
 
-      <CombatantTicker d={directHitPct} c={critHitPct} dc={directCritHitPct} />
+      {showTickers && <CombatantTicker d={directHitPct} c={critHitPct} dc={directCritHitPct} />}
 
       <CSSTransition
         classNames='fade'
