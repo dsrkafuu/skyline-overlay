@@ -19,7 +19,7 @@ function SettingsLayout() {
         <span className='settings-title'>{t('Theme')}</span>
         <SSelect value={theme} onChange={(val) => updateTheme(val)} map={MAP_THEMES} />
       </div>
-      <div className='settings-row'>
+      <div className='settings-row settings-lang'>
         <span className='settings-title'>{t('Language')}</span>
         <SSelect value={lang} onChange={(val) => updateLang(val)} map={MAP_LANG} />
       </div>

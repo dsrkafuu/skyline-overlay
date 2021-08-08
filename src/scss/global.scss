@@ -8,6 +8,11 @@ body {
   font-size: 14px;
 }
 
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 body {
   transition: transform 150ms ease-out;
 }
