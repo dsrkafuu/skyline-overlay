@@ -10,6 +10,12 @@ const path = require('path');
 const glob = require('glob');
 const chalk = require('chalk');
 
+console.log(chalk.blue('removing sourcemap source contents...'));
+
+/**
+ * @param {string} path
+ * @returns {Promise<void>}
+ */
 function removeContent(path) {
   return new Promise((resolve, reject) => {
     fs.readFile(path, { encoding: 'utf-8' })
@@ -33,21 +39,16 @@ function removeContent(path) {
   });
 }
 
-async function main() {
-  const workers = [];
-  const sourcemaps = glob.sync('dist/assets/*.map');
-  sourcemaps.forEach((val) => {
-    const p = path.resolve(__dirname, '../', val);
-    workers.push(removeContent(p));
-  });
-  await Promise.all(workers);
-  return { files: sourcemaps.length };
-}
+const workers = [];
+const sourcemaps = glob.sync('dist/assets/*.map');
+sourcemaps.forEach((val) => {
+  const p = path.resolve(__dirname, '../', val);
+  workers.push(removeContent(p));
+});
 
-console.log(chalk.blue('removing sourcemap source contents...'));
-main()
-  .then(({ files }) => {
-    console.log(chalk.green(`source contents removed in ${files} sourcemaps`));
+Promise.all(workers)
+  .then(() => {
+    console.log(chalk.green(`source contents removed in ${sourcemaps.length} sourcemaps`));
   })
   .catch((e) => {
     console.log(chalk.red('failed to process some of sourcemaps'));
