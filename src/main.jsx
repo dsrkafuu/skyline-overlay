@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import 'normalize.css';
 import './themes';
+import './scss/fonts.scss';
 import './scss/global.scss';
 import './scss/utils.scss';
 

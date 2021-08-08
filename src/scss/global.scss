@@ -1,26 +1,12 @@
-@font-face {
-  font-family: Inter;
-  font-style: normal;
-  font-display: swap;
-  font-weight: 400;
-  src: url('https://cdn.jsdelivr.net/gh/dsrkafuu/dsr-cdn-main@1/fonts/inter/inter_400.woff2')
-    format('woff2');
-}
-
 * {
   box-sizing: border-box;
   user-select: none;
 }
 
-html,
 body {
-  transition: font-size 150ms ease-out;
+  transition: transform 150ms ease-out;
 }
 
 #root {
   display: block;
-}
-
-html {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
 }
