@@ -2,7 +2,7 @@ body[data-theme='ikegami'] {
   // global
   --color-fg: #ffffff;
   --color-bg: rgba(17, 17, 17, 0.5);
-  --shadow: 0 0 0.3429rem #000000;
+  --shadow: 0 0 5px #000000;
 
   // combatant
   --color-combatant-fg: var(--color-fg);
@@ -11,6 +11,9 @@ body[data-theme='ikegami'] {
   --color-combatant-bg-heal: #5f9933;
   --color-combatant-bg-others: #404040;
   --color-combatant-bg-self: #767676;
+  --color-combatant-ticker-d: #1de9b6;
+  --color-combatant-ticker-c: #ffca28;
+  --color-combatant-ticker-dc: #ff6f00;
   --shadow-combatant: var(--shadow);
 
   // encounter
@@ -58,7 +61,7 @@ body[data-theme='ikegami'] {
         bottom: 0;
         left: 0;
         right: 0;
-        height: 0.1rem;
+        height: 2px;
         background-color: #ffffff;
       }
     }
@@ -70,7 +73,7 @@ body[data-theme='ikegami'] {
 
   .s-input-number,
   .s-switch {
-    gap: 0.15rem;
+    gap: 2px;
 
     & > div {
       border: 1px solid #ffffff;

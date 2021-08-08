@@ -28,10 +28,10 @@ function SettingsLayout() {
         <SInputNumber
           value={zoom}
           onChange={(val) => updateZoom(val)}
-          min={0.5}
+          min={0.4}
           max={4}
-          step={0.25}
-          accuracy={2}
+          step={0.2}
+          accuracy={1}
         />
       </div>
       <div className='settings-row settings-font'>

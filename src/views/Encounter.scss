@@ -1,12 +1,13 @@
 .encounter {
-  margin-top: 0.25rem;
+  margin-top: 4px;
   font-size: $font-size-sm;
-  flex: 0 0 25rem;
+  flex: 0 0 350px;
   display: flex;
+  backdrop-filter: $filter;
 
   &-duration {
     height: $size-encounter;
-    width: $size-encounter * 2 + 0.05rem;
+    width: $size-encounter * 2 + 1px;
     line-height: $size-encounter;
     text-align: center;
     color: var(--color-cover-fg);
@@ -27,7 +28,7 @@
     display: flex;
     flex-wrap: nowrap;
     height: $size-encounter;
-    line-height: 1.1rem;
+    line-height: 15px;
     color: var(--color-encounter-fg);
     background-color: var(--color-encounter-bg);
     text-shadow: var(--shadow-encounter);

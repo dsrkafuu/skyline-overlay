@@ -8,8 +8,8 @@
   &-grid {
     position: relative;
     flex: 0 0 auto;
-    width: 9rem;
-    margin: 0 $padding-xs;
+    width: 126px;
+    margin: 0 $padding-sm;
     display: flex;
     flex-direction: column;
     color: var(--color-combatant-fg);
@@ -35,8 +35,8 @@
 
     &-id,
     &-maxhit {
-      line-height: 1.55rem;
-      height: 1.55rem;
+      line-height: 22px;
+      height: 22px;
       font-size: $font-size-sm;
       text-align: center;
       white-space: nowrap;
@@ -46,7 +46,7 @@
       align-items: center;
 
       &.blur {
-        filter: blur(0.25rem);
+        filter: blur(4px);
       }
     }
 
@@ -62,24 +62,25 @@
     }
 
     &-content {
-      height: 1.75rem;
+      height: 24px;
       position: relative;
-      padding: 0.25rem 0.6rem;
+      padding: 4px 8px;
       background-color: var(--color-combatant-bg-others);
+      backdrop-filter: $filter;
     }
 
     &-data {
-      height: 1.25rem;
-      line-height: 1.25rem;
+      height: 18px;
+      line-height: 18px;
       text-align: right;
     }
 
     .job-icon {
       position: absolute;
-      top: 0.025rem;
-      left: 0.35rem;
-      width: 1.7rem;
-      height: 1.7rem;
+      top: 0.4px;
+      left: 5px;
+      width: 24px;
+      height: 24px;
 
       img {
         display: block;
@@ -89,22 +90,21 @@
     }
 
     &-extend {
-      width: 11.5rem;
+      width: 160px;
 
       .combatant-grid-content {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        backdrop-filter: blur(0.125rem);
       }
 
       .job-icon {
         position: absolute;
         left: 50%;
         transform: translate(-50%);
-        top: -0.3rem;
-        width: 1.5rem;
-        height: 1.5rem;
+        top: -4px;
+        width: 22px;
+        height: 22px;
       }
     }
   }
@@ -113,19 +113,19 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: 3.55rem;
+    top: 50px;
     z-index: 99;
-    font-size: 0.8571rem;
-    padding: 0.25rem 0.5rem;
-    backdrop-filter: blur(0.125rem);
+    font-size: $font-size-sm;
+    padding: 4px 6px;
+    backdrop-filter: $filter;
     background-color: var(--color-combatant-bg-others);
     @include transition();
 
     &-section {
-      padding: 0.25rem 0;
+      padding: 4px 2px;
     }
     &-section + &-section {
-      border-top: 0.125rem solid #ffffff;
+      border-top: 2px solid #ffffff;
     }
 
     &-row {
@@ -176,12 +176,12 @@
 
   &-ticker {
     width: 100%;
-    height: 0.25rem;
+    height: 4px;
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
     align-items: stretch;
-    margin-bottom: 0.1rem;
+    margin-bottom: 1px;
 
     &-d {
       background-color: greenyellow;

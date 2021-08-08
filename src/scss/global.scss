@@ -3,6 +3,11 @@
   user-select: none;
 }
 
+html,
+body {
+  font-size: 14px;
+}
+
 body {
   transition: transform 150ms ease-out;
 }

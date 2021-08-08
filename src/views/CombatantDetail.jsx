@@ -64,19 +64,19 @@ function CombatantDetail({ player, locked, ...props }, ref) {
         <div className='combatant-detail-section' key={idx}>
           {section.map((row) => (
             <div className='combatant-detail-row' key={row.key}>
-              <span>&nbsp;{row.key}&nbsp;</span>
+              <span>{row.key}</span>
               {(row.ps && (
                 <div className='combatant-detail-row-counter'>
                   <span className='s-number'>{row.value}</span>
-                  <span className='s-counter'>{row.ps}</span>&nbsp;
+                  <span className='s-counter'>{row.ps}</span>
                 </div>
               )) ||
                 (row.pct && (
                   <div className='combatant-detail-row-pct'>
                     <span className='s-number'>{row.value?.split('%')[0]}</span>
-                    <span className='s-counter'>%</span>&nbsp;
+                    <span className='s-counter'>%</span>
                   </div>
-                )) || <span>{row.value}&nbsp;</span>}
+                )) || <span>{row.value}</span>}
             </div>
           ))}
         </div>

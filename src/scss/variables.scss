@@ -1,18 +1,19 @@
-$font-size-xs: 0.7143rem; // 10px
-$font-size-sm: 0.8571rem; // 12px
+$font-size-xs: 10px;
+$font-size-sm: 12px;
 $font-size-base: 14px;
 
-$size-combatant: 5rem;
-$size-encounter: 1.6rem;
-$size-settings: 5 * 1.6rem + 4 * 0.3rem + 2 * 0.5rem;
-$size-form: 1.6rem;
-$size-form-minwidth: 8rem;
+$size-combatant: 70px;
+$size-encounter: 22px;
+$size-settings: 5 * 22px + 4 * 4px + 2 * 7px;
+$size-form: 22px;
+$size-form-minwidth: 120px;
 
-$padding-xs: 0.2rem;
-$padding-sm: 0.25rem;
-$padding-md: 0.3rem;
-$padding-lg: 0.5rem;
-$padding-xl: 0.75rem;
+$padding-sm: 3px;
+$padding-md: 4px;
+$padding-lg: 7px;
+$padding-xl: 10px;
+
+$filter: blur(1px);
 
 @mixin transition {
   transition: all 150ms ease;

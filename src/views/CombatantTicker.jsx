@@ -1,5 +1,4 @@
 import React from 'react';
-import { observer } from 'mobx-react-lite';
 
 function CombatantTicker({ d, c, dc }) {
   return (
@@ -11,4 +10,4 @@ function CombatantTicker({ d, c, dc }) {
   );
 }
 
-export default observer(CombatantTicker);
+export default CombatantTicker;

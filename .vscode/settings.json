@@ -1,4 +1,3 @@
 {
-  "eslint.validate": ["javascript", "javascriptreact", "vue"],
-  "px-to-rem.px-per-rem": 14
+  "eslint.validate": ["javascript", "javascriptreact"]
 }
