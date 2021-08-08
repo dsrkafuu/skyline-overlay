@@ -63,18 +63,16 @@ class Settings {
     for (const key of Object.keys(savedSettings)) {
       this[key] = savedSettings[key];
     }
-    // apply theme to dom
-    if (this.theme === 'default') {
-      document.body.removeAttribute('data-theme');
-    } else {
-      document.body.setAttribute('data-theme', this.theme);
-    }
-    // apply initial state to dom
+
+    // apply initial theme
+    document.body.setAttribute('data-theme', this.theme);
+    // apply initial lang
     document.documentElement.setAttribute('lang', this.lang);
-    document.documentElement.style.fontSize = `${this.zoom * 14}px`;
+    // apply initial zoom
+    document.body.style.transform = `scale(${this.zoom})`;
     // apply initial custom style
     const customStyles = document.createElement('style');
-    customStyles.setAttribute('id', 'skyline-ccss');
+    customStyles.setAttribute('id', 'skyline-custom-css');
     customStyles.innerHTML = this.customCSS;
     document.head.appendChild(customStyles);
 
@@ -153,7 +151,7 @@ class Settings {
    */
   updateZoom(payload) {
     this.zoom = payload;
-    document.documentElement.style.fontSize = `${payload * 14}px`;
+    document.body.style.transform = `scale(${payload})`;
     saveSettings({ zoom: payload });
   }
   /**
