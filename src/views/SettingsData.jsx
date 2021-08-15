@@ -1,12 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
-
 import { SSwitch, SInputNumber } from '@/components';
 import { IChevronDown, IChevronUp } from '@/assets/svgs';
 import useStore from '@/hooks/useStore';
 
-function SettingsData() {
+const SettingsData = observer(() => {
   const { t } = useTranslation();
   const { settings } = useStore();
 
@@ -60,6 +59,7 @@ function SettingsData() {
       </div>
     </div>
   );
-}
+});
+SettingsData.displayName = 'SettingsData';
 
-export default observer(SettingsData);
+export default SettingsData;

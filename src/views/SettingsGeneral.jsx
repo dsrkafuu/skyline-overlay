@@ -1,12 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
-
 import { SInputNumber, SSelect, SInput } from '@/components';
 import { MAP_LANG, MAP_THEMES } from '@/utils/constants';
 import useStore from '@/hooks/useStore';
 
-function SettingsLayout() {
+const SettingsLayout = observer(() => {
   const { t } = useTranslation();
   const { settings } = useStore();
 
@@ -40,6 +39,7 @@ function SettingsLayout() {
       </div>
     </div>
   );
-}
+});
+SettingsLayout.displayName = 'SettingsLayout';
 
-export default observer(SettingsLayout);
+export default SettingsLayout;

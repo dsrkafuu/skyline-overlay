@@ -1,6 +1,5 @@
 import React, { memo, useCallback } from 'react';
 import './SInputNumber.scss';
-
 import { IAdd, IRemove } from '@/assets/svgs';
 
 function SInputNumber({ value, onChange, min = 0, max = 100, step = 1, accuracy = 0 }) {

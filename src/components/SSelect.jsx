@@ -2,7 +2,6 @@ import React, { memo, useState, useRef, useCallback } from 'react';
 import cn from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import './SSelect.scss';
-
 import { IChevronDown, IChevronUp } from '@/assets/svgs';
 
 function SSelect({ value, onChange, map }) {

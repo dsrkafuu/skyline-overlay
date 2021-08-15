@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 
-function CombatantTicker({ d, c, dc }) {
+const CombatantTicker = memo(({ d, c, dc }) => {
   /**
    * @param {string} pct
    * @returns {string|number}
@@ -22,6 +22,7 @@ function CombatantTicker({ d, c, dc }) {
       <span className='combatant-ticker-dc' style={{ width: parsePct(dc) }}></span>
     </div>
   );
-}
+});
+CombatantTicker.displayName = 'CombatantTicker';
 
 export default CombatantTicker;

@@ -1,12 +1,11 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
-
 import { SInput, SSwitch, SSelect } from '@/components';
 import useStore from '@/hooks/useStore';
 import { MAP_SHORT_NAME } from '@/utils/constants';
 
-function SettingsDisplay() {
+const SettingsDisplay = observer(() => {
   const { t } = useTranslation();
   const { settings } = useStore();
 
@@ -64,6 +63,7 @@ function SettingsDisplay() {
       </div>
     </div>
   );
-}
+});
+SettingsDisplay.displayName = 'SettingsDisplay';
 
-export default observer(SettingsDisplay);
+export default SettingsDisplay;

@@ -1,11 +1,10 @@
 import React, { useMemo } from 'react';
 import { observer } from 'mobx-react-lite';
-
 import './Combatant.scss';
 import CombatantGrid from './CombatantGrid';
 import useStore from '@/hooks/useStore';
 
-function Combatant() {
+const Combatant = observer(() => {
   // get data from store
   const {
     api: { combatant, lb },
@@ -38,6 +37,7 @@ function Combatant() {
       )}
     </>
   );
-}
+});
+Combatant.displayName = 'Combatant';
 
-export default observer(Combatant);
+export default Combatant;

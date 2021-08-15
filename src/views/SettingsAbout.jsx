@@ -1,11 +1,10 @@
 import React, { useCallback, useMemo } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
-
 import { latest } from '@/assets/changelog';
 import useStore from '@/hooks/useStore';
 
-function SettingsAbout() {
+const SettingsAbout = observer(() => {
   const { t } = useTranslation();
 
   /**
@@ -28,10 +27,10 @@ function SettingsAbout() {
   return (
     <div className='settings-about'>
       {/*
-      <div className='settings-row'>
-        <span className='settings-title'>{t('Thanks for Using')}</span>
-      </div>
-      */}
+    <div className='settings-row'>
+      <span className='settings-title'>{t('Thanks for Using')}</span>
+    </div>
+    */}
       <div className='settings-row'>
         <span className='settings-title'>
           <Trans i18nKey='Need Help'>
@@ -76,6 +75,7 @@ function SettingsAbout() {
       </div>
     </div>
   );
-}
+});
+SettingsAbout.displayName = 'SettingsAbout';
 
-export default observer(SettingsAbout);
+export default SettingsAbout;

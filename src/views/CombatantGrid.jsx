@@ -2,14 +2,13 @@ import React, { useMemo, useState, useRef, useCallback } from 'react';
 import { observer } from 'mobx-react-lite';
 import cn from 'classnames';
 import { CSSTransition } from 'react-transition-group';
-
 import CombatantDetail from './CombatantDetail';
 import CombatantTicker from './CombatantTicker';
 import * as jobIcons from '@/assets/icons';
 import { fmtNumber } from '@/utils/formatters';
 import useStore from '@/hooks/useStore';
 
-function CombatantGrid({ player, index }) {
+const CombatantGrid = observer(({ player, index }) => {
   // get data
   const {
     jobType,
@@ -125,6 +124,7 @@ function CombatantGrid({ player, index }) {
       </CSSTransition>
     </div>
   );
-}
+});
+CombatantGrid.displayName = 'CombatantGrid';
 
-export default observer(CombatantGrid);
+export default CombatantGrid;

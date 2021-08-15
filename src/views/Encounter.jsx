@@ -1,14 +1,13 @@
 import React, { useCallback } from 'react';
 import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
-
 import './Encounter.scss';
 import { latest } from '@/assets/changelog';
 import { IRefresh, ISettings } from '@/assets/svgs';
 import { logInfo } from '@/utils/loggers';
 import useStore from '@/hooks/useStore';
 
-function Encounter() {
+const Encounter = observer(() => {
   const { api, settings } = useStore();
   const { active, encounter, overlay } = api;
 
@@ -50,6 +49,7 @@ function Encounter() {
       </div>
     </div>
   );
-}
+});
+Encounter.displayName = 'Encounter';
 
-export default observer(Encounter);
+export default Encounter;

@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import cn from 'classnames';
 import { CSSTransition } from 'react-transition-group';
-
 import './Settings.scss';
 import SettingsAbout from './SettingsAbout';
 import SettingsData from './SettingsData';
@@ -11,7 +10,7 @@ import SettingsDisplay from './SettingsDisplay';
 import SettingsGeneral from './SettingsGeneral';
 import useStore from '@/hooks/useStore';
 
-function Settings() {
+const Settings = observer(() => {
   const { t } = useTranslation();
 
   const Components = useMemo(
@@ -56,6 +55,7 @@ function Settings() {
       </div>
     </CSSTransition>
   );
-}
+});
+Settings.displayName = 'Settings';
 
-export default observer(Settings);
+export default Settings;

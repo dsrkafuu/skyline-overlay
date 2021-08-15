@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-
 import { Combatant, Encounter, Settings } from './views';
 import useStore from './hooks/useStore';
 import { isDev } from './utils/env';
 
-function App() {
+const App = observer(() => {
   const {
     api: { overlay },
   } = useStore();
@@ -46,6 +45,7 @@ function App() {
       </div>
     </>
   );
-}
+});
+App.displayName = 'App';
 
-export default observer(App);
+export default App;

@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 import cn from 'classnames';
 import './SSwitch.scss';
-
 import { ICheckmark, IClose } from '@/assets/svgs';
 
 function SSwitch({ value, onChange, ITrue = ICheckmark, IFalse = IClose }) {
