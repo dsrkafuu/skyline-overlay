@@ -7,7 +7,7 @@
   &-grid {
     position: relative;
     flex: 0 0 auto;
-    width: 126px;
+    width: 120px;
     margin: 0 $padding-sm;
     display: flex;
     flex-direction: column;
@@ -85,25 +85,6 @@
         display: block;
         width: 100%;
         height: 100%;
-      }
-    }
-
-    &-extend {
-      width: 160px;
-
-      .combatant-grid-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .job-icon {
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%);
-        top: -4px;
-        width: 22px;
-        height: 22px;
       }
     }
   }
@@ -191,5 +172,58 @@
     &-dc {
       background-color: var(--color-combatant-ticker-dc);
     }
+  }
+}
+
+.combatant-grid-extend {
+  .combatant-grid {
+    &-content {
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &-data {
+      height: 32px;
+      flex: 1 1 auto;
+      width: 50%;
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: center;
+
+      &:first-child {
+        align-items: flex-start;
+      }
+
+      &:last-child {
+        align-items: flex-end;
+      }
+
+      .s-counter {
+        height: 14px;
+        line-height: 14px;
+        margin: 0 2px;
+      }
+
+      .s-number {
+        height: 18px;
+        line-height: 18px;
+        margin: 0 1px;
+      }
+    }
+  }
+
+  .job-icon {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: -5px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .combatant-detail {
+    top: 66px;
   }
 }
