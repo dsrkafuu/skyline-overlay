@@ -15,9 +15,17 @@ function SettingsDisplay() {
     hlYou,
     youName,
     shortName: { first, last },
+    shortNumber,
     blurName,
   } = settings;
-  const { updateShowRanks, updateHlYou, updateYouName, updateShortName, updateBlurName } = settings;
+  const {
+    updateShowRanks,
+    updateHlYou,
+    updateYouName,
+    updateShortName,
+    updateShortNumber,
+    updateBlurName,
+  } = settings;
 
   const shortNameValue = useMemo(
     () => `${first}`.slice(0, 1) + `${last}`.slice(0, 1),
@@ -45,6 +53,10 @@ function SettingsDisplay() {
           onChange={(_, data) => updateShortName(data)}
           map={MAP_SHORT_NAME}
         />
+      </div>
+      <div className='settings-row'>
+        <span className='settings-title'>{t('Shorten Number')}</span>
+        <SSwitch value={shortNumber} onChange={(value) => updateShortNumber(value)} />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Blur Name')}</span>

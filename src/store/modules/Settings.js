@@ -45,6 +45,7 @@ class Settings {
   hlYou = true; // highlight 'YOU'
   youName = 'YOU'; // which to represent as 'YOU'
   shortName = { first: false, last: false };
+  shortNumber = false;
   blurName = false;
 
   // general
@@ -124,6 +125,7 @@ class Settings {
     this.shortName = { first, last };
     saveSettings({ shortName: { first, last } });
   }
+  updateShortNumber = getAction('shortNumber');
   updateBlurName = getAction('blurName');
 
   /* layout */

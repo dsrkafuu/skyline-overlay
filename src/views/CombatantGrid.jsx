@@ -25,7 +25,8 @@ function CombatantGrid({ player, index }) {
   } = player;
   const gridClass = ['combatant-grid']; // grid classnames
   const { settings } = useStore();
-  const { youName, shortName, showRanks, blurName, hlYou, showHPS, showTickers } = settings;
+  const { youName, shortName, showRanks, blurName, hlYou, showHPS, showTickers, shortNumber } =
+    settings;
 
   // display name
   const dispName = useMemo(() => {
@@ -80,7 +81,7 @@ function CombatantGrid({ player, index }) {
       >
         {showHPS && (
           <div className='combatant-grid-data'>
-            <span className='s-number'>{fmtNumber(hps) || 0}</span>
+            <span className='s-number'>{(shortNumber ? fmtNumber(hps) : hps) || 0}</span>
             <span className='s-counter'>HPS</span>
           </div>
         )}
@@ -88,7 +89,7 @@ function CombatantGrid({ player, index }) {
           <img src={jobIcons[job] || jobIcons.ffxiv} />
         </span>
         <div className='combatant-grid-data'>
-          <span className='s-number'>{(showHPS ? fmtNumber(dps) : dps) || 0}</span>
+          <span className='s-number'>{(shortNumber ? fmtNumber(dps) : dps) || 0}</span>
           <span className='s-counter'>DPS</span>
         </div>
       </div>
