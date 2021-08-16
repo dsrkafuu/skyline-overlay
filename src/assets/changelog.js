@@ -1,5 +1,10 @@
 export const changelog = [
   {
+    version: 'v2.0.1',
+    date: 1629122163978,
+    notes: ['fix: zoom overflow issue'],
+  },
+  {
     version: 'v2.0.0',
     date: 1629079992391,
     notes: [
