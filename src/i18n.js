@@ -5,8 +5,13 @@ import { getLS } from './utils/storage';
 
 import lang from './lang';
 
-// get initial language from storage
-const lng = (getLS('settings') || {}).lang || 'en';
+// get initial language from storage , if not exist then auto detected
+let _settings=(getLS('settings') || {});
+if(!_settings.lang){
+  _settings.lang = navigator.language.substr(0,2);
+  setLS('settings',_settings);
+}
+const lng = _settings.lang;
 document.documentElement.setAttribute('lang', lng);
 
 i18n.use(initReactI18next).init({
