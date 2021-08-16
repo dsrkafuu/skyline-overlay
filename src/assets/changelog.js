@@ -1,11 +1,13 @@
 export const changelog = [
   {
     version: 'v2.0.0',
-    date: 1628403175588,
+    date: 1629079992391,
     notes: [
       'feat: migrate to google fonts',
       'feat: migrate to mobx',
       'feat: add combatant ticker',
+      'feat: add short number setting',
+      'refactor: show hps mode',
       'fix: body overflow',
       'fix: encounter & settings styles',
       'chore: update overlay api',
