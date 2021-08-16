@@ -2,7 +2,7 @@ body[data-theme='ikegami'] {
   // global
   --color-fg: #ffffff;
   --color-bg: rgba(17, 17, 17, 0.5);
-  --shadow: 0 0 5px #000000;
+  --shadow: 0 0 0.05rem #000000;
 
   // combatant
   --color-combatant-fg: var(--color-fg);
@@ -61,22 +61,22 @@ body[data-theme='ikegami'] {
         bottom: 0;
         left: 0;
         right: 0;
-        height: 2px;
+        height: 0.02rem;
         background-color: #ffffff;
       }
     }
   }
 
   .s-input {
-    border: 1px solid #ffffff;
+    border: 0.01rem solid #ffffff;
   }
 
   .s-input-number,
   .s-switch {
-    gap: 2px;
+    gap: 0.02rem;
 
     & > div {
-      border: 1px solid #ffffff;
+      border: 0.01rem solid #ffffff;
     }
 
     .btn:hover {
@@ -87,11 +87,11 @@ body[data-theme='ikegami'] {
 
   .s-select {
     &-value {
-      border: 1px solid #ffffff;
+      border: 0.01rem solid #ffffff;
     }
 
     &-options {
-      border: 1px solid #ffffff;
+      border: 0.01rem solid #ffffff;
     }
   }
 }

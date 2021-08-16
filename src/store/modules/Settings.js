@@ -71,7 +71,7 @@ class Settings {
     // apply initial lang
     document.documentElement.setAttribute('lang', this.lang);
     // apply initial zoom
-    document.body.style.transform = `scale(${this.zoom})`;
+    document.documentElement.style.fontSize = `${Math.floor(100 * this.zoom) || 100}px`;
     // apply initial custom style
     const customStyles = document.createElement('style');
     customStyles.setAttribute('id', 'skyline-custom-css');
@@ -155,7 +155,7 @@ class Settings {
    */
   updateZoom(payload) {
     this.zoom = payload;
-    document.body.style.transform = `scale(${payload})`;
+    document.documentElement.style.fontSize = `${Math.floor(100 * payload) || 100}px`;
     saveSettings({ zoom: payload });
   }
   /**

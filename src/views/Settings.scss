@@ -1,7 +1,7 @@
 .settings {
   margin-top: $padding-md;
   font-size: $font-size-sm;
-  flex: 0 0 350px;
+  flex: 0 0 3.5rem;
   color: var(--color-settings-fg);
   background-color: var(--color-settings-bg);
   text-shadow: var(--shadow-settings);
@@ -70,10 +70,10 @@
 
 .settings {
   &-theme .s-select {
-    width: 140px;
+    width: 1.4rem;
   }
 
   &-font .s-input {
-    width: 160px;
+    width: 1.6rem;
   }
 }

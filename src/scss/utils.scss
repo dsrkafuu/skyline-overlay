@@ -12,8 +12,8 @@
   color: var(--color-fg);
   text-shadow: var(--shadow);
   text-decoration: underline;
-  padding-left: 3px;
-  padding-right: 3px;
+  padding-left: 0.03rem;
+  padding-right: 0.03rem;
   @include transition();
 
   &:hover {
@@ -25,16 +25,16 @@
 
 // counter spans
 span.s-number {
-  margin-right: 1px;
+  margin-right: 0.01rem;
 }
 span.s-counter {
   font-size: $font-size-xs;
-  margin-left: 1px;
+  margin-left: 0.01rem;
 }
 
 // icons
 svg.icon {
-  font-size: 18px;
+  font-size: 0.18rem;
   display: inline-block;
 }
 

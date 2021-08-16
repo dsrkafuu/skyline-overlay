@@ -7,7 +7,7 @@
   &-grid {
     position: relative;
     flex: 0 0 auto;
-    width: 120px;
+    width: 1.2rem;
     margin: 0 $padding-sm;
     display: flex;
     flex-direction: column;
@@ -34,8 +34,8 @@
 
     &-id,
     &-maxhit {
-      line-height: 22px;
-      height: 22px;
+      line-height: 0.22rem;
+      height: 0.22rem;
       font-size: $font-size-sm;
       text-align: center;
       white-space: nowrap;
@@ -45,7 +45,7 @@
       align-items: center;
 
       &.blur {
-        filter: blur(4px);
+        filter: blur(0.04rem);
       }
     }
 
@@ -61,25 +61,25 @@
     }
 
     &-content {
-      height: 24px;
+      height: 0.24rem;
       position: relative;
-      padding: 4px 8px;
+      padding: 0.04rem 0.08rem;
       background-color: var(--color-combatant-bg-others);
       backdrop-filter: $filter;
     }
 
     &-data {
-      height: 18px;
-      line-height: 18px;
+      height: 0.18rem;
+      line-height: 0.18rem;
       text-align: right;
     }
 
     .job-icon {
       position: absolute;
-      top: 0.4px;
-      left: 5px;
-      width: 24px;
-      height: 24px;
+      top: 0.04rem;
+      left: 0.05rem;
+      width: 0.24rem;
+      height: 0.24rem;
 
       img {
         display: block;
@@ -93,19 +93,19 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: 50px;
+    top: 0.5rem;
     z-index: 99;
     font-size: $font-size-sm;
-    padding: 4px 6px;
+    padding: 0.04rem 0.06rem;
     backdrop-filter: $filter;
     background-color: var(--color-combatant-bg-others);
     @include transition();
 
     &-section {
-      padding: 4px 2px;
+      padding: 0.04rem 0.02rem;
     }
     &-section + &-section {
-      border-top: 2px solid #ffffff;
+      border-top: 0.02rem solid #ffffff;
     }
 
     &-row {
@@ -156,12 +156,12 @@
 
   &-ticker {
     width: 100%;
-    height: 4px;
+    height: 0.04rem;
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
     align-items: stretch;
-    margin-bottom: 1px;
+    margin-bottom: 0.01rem;
 
     &-d {
       background-color: var(--color-combatant-ticker-d);
@@ -178,14 +178,14 @@
 .combatant-grid-extend {
   .combatant-grid {
     &-content {
-      height: 40px;
+      height: 0.4rem;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
     &-data {
-      height: 32px;
+      height: 0.32rem;
       flex: 1 1 auto;
       width: 50%;
       display: flex;
@@ -201,15 +201,15 @@
       }
 
       .s-counter {
-        height: 14px;
-        line-height: 14px;
-        margin: 0 2px;
+        height: 0.14rem;
+        line-height: 0.14rem;
+        margin: 0 0.02rem;
       }
 
       .s-number {
-        height: 18px;
-        line-height: 18px;
-        margin: 0 1px;
+        height: 0.18rem;
+        line-height: 0.18rem;
+        margin: 0 0.01rem;
       }
     }
   }
@@ -218,12 +218,12 @@
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    top: -5px;
-    width: 24px;
-    height: 24px;
+    top: -0.05rem;
+    width: 0.24rem;
+    height: 0.24rem;
   }
 
   .combatant-detail {
-    top: 66px;
+    top: 0.66rem;
   }
 }

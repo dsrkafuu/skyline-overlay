@@ -5,7 +5,7 @@
 
 html,
 body {
-  font-size: 14px;
+  font-size: 0.14rem;
   height: 100%;
   width: 100%;
   overflow-x: hidden;
@@ -13,8 +13,8 @@ body {
   position: relative;
 }
 
-body {
-  transition: transform 150ms ease-out;
+html {
+  @include transition();
 }
 
 #root {
