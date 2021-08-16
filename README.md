@@ -14,7 +14,7 @@
 An extended version from [horizoverlay](https://github.com/bsides/horizoverlay/) with some of [ikegami](https://github.com/hibiyasleep/ikegami)'s features. The project is based on React with MobX & Vite, and the dedicated [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
 
 <img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-v1.6.0.jpg" alt="Skyline Preview" />
-<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-v1.7.1.jpg" alt="Skyline Extended Preview" />
+<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-v2.0.0.jpg" alt="Skyline Extended Preview" />
 
 ## Overlay Link
 
@@ -43,8 +43,8 @@ Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin)
 - [x] Highlight self - v1.7.x
 - [x] Detailed data for each player - v1.8.x
 - [x] Custom CSS - v1.8.x
-- [ ] Custom digit decimal
-- [ ] C/D/CD tickers
+- [x] Optional shorten numbers - v2.0.x
+- [x] C/D/CD tickers - v2.0.x
 
 ## Contribute
 
