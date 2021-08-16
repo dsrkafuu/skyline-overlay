@@ -78,19 +78,19 @@ const CombatantGrid = observer(({ player, index }) => {
         onMouseLeave={onDetailLeave}
         onClick={onSwitchDetailLock}
       >
+        <div className='combatant-grid-data'>
+          <span className='s-number'>{(shortNumber ? fmtNumber(dps) : dps) || 0}</span>
+          <span className='s-counter'>DPS</span>
+        </div>
+        <span className='job-icon'>
+          <img src={jobIcons[job] || jobIcons.ffxiv} />
+        </span>
         {showHPS && (
           <div className='combatant-grid-data'>
             <span className='s-number'>{(shortNumber ? fmtNumber(hps) : hps) || 0}</span>
             <span className='s-counter'>HPS</span>
           </div>
         )}
-        <span className='job-icon'>
-          <img src={jobIcons[job] || jobIcons.ffxiv} />
-        </span>
-        <div className='combatant-grid-data'>
-          <span className='s-number'>{(shortNumber ? fmtNumber(dps) : dps) || 0}</span>
-          <span className='s-counter'>DPS</span>
-        </div>
       </div>
 
       {showTickers && <CombatantTicker d={directHitPct} c={critHitPct} dc={directCritHitPct} />}
