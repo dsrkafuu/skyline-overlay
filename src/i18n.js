@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { isDev } from './utils/env';
-import { getLS } from './utils/storage';
+import { getLS, setLS } from './utils/storage';
 
 import lang from './lang';
 
