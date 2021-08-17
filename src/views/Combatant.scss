@@ -69,14 +69,24 @@
     }
 
     &-data {
-      height: 0.18rem;
-      line-height: 0.18rem;
+      height: 0.16rem;
+      line-height: 0.16rem;
       text-align: right;
+
+      .s-counter {
+        height: 0.14rem;
+        line-height: 0.14rem;
+      }
+
+      .s-number {
+        height: 0.16rem;
+        line-height: 0.16rem;
+      }
     }
 
     .job-icon {
       position: absolute;
-      top: 0.04rem;
+      top: 0;
       left: 0.05rem;
       width: 0.24rem;
       height: 0.24rem;
