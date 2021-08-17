@@ -18,7 +18,8 @@ An extended version from [horizoverlay](https://github.com/bsides/horizoverlay/)
 
 ## Overlay Link
 
-- CloudFlare: `https://skyline.dsrkafuu.su`
+- CloudFlare (Global): `https://skyline.dsrkafuu.su`
+- Mirror (CN Optimized): `https://act.diemoe.net/overlays/skyline/`
 
 Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin). For WebSocket mode, only these browsers below are officially supported:
 
@@ -73,7 +74,7 @@ Please use [ISO 639-1:2002](https://en.wikipedia.org/wiki/List_of_ISO_639-1_code
 
 ### Contributors
 
-[@Slightlyxz](https://github.com/Slightlyxz) [@DieMoe233](https://github.com/DieMoe233)
+[@DieMoe233](https://github.com/DieMoe233) [@Slightlyxz](https://github.com/Slightlyxz)
 
 ## Major Dependencies
 
