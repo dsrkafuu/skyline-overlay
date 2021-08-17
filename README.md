@@ -65,15 +65,15 @@ Please use [ISO 639-1:2002](https://en.wikipedia.org/wiki/List_of_ISO_639-1_code
 2. Import `ja.json` in `@/src/lang/index.js`
 3. Add a new lang in `@/src/lang/index.js` exported map, like `ja: { translation: ja },`
 
-Community translators:
-
-- German: [@Slightlyxz](https://github.com/Slightlyxz)
-
 ### Add Custom Themes
 
 1. Create a new `your-theme-filename.scss` file in `@/src/themes`, use `default.scss` and `ikegami.scss` as examples
 2. Import `your-theme-filename.scss` in `@/src/themes/index.js`
 3. Add a new theme in `@/src/themes/index.js` exported map, like `'your-theme-filename': { text: 'The New Theme' }`
+
+### Contributors
+
+[@Slightlyxz](https://github.com/Slightlyxz) [@DieMoe233](https://github.com/DieMoe233)
 
 ## Major Dependencies
 
