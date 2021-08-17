@@ -4,15 +4,19 @@ import { isDev } from './utils/env';
 import { getLS, setLS } from './utils/storage';
 
 import lang from './lang';
+const langs = Object.keys(lang);
 
 // get initial language from storage , if not exist then auto detected
-let _settings=(getLS('settings') || {});
-if(!_settings.lang){
-  _settings.lang = navigator.language.substr(0,2);
-  setLS('settings',_settings);
+let lng = 'en';
+const settings = getLS('settings') || {};
+if (!settings.lang) {
+  const sysLang = navigator.language.substr(0, 2);
+  if (langs.includes(sysLang)) {
+    settings.lang = sysLang;
+    lng = sysLang;
+    setLS('settings', settings);
+  }
 }
-const lng = _settings.lang;
-document.documentElement.setAttribute('lang', lng);
 
 i18n.use(initReactI18next).init({
   resources: lang,
