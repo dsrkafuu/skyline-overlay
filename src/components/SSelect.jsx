@@ -24,7 +24,7 @@ function SSelect({ value, onChange, map }) {
   return (
     <div className='s-select'>
       <div className={cn('s-select-value', { active })} onClick={() => setActive((val) => !val)}>
-        <div className='disp'>{map[value].text}</div>
+        <div className='disp'>{map[value] ? map[value].text : 'Unknown'}</div>
         <div className='btn'>{active ? <IChevronUp /> : <IChevronDown />}</div>
       </div>
       <CSSTransition classNames='fade' in={active} timeout={150} unmountOnExit nodeRef={transRef}>
@@ -35,7 +35,7 @@ function SSelect({ value, onChange, map }) {
               onClick={() => handleChange(key, map[key].data)}
               key={key}
             >
-              {map[key].text}
+              {map[key] ? map[key].text : 'Unknown'}
             </div>
           ))}
         </div>
