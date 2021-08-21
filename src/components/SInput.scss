@@ -31,7 +31,7 @@
     @include transition();
 
     &:hover {
-      text-shadow: none;
+      text-shadow: var(--shadow-form-active);
       color: var(--color-form-fg-active);
       background-color: var(--color-form-bg-active);
     }

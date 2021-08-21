@@ -17,7 +17,9 @@
     text-align: center;
     @include transition();
 
-    &.active {
+    &.active,
+    &:hover {
+      text-shadow: var(--shadow-form-active);
       color: var(--color-form-fg-active);
       background-color: var(--color-form-bg-active);
     }

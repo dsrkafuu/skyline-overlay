@@ -26,7 +26,8 @@
     cursor: pointer;
     @include transition();
 
-    &.active {
+    &.active,
+    &:hover {
       text-shadow: var(--shadow-settings-tab-active);
       color: var(--color-settings-tab-fg-active);
       background-color: var(--color-settings-tab-bg-active);

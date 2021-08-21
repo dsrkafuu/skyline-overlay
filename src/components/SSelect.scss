@@ -11,6 +11,7 @@
     color: var(--color-form-fg);
     background-color: var(--color-form-bg);
     display: flex;
+    @include transition();
 
     .disp {
       flex: 1 1 auto;
@@ -25,10 +26,10 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      @include transition();
     }
 
-    &.active {
+    &.active,
+    &:hover {
       color: var(--color-form-fg-active);
       background-color: var(--color-form-bg-active);
       text-shadow: var(--shadow-form-active);
@@ -44,9 +45,13 @@
     width: 100%;
   }
 
-  &-option:hover {
-    color: var(--color-form-fg-active);
-    background-color: var(--color-form-bg-active);
-    text-shadow: var(--shadow-form-active);
+  &-option {
+    @include transition();
+
+    &:hover {
+      color: var(--color-form-fg-active);
+      background-color: var(--color-form-bg-active);
+      text-shadow: var(--shadow-form-active);
+    }
   }
 }
