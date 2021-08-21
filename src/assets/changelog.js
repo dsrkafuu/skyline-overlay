@@ -1,4 +1,5 @@
 export const changelog = [
+  { version: 'v2.0.3', date: 1629507877918 },
   { version: 'v2.0.2', date: 1629166028507 },
   { version: 'v2.0.1', date: 1629122163978 },
   { version: 'v2.0.0', date: 1629079992391 },

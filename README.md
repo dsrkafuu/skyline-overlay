@@ -4,7 +4,7 @@
   <br />
 </h1>
 
-<h4 align="center">A horizon FFXIV miniparse overlay built with React & Vite.</h4>
+<h4 align="center">A horizon FFXIV miniparse overlay built with React & MobX.</h4>
 <br />
 
 ![](https://img.shields.io/github/package-json/v/dsrkafuu/skyline-overlay)
@@ -19,7 +19,7 @@ An extended version from [horizoverlay](https://github.com/bsides/horizoverlay/)
 ## Overlay Link
 
 - CloudFlare (Global): `https://skyline.dsrkafuu.su`
-- Mirror (CN Optimized): `https://act.diemoe.net/overlays/skyline/`
+- Mirror (CN DieMoe): `https://act.diemoe.net/overlays/skyline/`
 
 Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin). For WebSocket mode, only these browsers below are officially supported:
 
@@ -46,6 +46,9 @@ Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin)
 - [x] Custom CSS - v1.8.x
 - [x] Optional shorten numbers - v2.0.x
 - [x] C/D/CD tickers - v2.0.x
+- [ ] Minimal mode - v2.1.x
+- [ ] Switch show maxhit - v2.1.x
+- [ ] 24 combatants support - v2.x.x
 
 ## Contribute
 
