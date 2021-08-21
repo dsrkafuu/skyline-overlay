@@ -26,5 +26,7 @@
   "Theme": "テーマ",
   "Language": "言語",
   "UI Scale": "UI サイズ",
-  "Custom CSS": "カスタム CSS"
+  "Custom CSS": "カスタム CSS",
+
+  "Please enter the new value": "新しい値を入力してください"
 }

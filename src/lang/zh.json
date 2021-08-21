@@ -34,5 +34,6 @@
   "Language": "语言",
   "UI Scale": "界面缩放",
   "Custom CSS": "自定义 CSS",
-  "Please enter the new setting value": "请输入新的设定值"
+
+  "Please enter the new value": "请输入新值"
 }

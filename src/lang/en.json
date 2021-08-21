@@ -34,5 +34,6 @@
   "Language": "Language",
   "UI Scale": "UI Scale",
   "Custom CSS": "Custom CSS",
-  "Please enter the new setting value": "Please enter the new setting value"
+
+  "Please enter the new value": "Please enter the new value"
 }
