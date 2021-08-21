@@ -25,4 +25,15 @@
     color: var(--color-form-fg-selection);
     background-color: var(--color-form-bg-selection);
   }
+
+  &-cef {
+    cursor: pointer;
+    @include transition();
+
+    &:hover {
+      text-shadow: none;
+      color: var(--color-form-fg-active);
+      background-color: var(--color-form-bg-active);
+    }
+  }
 }
