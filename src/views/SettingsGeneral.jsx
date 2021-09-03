@@ -40,6 +40,5 @@ const SettingsLayout = observer(() => {
     </div>
   );
 });
-SettingsLayout.displayName = 'SettingsLayout';
 
 export default SettingsLayout;

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import { SInput, SSwitch, SSelect } from '@/components';
@@ -26,10 +26,7 @@ const SettingsDisplay = observer(() => {
     updateBlurName,
   } = settings;
 
-  const shortNameValue = useMemo(
-    () => `${first}`.slice(0, 1) + `${last}`.slice(0, 1),
-    [first, last]
-  );
+  const shortNameValue = `${first}`.slice(0, 1) + `${last}`.slice(0, 1);
 
   return (
     <div className='settings-display'>
@@ -64,6 +61,5 @@ const SettingsDisplay = observer(() => {
     </div>
   );
 });
-SettingsDisplay.displayName = 'SettingsDisplay';
 
 export default SettingsDisplay;

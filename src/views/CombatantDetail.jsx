@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
@@ -12,55 +12,50 @@ const CombatantDetail = observer(
     const { settings } = useStore();
     const { minimalMode, showHPS, extendDetail } = settings;
 
-    // data rendered
-    const sections = useMemo(() => {
-      // data props
-      const {
-        last30DPS,
-        last60DPS,
-        hps,
-        overHealPct,
-        directHitPct,
-        critHitPct,
-        directCritHitPct,
-        damagePct,
-        deaths,
-        maxHit,
-        maxHitDamage,
-        maxHeal,
-        maxHealDamage,
-      } = player;
+    // data props
+    const {
+      last30DPS,
+      last60DPS,
+      hps,
+      overHealPct,
+      directHitPct,
+      critHitPct,
+      directCritHitPct,
+      damagePct,
+      deaths,
+      maxHit,
+      maxHitDamage,
+      maxHeal,
+      maxHealDamage,
+    } = player;
 
-      const rowData = [];
-      // last 30 60 dps
-      extendDetail &&
-        rowData.push([
-          { key: '30s', ps: 'DPS', value: last30DPS },
-          { key: '60s', ps: 'DPS', value: last60DPS },
-        ]);
-      // overheal & hps
-      rowData.push([{ key: t('Overheal'), value: overHealPct, pct: true }]);
-      !showHPS && rowData[rowData.length - 1].unshift({ key: t('Heal'), value: hps, ps: 'HPS' });
-      // damage
+    const rowData = [];
+    // last 30 60 dps
+    extendDetail &&
       rowData.push([
-        { key: t('Damage'), value: damagePct, pct: true },
-        { key: t('Deaths'), value: deaths },
+        { key: '30s', ps: 'DPS', value: last30DPS },
+        { key: '60s', ps: 'DPS', value: last60DPS },
       ]);
-      // c & d & cd
-      rowData.push([
-        { key: t('Direct'), value: directHitPct, pct: true },
-        { key: t('Critical !'), value: critHitPct, pct: true },
-        { key: t('DC !!!'), value: directCritHitPct, pct: true },
-      ]);
-      // max hit
-      if (extendDetail) {
-        rowData.push([]);
-        maxHit && rowData[rowData.length - 1].push({ key: maxHit, value: maxHitDamage });
-        maxHeal && rowData[rowData.length - 1].push({ key: maxHeal, value: maxHealDamage });
-      }
-
-      return rowData;
-    }, [extendDetail, player, showHPS, t]);
+    // overheal & hps
+    rowData.push([{ key: t('Overheal'), value: overHealPct, pct: true }]);
+    !showHPS && rowData[rowData.length - 1].unshift({ key: t('Heal'), value: hps, ps: 'HPS' });
+    // damage
+    rowData.push([
+      { key: t('Damage'), value: damagePct, pct: true },
+      { key: t('Deaths'), value: deaths },
+    ]);
+    // c & d & cd
+    rowData.push([
+      { key: t('Direct'), value: directHitPct, pct: true },
+      { key: t('Critical !'), value: critHitPct, pct: true },
+      { key: t('DC !!!'), value: directCritHitPct, pct: true },
+    ]);
+    // max hit
+    if (extendDetail) {
+      rowData.push([]);
+      maxHit && rowData[rowData.length - 1].push({ key: maxHit, value: maxHitDamage });
+      maxHeal && rowData[rowData.length - 1].push({ key: maxHeal, value: maxHealDamage });
+    }
 
     return (
       <div
@@ -68,7 +63,7 @@ const CombatantDetail = observer(
         ref={ref}
         {...props}
       >
-        {sections.map((section, idx) => (
+        {rowData.map((section, idx) => (
           <div className='combatant-detail-section' key={idx}>
             {section.map((row) => (
               <div className='combatant-detail-row' key={row.key}>
@@ -94,6 +89,5 @@ const CombatantDetail = observer(
   },
   { forwardRef: true }
 );
-CombatantDetail.displayName = 'CombatantDetail';
 
 export default CombatantDetail;

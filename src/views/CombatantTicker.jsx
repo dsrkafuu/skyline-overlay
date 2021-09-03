@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 
 /**
  * @param {string} pct
@@ -14,7 +14,7 @@ function parsePct(pct) {
   }
 }
 
-const CombatantTicker = memo(({ player = {} }) => {
+const CombatantTicker = ({ player = {} }) => {
   const { directHitPct: d, critHitPct: c, directCritHitPct: dc } = player;
 
   return (
@@ -24,7 +24,6 @@ const CombatantTicker = memo(({ player = {} }) => {
       <span className='combatant-ticker-d' style={{ width: parsePct(d) }}></span>
     </div>
   );
-});
-CombatantTicker.displayName = 'CombatantTicker';
+};
 
 export default CombatantTicker;

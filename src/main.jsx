@@ -15,10 +15,8 @@ import './i18n';
 import App from './App';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <StoreContext.Provider value={store}>
-      <App />
-    </StoreContext.Provider>
-  </React.StrictMode>,
+  <StoreContext.Provider value={store}>
+    <App />
+  </StoreContext.Provider>,
   document.getElementById('root')
 );

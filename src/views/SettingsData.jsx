@@ -71,6 +71,5 @@ const SettingsData = observer(() => {
     </div>
   );
 });
-SettingsData.displayName = 'SettingsData';
 
 export default SettingsData;

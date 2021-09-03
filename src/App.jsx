@@ -1,6 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { Combatant, Encounter, Settings } from './views';
+import Combatant from './views/Combatant';
+import Encounter from './views/Encounter';
+import Settings from './views/Settings';
 import useStore from './hooks/useStore';
 import useMock from './hooks/useMock';
 
@@ -29,6 +31,5 @@ const App = observer(() => {
     </div>
   );
 });
-App.displayName = 'App';
 
 export default App;

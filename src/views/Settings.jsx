@@ -56,6 +56,5 @@ const Settings = observer(() => {
     </CSSTransition>
   );
 });
-Settings.displayName = 'Settings';
 
 export default Settings;

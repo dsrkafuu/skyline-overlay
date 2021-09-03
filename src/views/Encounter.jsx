@@ -50,6 +50,5 @@ const Encounter = observer(() => {
     </div>
   );
 });
-Encounter.displayName = 'Encounter';
 
 export default Encounter;

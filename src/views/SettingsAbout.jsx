@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import { latest } from '@/assets/changelog';
@@ -22,7 +22,7 @@ const SettingsAbout = observer(() => {
   const {
     settings: { lang },
   } = useStore();
-  const date = useMemo(() => toDate(new Date(latest.date), lang), [lang, toDate]);
+  const date = toDate(new Date(latest.date), lang);
 
   return (
     <div className='settings-about'>
@@ -76,6 +76,5 @@ const SettingsAbout = observer(() => {
     </div>
   );
 });
-SettingsAbout.displayName = 'SettingsAbout';
 
 export default SettingsAbout;
