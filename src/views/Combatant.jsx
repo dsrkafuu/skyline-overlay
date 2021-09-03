@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { observer } from 'mobx-react-lite';
 import './Combatant.scss';
 import CombatantGrid from './CombatantGrid';
@@ -8,7 +8,7 @@ const Combatant = observer(() => {
   // get data from store
   const {
     api: { combatant, lb },
-    settings: { sortRule, playerLimit, showLB },
+    settings: { sortRule, playerLimit, showLB, toggleMinimalMode },
   } = useStore();
 
   // parse combatant settings
@@ -26,10 +26,18 @@ const Combatant = observer(() => {
     return res;
   }, [combatant, lb, playerLimit, showLB, sortRule]);
 
+  const handleSwitchMinimalMode = useCallback(
+    (e) => {
+      e.preventDefault();
+      toggleMinimalMode();
+    },
+    [toggleMinimalMode]
+  );
+
   return (
     <>
       {Boolean(combatant) && combatant.length > 0 && (
-        <div className='combatant'>
+        <div className='combatant' onContextMenu={handleSwitchMinimalMode}>
           {sortedCombatant.map((value, index) => (
             <CombatantGrid player={value} index={index} key={value.name} />
           ))}

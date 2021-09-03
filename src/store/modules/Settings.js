@@ -31,6 +31,7 @@ class Settings {
 
   // settings container display
   showSettings = false;
+  minimalMode = false;
 
   // data
   sortRule = { key: 'dps', value: -1 }; // sort data
@@ -87,6 +88,10 @@ class Settings {
   toggleSettings() {
     this.showSettings = !this.showSettings;
     saveSettings({ showSettings: this.showSettings });
+  }
+  toggleMinimalMode() {
+    this.minimalMode = !this.minimalMode;
+    saveSettings({ minimalMode: this.minimalMode });
   }
 
   // data

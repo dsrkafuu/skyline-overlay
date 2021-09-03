@@ -24,8 +24,17 @@ const CombatantGrid = observer(({ player, index }) => {
   } = player;
   const gridClass = ['combatant-grid']; // grid classnames
   const { settings } = useStore();
-  const { youName, shortName, showRanks, blurName, hlYou, showHPS, showTickers, shortNumber } =
-    settings;
+  const {
+    minimalMode,
+    youName,
+    shortName,
+    showRanks,
+    blurName,
+    hlYou,
+    showHPS,
+    showTickers,
+    shortNumber,
+  } = settings;
 
   // display name
   const dispName = useMemo(() => {
@@ -95,18 +104,20 @@ const CombatantGrid = observer(({ player, index }) => {
 
       {showTickers && <CombatantTicker d={directHitPct} c={critHitPct} dc={directCritHitPct} />}
 
-      <CSSTransition
-        classNames='fade'
-        in={!needDetail || !(lockDetail || showDetail)}
-        timeout={150}
-        unmountOnExit
-        nodeRef={transMaxHitRef}
-      >
-        <div className='combatant-grid-maxhit' ref={transMaxHitRef}>
-          <span>&nbsp;{maxHit}&nbsp;</span>
-          {maxHitDamage > 0 && <span>-&nbsp;{maxHitDamage}&nbsp;</span>}
-        </div>
-      </CSSTransition>
+      {!minimalMode && (
+        <CSSTransition
+          classNames='fade'
+          in={!needDetail || !(lockDetail || showDetail)}
+          timeout={150}
+          unmountOnExit
+          nodeRef={transMaxHitRef}
+        >
+          <div className='combatant-grid-maxhit' ref={transMaxHitRef}>
+            <span>&nbsp;{maxHit}&nbsp;</span>
+            {maxHitDamage > 0 && <span>-&nbsp;{maxHitDamage}&nbsp;</span>}
+          </div>
+        </CSSTransition>
+      )}
 
       <CSSTransition
         classNames='fade'

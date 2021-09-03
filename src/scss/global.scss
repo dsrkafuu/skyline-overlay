@@ -17,6 +17,7 @@ html {
   @include transition();
 }
 
-#root {
+#root,
+.app {
   display: block;
 }
