@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
 import './Encounter.scss';
-import { latest } from '@/assets/changelog';
+import { version } from '@/assets/version';
 import { IRefresh, ISettings } from '@/assets/svgs';
 import { logInfo } from '@/utils/loggers';
 import useStore from '@/hooks/useStore';
@@ -13,7 +13,7 @@ const Encounter = observer(() => {
 
   // encounter data
   const duration = encounter.duration || '00:00';
-  const zoneName = encounter.zoneName || `Skyline Overlay ${latest.version}`;
+  const zoneName = encounter.zoneName || `Skyline Overlay ${version}`;
   const totalDPS = encounter.dps || 0;
 
   /**

@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
-import { latest } from '@/assets/changelog';
+import { date } from '@/assets/version';
 import useStore from '@/hooks/useStore';
 
 const SettingsAbout = observer(() => {
@@ -22,7 +22,7 @@ const SettingsAbout = observer(() => {
   const {
     settings: { lang },
   } = useStore();
-  const date = toDate(new Date(latest.date), lang);
+  const parsedDate = toDate(new Date(date), lang);
 
   return (
     <div className='settings-about'>
@@ -65,7 +65,7 @@ const SettingsAbout = observer(() => {
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Release Date')}</span>
-        <span className='settings-title'>{date}</span>
+        <span className='settings-title'>{parsedDate}</span>
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{`Copyright ${new Date().getFullYear()} MPL-2.0 License`}</span>
