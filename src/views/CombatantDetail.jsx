@@ -10,7 +10,7 @@ const CombatantDetail = observer(
 
     // settings
     const { settings } = useStore();
-    const { showHPS, extendDetail } = settings;
+    const { minimalMode, showHPS, extendDetail } = settings;
 
     // data rendered
     const sections = useMemo(() => {
@@ -59,7 +59,11 @@ const CombatantDetail = observer(
     }, [extendDetail, player, showHPS, t]);
 
     return (
-      <div className={cn(['combatant-detail', { locked }])} ref={ref} {...props}>
+      <div
+        className={cn(['combatant-detail', { locked, minimal: minimalMode }])}
+        ref={ref}
+        {...props}
+      >
         {sections.map((section, idx) => (
           <div className='combatant-detail-section' key={idx}>
             {section.map((row) => (

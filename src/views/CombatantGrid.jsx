@@ -79,7 +79,9 @@ const CombatantGrid = observer(({ player, index }) => {
 
   return (
     <div className={cn(...gridClass)}>
-      <div className={cn('combatant-grid-id', { blur: blurName })}>{dispName}</div>
+      {!minimalMode && (
+        <div className={cn('combatant-grid-id', { blur: blurName })}>{dispName}</div>
+      )}
 
       <div
         className='combatant-grid-content'
