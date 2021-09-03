@@ -5,7 +5,7 @@ import cn from 'classnames';
 import useStore from '@/hooks/useStore';
 
 const CombatantDetail = observer(
-  ({ player, locked, ...props }, ref) => {
+  ({ player = {}, locked, ...props }, ref) => {
     const { t } = useTranslation();
 
     // settings
@@ -88,7 +88,6 @@ const CombatantDetail = observer(
       </div>
     );
   },
-  // `forwardRef` wrapper fix
   { forwardRef: true }
 );
 CombatantDetail.displayName = 'CombatantDetail';

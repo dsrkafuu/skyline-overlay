@@ -7,21 +7,11 @@ import CombatantTicker from './CombatantTicker';
 import * as jobIcons from '@/assets/icons';
 import { fmtNumber } from '@/utils/formatters';
 import useStore from '@/hooks/useStore';
+import CombatantBottom from './CombatantBottom';
 
 const CombatantGrid = observer(({ player, index }) => {
   // get data
-  const {
-    jobType,
-    job,
-    name,
-    dps,
-    hps,
-    maxHit,
-    maxHitDamage,
-    directHitPct,
-    critHitPct,
-    directCritHitPct,
-  } = player;
+  const { jobType, job, name, dps, hps } = player;
   const gridClass = ['combatant-grid']; // grid classnames
   const { settings } = useStore();
   const {
@@ -34,6 +24,7 @@ const CombatantGrid = observer(({ player, index }) => {
     showHPS,
     showTickers,
     shortNumber,
+    bottomDisp,
   } = settings;
 
   // display name
@@ -60,7 +51,7 @@ const CombatantGrid = observer(({ player, index }) => {
   // sub display prop
   gridClass.push({ 'combatant-grid-extend': showHPS }); // extended grid
 
-  const transMaxHitRef = useRef(); // ref for react-transition-group
+  const transBottomDispRef = useRef(); // ref for react-transition-group
   const transDetailRef = useRef(); // ref for react-transition-group
   // detail controls data
   const needDetail = useMemo(() => name !== 'Limit Break', [name]);
@@ -76,6 +67,12 @@ const CombatantGrid = observer(({ player, index }) => {
     setTimer(setTimeout(() => !lockDetail && setShowDetail(false), 300));
   }, [lockDetail]);
   const onSwitchDetailLock = useCallback(() => setLockDetail((val) => !val), []);
+
+  const transitionProps = {
+    classNames: 'fade',
+    timeout: 150,
+    unmountOnExit: true,
+  };
 
   return (
     <div className={cn(...gridClass)}>
@@ -104,36 +101,22 @@ const CombatantGrid = observer(({ player, index }) => {
         )}
       </div>
 
-      {showTickers && <CombatantTicker d={directHitPct} c={critHitPct} dc={directCritHitPct} />}
-
-      {!minimalMode && (
-        <CSSTransition
-          classNames='fade'
-          in={!needDetail || !(lockDetail || showDetail)}
-          timeout={150}
-          unmountOnExit
-          nodeRef={transMaxHitRef}
-        >
-          <div className='combatant-grid-maxhit' ref={transMaxHitRef}>
-            <span>&nbsp;{maxHit}&nbsp;</span>
-            {maxHitDamage > 0 && <span>-&nbsp;{maxHitDamage}&nbsp;</span>}
-          </div>
-        </CSSTransition>
-      )}
+      {showTickers && <CombatantTicker player={player} />}
 
       <CSSTransition
-        classNames='fade'
-        in={needDetail && (lockDetail || showDetail)}
-        timeout={150}
-        unmountOnExit
-        nodeRef={transDetailRef}
+        nodeRef={transBottomDispRef}
+        in={!minimalMode && (!needDetail || !(lockDetail || showDetail))}
+        {...transitionProps}
       >
-        <CombatantDetail
-          ref={transDetailRef}
-          player={player}
-          locked={lockDetail}
-          onClick={onSwitchDetailLock}
-        />
+        <CombatantBottom ref={transBottomDispRef} player={player} mode={bottomDisp} />
+      </CSSTransition>
+
+      <CSSTransition
+        nodeRef={transDetailRef}
+        in={needDetail && (lockDetail || showDetail)}
+        {...transitionProps}
+      >
+        <CombatantDetail ref={transDetailRef} player={player} locked={lockDetail} />
       </CSSTransition>
     </div>
   );

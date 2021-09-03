@@ -33,7 +33,7 @@
     }
 
     &-id,
-    &-maxhit {
+    &-bottom {
       line-height: 0.22rem;
       height: 0.22rem;
       font-size: $font-size-sm;
@@ -49,7 +49,7 @@
       }
     }
 
-    &-maxhit {
+    &-bottom.maxhit {
       & > span:first-child {
         flex: 0 1 auto;
         overflow: hidden;
@@ -57,6 +57,14 @@
       }
       & > span:last-child {
         flex: 0 0 auto;
+      }
+    }
+
+    &-bottom.cdpcts {
+      text-align: center;
+
+      & > span {
+        text-align: center;
       }
     }
 
@@ -172,8 +180,6 @@
     width: 100%;
     height: 0.04rem;
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
     align-items: stretch;
     margin-bottom: 0.01rem;
 

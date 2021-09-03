@@ -1,15 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
-import { SSwitch, SInputNumber } from '@/components';
+import { SSwitch, SInputNumber, SSelect } from '@/components';
 import { IChevronDown, IChevronUp } from '@/assets/svgs';
 import useStore from '@/hooks/useStore';
+import { MAP_BOTTOM_DISP } from '@/utils/constants';
 
 const SettingsData = observer(() => {
   const { t } = useTranslation();
   const { settings } = useStore();
 
-  const { sortRule, playerLimit, showLB, showTickers, showHPS, extendDetail } = settings;
+  const { sortRule, playerLimit, showLB, showTickers, showHPS, extendDetail, bottomDisp } =
+    settings;
   const {
     updateSortRule,
     updatePlayerLimit,
@@ -17,6 +19,7 @@ const SettingsData = observer(() => {
     updateShowTickers,
     updateShowHPS,
     updateExtendDetail,
+    updateBottomDisp,
   } = settings;
 
   return (
@@ -56,6 +59,14 @@ const SettingsData = observer(() => {
       <div className='settings-row'>
         <span className='settings-title'>{t('Extend Detail')}</span>
         <SSwitch value={extendDetail} onChange={(value) => updateExtendDetail(value)} />
+      </div>
+      <div className='settings-row'>
+        <span className='settings-title'>{t('Bottom Display')}</span>
+        <SSelect
+          value={bottomDisp}
+          onChange={(val) => updateBottomDisp(val)}
+          map={MAP_BOTTOM_DISP}
+        />
       </div>
     </div>
   );

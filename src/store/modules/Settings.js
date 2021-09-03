@@ -40,6 +40,7 @@ class Settings {
   showTickers = true;
   showHPS = false;
   extendDetail = false;
+  bottomDisp = 'maxhit';
 
   // display
   showRanks = false; // show rank number before id
@@ -117,6 +118,7 @@ class Settings {
   updateShowTickers = getAction('showTickers');
   updateShowHPS = getAction('showHPS');
   updateExtendDetail = getAction('extendDetail');
+  updateBottomDisp = getAction('bottomDisp');
 
   /* display */
   updateShowRanks = getAction('showRanks');

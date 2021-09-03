@@ -2,6 +2,7 @@
 export const STORAGE_PREFIX = 'SKYLINE_DATA_V2_';
 
 // value maps for selection component
+
 // languages
 import rawLang from '@/lang';
 const langMap = {};
@@ -11,6 +12,7 @@ Object.keys(rawLang).forEach((key) => {
   };
 });
 export const MAP_LANG = langMap;
+
 // short names map
 const shortNameMap = {
   ff: { text: 'First Last', data: { first: false, last: false } },
@@ -19,6 +21,15 @@ const shortNameMap = {
   tt: { text: 'F. L.', data: { first: true, last: true } },
 };
 export const MAP_SHORT_NAME = shortNameMap;
+
 // themes map
 import themes from '@/themes';
 export const MAP_THEMES = themes;
+
+// bottom display map
+const bottomDispMap = {
+  maxhit: { text: 'Max Hit' },
+  cdpcts: { text: 'C/D/CD' },
+  none: { text: 'None' },
+};
+export const MAP_BOTTOM_DISP = bottomDispMap;
