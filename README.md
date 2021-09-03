@@ -21,12 +21,7 @@ An extended version from [horizoverlay](https://github.com/bsides/horizoverlay/)
 - CloudFlare (Global): `https://skyline.dsrkafuu.su`
 - Mirror (CN DieMoe): `https://act.diemoe.net/overlays/skyline/`
 
-Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin). For WebSocket mode, only these browsers below are officially supported:
-
-- Chrome (Chromium) >= 80
-- Safari >= 13 (macOS >= 10.15)
-- Edge >= 80 (new Edge with Chromium)
-- Firefox >= 80
+Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin). For WebSocket mode, checkout [Vite Docs' Browser Support Section](https://vitejs.dev/guide/#browser-support) for compatible browsers.
 
 > Note that `backdrop-filter` support needs to be enabled manually on Firefox, check [Can I use](https://caniuse.com/css-backdrop-filter) for more details.
 
@@ -46,8 +41,8 @@ Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin)
 - [x] Custom CSS - v1.8.x
 - [x] Optional shorten numbers - v2.0.x
 - [x] C/D/CD tickers - v2.0.x
-- [ ] Minimal mode - v2.1.x
-- [ ] Switch show maxhit - v2.1.x
+- [x] Minimal mode - v2.1.x
+- [x] Switch show maxhit - v2.1.x
 - [ ] 24 combatants support - v2.x.x
 
 ## Contribute

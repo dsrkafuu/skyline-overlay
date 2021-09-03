@@ -30,7 +30,6 @@ export default defineConfig({
   },
   build: {
     emptyOutDir: true,
-    target: ['chrome80', 'firefox80', 'safari13', 'edge80'],
     sourcemap: true,
   },
 });
