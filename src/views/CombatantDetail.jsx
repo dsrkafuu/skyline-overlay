@@ -24,6 +24,7 @@ const CombatantDetail = observer(
         critHitPct,
         directCritHitPct,
         damagePct,
+        deaths,
         maxHit,
         maxHitDamage,
         maxHeal,
@@ -41,7 +42,10 @@ const CombatantDetail = observer(
       rowData.push([{ key: t('Overheal'), value: overHealPct, pct: true }]);
       !showHPS && rowData[rowData.length - 1].unshift({ key: t('Heal'), value: hps, ps: 'HPS' });
       // damage
-      rowData.push([{ key: t('Damage'), value: damagePct, pct: true }]);
+      rowData.push([
+        { key: t('Damage'), value: damagePct, pct: true },
+        { key: t('Deaths'), value: deaths },
+      ]);
       // c & d & cd
       rowData.push([
         { key: t('Direct'), value: directHitPct, pct: true },
