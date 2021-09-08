@@ -65,12 +65,6 @@ const CombatantGrid = observer(({ player, index }) => {
   }, [lockDetail]);
   const onSwitchDetailLock = useCallback(() => setLockDetail((val) => !val), []);
 
-  const transitionProps = {
-    classNames: 'fade',
-    timeout: 150,
-    unmountOnExit: true,
-  };
-
   return (
     <div className={cn(...gridClass)}>
       {!minimalMode && (
@@ -103,7 +97,8 @@ const CombatantGrid = observer(({ player, index }) => {
       <CSSTransition
         nodeRef={transBottomDispRef}
         in={!minimalMode && (!needDetail || !(lockDetail || showDetail))}
-        {...transitionProps}
+        classNames='fade'
+        timeout={150}
       >
         <CombatantBottom ref={transBottomDispRef} player={player} mode={bottomDisp} />
       </CSSTransition>
@@ -111,7 +106,9 @@ const CombatantGrid = observer(({ player, index }) => {
       <CSSTransition
         nodeRef={transDetailRef}
         in={needDetail && (lockDetail || showDetail)}
-        {...transitionProps}
+        classNames='fade'
+        timeout={150}
+        unmountOnExit={true}
       >
         <CombatantDetail ref={transDetailRef} player={player} locked={lockDetail} />
       </CSSTransition>

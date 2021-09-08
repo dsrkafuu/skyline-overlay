@@ -46,6 +46,10 @@ svg.icon {
     opacity: 1;
     @include transition();
   }
+
+  &-done {
+    opacity: 1;
+  }
 }
 .fade-exit {
   opacity: 1;
@@ -53,5 +57,9 @@ svg.icon {
   &-active {
     opacity: 0;
     @include transition();
+  }
+
+  &-done {
+    opacity: 0;
   }
 }
