@@ -1,2 +1,2 @@
-export const version = 'v2.1.0';
-export const date = 1630648224960;
+export const version = 'v2.1.1';
+export const date = 1631069596334;

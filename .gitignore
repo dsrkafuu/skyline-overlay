@@ -29,6 +29,8 @@ node_modules/
 jspm_packages/
 web_modules/
 package-lock.json
+pnpm-lock.yaml
+.pnpm-store/
 
 # ts cache
 *.tsbuildinfo
