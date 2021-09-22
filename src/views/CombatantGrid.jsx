@@ -94,14 +94,16 @@ const CombatantGrid = observer(({ player, index }) => {
 
       {showTickers && <CombatantTicker player={player} />}
 
-      <CSSTransition
-        nodeRef={transBottomDispRef}
-        in={!minimalMode && (!needDetail || !(lockDetail || showDetail))}
-        classNames='fade'
-        timeout={150}
-      >
-        <CombatantBottom ref={transBottomDispRef} player={player} mode={bottomDisp} />
-      </CSSTransition>
+      {!minimalMode && (
+        <CSSTransition
+          nodeRef={transBottomDispRef}
+          in={!needDetail || !(lockDetail || showDetail)}
+          classNames='fade'
+          timeout={150}
+        >
+          <CombatantBottom ref={transBottomDispRef} player={player} mode={bottomDisp} />
+        </CSSTransition>
+      )}
 
       <CSSTransition
         nodeRef={transDetailRef}
