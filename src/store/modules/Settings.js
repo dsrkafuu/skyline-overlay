@@ -37,7 +37,7 @@ class Settings {
   sortRule = { key: 'dps', value: -1 }; // sort data
   playerLimit = 8; // combatant limit
   showLB = true;
-  showTickers = true;
+  petMergeID = ''; // merge pet data when using global client with cn language patch
   showHPS = false;
   extendDetail = false;
   bottomDisp = 'maxhit';
@@ -45,6 +45,7 @@ class Settings {
   // display
   showRanks = false; // show rank number before id
   hlYou = true; // highlight 'YOU'
+  showTickers = true;
   youName = 'YOU'; // which to represent as 'YOU'
   shortName = { first: false, last: false };
   shortNumber = false;
@@ -115,7 +116,7 @@ class Settings {
     }
   }
   updateShowLB = getAction('showLB');
-  updateShowTickers = getAction('showTickers');
+  updatePetMergeID = getAction('petMergeID');
   updateShowHPS = getAction('showHPS');
   updateExtendDetail = getAction('extendDetail');
   updateBottomDisp = getAction('bottomDisp');
@@ -123,6 +124,7 @@ class Settings {
   /* display */
   updateShowRanks = getAction('showRanks');
   updateHlYou = getAction('hlYou');
+  updateShowTickers = getAction('showTickers');
   updateYouName = getAction('youName');
   /**
    * @param {{ first: boolean, last: boolean }} payload

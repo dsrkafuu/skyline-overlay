@@ -1,3 +1,6 @@
+import cloneDeep from 'lodash/cloneDeep';
+import OverlayAPI from 'ffxiv-overlay-api';
+
 /**
  * format number
  * @param {number} number
@@ -31,4 +34,44 @@ export function fmtNumber(number, decimal = 1) {
   }
 
   return `${sign}${number}`;
+}
+
+/**
+ * merge pet data into player
+ * @param {import('ffxiv-overlay-api').CombatantData[]} combatant
+ * @param {string} combatant
+ * @return {any[]}
+ */
+export function fmtMergePet(combatant = [], yid = 'YOU') {
+  const map = {};
+  // init all players
+  for (let i = 0; i < combatant.length; i++) {
+    const player = combatant[i];
+    if (!/\([^)]+\)/gi.exec(player.name)) {
+      if (player.name === 'YOU') {
+        map[yid] = { player: cloneDeep(player), pets: [] };
+      } else {
+        map[player.name] = { player: cloneDeep(player), pets: [] };
+      }
+    }
+  }
+  // init all pets
+  for (let i = 0; i < combatant.length; i++) {
+    const player = combatant[i];
+    const owner = /\(([^)]+)\)/gi.exec(player.name);
+    if (owner && owner[1]) {
+      let name = owner[1];
+      name === 'YOU' && (name = yid);
+      if (map[name] && map[name].pets) {
+        map[name].pets.push(cloneDeep(player));
+      }
+    }
+  }
+
+  const ret = [];
+  for (const name of Object.keys(map)) {
+    const res = OverlayAPI.mergeCombatant(map[name].player, ...map[name].pets);
+    res && ret.push(res);
+  }
+  return ret;
 }

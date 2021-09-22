@@ -12,6 +12,7 @@ const SettingsDisplay = observer(() => {
   const {
     showRanks,
     hlYou,
+    showTickers,
     youName,
     shortName: { first, last },
     shortNumber,
@@ -20,6 +21,7 @@ const SettingsDisplay = observer(() => {
   const {
     updateShowRanks,
     updateHlYou,
+    updateShowTickers,
     updateYouName,
     updateShortName,
     updateShortNumber,
@@ -37,6 +39,10 @@ const SettingsDisplay = observer(() => {
       <div className='settings-row'>
         <span className='settings-title'>{t('Highlight Self')}</span>
         <SSwitch value={hlYou} onChange={(value) => updateHlYou(value)} />
+      </div>
+      <div className='settings-row'>
+        <span className='settings-title'>{t('Show Tickers')}</span>
+        <SSwitch value={showTickers} onChange={(value) => updateShowTickers(value)} />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Custom ID')}</span>
