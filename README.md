@@ -21,9 +21,13 @@ An extended version from [horizoverlay](https://github.com/bsides/horizoverlay/)
 - CloudFlare (Global): `https://skyline.dsrkafuu.su`
 - Mirror (CN DieMoe): `https://act.diemoe.net/overlays/skyline/`
 
+## Usage
+
 Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin). For WebSocket mode, checkout [Vite Docs' Browser Support Section](https://vitejs.dev/guide/#browser-support) for compatible browsers.
 
 > Note that `backdrop-filter` support needs to be enabled manually on Firefox, check [Can I use](https://caniuse.com/css-backdrop-filter) for more details.
+
+By default the overlay follows the pet-merging policy set in the FFXIV ACT Plugin. When playing on global servers with a custom language patch which causes the plugin's pet-merging not working, you can set your ID in an overlay config to manually merge your pets' data.
 
 ## To-do List
 
