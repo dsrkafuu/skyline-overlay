@@ -43,6 +43,7 @@ Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin)
 - [x] C/D/CD tickers - v2.0.x
 - [x] Minimal mode - v2.1.x
 - [x] Switch show maxhit - v2.1.x
+- [x] Custom pet-merging - v2.2.x
 - [ ] 24 combatants support - v2.x.x
 
 ## Contribute

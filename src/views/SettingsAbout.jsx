@@ -73,6 +73,28 @@ const SettingsAbout = observer(() => {
           DSRKafuU
         </a>
       </div>
+      <div className='settings-row'>
+        <span className='settings-title'>Copyright 2015 MIT License</span>
+        <a
+          className='s-link'
+          href='https://github.com/ionic-team/ionicons'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          Ionicons
+        </a>
+      </div>
+      <div className='settings-row'>
+        <span className='settings-title'>Copyright 2010 SQUARE ENIX CO., LTD.</span>
+        <a
+          className='s-link'
+          href='https://www.finalfantasyxiv.com'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          FFXIV
+        </a>
+      </div>
     </div>
   );
 });

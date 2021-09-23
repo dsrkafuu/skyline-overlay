@@ -12,21 +12,26 @@ const Combatant = observer(() => {
     api: { combatant, lb },
     settings: { sortRule, playerLimit, showLB, petMergeID, toggleMinimalMode },
   } = useStore();
+  let players = cloneDeep(combatant);
 
-  // parse combatant settings
-  const sortedTemp = cloneDeep(combatant).sort(
-    (a, b) => sortRule.value * (a[sortRule.key] - b[sortRule.key])
-  );
-  let sortedCombatant = [];
-  for (let i = 0; i < playerLimit; i++) {
-    sortedTemp[i] && sortedTemp[i].name && sortedCombatant.push(sortedTemp[i]);
-  }
-  if (showLB && lb && lb.name === 'Limit Break') {
-    sortedCombatant.push(cloneDeep(lb));
-  }
-
+  // merge pet if enabled
   if (petMergeID) {
-    sortedCombatant = fmtMergePet(sortedCombatant, petMergeID);
+    players = fmtMergePet(players, petMergeID);
+  }
+
+  // sort combatant
+  players.sort((a, b) => sortRule.value * (a[sortRule.key] - b[sortRule.key]));
+
+  // limit combatants
+  const temp = players;
+  players = [];
+  for (let i = 0; i < playerLimit; i++) {
+    temp[i] && temp[i].name && players.push(temp[i]);
+  }
+
+  // add lb if enabled
+  if (showLB && lb && lb.name === 'Limit Break') {
+    players.push(cloneDeep(lb));
   }
 
   const handleSwitchMinimalMode = useCallback(
@@ -41,8 +46,8 @@ const Combatant = observer(() => {
     <>
       {Boolean(combatant) && combatant.length > 0 && (
         <div className='combatant' onContextMenu={handleSwitchMinimalMode}>
-          {sortedCombatant.map((value, index) => (
-            <CombatantGrid player={value} index={index} key={value.name} />
+          {players.map((player, index) => (
+            <CombatantGrid player={player} index={index} key={player.name} />
           ))}
         </div>
       )}
