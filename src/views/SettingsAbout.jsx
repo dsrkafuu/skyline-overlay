@@ -69,7 +69,7 @@ const SettingsAbout = observer(() => {
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{`Copyright ${new Date().getFullYear()} MPL-2.0 License`}</span>
-        <a className='s-link' href='https://dsrkafuu.su' target='_blank' rel='noopener noreferrer'>
+        <a className='s-link' href='https://dsrkafuu.net' target='_blank' rel='noopener noreferrer'>
           DSRKafuU
         </a>
       </div>

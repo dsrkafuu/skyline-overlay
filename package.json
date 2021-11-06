@@ -4,7 +4,7 @@
   "version": "2.2.0",
   "description": "A horizon FFXIV miniparse overlay built with React & Vite.",
   "license": "MPL-2.0",
-  "author": "DSRKafuU <dsrkafuu@outlook.com> (https://dsrkafuu.su)",
+  "author": "DSRKafuU <dsrkafuu@outlook.com> (https://dsrkafuu.net)",
   "scripts": {
     "lint": "eslint --ext \".jsx,.js\" src/",
     "compile": "vite build",

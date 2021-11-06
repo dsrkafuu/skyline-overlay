@@ -18,7 +18,7 @@ An extended version from [horizoverlay](https://github.com/bsides/horizoverlay/)
 
 ## Overlay Link
 
-- CloudFlare (Global): `https://skyline.dsrkafuu.su`
+- CloudFlare (Global): `https://skyline.dsrkafuu.net`
 - Mirror (CN DieMoe): `https://act.diemoe.net/overlays/skyline/`
 
 ## Usage
@@ -92,4 +92,4 @@ Please use [ISO 639-1:2002](https://en.wikipedia.org/wiki/List_of_ISO_639-1_code
 
 Released under `Mozilla Public License 2.0`, for more information read the [LICENSE](https://github.com/dsrkafuu/skyline-overlay/blob/main/LICENSE).
 
-**Copyright © 2020-present DSRKafuU (<https://dsrkafuu.su>)**
+**Copyright © 2020-present DSRKafuU (<https://dsrkafuu.net>)**
