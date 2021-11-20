@@ -2,25 +2,22 @@ import { isProd } from './env';
 
 /**
  * log info
- * @param {...any} args
  */
-export function logInfo(...args) {
+export function logInfo(...args: unknown[]) {
   console.info('%c[skyline-overlay]', 'color: #8aa2d3', ...args);
 }
 
 /**
  * log error
- * @param {...any} args
  */
-export function logError(...args) {
+export function logError(...args: unknown[]) {
   console.error('[skyline-overlay]', ...args);
 }
 
 /**
  * log component rerender
- * @param {any} args
  */
-export function logRender(...args) {
+export function logRender(...args: unknown[]) {
   if (isProd()) {
     return;
   }

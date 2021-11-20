@@ -3,9 +3,8 @@ import { STORAGE_PREFIX } from './constants';
 
 /**
  * set local storage
- * @param {string} key
  */
-export function setLS(key, value) {
+export function setLS(key: string, value: unknown) {
   try {
     localStorage.setItem(STORAGE_PREFIX + key.toUpperCase(), JSON.stringify(value));
   } catch (e) {
@@ -15,12 +14,12 @@ export function setLS(key, value) {
 
 /**
  * get local storage
- * @param {string} key
- * @return {any}
  */
-export function getLS(key) {
+export function getLS(key: string): unknown {
   try {
-    return JSON.parse(localStorage.getItem(STORAGE_PREFIX + key.toUpperCase())) || null;
+    const realKey = STORAGE_PREFIX + key.toUpperCase();
+    const data = JSON.parse(localStorage.getItem(realKey) || 'null');
+    return data;
   } catch (e) {
     logError(e);
     return null;
