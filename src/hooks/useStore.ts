@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { StoreContext } from '@/store';
+import { StoreContext } from '../store';
 
 /**
  * hook for use of store

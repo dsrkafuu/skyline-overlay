@@ -1,27 +1,27 @@
 import { makeAutoObservable } from 'mobx';
-import i18n from '@/i18n';
-import { setLS, getLS } from '@/utils/storage';
+import i18n from '../../i18n';
+import { setLS, getLS } from '../../utils/storage';
+
+interface SavedPartialSettings {
+  [key: string]: unknown;
+}
 
 /**
  * save settings to local storage
- * @param {Object} settings
  */
-function saveSettings(settings) {
-  const savedSettings = getLS('settings') || {};
+function saveSettings(settings: { [key: string]: unknown }) {
+  const savedSettings = (getLS('settings') || {}) as SavedPartialSettings;
   const newSettings = { ...savedSettings, ...settings };
   setLS('settings', newSettings);
 }
 
 /**
  * get a unified function to update value
- * @param {string} key
  */
-function getAction(key) {
-  /**
-   * @param {boolean|string|number} payload
-   */
-  return function (payload) {
-    this[key] = payload;
+function getAction<T>(key: keyof Settings) {
+  return function (payload: T) {
+    // @ts-expect-error incompatible T
+    (this[key] as T) = payload;
     saveSettings({ [key]: payload });
   };
 }
@@ -64,8 +64,9 @@ class Settings {
    */
   constructor() {
     // merge saved settings into default settings
-    const savedSettings = getLS('settings') || {};
+    const savedSettings = (getLS('settings') || {}) as SavedPartialSettings;
     for (const key of Object.keys(savedSettings)) {
+      // @ts-expect-error merge SavedPartialSettings into Settings
       this[key] = savedSettings[key];
     }
 
@@ -97,19 +98,12 @@ class Settings {
   }
 
   // data
-  /**
-   * @param {{ key: string, value: number }} payload
-   */
-  updateSortRule(payload) {
+  updateSortRule(payload: { key: string; value: number }) {
     const { key, value } = payload;
-    console.log(this);
     this.sortRule = { key, value };
     saveSettings({ sortRule: { key, value } });
   }
-  /**
-   * @param {number} payload
-   */
-  updatePlayerLimit(payload) {
+  updatePlayerLimit(payload: number) {
     if (payload > 0) {
       this.playerLimit = payload;
       saveSettings({ playerLimit: payload });
@@ -126,10 +120,7 @@ class Settings {
   updateHlYou = getAction('hlYou');
   updateShowTickers = getAction('showTickers');
   updateYouName = getAction('youName');
-  /**
-   * @param {{ first: boolean, last: boolean }} payload
-   */
-  updateShortName(payload) {
+  updateShortName(payload: { first: boolean; last: boolean }) {
     const { first, last } = payload;
     this.shortName = { first, last };
     saveSettings({ shortName: { first, last } });
@@ -138,10 +129,7 @@ class Settings {
   updateBlurName = getAction('blurName');
 
   /* layout */
-  /**
-   * @param {string} payload
-   */
-  updateTheme(payload) {
+  updateTheme(payload: string) {
     this.theme = payload;
     if (payload === 'default') {
       document.body.removeAttribute('data-theme');
@@ -150,27 +138,18 @@ class Settings {
     }
     saveSettings({ theme: payload });
   }
-  /**
-   * @param {string} payload
-   */
-  updateLang(payload) {
+  updateLang(payload: string) {
     this.lang = payload;
     i18n.changeLanguage(payload);
     document.documentElement.setAttribute('lang', payload);
     saveSettings({ lang: payload });
   }
-  /**
-   * @param {number} payload
-   */
-  updateZoom(payload) {
+  updateZoom(payload: number) {
     this.zoom = payload;
     document.documentElement.style.fontSize = `${Math.floor(100 * payload) || 100}px`;
     saveSettings({ zoom: payload });
   }
-  /**
-   * @param {number} payload
-   */
-  updateCustomCSS(payload) {
+  updateCustomCSS(payload: string) {
     this.customCSS = payload;
     const customStyles = document.querySelector('#skyline-ccss');
     if (customStyles) {

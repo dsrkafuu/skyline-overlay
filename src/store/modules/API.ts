@@ -1,7 +1,15 @@
-import OverlayAPI from 'ffxiv-overlay-api';
+import OverlayAPI, { ExtendData } from 'ffxiv-overlay-api';
+import cloneDeep from 'lodash/cloneDeep';
 import { makeAutoObservable } from 'mobx';
 
-import { logInfo } from '@/utils/loggers';
+import { logInfo } from '../../utils/loggers';
+
+const cleanData: ExtendData = {
+  isActive: false,
+  encounter: {} as never,
+  limitBreak: undefined,
+  combatant: [],
+};
 
 class API {
   /** @mobx state */
@@ -11,7 +19,7 @@ class API {
     silentMode: true,
     seperateLB: true,
   });
-  data = { isActive: false, encounter: {}, limitBreak: null, combatant: [] };
+  data: ExtendData = cloneDeep(cleanData);
 
   /** @mobx computed */
 
@@ -48,25 +56,18 @@ class API {
 
   /**
    * update overlay api instance
-   * @param {OverlayAPI|null} payload
    */
-  updateOverlay(payload) {
-    if (payload === null || payload instanceof OverlayAPI) {
-      if (this.overlay) {
-        this.overlay.removeAllListener();
-      }
-      this.overlay = payload;
+  updateOverlay(payload: OverlayAPI) {
+    if (this.overlay) {
+      this.overlay.removeAllListener('CombatData');
     }
+    this.overlay = payload;
   }
   /**
    * update new combat data
-   * @param {{ isActive: boolean, encounter: any, combatant: Array<any> }} action
    */
-  updateCombat(payload) {
+  updateCombat(payload: ExtendData) {
     if (payload.isActive !== undefined && payload.encounter && payload.combatant) {
-      if (!payload.limitBreak) {
-        payload.limitBreak = null;
-      }
       this.data = payload;
     }
   }
@@ -74,7 +75,7 @@ class API {
    * clear combat data
    */
   clearCombat() {
-    this.data = { isActive: false, encounter: {}, limitBreak: null, combatant: [] };
+    this.data = cloneDeep(cleanData);
   }
 }
 

@@ -15,17 +15,11 @@ configure({
 });
 
 /**
- * @class
  * combined root store
  */
 class Store {
-  /**
-   * @constructor
-   */
-  constructor() {
-    this.api = new API(this);
-    this.settings = new Settings(this);
-  }
+  api = new API();
+  settings = new Settings();
 }
 
 // init store instance
