@@ -10,15 +10,15 @@ import SettingsDisplay from './SettingsDisplay';
 import SettingsGeneral from './SettingsGeneral';
 import useStore from '@/hooks/useStore';
 
-const Settings = observer(() => {
+function Settings() {
   const { t } = useTranslation();
 
   const Components = useMemo(
     () => [
-      { title: t('About'), component: <SettingsAbout /> },
-      { title: t('Data'), component: <SettingsData /> },
-      { title: t('Display'), component: <SettingsDisplay /> },
-      { title: t('General'), component: <SettingsGeneral /> },
+      { title: t('About'), Component: SettingsAbout },
+      { title: t('Data'), Component: SettingsData },
+      { title: t('Display'), Component: SettingsDisplay },
+      { title: t('General'), Component: SettingsGeneral },
     ],
     [t]
   );
@@ -30,6 +30,8 @@ const Settings = observer(() => {
   const {
     settings: { showSettings },
   } = useStore();
+
+  const ActiveComponent = Components[activeTab].Component;
 
   return (
     <CSSTransition
@@ -51,10 +53,12 @@ const Settings = observer(() => {
             </div>
           ))}
         </div>
-        <div className='settings-content'>{Components[activeTab].component}</div>
+        <div className='settings-content'>
+          <ActiveComponent />
+        </div>
       </div>
     </CSSTransition>
   );
-});
+}
 
-export default Settings;
+export default observer(Settings);
