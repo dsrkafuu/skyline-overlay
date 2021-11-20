@@ -19,7 +19,9 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint", "react", "react-hooks"],
-  "rules": {},
+  "rules": {
+    "react/prop-types": "off"
+  },
   "settings": {
     "react": {
       "version": "detect"
