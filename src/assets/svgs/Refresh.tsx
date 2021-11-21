@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 function SvgRefresh(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg

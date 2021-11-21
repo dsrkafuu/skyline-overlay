@@ -1,11 +1,21 @@
-import React, { memo, useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import cn from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import './SSelect.scss';
-import { IChevronDown, IChevronUp } from '@/assets/svgs';
+import { IChevronDown, IChevronUp } from '../assets/svgs';
 
-function SSelect({ value, onChange, map }) {
-  const transRef = useRef(); // ref for react-transition-group
+interface SSelectMap {
+  [key: string]: { text: string; data: unknown };
+}
+
+interface SSelectProps {
+  value: string;
+  onChange: (value: string, data: unknown) => void;
+  map: SSelectMap;
+}
+
+function SSelect({ value, onChange, map }: SSelectProps) {
+  const transRef = useRef<HTMLDivElement>(null); // ref for react-transition-group
 
   const [active, setActive] = useState(false);
 
@@ -44,4 +54,4 @@ function SSelect({ value, onChange, map }) {
   );
 }
 
-export default memo(SSelect);
+export default SSelect;

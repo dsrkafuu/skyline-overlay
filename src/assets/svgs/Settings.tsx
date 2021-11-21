@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 function SvgSettings(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg

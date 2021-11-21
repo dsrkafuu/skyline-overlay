@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 function SvgRemove(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg

@@ -1,5 +1,5 @@
 import cloneDeep from 'lodash/cloneDeep';
-import OverlayAPI, { CombatantData } from 'ffxiv-overlay-api';
+import OverlayAPI from 'ffxiv-overlay-api';
 
 /**
  * format number
@@ -35,13 +35,13 @@ export function fmtNumber(number: number, decimal = 1) {
 }
 
 interface PetMergeTempMap {
-  [key: string]: { player: CombatantData; pets: CombatantData[] };
+  [key: string]: { player: OverlayAPI.CombatantData; pets: OverlayAPI.CombatantData[] };
 }
 
 /**
  * merge pet data into player
  */
-export function fmtMergePet(combatant: CombatantData[] = [], yid = 'YOU') {
+export function fmtMergePet(combatant: OverlayAPI.CombatantData[] = [], yid = 'YOU') {
   const map: PetMergeTempMap = {};
   // init all players
   for (let i = 0; i < combatant.length; i++) {
@@ -67,7 +67,7 @@ export function fmtMergePet(combatant: CombatantData[] = [], yid = 'YOU') {
     }
   }
 
-  const ret: CombatantData[] = [];
+  const ret: OverlayAPI.CombatantData[] = [];
   for (const name of Object.keys(map)) {
     const res = OverlayAPI.mergeCombatant(map[name].player, ...map[name].pets);
     res && ret.push(res);

@@ -20,7 +20,11 @@
   },
   "plugins": ["@typescript-eslint", "react", "react-hooks"],
   "rules": {
-    "react/prop-types": "off"
+    // Just use TypeScript
+    "react/prop-types": "off",
+    // No need for React 17+
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
   },
   "settings": {
     "react": {

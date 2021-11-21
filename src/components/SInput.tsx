@@ -1,18 +1,21 @@
-import React, { memo, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { isCEF } from '@/utils/env';
+import { isCEF } from '../utils/env';
 import cn from 'classnames';
 import './SInput.scss';
 
-function SInput({ value, onChange }) {
+interface SInputProps {
+  value: string;
+  onChange: (value: string) => void;
+  props?: unknown[];
+}
+
+function SInput({ value, onChange, ...props }: SInputProps) {
   const { t } = useTranslation();
   const [focused, setFocused] = useState(false);
 
-  /**
-   * @param {React.BaseSyntheticEvent} e
-   */
   const handleInput = useCallback(
-    (e) => {
+    (e: React.ChangeEvent<HTMLInputElement>) => {
       onChange(e.target.value);
     },
     [onChange]
@@ -23,7 +26,7 @@ function SInput({ value, onChange }) {
    */
   const handleClick = useCallback(() => {
     if (isCEF()) {
-      const ret = prompt(t('Please enter the new value'), value);
+      const ret = prompt(t('Please enter the new value'), value) || '';
       const str = `${ret}`.trim();
       if (ret && str) {
         onChange(str);
@@ -33,7 +36,7 @@ function SInput({ value, onChange }) {
 
   if (isCEF()) {
     return (
-      <div className='s-input s-input-cef btn' onClick={handleClick}>
+      <div className='s-input s-input-cef btn' onClick={handleClick} {...props}>
         {value}
       </div>
     );
@@ -47,9 +50,10 @@ function SInput({ value, onChange }) {
         onBlur={() => setFocused(false)}
         type='text'
         autoComplete='off'
+        {...props}
       />
     );
   }
 }
 
-export default memo(SInput);
+export default SInput;

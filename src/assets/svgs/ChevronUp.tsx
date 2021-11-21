@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 function SvgChevronUp(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
