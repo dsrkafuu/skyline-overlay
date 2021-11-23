@@ -7,10 +7,11 @@
   "author": "DSRKafuU <dsrkafuu@outlook.com> (https://dsrkafuu.net)",
   "scripts": {
     "svgr": "@svgr/cli -d \"./src/assets/svgs\" --ext \"tsx\" --svg-props \"className=icon\" --icon --typescript --ignore-existing \"./src/assets/svgs\"",
-    "lint": "eslint --ext \".jsx,.js,.tsx,.ts\" \"./src\"",
+    "eslint": "eslint --ext \".jsx,.js,.tsx,.ts\" \"./src\"",
+    "typecheck": "tsc",
     "compile": "vite build",
     "cleanup": "node \"./scripts/cleanup.js\"",
-    "build": "cross-env NODE_ENV=production concurrently -m 1 npm:lint npm:compile npm:cleanup",
+    "build": "cross-env NODE_ENV=production run-s typecheck eslint compile cleanup",
     "dev": "cross-env NODE_ENV=development vite"
   },
   "dependencies": {
@@ -37,12 +38,12 @@
     "@typescript-eslint/parser": "~5.4.0",
     "@vitejs/plugin-react-refresh": "~1.3.6",
     "chalk": "~4.1.2",
-    "concurrently": "~6.4.0",
     "cross-env": "~7.0.3",
     "eslint": "~8.2.0",
     "eslint-plugin-react": "~7.27.1",
     "eslint-plugin-react-hooks": "~4.3.0",
     "glob": "~7.2.0",
+    "npm-run-all": "~4.1.5",
     "prettier": "~2.4.1",
     "sass": "~1.43.4",
     "typescript": "~4.5.2",
