@@ -1,10 +1,10 @@
-import OverlayAPI, { ExtendData } from 'ffxiv-overlay-api';
+import OverlayAPI from 'ffxiv-overlay-api';
 import cloneDeep from 'lodash/cloneDeep';
 import { makeAutoObservable } from 'mobx';
 
 import { logInfo } from '../../utils/loggers';
 
-const cleanData: ExtendData = {
+const cleanData: OverlayAPI.ExtendData = {
   isActive: false,
   encounter: {} as never,
   limitBreak: undefined,
@@ -19,7 +19,7 @@ class API {
     silentMode: true,
     seperateLB: true,
   });
-  data: ExtendData = cloneDeep(cleanData);
+  data: OverlayAPI.ExtendData = cloneDeep(cleanData);
 
   /** @mobx computed */
 
@@ -66,7 +66,7 @@ class API {
   /**
    * update new combat data
    */
-  updateCombat(payload: ExtendData) {
+  updateCombat(payload: OverlayAPI.ExtendData) {
     if (payload.isActive !== undefined && payload.encounter && payload.combatant) {
       this.data = payload;
     }
