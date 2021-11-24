@@ -1,12 +1,13 @@
 import React, { useCallback } from 'react';
+import OverlayAPI from 'ffxiv-overlay-api';
 import { observer } from 'mobx-react-lite';
 import cloneDeep from 'lodash/cloneDeep';
 import './Combatant.scss';
 import CombatantGrid from './CombatantGrid';
-import useStore from '@/hooks/useStore';
-import { fmtMergePet } from '@/utils/formatters';
+import useStore from '../hooks/useStore';
+import { fmtMergePet } from '../utils/formatters';
 
-const Combatant = observer(() => {
+function Combatant() {
   // get data from store
   const {
     api: { combatant, lb },
@@ -20,7 +21,7 @@ const Combatant = observer(() => {
   }
 
   // sort combatant
-  players.sort((a, b) => sortRule.value * (a[sortRule.key] - b[sortRule.key]));
+  players.sort((a, b) => sortRule * (a.dps - b.dps));
 
   // limit combatants
   const temp = players;
@@ -31,7 +32,7 @@ const Combatant = observer(() => {
 
   // add lb if enabled
   if (showLB && lb && lb.name === 'Limit Break') {
-    players.push(cloneDeep(lb));
+    players.push(cloneDeep(lb) as OverlayAPI.CombatantData);
   }
 
   const handleSwitchMinimalMode = useCallback(
@@ -53,6 +54,6 @@ const Combatant = observer(() => {
       )}
     </>
   );
-});
+}
 
-export default Combatant;
+export default observer(Combatant);

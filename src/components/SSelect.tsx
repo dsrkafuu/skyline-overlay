@@ -4,13 +4,16 @@ import { CSSTransition } from 'react-transition-group';
 import './SSelect.scss';
 import { IChevronDown, IChevronUp } from '../assets/icons';
 
-interface SSelectMap {
-  [key: string]: { text: string; data: unknown };
+export interface SSelectMap {
+  [key: string]: {
+    text: string; // text to display
+    data?: unknown; // extendable data for custom maps
+  };
 }
 
 interface SSelectProps {
-  value: string;
-  onChange: (value: string, data: unknown) => void;
+  value: string; // selected value (map's key)
+  onChange: (value: string, data?: unknown) => void;
   map: SSelectMap;
 }
 
@@ -19,12 +22,8 @@ function SSelect({ value, onChange, map }: SSelectProps) {
 
   const [active, setActive] = useState(false);
 
-  /**
-   * @param {string} value
-   * @param {any} data
-   */
   const handleChange = useCallback(
-    (value, data) => {
+    (value: string, data?: unknown) => {
       setActive(false);
       onChange(value, data);
     },

@@ -1,18 +1,25 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { observer } from 'mobx-react-lite';
-import cn from 'classnames';
+import cn, { Argument } from 'classnames';
 import { CSSTransition } from 'react-transition-group';
+import OverlayAPI from 'ffxiv-overlay-api';
 import CombatantDetail from './CombatantDetail';
 import CombatantTicker from './CombatantTicker';
 import * as jobIcons from '../assets/jobs';
 import { fmtNumber } from '../utils/formatters';
+import { MAP_SHORT_NAME } from '../utils/constants';
 import useStore from '../hooks/useStore';
 import CombatantBottom from './CombatantBottom';
 
-const CombatantGrid = observer(({ player, index }) => {
+interface CombatantGridProps {
+  player: OverlayAPI.CombatantData;
+  index: number;
+}
+
+function CombatantGrid({ player, index }: CombatantGridProps) {
   // get data
   const { jobType, job, name, dps, hps } = player;
-  const gridClass = ['combatant-grid']; // grid classnames
+  const gridClass: Argument[] = ['combatant-grid']; // grid classnames
   const { settings } = useStore();
   const {
     minimalMode,
@@ -33,9 +40,10 @@ const CombatantGrid = observer(({ player, index }) => {
   dispName === '' && (dispName = 'YOU'); // prevent empty
   // checker whether to shorten
   const splitName = dispName.split(' ');
+  const shortNameCheck = MAP_SHORT_NAME[shortName].data;
   if (splitName.length === 2) {
-    shortName.first && splitName[0].charAt(0) && (splitName[0] = `${splitName[0].charAt(0)}.`);
-    shortName.last && splitName[1].charAt(0) && (splitName[1] = `${splitName[1].charAt(0)}.`);
+    shortNameCheck.first && splitName[0].charAt(0) && (splitName[0] = `${splitName[0].charAt(0)}.`);
+    shortNameCheck.last && splitName[1].charAt(0) && (splitName[1] = `${splitName[1].charAt(0)}.`);
     dispName = splitName.join(' ');
   }
   showRanks && (dispName = `${index + 1}. ${dispName}`); // if show ranks
@@ -48,25 +56,25 @@ const CombatantGrid = observer(({ player, index }) => {
   // sub display prop
   gridClass.push({ 'combatant-grid-extend': showHPS }); // extended grid
 
-  const transBottomDispRef = useRef(); // ref for react-transition-group
-  const transDetailRef = useRef(); // ref for react-transition-group
+  const transBottomDispRef = useRef<HTMLDivElement>(null); // ref for react-transition-group
+  const transDetailRef = useRef<HTMLDivElement>(null); // ref for react-transition-group
   // detail controls data
   const needDetail = name !== 'Limit Break';
   const [showDetail, setShowDetail] = useState(false);
   const [lockDetail, setLockDetail] = useState(false);
   // detail controls controllers
-  const [timer, setTimer] = useState(null);
+  const [timer, setTimer] = useState<number>(-1);
   const onDetailEnter = useCallback(() => {
-    timer && clearTimeout(timer);
+    timer && window.clearTimeout(timer);
     setShowDetail(true);
   }, [timer]);
   const onDetailLeave = useCallback(() => {
-    setTimer(setTimeout(() => !lockDetail && setShowDetail(false), 300));
+    setTimer(window.setTimeout(() => !lockDetail && setShowDetail(false), 300));
   }, [lockDetail]);
   const onSwitchDetailLock = useCallback(() => setLockDetail((val) => !val), []);
 
   // job icon component
-  const Icon = jobIcons[job] || jobIcons.ffxiv;
+  const Icon = jobIcons[job as keyof typeof jobIcons] || jobIcons.ffxiv;
 
   return (
     <div className={cn(...gridClass)}>
@@ -119,6 +127,6 @@ const CombatantGrid = observer(({ player, index }) => {
       </CSSTransition>
     </div>
   );
-});
+}
 
-export default CombatantGrid;
+export default observer(CombatantGrid);

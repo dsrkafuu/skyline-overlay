@@ -2,28 +2,17 @@ import { makeAutoObservable } from 'mobx';
 import i18n from '../../i18n';
 import { setLS, getLS } from '../../utils/storage';
 
-interface SavedPartialSettings {
-  [key: string]: unknown;
+interface PartialSettings {
+  [key: string]: number | string | boolean;
 }
 
 /**
  * save settings to local storage
  */
-function saveSettings(settings: { [key: string]: unknown }) {
-  const savedSettings = (getLS('settings') || {}) as SavedPartialSettings;
+function saveSettings(settings: PartialSettings) {
+  const savedSettings = (getLS('settings') || {}) as PartialSettings;
   const newSettings = { ...savedSettings, ...settings };
   setLS('settings', newSettings);
-}
-
-/**
- * get a unified function to update value
- */
-function getAction<T>(key: keyof Settings) {
-  return function (payload: T) {
-    // @ts-expect-error incompatible T
-    (this[key] as T) = payload;
-    saveSettings({ [key]: payload });
-  };
 }
 
 class Settings {
@@ -34,7 +23,7 @@ class Settings {
   minimalMode = false;
 
   // data
-  sortRule = { key: 'dps', value: -1 }; // sort data
+  sortRule = -1; // sort data
   playerLimit = 8; // combatant limit
   showLB = true;
   petMergeID = ''; // merge pet data when using global client with cn language patch
@@ -47,7 +36,7 @@ class Settings {
   hlYou = true; // highlight 'YOU'
   showTickers = true;
   youName = 'YOU'; // which to represent as 'YOU'
-  shortName = { first: false, last: false };
+  shortName = 'fstlst';
   shortNumber = false;
   blurName = false;
 
@@ -64,9 +53,9 @@ class Settings {
    */
   constructor() {
     // merge saved settings into default settings
-    const savedSettings = (getLS('settings') || {}) as SavedPartialSettings;
+    const savedSettings = (getLS('settings') || {}) as PartialSettings;
     for (const key of Object.keys(savedSettings)) {
-      // @ts-expect-error merge SavedPartialSettings into Settings
+      // @ts-expect-error merge PartialSettings into Settings
       this[key] = savedSettings[key];
     }
 
@@ -98,35 +87,64 @@ class Settings {
   }
 
   // data
-  updateSortRule(payload: { key: string; value: number }) {
-    const { key, value } = payload;
-    this.sortRule = { key, value };
-    saveSettings({ sortRule: { key, value } });
+  updateSortRule(payload: number) {
+    this.sortRule = payload;
+    saveSettings({ sortRule: payload });
   }
   updatePlayerLimit(payload: number) {
-    if (payload > 0) {
-      this.playerLimit = payload;
-      saveSettings({ playerLimit: payload });
-    }
+    this.playerLimit = payload;
+    saveSettings({ playerLimit: payload });
   }
-  updateShowLB = getAction('showLB');
-  updatePetMergeID = getAction('petMergeID');
-  updateShowHPS = getAction('showHPS');
-  updateExtendDetail = getAction('extendDetail');
-  updateBottomDisp = getAction('bottomDisp');
+  updateShowLB(payload: boolean) {
+    this.showLB = payload;
+    saveSettings({ showLB: payload });
+  }
+  updatePetMergeID(payload: string) {
+    this.petMergeID = payload;
+    saveSettings({ petMergeID: payload });
+  }
+  updateShowHPS(payload: boolean) {
+    this.showHPS = payload;
+    saveSettings({ showHPS: payload });
+  }
+  updateExtendDetail(payload: boolean) {
+    this.extendDetail = payload;
+    saveSettings({ extendDetail: payload });
+  }
+  updateBottomDisp(payload: string) {
+    this.bottomDisp = payload;
+    saveSettings({ bottomDisp: payload });
+  }
 
   /* display */
-  updateShowRanks = getAction('showRanks');
-  updateHlYou = getAction('hlYou');
-  updateShowTickers = getAction('showTickers');
-  updateYouName = getAction('youName');
-  updateShortName(payload: { first: boolean; last: boolean }) {
-    const { first, last } = payload;
-    this.shortName = { first, last };
-    saveSettings({ shortName: { first, last } });
+  updateShowRanks(payload: boolean) {
+    this.showRanks = payload;
+    saveSettings({ showRanks: payload });
   }
-  updateShortNumber = getAction('shortNumber');
-  updateBlurName = getAction('blurName');
+  updateHlYou(payload: boolean) {
+    this.hlYou = payload;
+    saveSettings({ hlYou: payload });
+  }
+  updateShowTickers(payload: boolean) {
+    this.showTickers = payload;
+    saveSettings({ showTickers: payload });
+  }
+  updateYouName(payload: string) {
+    this.youName = payload;
+    saveSettings({ youName: payload });
+  }
+  updateShortName(payload: string) {
+    this.shortName = payload;
+    saveSettings({ shortName: payload });
+  }
+  updateShortNumber(payload: boolean) {
+    this.shortNumber = payload;
+    saveSettings({ shortNumber: payload });
+  }
+  updateBlurName(payload: boolean) {
+    this.blurName = payload;
+    saveSettings({ blurName: payload });
+  }
 
   /* layout */
   updateTheme(payload: string) {

@@ -1,23 +1,15 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
-import { SInput, SSwitch, SSelect } from '@/components';
-import useStore from '@/hooks/useStore';
-import { MAP_SHORT_NAME } from '@/utils/constants';
+import { SInput, SSwitch, SSelect } from '../components';
+import useStore from '../hooks/useStore';
+import { MAP_SHORT_NAME } from '../utils/constants';
 
 const SettingsDisplay = observer(() => {
   const { t } = useTranslation();
   const { settings } = useStore();
 
-  const {
-    showRanks,
-    hlYou,
-    showTickers,
-    youName,
-    shortName: { first, last },
-    shortNumber,
-    blurName,
-  } = settings;
+  const { showRanks, hlYou, showTickers, youName, shortName, shortNumber, blurName } = settings;
   const {
     updateShowRanks,
     updateHlYou,
@@ -28,41 +20,35 @@ const SettingsDisplay = observer(() => {
     updateBlurName,
   } = settings;
 
-  const shortNameValue = `${first}`.slice(0, 1) + `${last}`.slice(0, 1);
-
   return (
     <div className='settings-display'>
       <div className='settings-row'>
         <span className='settings-title'>{t('Show Ranks')}</span>
-        <SSwitch value={showRanks} onChange={(value) => updateShowRanks(value)} />
+        <SSwitch value={showRanks} onChange={(val) => updateShowRanks(val)} />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Highlight Self')}</span>
-        <SSwitch value={hlYou} onChange={(value) => updateHlYou(value)} />
+        <SSwitch value={hlYou} onChange={(val) => updateHlYou(val)} />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Show Tickers')}</span>
-        <SSwitch value={showTickers} onChange={(value) => updateShowTickers(value)} />
+        <SSwitch value={showTickers} onChange={(val) => updateShowTickers(val)} />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Custom ID')}</span>
-        <SInput value={youName} onChange={(value) => updateYouName(value)} />
+        <SInput value={youName} onChange={(val) => updateYouName(val)} />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Shorten Name')}</span>
-        <SSelect
-          value={shortNameValue}
-          onChange={(_, data) => updateShortName(data)}
-          map={MAP_SHORT_NAME}
-        />
+        <SSelect value={shortName} onChange={(val) => updateShortName(val)} map={MAP_SHORT_NAME} />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Shorten Number')}</span>
-        <SSwitch value={shortNumber} onChange={(value) => updateShortNumber(value)} />
+        <SSwitch value={shortNumber} onChange={(val) => updateShortNumber(val)} />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Blur Name')}</span>
-        <SSwitch value={blurName} onChange={(value) => updateBlurName(value)} />
+        <SSwitch value={blurName} onChange={(val) => updateBlurName(val)} />
       </div>
     </div>
   );
