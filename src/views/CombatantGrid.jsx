@@ -66,7 +66,7 @@ const CombatantGrid = observer(({ player, index }) => {
   const onSwitchDetailLock = useCallback(() => setLockDetail((val) => !val), []);
 
   // job icon component
-  const Icon = jobIcons[job] || 'div';
+  const Icon = jobIcons[job] || jobIcons.ffxiv;
 
   return (
     <div className={cn(...gridClass)}>
