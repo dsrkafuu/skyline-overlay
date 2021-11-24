@@ -4,9 +4,9 @@ import cn from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import CombatantDetail from './CombatantDetail';
 import CombatantTicker from './CombatantTicker';
-import * as jobIcons from '@/assets/icons';
-import { fmtNumber } from '@/utils/formatters';
-import useStore from '@/hooks/useStore';
+import * as jobIcons from '../assets/jobs';
+import { fmtNumber } from '../utils/formatters';
+import useStore from '../hooks/useStore';
 import CombatantBottom from './CombatantBottom';
 
 const CombatantGrid = observer(({ player, index }) => {
@@ -65,6 +65,9 @@ const CombatantGrid = observer(({ player, index }) => {
   }, [lockDetail]);
   const onSwitchDetailLock = useCallback(() => setLockDetail((val) => !val), []);
 
+  // job icon component
+  const Icon = jobIcons[job] || 'div';
+
   return (
     <div className={cn(...gridClass)}>
       {!minimalMode && (
@@ -82,7 +85,7 @@ const CombatantGrid = observer(({ player, index }) => {
           <span className='s-counter'>DPS</span>
         </div>
         <span className='job-icon'>
-          <img src={jobIcons[job] || jobIcons.ffxiv} />
+          <Icon />
         </span>
         {showHPS && (
           <div className='combatant-grid-data'>

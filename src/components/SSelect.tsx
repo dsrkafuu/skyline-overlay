@@ -1,8 +1,8 @@
-import { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import cn from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import './SSelect.scss';
-import { IChevronDown, IChevronUp } from '../assets/svgs';
+import { IChevronDown, IChevronUp } from '../assets/icons';
 
 interface SSelectMap {
   [key: string]: { text: string; data: unknown };

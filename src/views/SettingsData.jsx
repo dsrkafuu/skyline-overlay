@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import { SSwitch, SInputNumber, SSelect, SInput } from '@/components';
-import { IChevronDown, IChevronUp } from '@/assets/svgs';
+import { IChevronDown, IChevronUp } from '@/assets/icons';
 import useStore from '@/hooks/useStore';
 import { MAP_BOTTOM_DISP } from '@/utils/constants';
 

@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
 import './Encounter.scss';
 import { version } from '@/assets/version';
-import { IRefresh, ISettings } from '@/assets/svgs';
+import { IRefresh, ISettings } from '@/assets/icons';
 import { logInfo } from '@/utils/loggers';
 import useStore from '@/hooks/useStore';
 

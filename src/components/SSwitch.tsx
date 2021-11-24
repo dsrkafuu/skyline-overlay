@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import './SSwitch.scss';
-import { ICheckmark, IClose } from '../assets/svgs';
+import { ICheckmark, IClose } from '../assets/icons';
 
 interface SSwitchProps {
   value: boolean;

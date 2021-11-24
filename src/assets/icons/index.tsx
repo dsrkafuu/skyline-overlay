@@ -1,0 +1,8 @@
+export { default as IAdd } from './IAdd'
+export { default as ICheckmark } from './ICheckmark'
+export { default as IChevronDown } from './IChevronDown'
+export { default as IChevronUp } from './IChevronUp'
+export { default as IClose } from './IClose'
+export { default as IRefresh } from './IRefresh'
+export { default as IRemove } from './IRemove'
+export { default as ISettings } from './ISettings'

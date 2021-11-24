@@ -1,6 +1,6 @@
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import './SInputNumber.scss';
-import { IAdd, IRemove } from '../assets/svgs';
+import { IAdd, IRemove } from '../assets/icons';
 
 interface SInputNumberProps {
   value: number;
