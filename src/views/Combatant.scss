@@ -104,7 +104,7 @@
 
       .ijob {
         font-size: 0.24rem;
-        filter: drop-shadow(0 0.01rem 0.03rem rgba(0, 0, 0, 0.6));
+        filter: drop-shadow(var(--shadow-icon));
       }
     }
   }
