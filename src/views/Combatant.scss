@@ -98,11 +98,13 @@
       left: 0.05rem;
       width: 0.24rem;
       height: 0.24rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-      img {
-        display: block;
-        width: 100%;
-        height: 100%;
+      .ijob {
+        font-size: 0.24rem;
+        filter: drop-shadow(0 0.01rem 0.03rem rgba(0, 0, 0, 0.6));
       }
     }
   }
