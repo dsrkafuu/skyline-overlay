@@ -5,8 +5,12 @@ import { getLS, setLS } from './utils/storage';
 
 import lang from './lang';
 
+interface PartialSettingsWithLang {
+  lang?: string;
+}
+
 // get initial language from storage , if not exist then auto detected
-let settings = getLS('settings') || {};
+const settings: PartialSettingsWithLang = (getLS('settings') || {}) as PartialSettingsWithLang;
 if (!settings.lang) {
   settings.lang = navigator.language.substr(0, 2);
   setLS('settings', settings);

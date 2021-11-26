@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import OverlayAPI from 'ffxiv-overlay-api';
+import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import { observer } from 'mobx-react-lite';
 import cloneDeep from 'lodash/cloneDeep';
 import './Combatant.scss';
@@ -13,7 +13,7 @@ function Combatant() {
     api: { combatant, lb },
     settings: { sortRule, playerLimit, showLB, petMergeID, toggleMinimalMode },
   } = useStore();
-  let players = cloneDeep(combatant);
+  let players: Array<CombatantData | LimitBreakData> = cloneDeep(combatant);
 
   // merge pet if enabled
   if (petMergeID) {
@@ -32,7 +32,7 @@ function Combatant() {
 
   // add lb if enabled
   if (showLB && lb && lb.name === 'Limit Break') {
-    players.push(cloneDeep(lb) as OverlayAPI.CombatantData);
+    players.push(cloneDeep(lb));
   }
 
   const handleSwitchMinimalMode = useCallback(

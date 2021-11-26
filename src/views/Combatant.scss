@@ -21,10 +21,10 @@
     &.jobtype-tank &-content {
       background-color: var(--color-combatant-bg-tank);
     }
-    &.jobtype-heal &-content {
+    &.jobtype-healer &-content {
       background-color: var(--color-combatant-bg-heal);
     }
-    &.jobtype-others &-content {
+    &.jobtype-unknown &-content {
       background-color: var(--color-combatant-bg-others);
     }
     // self highlight color
@@ -105,6 +105,7 @@
       .ijob {
         font-size: 0.24rem;
         filter: drop-shadow(var(--shadow-icon));
+        color: var(--color-fg);
       }
     }
   }

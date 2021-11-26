@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import { observer } from 'mobx-react-lite';
 import cn, { Argument } from 'classnames';
 import { CSSTransition } from 'react-transition-group';
-import OverlayAPI from 'ffxiv-overlay-api';
+import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import CombatantDetail from './CombatantDetail';
 import CombatantTicker from './CombatantTicker';
 import * as jobIcons from '../assets/jobs';
@@ -10,15 +10,16 @@ import { fmtNumber } from '../utils/formatters';
 import { MAP_SHORT_NAME } from '../utils/constants';
 import useStore from '../hooks/useStore';
 import CombatantBottom from './CombatantBottom';
+import { isLimitBreakData } from '../utils/type';
 
 interface CombatantGridProps {
-  player: OverlayAPI.CombatantData;
+  player: CombatantData | LimitBreakData;
   index: number;
 }
 
 function CombatantGrid({ player, index }: CombatantGridProps) {
   // get data
-  const { jobType, job, name, dps, hps } = player;
+  const { name, dps, hps } = player;
   const gridClass: Argument[] = ['combatant-grid']; // grid classnames
   const { settings } = useStore();
   const {
@@ -49,9 +50,13 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
   showRanks && (dispName = `${index + 1}. ${dispName}`); // if show ranks
 
   // class names related to job
-  gridClass.push({ 'job-self': hlYou && name === 'YOU' }); // highlight
-  gridClass.push(`job-${job || 'others'}`); // job
-  gridClass.push(`jobtype-${jobType || 'others'}`); // jobtype
+  if (isLimitBreakData(player)) {
+    gridClass.push('job-unknown');
+  } else {
+    gridClass.push({ 'job-self': hlYou && name === 'YOU' }); // highlight
+    gridClass.push(`job-${player.job || 'unknown'}`); // job
+    gridClass.push(`jobtype-${player.jobType || 'unknown'}`); // jobtype
+  }
 
   // sub display prop
   gridClass.push({ 'combatant-grid-extend': showHPS }); // extended grid
@@ -63,18 +68,18 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
   const [showDetail, setShowDetail] = useState(false);
   const [lockDetail, setLockDetail] = useState(false);
   // detail controls controllers
-  const [timer, setTimer] = useState<number>(-1);
   const onDetailEnter = useCallback(() => {
-    timer && window.clearTimeout(timer);
     setShowDetail(true);
-  }, [timer]);
+  }, []);
   const onDetailLeave = useCallback(() => {
-    setTimer(window.setTimeout(() => !lockDetail && setShowDetail(false), 300));
+    !lockDetail && setShowDetail(false);
   }, [lockDetail]);
   const onSwitchDetailLock = useCallback(() => setLockDetail((val) => !val), []);
 
   // job icon component
-  const Icon = jobIcons[job as keyof typeof jobIcons] || jobIcons.ffxiv;
+  const Icon = isLimitBreakData(player)
+    ? jobIcons.ffxiv
+    : jobIcons[player.job as keyof typeof jobIcons] || jobIcons.ffxiv;
 
   return (
     <div className={cn(...gridClass)}>

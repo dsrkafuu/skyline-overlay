@@ -5,7 +5,7 @@ import { SInput, SSwitch, SSelect } from '../components';
 import useStore from '../hooks/useStore';
 import { MAP_SHORT_NAME } from '../utils/constants';
 
-const SettingsDisplay = observer(() => {
+function SettingsDisplay() {
   const { t } = useTranslation();
   const { settings } = useStore();
 
@@ -52,6 +52,6 @@ const SettingsDisplay = observer(() => {
       </div>
     </div>
   );
-});
+}
 
-export default SettingsDisplay;
+export default observer(SettingsDisplay);

@@ -5,7 +5,7 @@ import { SInputNumber, SSelect, SInput } from '../components';
 import { MAP_LANG, MAP_THEMES } from '../utils/constants';
 import useStore from '../hooks/useStore';
 
-const SettingsLayout = observer(() => {
+function SettingsLayout() {
   const { t } = useTranslation();
   const { settings } = useStore();
 
@@ -39,6 +39,6 @@ const SettingsLayout = observer(() => {
       </div>
     </div>
   );
-});
+}
 
-export default SettingsLayout;
+export default observer(SettingsLayout);

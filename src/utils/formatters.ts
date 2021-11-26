@@ -1,5 +1,6 @@
 import cloneDeep from 'lodash/cloneDeep';
-import OverlayAPI from 'ffxiv-overlay-api';
+import OverlayAPI, { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
+import { isLimitBreakData } from './type';
 
 /**
  * format number
@@ -35,42 +36,64 @@ export function fmtNumber(number: number, decimal = 1) {
 }
 
 interface PetMergeTempMap {
-  [key: string]: { player: OverlayAPI.CombatantData; pets: OverlayAPI.CombatantData[] };
+  [key: string]: {
+    player: CombatantData;
+    pets: CombatantData[];
+  };
 }
 
 /**
  * merge pet data into player
  */
-export function fmtMergePet(combatant: OverlayAPI.CombatantData[] = [], yid = 'YOU') {
+export function fmtMergePet(combatant: Array<CombatantData | LimitBreakData> = [], yid = 'YOU') {
+  const players = cloneDeep(combatant);
   const map: PetMergeTempMap = {};
-  // init all players
-  for (let i = 0; i < combatant.length; i++) {
-    const player = combatant[i];
+  const lbIndexes: number[] = [];
+
+  // init all players (record LimitBreak)
+  for (let i = 0; i < players.length; i++) {
+    const player = players[i];
+    if (isLimitBreakData(player)) {
+      lbIndexes.push(i);
+      continue;
+    }
+
     if (!/\([^)]+\)/gi.exec(player.name)) {
       if (player.name === 'YOU') {
-        map[yid] = { player: cloneDeep(player), pets: [] };
+        map[yid] = { player: player, pets: [] };
       } else {
-        map[player.name] = { player: cloneDeep(player), pets: [] };
+        map[player.name] = { player: player, pets: [] };
       }
     }
   }
-  // init all pets
-  for (let i = 0; i < combatant.length; i++) {
-    const player = combatant[i];
+
+  // init all pets (ignore LimitBreak)
+  for (let i = 0; i < players.length; i++) {
+    const player = players[i];
+    if (isLimitBreakData(player)) {
+      continue;
+    }
+
     const owner = /\(([^)]+)\)/gi.exec(player.name);
     if (owner && owner[1]) {
       let name = owner[1];
       name === 'YOU' && (name = yid);
       if (map[name] && map[name].pets) {
-        map[name].pets.push(cloneDeep(player));
+        map[name].pets.push(player);
       }
     }
   }
 
-  const ret: OverlayAPI.CombatantData[] = [];
+  // merge all players
+  const ret: Array<CombatantData | LimitBreakData> = [];
   for (const name of Object.keys(map)) {
     const res = OverlayAPI.mergeCombatant(map[name].player, ...map[name].pets);
     res && ret.push(res);
+  }
+
+  // inject lbs
+  for (const i of lbIndexes) {
+    ret.push(players[i]);
   }
   return ret;
 }

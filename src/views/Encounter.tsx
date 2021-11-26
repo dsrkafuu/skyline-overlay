@@ -2,12 +2,12 @@ import React, { useCallback } from 'react';
 import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
 import './Encounter.scss';
-import { version } from '@/assets/version';
-import { IRefresh, ISettings } from '@/assets/icons';
-import { logInfo } from '@/utils/loggers';
-import useStore from '@/hooks/useStore';
+import { version } from '../assets/version';
+import { IRefresh, ISettings } from '../assets/icons';
+import { logInfo } from '../utils/loggers';
+import useStore from '../hooks/useStore';
 
-const Encounter = observer(() => {
+function Encounter() {
   const { api, settings } = useStore();
   const { active, encounter, overlay } = api;
 
@@ -49,6 +49,6 @@ const Encounter = observer(() => {
       </div>
     </div>
   );
-});
+}
 
-export default Encounter;
+export default observer(Encounter);

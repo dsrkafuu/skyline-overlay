@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
-import { date } from '@/assets/version';
-import useStore from '@/hooks/useStore';
+import { date } from '../assets/version';
+import useStore from '../hooks/useStore';
 
-const SettingsAbout = observer(() => {
+function SettingsAbout() {
   const { t } = useTranslation();
 
   /**
@@ -97,6 +97,6 @@ const SettingsAbout = observer(() => {
       </div>
     </div>
   );
-});
+}
 
-export default SettingsAbout;
+export default observer(SettingsAbout);

@@ -1,12 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
-import { SSwitch, SInputNumber, SSelect, SInput } from '@/components';
-import { IChevronDown, IChevronUp } from '@/assets/icons';
-import useStore from '@/hooks/useStore';
-import { MAP_BOTTOM_DISP } from '@/utils/constants';
+import { SSwitch, SInputNumber, SSelect, SInput } from '../components';
+import { IChevronDown, IChevronUp } from '../assets/icons';
+import useStore from '../hooks/useStore';
+import { MAP_BOTTOM_DISP } from '../utils/constants';
 
-const SettingsData = observer(() => {
+function SettingsData() {
   const { t } = useTranslation();
   const { settings } = useStore();
 
@@ -26,8 +26,8 @@ const SettingsData = observer(() => {
       <div className='settings-row'>
         <span className='settings-title'>{t('Sort Rule')}</span>
         <SSwitch
-          value={sortRule.value < 0}
-          onChange={(value) => updateSortRule({ key: 'dps', value: value ? -1 : 1 })}
+          value={sortRule < 0}
+          onChange={(value) => updateSortRule(value ? -1 : 1)}
           ITrue={IChevronDown}
           IFalse={IChevronUp}
         />
@@ -69,6 +69,6 @@ const SettingsData = observer(() => {
       </div>
     </div>
   );
-});
+}
 
-export default SettingsData;
+export default observer(SettingsData);

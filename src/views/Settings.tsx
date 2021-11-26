@@ -8,7 +8,7 @@ import SettingsAbout from './SettingsAbout';
 import SettingsData from './SettingsData';
 import SettingsDisplay from './SettingsDisplay';
 import SettingsGeneral from './SettingsGeneral';
-import useStore from '@/hooks/useStore';
+import useStore from '../hooks/useStore';
 
 function Settings() {
   const { t } = useTranslation();
@@ -23,7 +23,7 @@ function Settings() {
     [t]
   );
 
-  const transRef = useRef(); // ref for react-transition-group
+  const transRef = useRef<HTMLDivElement>(null); // ref for react-transition-group
   const [activeTab, setActiveTab] = useState(0);
 
   // settings data
