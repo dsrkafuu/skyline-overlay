@@ -29,6 +29,15 @@ Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin)
 
 By default the overlay follows the pet-merging policy set in the FFXIV ACT Plugin. When playing on global servers with a custom language patch which causes the plugin's pet-merging not working, you can set your ID in an overlay config to manually merge your pets' data.
 
+Local:
+
+```bash
+git clone https://github.com/dsrkafuu/skyline-overlay.git
+cd skyline-overlay
+npm install
+npm start
+```
+
 ## To-do List
 
 - [x] Combatent sort - v1.1.x
