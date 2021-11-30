@@ -2,4 +2,3 @@ assets/**
 dist/**
 public/**
 scripts/**
-vite.config.js

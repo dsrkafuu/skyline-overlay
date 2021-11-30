@@ -38,27 +38,6 @@ npm install
 npm start
 ```
 
-## To-do List
-
-- [x] Combatent sort - v1.1.x
-- [x] UI zoom - v1.2.x
-- [x] Multi-lingual support - v1.3.x
-- [x] Combatant number limit - v1.4.x
-- [x] Switch show LB - v1.4.x
-- [x] Short playername - v1.4.x
-- [x] Custom font family - v1.5.x
-- [x] Themes - v1.6.x
-- [x] HPS display - v1.7.x
-- [x] Highlight self - v1.7.x
-- [x] Detailed data for each player - v1.8.x
-- [x] Custom CSS - v1.8.x
-- [x] Optional shorten numbers - v2.0.x
-- [x] C/D/CD tickers - v2.0.x
-- [x] Minimal mode - v2.1.x
-- [x] Switch show maxhit - v2.1.x
-- [x] Custom pet-merging - v2.2.x
-- [ ] 24 combatants support - v2.x.x
-
 ## Contribute
 
 Clone this repo, install packages and run the development server:
