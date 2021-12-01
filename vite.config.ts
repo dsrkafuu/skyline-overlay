@@ -15,7 +15,7 @@ export default defineConfig({
       svgProps: { className: 'icon' },
     }),
     react(),
-    htmlEnv(),
+    htmlEnv(process.env),
   ],
   css: {
     preprocessorOptions: {
