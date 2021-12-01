@@ -3,7 +3,7 @@
   "type": "module",
   "name": "skyline-overlay",
   "version": "3.0.0",
-  "description": "A horizon FFXIV miniparse overlay built with React & Vite.",
+  "description": "A modern customizable horizon FFXIV miniparse overlay.",
   "license": "Apache-2.0",
   "author": "DSRKafuU <dsrkafuu@outlook.com> (https://dsrkafuu.net)",
   "scripts": {

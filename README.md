@@ -4,7 +4,7 @@
   <br />
 </h1>
 
-<h4 align="center">A horizon FFXIV miniparse overlay built with React & MobX.</h4>
+<h4 align="center">A modern customizable horizon FFXIV miniparse overlay.</h4>
 <br />
 
 ![](https://img.shields.io/github/package-json/v/dsrkafuu/skyline-overlay)
