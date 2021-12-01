@@ -8,13 +8,13 @@
 <br />
 
 ![](https://img.shields.io/github/package-json/v/dsrkafuu/skyline-overlay)
-![](https://img.shields.io/badge/ffxiv%20tested-5.5-orange)
+![](https://img.shields.io/badge/ffxiv-endwalker-orange)
 ![](https://img.shields.io/github/license/dsrkafuu/skyline-overlay)
 
 An extended version from [horizoverlay](https://github.com/bsides/horizoverlay/) with some of [ikegami](https://github.com/hibiyasleep/ikegami)'s features. The project is based on React with MobX & Vite, and the dedicated [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
 
-<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-v1.6.0.jpg" alt="Skyline Preview" />
-<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-v2.0.0.jpg" alt="Skyline Extended Preview" />
+<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-en-v3.jpg" alt="Skyline EN Preview" />
+<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-zh-v3.jpg" alt="Skyline ZH Preview" />
 
 ## Overlay Link
 
