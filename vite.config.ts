@@ -1,12 +1,13 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import svgr from '@svgr/rollup';
+import htmlEnv from 'vite-plugin-html-env';
 
 /**
  * https://vitejs.dev/config/
  */
 export default defineConfig({
-  base: process.env.BASE_URL || './',
+  base: process.env.VITE_BASE_URL || './',
   plugins: [
     svgr({
       icon: true,
@@ -14,6 +15,7 @@ export default defineConfig({
       svgProps: { className: 'icon' },
     }),
     react(),
+    htmlEnv(),
   ],
   css: {
     preprocessorOptions: {

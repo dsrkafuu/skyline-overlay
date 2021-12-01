@@ -38,6 +38,13 @@ npm install
 npm start
 ```
 
+## Env
+
+```
+VITE_BASE_URL="./" # dist base url
+VITE_GA_ID="" # analytics id
+```
+
 ## Contribute
 
 Clone this repo, install packages and run the development server:
