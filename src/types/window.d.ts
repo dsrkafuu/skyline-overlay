@@ -1,8 +1,6 @@
-/// <reference types="vite/client" />
-
+// NGLD's FFXIV Overly
 declare global {
   interface Window {
-    // NGLD FFXIV Overly
     OverlayPluginApi: unknown;
   }
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import { observer } from 'mobx-react-lite';
 import Combatant from './views/Combatant';
 import Encounter from './views/Encounter';

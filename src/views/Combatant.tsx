@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import { observer } from 'mobx-react-lite';
 import cloneDeep from 'lodash/cloneDeep';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import { SInput, SSwitch, SSelect } from '../components';
@@ -9,7 +8,15 @@ function SettingsDisplay() {
   const { t } = useTranslation();
   const { settings } = useStore();
 
-  const { showRanks, hlYou, showTickers, youName, shortName, shortNumber, blurName } = settings;
+  const {
+    showRanks,
+    hlYou,
+    showTickers,
+    youName,
+    shortName,
+    shortNumber,
+    blurName,
+  } = settings;
   const {
     updateShowRanks,
     updateHlYou,
@@ -32,7 +39,10 @@ function SettingsDisplay() {
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Show Tickers')}</span>
-        <SSwitch value={showTickers} onChange={(val) => updateShowTickers(val)} />
+        <SSwitch
+          value={showTickers}
+          onChange={(val) => updateShowTickers(val)}
+        />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Custom ID')}</span>
@@ -40,11 +50,18 @@ function SettingsDisplay() {
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Shorten Name')}</span>
-        <SSelect value={shortName} onChange={(val) => updateShortName(val)} map={MAP_SHORT_NAME} />
+        <SSelect
+          value={shortName}
+          onChange={(val) => updateShortName(val)}
+          map={MAP_SHORT_NAME}
+        />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Shorten Number')}</span>
-        <SSwitch value={shortNumber} onChange={(val) => updateShortNumber(val)} />
+        <SSwitch
+          value={shortNumber}
+          onChange={(val) => updateShortNumber(val)}
+        />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Blur Name')}</span>

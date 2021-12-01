@@ -67,7 +67,11 @@ class API {
    * update new combat data
    */
   updateCombat(payload: OverlayAPI.ExtendData) {
-    if (payload.isActive !== undefined && payload.encounter && payload.combatant) {
+    if (
+      payload.isActive !== undefined &&
+      payload.encounter &&
+      payload.combatant
+    ) {
       this.data = payload;
     }
   }

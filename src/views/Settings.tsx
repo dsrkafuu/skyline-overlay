@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef } from 'react';
+import { useMemo, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import cn from 'classnames';
@@ -45,7 +45,9 @@ function Settings() {
         <div className='settings-tab'>
           {Components.map((val, index) => (
             <div
-              className={cn('settings-tabitem', { active: index === activeTab })}
+              className={cn('settings-tabitem', {
+                active: index === activeTab,
+              })}
               key={`tab-${val.title}`}
               onClick={() => setActiveTab(index)}
             >

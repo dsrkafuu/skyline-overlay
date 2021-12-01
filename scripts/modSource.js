@@ -1,11 +1,9 @@
 /**
- * [NOTE]
- *
  * remove all source code content in sourcemaps
  * like webpack
  */
 
-const fs = require('fs/promises');
+const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 const chalk = require('chalk');
@@ -18,24 +16,17 @@ console.log(chalk.blue('removing sourcemap source contents...'));
  */
 function removeContent(path) {
   return new Promise((resolve, reject) => {
-    fs.readFile(path, { encoding: 'utf-8' })
-      .then((content) => {
-        const sourcemap = JSON.parse(content);
-        if (!sourcemap.sourcesContent) {
-          resolve();
-        }
-        delete sourcemap.sourcesContent;
-        fs.writeFile(path, JSON.stringify(sourcemap), { encoding: 'utf-8' })
-          .then(() => {
-            resolve();
-          })
-          .catch((e) => {
-            reject(e);
-          });
-      })
-      .catch((e) => {
-        reject(e);
-      });
+    try {
+      const content = fs.readFileSync(path, { encoding: 'utf-8' });
+      const sourcemap = JSON.parse(content);
+      if (!sourcemap.sourcesContent) {
+        resolve();
+      }
+      delete sourcemap.sourcesContent;
+      fs.writeFileSync(path, JSON.stringify(sourcemap), { encoding: 'utf-8' });
+    } catch (e) {
+      reject(e);
+    }
   });
 }
 
@@ -48,7 +39,9 @@ sourcemaps.forEach((val) => {
 
 Promise.all(workers)
   .then(() => {
-    console.log(chalk.green(`source contents removed in ${sourcemaps.length} sourcemaps`));
+    console.log(
+      chalk.green(`source contents removed in ${sourcemaps.length} sourcemaps`)
+    );
   })
   .catch((e) => {
     console.log(chalk.red('failed to process some of sourcemaps'));

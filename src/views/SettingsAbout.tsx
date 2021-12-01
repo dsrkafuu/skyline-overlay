@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import { date } from '../assets/version';
@@ -69,7 +69,12 @@ function SettingsAbout() {
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{`Copyright ${new Date().getFullYear()} MPL-2.0 License`}</span>
-        <a className='s-link' href='https://dsrkafuu.net' target='_blank' rel='noopener noreferrer'>
+        <a
+          className='s-link'
+          href='https://dsrkafuu.net'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
           DSRKafuU
         </a>
       </div>
@@ -85,7 +90,9 @@ function SettingsAbout() {
         </a>
       </div>
       <div className='settings-row'>
-        <span className='settings-title'>Copyright 2010 SQUARE ENIX CO., LTD.</span>
+        <span className='settings-title'>
+          Copyright 2010 SQUARE ENIX CO., LTD.
+        </span>
         <a
           className='s-link'
           href='https://www.finalfantasyxiv.com'

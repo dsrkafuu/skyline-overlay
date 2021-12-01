@@ -1,12 +1,20 @@
 import { defineConfig } from 'vite';
-import reactRefresh from '@vitejs/plugin-react-refresh';
+import react from '@vitejs/plugin-react';
+import svgr from '@svgr/rollup';
 
 /**
  * https://vitejs.dev/config/
  */
 export default defineConfig({
   base: process.env.BASE_URL || './',
-  plugins: [reactRefresh()],
+  plugins: [
+    svgr({
+      icon: true,
+      typescript: true,
+      svgProps: { className: 'icon' },
+    }),
+    react(),
+  ],
   css: {
     preprocessorOptions: {
       scss: {
@@ -16,6 +24,5 @@ export default defineConfig({
   },
   build: {
     emptyOutDir: true,
-    sourcemap: true,
   },
 });

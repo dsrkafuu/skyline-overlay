@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import { SInputNumber, SSelect, SInput } from '../components';
@@ -16,11 +15,19 @@ function SettingsLayout() {
     <div className='settings-general'>
       <div className='settings-row settings-theme'>
         <span className='settings-title'>{t('Theme')}</span>
-        <SSelect value={theme} onChange={(val) => updateTheme(val)} map={MAP_THEMES} />
+        <SSelect
+          value={theme}
+          onChange={(val) => updateTheme(val)}
+          map={MAP_THEMES}
+        />
       </div>
       <div className='settings-row settings-lang'>
         <span className='settings-title'>{t('Language')}</span>
-        <SSelect value={lang} onChange={(val) => updateLang(val)} map={MAP_LANG} />
+        <SSelect
+          value={lang}
+          onChange={(val) => updateLang(val)}
+          map={MAP_LANG}
+        />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('UI Scale')}</span>

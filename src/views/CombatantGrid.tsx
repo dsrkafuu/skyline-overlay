@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { observer } from 'mobx-react-lite';
 import cn, { Argument } from 'classnames';
 import { CSSTransition } from 'react-transition-group';
@@ -43,8 +43,12 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
   const splitName = dispName.split(' ');
   const shortNameCheck = MAP_SHORT_NAME[shortName].data;
   if (splitName.length === 2) {
-    shortNameCheck.first && splitName[0].charAt(0) && (splitName[0] = `${splitName[0].charAt(0)}.`);
-    shortNameCheck.last && splitName[1].charAt(0) && (splitName[1] = `${splitName[1].charAt(0)}.`);
+    shortNameCheck.first &&
+      splitName[0].charAt(0) &&
+      (splitName[0] = `${splitName[0].charAt(0)}.`);
+    shortNameCheck.last &&
+      splitName[1].charAt(0) &&
+      (splitName[1] = `${splitName[1].charAt(0)}.`);
     dispName = splitName.join(' ');
   }
   showRanks && (dispName = `${index + 1}. ${dispName}`); // if show ranks
@@ -74,17 +78,24 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
   const onDetailLeave = useCallback(() => {
     !lockDetail && setShowDetail(false);
   }, [lockDetail]);
-  const onSwitchDetailLock = useCallback(() => setLockDetail((val) => !val), []);
+  const onSwitchDetailLock = useCallback(
+    () => setLockDetail((val) => !val),
+    []
+  );
 
   // job icon component
   const Icon = isLimitBreakData(player)
-    ? jobIcons.ffxiv
-    : jobIcons[player.job as keyof typeof jobIcons] || jobIcons.ffxiv;
+    ? jobIcons.FFXIV
+    : jobIcons[
+        String.prototype.toUpperCase.apply(player.job) as keyof typeof jobIcons
+      ] || jobIcons.FFXIV;
 
   return (
     <div className={cn(...gridClass)}>
       {!minimalMode && (
-        <div className={cn('combatant-grid-id', { blur: blurName })}>{dispName}</div>
+        <div className={cn('combatant-grid-id', { blur: blurName })}>
+          {dispName}
+        </div>
       )}
 
       <div
@@ -94,7 +105,9 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
         onClick={onSwitchDetailLock}
       >
         <div className='combatant-grid-data'>
-          <span className='s-number'>{(shortNumber ? fmtNumber(dps) : dps) || 0}</span>
+          <span className='s-number'>
+            {(shortNumber ? fmtNumber(dps) : dps) || 0}
+          </span>
           <span className='s-counter'>DPS</span>
         </div>
         <span className='job-icon'>
@@ -102,7 +115,9 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
         </span>
         {showHPS && (
           <div className='combatant-grid-data'>
-            <span className='s-number'>{(shortNumber ? fmtNumber(hps) : hps) || 0}</span>
+            <span className='s-number'>
+              {(shortNumber ? fmtNumber(hps) : hps) || 0}
+            </span>
             <span className='s-counter'>HPS</span>
           </div>
         )}
@@ -117,7 +132,11 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
           classNames='fade'
           timeout={150}
         >
-          <CombatantBottom ref={transBottomDispRef} player={player} mode={bottomDisp} />
+          <CombatantBottom
+            ref={transBottomDispRef}
+            player={player}
+            mode={bottomDisp}
+          />
         </CSSTransition>
       )}
 
@@ -128,7 +147,11 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
         timeout={150}
         unmountOnExit={true}
       >
-        <CombatantDetail ref={transDetailRef} player={player} locked={lockDetail} />
+        <CombatantDetail
+          ref={transDetailRef}
+          player={player}
+          locked={lockDetail}
+        />
       </CSSTransition>
     </div>
   );

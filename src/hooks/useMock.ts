@@ -8,7 +8,9 @@ import { isDev } from '../utils/env';
 function useMock(overlay: OverlayAPI) {
   useEffect(() => {
     isDev() &&
-      fetch('https://cdn.jsdelivr.net/gh/dsrkafuu/ffxiv-overlay-api@3/test/fake.json')
+      fetch(
+        'https://cdn.jsdelivr.net/gh/dsrkafuu/ffxiv-overlay-api@3/test/fake.json'
+      )
         .then((res) => res.json())
         .then((obj) => {
           let time = 1;

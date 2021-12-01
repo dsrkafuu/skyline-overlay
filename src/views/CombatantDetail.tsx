@@ -1,4 +1,3 @@
-import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'react-i18next';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
@@ -41,10 +40,16 @@ function CombatantDetail(
 
   // overheal & hps
   if (isCombatantData(player)) {
-    rowData.push([{ key: t('Overheal'), value: player.overHealPct, pct: true }]);
+    rowData.push([
+      { key: t('Overheal'), value: player.overHealPct, pct: true },
+    ]);
   }
   if (!showHPS) {
-    const newRow: RowDataRenderProps = { key: t('Heal'), value: player.hps, ps: 'HPS' };
+    const newRow: RowDataRenderProps = {
+      key: t('Heal'),
+      value: player.hps,
+      ps: 'HPS',
+    };
     if (rowData[rowData.length - 1]) {
       rowData[rowData.length - 1].unshift(newRow);
     } else {
@@ -101,7 +106,9 @@ function CombatantDetail(
               )) ||
                 (row.pct && (
                   <div className='combatant-detail-row-pct'>
-                    <span className='s-number'>{((row.value || '0') as string).split('%')[0]}</span>
+                    <span className='s-number'>
+                      {((row.value || '0') as string).split('%')[0]}
+                    </span>
                     <span className='s-counter'>%</span>
                   </div>
                 )) || <span>{row.value}</span>}

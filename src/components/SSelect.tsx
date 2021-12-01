@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import cn from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import './SSelect.scss';
@@ -32,11 +32,20 @@ function SSelect({ value, onChange, map }: SSelectProps) {
 
   return (
     <div className='s-select'>
-      <div className={cn('s-select-value', { active })} onClick={() => setActive((val) => !val)}>
+      <div
+        className={cn('s-select-value', { active })}
+        onClick={() => setActive((val) => !val)}
+      >
         <div className='disp'>{map[value] ? map[value].text : 'Unknown'}</div>
         <div className='btn'>{active ? <IChevronUp /> : <IChevronDown />}</div>
       </div>
-      <CSSTransition classNames='fade' in={active} timeout={150} unmountOnExit nodeRef={transRef}>
+      <CSSTransition
+        classNames='fade'
+        in={active}
+        timeout={150}
+        unmountOnExit
+        nodeRef={transRef}
+      >
         <div className='s-select-options' ref={transRef}>
           {Object.keys(map).map((key) => (
             <div

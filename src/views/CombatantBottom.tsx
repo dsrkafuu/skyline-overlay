@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import { SSelectMap } from '../components/SSelect';
 import { isCombatantData } from '../utils/type';
@@ -13,8 +13,12 @@ function CombatantBottom(
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
   if (mode === 'maxhit') {
-    const maxHitDamage = isCombatantData(player) ? player.maxHitDamage : player.damage;
-    const maxHealDamage = isCombatantData(player) ? player.maxHealDamage : player.healed;
+    const maxHitDamage = isCombatantData(player)
+      ? player.maxHitDamage
+      : player.damage;
+    const maxHealDamage = isCombatantData(player)
+      ? player.maxHealDamage
+      : player.healed;
 
     if (maxHitDamage) {
       return (

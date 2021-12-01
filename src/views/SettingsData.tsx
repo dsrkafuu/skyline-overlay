@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import { SSwitch, SInputNumber, SSelect, SInput } from '../components';
@@ -10,7 +9,15 @@ function SettingsData() {
   const { t } = useTranslation();
   const { settings } = useStore();
 
-  const { sortRule, playerLimit, showLB, petMergeID, showHPS, extendDetail, bottomDisp } = settings;
+  const {
+    sortRule,
+    playerLimit,
+    showLB,
+    petMergeID,
+    showHPS,
+    extendDetail,
+    bottomDisp,
+  } = settings;
   const {
     updateSortRule,
     updatePlayerLimit,
@@ -49,7 +56,10 @@ function SettingsData() {
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Pet-Merging ID')}</span>
-        <SInput value={petMergeID} onChange={(value) => updatePetMergeID(value)} />
+        <SInput
+          value={petMergeID}
+          onChange={(value) => updatePetMergeID(value)}
+        />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Show HPS')}</span>
@@ -57,7 +67,10 @@ function SettingsData() {
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Extend Detail')}</span>
-        <SSwitch value={extendDetail} onChange={(value) => updateExtendDetail(value)} />
+        <SSwitch
+          value={extendDetail}
+          onChange={(value) => updateExtendDetail(value)}
+        />
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Bottom Display')}</span>
