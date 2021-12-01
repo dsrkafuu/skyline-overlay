@@ -1,5 +1,5 @@
 // local storage key
-export const STORAGE_PREFIX = 'SKYLINE_DATA_V2_3_';
+export const STORAGE_PREFIX = 'SKYLINE_V3_';
 
 // value maps for selection component
 import { SSelectMap } from '../components/SSelect';
