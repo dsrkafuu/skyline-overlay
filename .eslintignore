@@ -2,4 +2,3 @@ node_modules/**
 assets/**
 dist/**
 public/**
-scripts/**

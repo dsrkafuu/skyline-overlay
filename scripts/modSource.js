@@ -3,10 +3,12 @@
  * like webpack
  */
 
-const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
-const chalk = require('chalk');
+import fs from 'fs';
+import path from 'path';
+import url from 'url';
+import glob from 'glob';
+import chalk from 'chalk';
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 console.log(chalk.blue('removing sourcemap source contents...'));
 
@@ -19,11 +21,13 @@ function removeContent(path) {
     try {
       const content = fs.readFileSync(path, { encoding: 'utf-8' });
       const sourcemap = JSON.parse(content);
-      if (!sourcemap.sourcesContent) {
-        resolve();
+      if (sourcemap.sourcesContent) {
+        delete sourcemap.sourcesContent;
+        fs.writeFileSync(path, JSON.stringify(sourcemap), {
+          encoding: 'utf-8',
+        });
       }
-      delete sourcemap.sourcesContent;
-      fs.writeFileSync(path, JSON.stringify(sourcemap), { encoding: 'utf-8' });
+      resolve();
     } catch (e) {
       reject(e);
     }

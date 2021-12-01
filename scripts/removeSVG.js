@@ -2,10 +2,12 @@
  * remove redundant svg files in vite's output folder
  */
 
-const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
-const chalk = require('chalk');
+import fs from 'fs';
+import path from 'path';
+import url from 'url';
+import glob from 'glob';
+import chalk from 'chalk';
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 console.log(chalk.blue('removing redundant svg files...'));
 
@@ -17,6 +19,7 @@ function deleteFile(path) {
   return new Promise((resolve, reject) => {
     try {
       fs.unlinkSync(path);
+      resolve();
     } catch (e) {
       reject(e);
     }
