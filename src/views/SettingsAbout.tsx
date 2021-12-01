@@ -68,7 +68,7 @@ function SettingsAbout() {
         <span className='settings-title'>{parsedDate}</span>
       </div>
       <div className='settings-row'>
-        <span className='settings-title'>{`Copyright ${new Date().getFullYear()} MPL-2.0 License`}</span>
+        <span className='settings-title'>{`Copyright ${new Date().getFullYear()} Apache-2.0 License`}</span>
         <a
           className='s-link'
           href='https://dsrkafuu.net'
