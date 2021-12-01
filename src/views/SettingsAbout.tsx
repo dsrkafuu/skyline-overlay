@@ -26,11 +26,6 @@ function SettingsAbout() {
 
   return (
     <div className='settings-about'>
-      {/*
-    <div className='settings-row'>
-      <span className='settings-title'>{t('Thanks for Using')}</span>
-    </div>
-    */}
       <div className='settings-row'>
         <span className='settings-title'>
           <Trans i18nKey='Need Help'>
