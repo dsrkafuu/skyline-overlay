@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
-import { date } from '../assets/version';
+import { date } from '../assets/meta';
 import useStore from '../hooks/useStore';
 
 function SettingsAbout() {
@@ -64,7 +64,7 @@ function SettingsAbout() {
         </span>
       </div>
       <div className='settings-row'>
-        <span className='settings-title'>{t('Release Date')}</span>
+        <span className='settings-title'>{t('Build Date')}</span>
         <span className='settings-title'>{parsedDate}</span>
       </div>
       <div className='settings-row'>
