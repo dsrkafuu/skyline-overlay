@@ -64,6 +64,8 @@
     &.jobtype-healer &-content {
       background-color: var(--color-combatant-bg-heal);
     }
+    &.jobtype-hand &-content,
+    &.jobtype-land &-content,
     &.jobtype-unknown &-content {
       background-color: var(--color-combatant-bg-others);
     }
@@ -120,46 +122,9 @@
     right: 0;
     top: 0.5rem;
     z-index: 99;
-    font-size: $font-size-sm;
-    padding: 0.04rem 0.06rem;
     backdrop-filter: $filter;
     background-color: var(--color-combatant-bg-others);
     @include transition();
-
-    &-section {
-      padding: 0.04rem 0.02rem;
-    }
-    &-section + &-section {
-      border-top: 0.02rem solid #ffffff;
-    }
-
-    &-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      line-height: 1.25;
-
-      &-pct .s-counter {
-        display: inline-block;
-        text-align: right;
-        overflow: visible;
-        white-space: nowrap;
-      }
-
-      & > div:first-child,
-      & > span:first-child {
-        flex: 1 1 auto;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-      & > div:last-child,
-      & > span:last-child {
-        flex: 0 0 auto;
-        overflow: visible;
-        white-space: nowrap;
-      }
-    }
   }
 
   .jobtype-dps .combatant-detail.locked {
@@ -168,10 +133,12 @@
   .jobtype-tank .combatant-detail.locked {
     background-color: var(--color-combatant-bg-tank);
   }
-  .jobtype-heal .combatant-detail.locked {
+  .jobtype-healer .combatant-detail.locked {
     background-color: var(--color-combatant-bg-heal);
   }
-  .jobtype-others .combatant-detail.locked {
+  .jobtype-hand .combatant-detail.locked,
+  .jobtype-land .combatant-detail.locked,
+  .jobtype-unknown .combatant-detail.locked {
     background-color: var(--color-combatant-bg-others);
   }
   // self highlight color

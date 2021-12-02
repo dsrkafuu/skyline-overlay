@@ -2,7 +2,7 @@
 export const STORAGE_PREFIX = 'SKYLINE_V3_';
 
 // value maps for selection component
-import { SSelectMap } from '../components/SSelect';
+import { SSelectMap } from '../components';
 
 // languages
 import rawLang from '../lang';

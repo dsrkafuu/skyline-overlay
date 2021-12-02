@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
-import { SSelectMap } from '../components/SSelect';
+import { SSelectMap } from '../components';
 import { isCombatantData } from '../utils/type';
 
 interface CombatantBottomProps {
