@@ -20,6 +20,7 @@ class Settings {
 
   // settings container display
   showSettings = false;
+  blurName = false;
 
   // data
   sortRule = -1; // sort data
@@ -37,7 +38,6 @@ class Settings {
   youName = 'YOU'; // which to represent as 'YOU'
   shortName = 'fstlst';
   shortNumber = false;
-  blurName = false;
 
   // general
   theme = 'default';
@@ -81,6 +81,10 @@ class Settings {
   toggleSettings() {
     this.showSettings = !this.showSettings;
     saveSettings({ showSettings: this.showSettings });
+  }
+  toggleBlurName() {
+    this.blurName = !this.blurName;
+    saveSettings({ blurName: this.blurName });
   }
 
   // data
@@ -137,10 +141,6 @@ class Settings {
   updateShortNumber(payload: boolean) {
     this.shortNumber = payload;
     saveSettings({ shortNumber: payload });
-  }
-  updateBlurName(payload: boolean) {
-    this.blurName = payload;
-    saveSettings({ blurName: payload });
   }
 
   /* layout */

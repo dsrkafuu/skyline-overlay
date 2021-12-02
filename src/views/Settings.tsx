@@ -159,15 +159,6 @@ function Settings() {
               />
             ),
           },
-          {
-            title: t('Blur Name'),
-            render: () => (
-              <SSwitch
-                value={s.blurName}
-                onChange={(val) => s.updateBlurName(val)}
-              />
-            ),
-          },
         ],
       },
       {

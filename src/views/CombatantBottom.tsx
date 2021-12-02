@@ -22,14 +22,14 @@ function CombatantBottom(
 
     if (maxHitDamage) {
       return (
-        <div className='combatant-grid-bottom maxhit' ref={ref}>
+        <div className='combatant-bottom combatant-bottom--maxhit' ref={ref}>
           <span>&nbsp;{player.maxHit}&nbsp;</span>
           {maxHitDamage > 0 && <span>-&nbsp;{maxHitDamage}&nbsp;</span>}
         </div>
       );
     } else if (maxHealDamage) {
       return (
-        <div className='combatant-grid-bottom maxhit' ref={ref}>
+        <div className='combatant-bottom combatant-bottom--maxhit' ref={ref}>
           <span>&nbsp;{player.maxHeal}&nbsp;</span>
           {maxHealDamage > 0 && <span>-&nbsp;{maxHealDamage}&nbsp;</span>}
         </div>
@@ -39,7 +39,7 @@ function CombatantBottom(
     const { directHitPct, critHitPct, directCritHitPct } = player;
 
     return (
-      <div className='combatant-grid-bottom cdpcts' ref={ref}>
+      <div className='combatant-bottom combatant-bottom--cdpcts' ref={ref}>
         &nbsp;<span>{directCritHitPct}CD</span>
         &nbsp;<span>{critHitPct}D</span>
         &nbsp;<span>{directHitPct}C</span>&nbsp;

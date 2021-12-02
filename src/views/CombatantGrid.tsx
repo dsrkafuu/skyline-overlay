@@ -3,11 +3,11 @@ import { observer } from 'mobx-react-lite';
 import cn, { Argument } from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
+import CombatantName from './CombatantName';
 import CombatantDetail from './CombatantDetail';
 import CombatantTicker from './CombatantTicker';
 import * as jobIcons from '../assets/jobs';
 import { fmtNumber } from '../utils/formatters';
-import { MAP_SHORT_NAME } from '../utils/constants';
 import useStore from '../hooks/useStore';
 import CombatantBottom from './CombatantBottom';
 import { isLimitBreakData } from '../utils/type';
@@ -22,35 +22,7 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
   const { name, dps, hps } = player;
   const gridClass: Argument[] = ['combatant-grid']; // grid classnames
   const { settings } = useStore();
-  const {
-    youName,
-    shortName,
-    showRanks,
-    blurName,
-    hlYou,
-    showHPS,
-    showTickers,
-    shortNumber,
-    bottomDisp,
-  } = settings;
-
-  // display name
-  let dispName = name;
-  dispName === 'YOU' && (dispName = youName); // if custom name
-  dispName === '' && (dispName = 'YOU'); // prevent empty
-  // checker whether to shorten
-  const splitName = dispName.split(' ');
-  const shortNameCheck = MAP_SHORT_NAME[shortName].data;
-  if (splitName.length === 2) {
-    shortNameCheck.first &&
-      splitName[0].charAt(0) &&
-      (splitName[0] = `${splitName[0].charAt(0)}.`);
-    shortNameCheck.last &&
-      splitName[1].charAt(0) &&
-      (splitName[1] = `${splitName[1].charAt(0)}.`);
-    dispName = splitName.join(' ');
-  }
-  showRanks && (dispName = `${index + 1}. ${dispName}`); // if show ranks
+  const { hlYou, showHPS, showTickers, shortNumber, bottomDisp } = settings;
 
   // class names related to job
   if (isLimitBreakData(player)) {
@@ -91,9 +63,7 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
 
   return (
     <div className={cn(...gridClass)}>
-      <div className={cn('combatant-grid-id', { blur: blurName })}>
-        {dispName}
-      </div>
+      <CombatantName player={player} index={index} />
 
       <div
         className='combatant-grid-content'
