@@ -5,12 +5,12 @@ import { CSSTransition } from 'react-transition-group';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import CombatantName from './CombatantName';
 import CombatantDetail from './CombatantDetail';
-import CombatantTicker from './CombatantTicker';
 import * as jobIcons from '../assets/jobs';
 import { fmtNumber } from '../utils/formatters';
 import useStore from '../hooks/useStore';
 import CombatantBottom from './CombatantBottom';
-import { isLimitBreakData } from '../utils/type';
+import { isLimitBreakData, isCombatantData } from '../utils/type';
+import STicker from '../components/STicker';
 
 interface CombatantGridProps {
   player: CombatantData | LimitBreakData;
@@ -61,9 +61,19 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
         String.prototype.toUpperCase.apply(player.job) as keyof typeof jobIcons
       ] || jobIcons.FFXIV;
 
+  // tickers
+  let dpsPcts: string[] = [];
+  let healerPcts: string[] = [];
+  if (isCombatantData(player)) {
+    dpsPcts = [player.directCritHitPct, player.critHitPct, player.directHitPct];
+    healerPcts = [player.shieldPct, player.healsPct, player.overHealPct];
+  }
+
   return (
     <div className={cn(...gridClass)}>
       <CombatantName player={player} index={index} />
+
+      {showTickers && <STicker pcts={healerPcts} type='healer' align='right' />}
 
       <div
         className='combatant-grid-content'
@@ -90,7 +100,7 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
         )}
       </div>
 
-      {showTickers && <CombatantTicker player={player} />}
+      {showTickers && <STicker pcts={dpsPcts} type='dps' align='left' />}
 
       <CSSTransition
         nodeRef={transBottomDispRef}

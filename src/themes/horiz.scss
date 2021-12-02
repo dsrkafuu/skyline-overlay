@@ -5,6 +5,14 @@ body[data-theme='horiz'] {
   --shadow: 0 0 0.04rem #000000;
   --shadow-icon: 0 0 0.04rem rgba(0, 0, 0, 0.6);
 
+  // s-ticker
+  --color-s-ticker-dps-a: rgba(255, 111, 0, 0.7); // crit direct
+  --color-s-ticker-dps-b: rgba(255, 202, 40, 0.7); // crit
+  --color-s-ticker-dps-c: rgba(29, 233, 182, 0.7); // direct
+  --color-s-ticker-healer-a: rgba(82, 205, 243, 0.8); // shield
+  --color-s-ticker-healer-b: rgba(127, 243, 82, 0.8); // healed
+  --color-s-ticker-healer-c: rgba(255, 102, 0, 0.7); // over healed
+
   // combatant
   --color-combatant-fg: var(--color-fg);
   --color-combatant-bg-dps: rgba(244, 67, 54, 0.5);
@@ -12,9 +20,6 @@ body[data-theme='horiz'] {
   --color-combatant-bg-heal: rgba(139, 195, 74, 0.5);
   --color-combatant-bg-others: var(--color-bg);
   --color-combatant-bg-self: rgba(255, 255, 255, 0.8);
-  --color-combatant-ticker-d: rgba(29, 233, 182, 0.7);
-  --color-combatant-ticker-c: rgba(255, 202, 40, 0.7);
-  --color-combatant-ticker-dc: rgba(255, 111, 0, 0.7);
   --shadow-combatant: var(--shadow);
 
   // encounter

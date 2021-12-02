@@ -5,6 +5,14 @@ body[data-theme='ikegami'] {
   --shadow: 0 0 0.05rem #000000;
   --shadow-icon: 0 0 0.05rem rgba(0, 0, 0, 0.7);
 
+  // s-ticker
+  --color-s-ticker-dps-a: #ff6f00; // crit direct
+  --color-s-ticker-dps-b: #ffca28; // crit
+  --color-s-ticker-dps-c: #1de9b6; // direct
+  --color-s-ticker-healer-a: #40c4ff; // shield
+  --color-s-ticker-healer-b: #00e676; // healed
+  --color-s-ticker-healer-c: #e53935; // over healed
+
   // combatant
   --color-combatant-fg: var(--color-fg);
   --color-combatant-bg-dps: #bd0f49;
@@ -12,9 +20,6 @@ body[data-theme='ikegami'] {
   --color-combatant-bg-heal: #5f9933;
   --color-combatant-bg-others: #404040;
   --color-combatant-bg-self: #767676;
-  --color-combatant-ticker-d: #1de9b6;
-  --color-combatant-ticker-c: #ffca28;
-  --color-combatant-ticker-dc: #ff6f00;
   --shadow-combatant: var(--shadow);
 
   // encounter

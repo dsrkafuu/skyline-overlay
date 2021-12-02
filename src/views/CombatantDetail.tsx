@@ -19,7 +19,7 @@ function CombatantDetail(
 
   // settings
   const { settings } = useStore();
-  const { showHPS, extendDetail } = settings;
+  const { extendDetail } = settings;
 
   // row data render props
   const rowItems: SListRow[][] = [];
@@ -29,25 +29,17 @@ function CombatantDetail(
     rowItems.push([
       { key: '30s', value: player.last30DPS },
       { key: '60s', value: player.last60DPS },
+      { key: 'DPS', value: player.dps },
     ]);
   }
 
   // overheal & hps
   if (isCombatantData(player)) {
     rowItems.push([
+      { key: t('Heal'), value: player.hps },
       { key: t('Overheal'), value: player.overHealPct, pct: true },
+      { key: 'Shield', value: player.shieldPct, pct: true },
     ]);
-  }
-  if (!showHPS) {
-    const newRow: SListRow = {
-      key: t('Heal'),
-      value: player.hps,
-    };
-    if (rowItems[rowItems.length - 1]) {
-      rowItems[rowItems.length - 1].unshift(newRow);
-    } else {
-      rowItems.push([newRow]);
-    }
   }
 
   if (isCombatantData(player)) {

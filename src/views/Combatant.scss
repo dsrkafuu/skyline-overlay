@@ -120,7 +120,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: 0.5rem;
+    top: 0.54rem;
     z-index: 99;
     backdrop-filter: $filter;
     background-color: var(--color-combatant-bg-others);
@@ -144,24 +144,6 @@
   // self highlight color
   .job-self .combatant-detail.locked {
     background-color: var(--color-combatant-bg-self);
-  }
-
-  &-ticker {
-    width: 100%;
-    height: 0.04rem;
-    display: flex;
-    align-items: stretch;
-    margin-bottom: 0.01rem;
-
-    &-d {
-      background-color: var(--color-combatant-ticker-d);
-    }
-    &-c {
-      background-color: var(--color-combatant-ticker-c);
-    }
-    &-dc {
-      background-color: var(--color-combatant-ticker-dc);
-    }
   }
 }
 

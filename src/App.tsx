@@ -11,7 +11,7 @@ const App = observer(() => {
   } = useStore();
 
   // debug mock data
-  useMock(overlay);
+  useMock(overlay, false);
 
   return (
     <div className='app'>
