@@ -80,6 +80,7 @@ Please use [ISO 639-1:2002](https://en.wikipedia.org/wiki/List_of_ISO_639-1_code
 - MobX: <https://mobx.js.org>
 - Vite: <https://vitejs.dev>
 - ffxiv-overlay-api: <https://github.com/dsrkafuu/ffxiv-overlay-api>
+- Job Icons: <https://github.com/xivapi/classjob-icons/tree/master/svg>
 
 ## LICENSE
 
