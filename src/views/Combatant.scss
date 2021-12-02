@@ -122,10 +122,6 @@
     background-color: var(--color-combatant-bg-others);
     @include transition();
 
-    &.minimal {
-      top: 0.28rem;
-    }
-
     &-section {
       padding: 0.04rem 0.02rem;
     }

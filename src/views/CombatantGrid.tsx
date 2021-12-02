@@ -23,7 +23,6 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
   const gridClass: Argument[] = ['combatant-grid']; // grid classnames
   const { settings } = useStore();
   const {
-    minimalMode,
     youName,
     shortName,
     showRanks,
@@ -92,11 +91,9 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
 
   return (
     <div className={cn(...gridClass)}>
-      {!minimalMode && (
-        <div className={cn('combatant-grid-id', { blur: blurName })}>
-          {dispName}
-        </div>
-      )}
+      <div className={cn('combatant-grid-id', { blur: blurName })}>
+        {dispName}
+      </div>
 
       <div
         className='combatant-grid-content'
@@ -125,20 +122,18 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
 
       {showTickers && <CombatantTicker player={player} />}
 
-      {!minimalMode && (
-        <CSSTransition
-          nodeRef={transBottomDispRef}
-          in={!needDetail || !(lockDetail || showDetail)}
-          classNames='fade'
-          timeout={150}
-        >
-          <CombatantBottom
-            ref={transBottomDispRef}
-            player={player}
-            mode={bottomDisp}
-          />
-        </CSSTransition>
-      )}
+      <CSSTransition
+        nodeRef={transBottomDispRef}
+        in={!needDetail || !(lockDetail || showDetail)}
+        classNames='fade'
+        timeout={150}
+      >
+        <CombatantBottom
+          ref={transBottomDispRef}
+          player={player}
+          mode={bottomDisp}
+        />
+      </CSSTransition>
 
       <CSSTransition
         nodeRef={transDetailRef}

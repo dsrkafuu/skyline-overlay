@@ -8,7 +8,6 @@ import useMock from './hooks/useMock';
 const App = observer(() => {
   const {
     api: { overlay },
-    settings: { minimalMode },
   } = useStore();
 
   // debug mock data
@@ -19,11 +18,9 @@ const App = observer(() => {
       <div className='s-container'>
         <Combatant />
       </div>
-      {!minimalMode && (
-        <div className='s-container'>
-          <Encounter />
-        </div>
-      )}
+      <div className='s-container'>
+        <Encounter />
+      </div>
       <div className='s-container'>
         <Settings />
       </div>

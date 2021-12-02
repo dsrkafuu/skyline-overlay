@@ -25,7 +25,7 @@ function CombatantDetail(
 
   // settings
   const { settings } = useStore();
-  const { minimalMode, showHPS, extendDetail } = settings;
+  const { showHPS, extendDetail } = settings;
 
   // row data render props
   const rowData: RowDataRenderProps[][] = [];
@@ -88,11 +88,7 @@ function CombatantDetail(
   }
 
   return (
-    <div
-      className={cn(['combatant-detail', { locked, minimal: minimalMode }])}
-      ref={ref}
-      {...props}
-    >
+    <div className={cn(['combatant-detail', { locked }])} ref={ref} {...props}>
       {rowData.map((section, idx) => (
         <div className='combatant-detail-section' key={idx}>
           {section.map((row) => (
