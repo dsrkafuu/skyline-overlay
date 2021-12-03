@@ -35,7 +35,6 @@ class Settings {
   playerLimit = 8; // combatant limit
   showLB = true;
   petMergeID = ''; // merge pet data when using global client with cn language patch
-  showHPS = false;
   extendDetail = false;
   bottomDisp = 'maxhit';
 
@@ -115,10 +114,6 @@ class Settings {
   updatePetMergeID(payload: string) {
     this.petMergeID = payload;
     saveSettings({ petMergeID: payload });
-  }
-  updateShowHPS(payload: boolean) {
-    this.showHPS = payload;
-    saveSettings({ showHPS: payload });
   }
   updateExtendDetail(payload: boolean) {
     this.extendDetail = payload;

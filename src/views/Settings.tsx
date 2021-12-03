@@ -83,15 +83,6 @@ function Settings() {
             ),
           },
           {
-            title: t('Show HPS'),
-            render: () => (
-              <SSwitch
-                value={s.showHPS}
-                onChange={(value) => s.updateShowHPS(value)}
-              />
-            ),
-          },
-          {
             title: t('Extend Detail'),
             render: () => (
               <SSwitch

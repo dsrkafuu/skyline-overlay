@@ -22,7 +22,7 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
   const { name, dps, hps } = player;
   const gridClass: Argument[] = ['combatant-grid']; // grid classnames
   const { settings } = useStore();
-  const { hlYou, showHPS, showTickers, shortNumber, bottomDisp } = settings;
+  const { hlYou, showTickers, shortNumber, bottomDisp } = settings;
 
   // class names related to job
   if (isLimitBreakData(player)) {
@@ -34,8 +34,6 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
   }
 
   // sub display prop
-  gridClass.push({ 'combatant-grid-extend': showHPS }); // extended grid
-
   const transBottomDispRef = useRef<HTMLDivElement>(null); // ref for react-transition-group
   const transDetailRef = useRef<HTMLDivElement>(null); // ref for react-transition-group
   // detail controls data
@@ -90,14 +88,6 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
         <span className='job-icon'>
           <Icon />
         </span>
-        {showHPS && (
-          <div className='combatant-grid-data'>
-            <span className='s-number'>
-              {(shortNumber ? fmtNumber(hps) : hps) || 0}
-            </span>
-            <span className='s-counter'>HPS</span>
-          </div>
-        )}
       </div>
 
       {showTickers && <STicker pcts={dpsPcts} type='dps' align='left' />}
