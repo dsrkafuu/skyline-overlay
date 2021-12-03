@@ -2,6 +2,12 @@ import { makeAutoObservable } from 'mobx';
 import xss from 'xss';
 import i18n from '../../i18n';
 import { setLS, getLS } from '../../utils/storage';
+import {
+  LangMapKey,
+  ShortNameMapKey,
+  SortRuleMapKey,
+  ThemeMapKey,
+} from '../../utils/constants';
 
 interface PartialSettings {
   [key: string]: number | string | boolean;
@@ -24,7 +30,8 @@ class Settings {
   blurName = false;
 
   // data
-  sortRule = -1; // sort data
+  sortKey: SortRuleMapKey = 'dps'; // sort data
+  sortRule: -1 | 1 = -1; // sort data
   playerLimit = 8; // combatant limit
   showLB = true;
   petMergeID = ''; // merge pet data when using global client with cn language patch
@@ -37,12 +44,12 @@ class Settings {
   hlYou = true; // highlight 'YOU'
   showTickers = true;
   youName = 'YOU'; // which to represent as 'YOU'
-  shortName = 'fstlst';
+  shortName: ShortNameMapKey = 'fstlst';
   shortNumber = false;
 
   // general
-  theme = 'default';
-  lang = 'en';
+  theme: ThemeMapKey = 'default';
+  lang: LangMapKey = 'en';
   zoom = 1;
   customCSS = '#root {}';
 
@@ -89,7 +96,11 @@ class Settings {
   }
 
   // data
-  updateSortRule(payload: number) {
+  updateSortKey(payload: SortRuleMapKey) {
+    this.sortKey = payload;
+    saveSettings({ sortKey: payload });
+  }
+  updateSortRule(payload: -1 | 1) {
     this.sortRule = payload;
     saveSettings({ sortRule: payload });
   }
@@ -135,7 +146,7 @@ class Settings {
     this.youName = payload;
     saveSettings({ youName: payload });
   }
-  updateShortName(payload: string) {
+  updateShortName(payload: ShortNameMapKey) {
     this.shortName = payload;
     saveSettings({ shortName: payload });
   }
@@ -145,7 +156,7 @@ class Settings {
   }
 
   /* layout */
-  updateTheme(payload: string) {
+  updateTheme(payload: ThemeMapKey) {
     this.theme = payload;
     if (payload === 'default') {
       document.body.removeAttribute('data-theme');
@@ -154,7 +165,7 @@ class Settings {
     }
     saveSettings({ theme: payload });
   }
-  updateLang(payload: string) {
+  updateLang(payload: LangMapKey) {
     this.lang = payload;
     i18n.changeLanguage(payload);
     document.documentElement.setAttribute('lang', payload);

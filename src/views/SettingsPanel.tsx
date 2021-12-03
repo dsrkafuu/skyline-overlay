@@ -1,11 +1,11 @@
 import { observer } from 'mobx-react-lite';
-import cn, { Argument } from 'classnames';
+import cn from 'classnames';
 import { SettingsType } from './Settings';
 
 interface SettingsPanelItem {
   title: string;
   render?: () => React.ReactNode;
-  customClasses?: Argument | Argument[];
+  className?: string;
 }
 
 export interface SettingsPanelProps {
@@ -21,9 +21,9 @@ function SettingsPanel({ type, items }: SettingsPanelProps) {
   return (
     <div className={`settings-${type}`}>
       {items
-        ? items.map(({ title, render, customClasses = '' }, idx) => (
+        ? items.map(({ title, render, className }, idx) => (
             <div
-              className={cn('settings-row', customClasses)}
+              className={cn('settings-row', className)}
               key={`settings-${idx}`}
             >
               <span className='settings-title'>{title}</span>

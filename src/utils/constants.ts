@@ -2,41 +2,40 @@
 export const STORAGE_PREFIX = 'SKYLINE_V3_';
 
 // value maps for selection component
-import { SSelectMap } from '../components';
 
-// languages
-import rawLang from '../lang';
-const langMap: SSelectMap = {};
-(Object.keys(rawLang) as Array<keyof typeof rawLang>).forEach((key) => {
-  langMap[key] = {
-    text: rawLang[key].translation.LANG,
-  };
-});
-export const MAP_LANG = langMap;
+// sort rules map
+const sortRuleMap = {
+  dps: { text: 'DPS' },
+  hps: { text: 'HPS' },
+};
+export type SortRuleMapKey = keyof typeof sortRuleMap & string;
+export const MAP_SORT_RULE = sortRuleMap;
 
 // short names map
-interface ShortNameMap extends SSelectMap {
-  [key: string]: {
-    text: string;
-    data: { first: boolean; last: boolean };
-  };
-}
-const shortNameMap: ShortNameMap = {
+const shortNameMap = {
   fstlst: { text: 'First Last', data: { first: false, last: false } },
   fstl: { text: 'First L.', data: { first: false, last: true } },
   flst: { text: 'F. Last', data: { first: true, last: false } },
   fl: { text: 'F. L.', data: { first: true, last: true } },
 };
+export type ShortNameMapKey = keyof typeof shortNameMap & string;
 export const MAP_SHORT_NAME = shortNameMap;
 
-// themes map
-import themes from '../themes';
-export const MAP_THEMES: SSelectMap = themes;
-
 // bottom display map
-const bottomDispMap: SSelectMap = {
+const bottomDispMap = {
   maxhit: { text: 'Max Hit' },
   cdpcts: { text: 'C/D/CD' },
   none: { text: 'None' },
 };
+export type BottomDispMapKey = keyof typeof bottomDispMap & string;
 export const MAP_BOTTOM_DISP = bottomDispMap;
+
+// languages
+import rawLang from '../lang';
+export type LangMapKey = keyof typeof rawLang & string;
+export const MAP_LANG = rawLang;
+
+// themes map
+import themes from '../themes';
+export type ThemeMapKey = keyof typeof themes & string;
+export const MAP_THEMES = themes;

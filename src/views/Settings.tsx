@@ -12,6 +12,7 @@ import {
   MAP_THEMES,
   MAP_BOTTOM_DISP,
   MAP_SHORT_NAME,
+  MAP_SORT_RULE,
 } from '../utils/constants';
 import useStore from '../hooks/useStore';
 import { IChevronDown, IChevronUp } from '../assets/icons';
@@ -34,12 +35,20 @@ function Settings() {
           {
             title: t('Sort Rule'),
             render: () => (
-              <SSwitch
-                value={s.sortRule < 0}
-                onChange={(value) => s.updateSortRule(value ? -1 : 1)}
-                ITrue={IChevronDown}
-                IFalse={IChevronUp}
-              />
+              <>
+                <SSelect
+                  className='settings-sort-rule'
+                  value={s.sortKey}
+                  onChange={(val) => s.updateSortKey(val)}
+                  map={MAP_SORT_RULE}
+                />
+                <SSwitch
+                  value={s.sortRule < 0}
+                  onChange={(value) => s.updateSortRule(value ? -1 : 1)}
+                  ITrue={IChevronDown}
+                  IFalse={IChevronUp}
+                />
+              </>
             ),
           },
           {
@@ -169,12 +178,12 @@ function Settings() {
             title: t('Theme'),
             render: () => (
               <SSelect
+                className='settings-theme'
                 value={s.theme}
                 onChange={(val) => s.updateTheme(val)}
                 map={MAP_THEMES}
               />
             ),
-            customClasses: 'settings-theme',
           },
           {
             title: t('Language'),
@@ -185,7 +194,6 @@ function Settings() {
                 map={MAP_LANG}
               />
             ),
-            customClasses: 'settings-lang',
           },
           {
             title: t('UI Scale'),
@@ -204,11 +212,11 @@ function Settings() {
             title: t('Custom CSS'),
             render: () => (
               <SInput
+                className='settings-ccss'
                 value={s.customCSS}
                 onChange={(val) => s.updateCustomCSS(val)}
               />
             ),
-            customClasses: 'settings-ccss',
           },
         ],
       },

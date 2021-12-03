@@ -4,8 +4,8 @@ import zh from './zh.json';
 import de from './de.json';
 
 export default {
-  en: { translation: en },
-  ja: { translation: ja },
-  zh: { translation: zh },
-  de: { translation: de },
+  en: { text: en.LANG, translation: en },
+  ja: { text: ja.LANG, translation: ja },
+  zh: { text: zh.LANG, translation: zh },
+  de: { text: de.LANG, translation: de },
 };

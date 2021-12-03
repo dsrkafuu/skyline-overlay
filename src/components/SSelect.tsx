@@ -11,19 +11,26 @@ export interface SSelectMap {
   };
 }
 
-interface SSelectProps {
+// type of onChange value is decided from what map keys are passed in
+interface SSelectProps<TMap extends SSelectMap> {
   value: string; // selected value (map's key)
-  onChange: (value: string, data?: unknown) => void;
-  map: SSelectMap;
+  onChange: (value: keyof TMap, data?: unknown) => void;
+  map: TMap;
+  className?: string;
 }
 
-function SSelect({ value, onChange, map }: SSelectProps) {
+function SSelect<TMap extends SSelectMap>({
+  value,
+  onChange,
+  map,
+  className,
+}: SSelectProps<TMap>) {
   const transRef = useRef<HTMLDivElement>(null); // ref for react-transition-group
 
   const [active, setActive] = useState(false);
 
   const handleChange = useCallback(
-    (value: string, data?: unknown) => {
+    (value: keyof TMap, data?: unknown) => {
       setActive(false);
       onChange(value, data);
     },
@@ -31,7 +38,7 @@ function SSelect({ value, onChange, map }: SSelectProps) {
   );
 
   return (
-    <div className='s-select'>
+    <div className={cn('s-select', className)}>
       <div
         className={cn('s-select-value', { active })}
         onClick={() => setActive((val) => !val)}
