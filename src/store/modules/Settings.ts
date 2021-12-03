@@ -34,6 +34,7 @@ class Settings {
   sortRule: -1 | 1 = -1; // sort data
   playerLimit = 8; // combatant limit
   showLB = true;
+  youName = 'YOU'; // which to represent as 'YOU'
   petMergeID = ''; // merge pet data when using global client with cn language patch
   extendDetail = false;
   bottomDisp = 'maxhit';
@@ -42,7 +43,6 @@ class Settings {
   showRanks = false; // show rank number before id
   hlYou = true; // highlight 'YOU'
   showTickers = true;
-  youName = 'YOU'; // which to represent as 'YOU'
   shortName: ShortNameMapKey = 'fstlst';
   shortNumber = false;
 
@@ -111,6 +111,10 @@ class Settings {
     this.showLB = payload;
     saveSettings({ showLB: payload });
   }
+  updateYouName(payload: string) {
+    this.youName = payload;
+    saveSettings({ youName: payload });
+  }
   updatePetMergeID(payload: string) {
     this.petMergeID = payload;
     saveSettings({ petMergeID: payload });
@@ -136,10 +140,6 @@ class Settings {
   updateShowTickers(payload: boolean) {
     this.showTickers = payload;
     saveSettings({ showTickers: payload });
-  }
-  updateYouName(payload: string) {
-    this.youName = payload;
-    saveSettings({ youName: payload });
   }
   updateShortName(payload: ShortNameMapKey) {
     this.shortName = payload;

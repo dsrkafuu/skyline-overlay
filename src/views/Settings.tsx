@@ -74,6 +74,15 @@ function Settings() {
             ),
           },
           {
+            title: t('Custom ID'),
+            render: () => (
+              <SInput
+                value={s.youName}
+                onChange={(val) => s.updateYouName(val)}
+              />
+            ),
+          },
+          {
             title: t('Pet-Merging ID'),
             render: () => (
               <SInput
@@ -128,15 +137,6 @@ function Settings() {
               <SSwitch
                 value={s.showTickers}
                 onChange={(val) => s.updateShowTickers(val)}
-              />
-            ),
-          },
-          {
-            title: t('Custom ID'),
-            render: () => (
-              <SInput
-                value={s.youName}
-                onChange={(val) => s.updateYouName(val)}
               />
             ),
           },
