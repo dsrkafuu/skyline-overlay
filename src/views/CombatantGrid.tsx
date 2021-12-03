@@ -19,7 +19,7 @@ interface CombatantGridProps {
 
 function CombatantGrid({ player, index }: CombatantGridProps) {
   // get data
-  const { name, dps, hps } = player;
+  const { name, dps } = player;
   const gridClass: Argument[] = ['combatant-grid']; // grid classnames
   const { settings } = useStore();
   const { hlYou, showTickers, shortNumber, bottomDisp } = settings;
