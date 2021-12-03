@@ -1,4 +1,5 @@
 import { makeAutoObservable } from 'mobx';
+import xss from 'xss';
 import i18n from '../../i18n';
 import { setLS, getLS } from '../../utils/storage';
 
@@ -68,8 +69,8 @@ class Settings {
     }px`;
     // apply initial custom style
     const customStyles = document.createElement('style');
-    customStyles.setAttribute('id', 'skyline-custom-css');
-    customStyles.innerHTML = this.customCSS;
+    customStyles.setAttribute('id', 'skyline-ccss');
+    customStyles.innerHTML = xss(this.customCSS);
     document.head.appendChild(customStyles);
 
     // init mobx
@@ -170,7 +171,7 @@ class Settings {
     this.customCSS = payload;
     const customStyles = document.querySelector('#skyline-ccss');
     if (customStyles) {
-      customStyles.innerHTML = payload;
+      customStyles.innerHTML = xss(payload);
     }
     saveSettings({ customCSS: payload });
   }
