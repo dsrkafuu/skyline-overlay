@@ -74,6 +74,9 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
     pcts: ticker.bottom === 'healer' ? healerPcts : dpsPcts,
     type: ticker.bottom === 'healer' ? 'healer' : 'dps',
   };
+  let tickerNum = 2;
+  ticker.top === 'none' && tickerNum--;
+  ticker.bottom === 'none' && tickerNum--;
 
   return (
     <div className={cn(...gridClass)}>
@@ -127,6 +130,7 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
         <CombatantDetail
           ref={transDetailRef}
           player={player}
+          tickerNum={tickerNum}
           locked={lockDetail}
         />
       </CSSTransition>

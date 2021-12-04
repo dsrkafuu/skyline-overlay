@@ -120,7 +120,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: 0.54rem;
+    // top: 0.50rem; // each ticker 0.04rem
     z-index: 99;
     backdrop-filter: $filter;
     background-color: var(--color-combatant-bg-others);

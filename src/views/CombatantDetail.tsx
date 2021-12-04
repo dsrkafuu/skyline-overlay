@@ -8,14 +8,22 @@ import { isCombatantData } from '../utils/type';
 
 interface CombatantDetailProps {
   player: CombatantData | LimitBreakData;
+  tickerNum: number; // how many tickers has
   locked: boolean;
 }
 
 function CombatantDetail(
-  { player, locked, ...props }: CombatantDetailProps,
+  { player, tickerNum, locked, ...props }: CombatantDetailProps,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
   const { t } = useTranslation();
+
+  // calculate top position according to tickerNum
+  let tickerValidNum = Math.floor(tickerNum);
+  if (tickerValidNum < 0 || tickerValidNum > 2) {
+    tickerValidNum = 0;
+  }
+  const top = (0.46 + tickerValidNum * 0.04).toFixed(2) + 'rem';
 
   // settings
   const { settings } = useStore();
@@ -73,7 +81,12 @@ function CombatantDetail(
   }
 
   return (
-    <div className={cn(['combatant-detail', { locked }])} ref={ref} {...props}>
+    <div
+      className={cn(['combatant-detail', { locked }])}
+      ref={ref}
+      {...props}
+      style={{ top }}
+    >
       <SList items={rowItems} />
     </div>
   );
