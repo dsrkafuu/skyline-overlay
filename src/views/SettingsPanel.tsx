@@ -6,6 +6,7 @@ interface SettingsPanelItem {
   title: string;
   render?: () => React.ReactNode;
   className?: string;
+  disabled?: boolean;
 }
 
 export interface SettingsPanelProps {
@@ -21,9 +22,13 @@ function SettingsPanel({ type, items }: SettingsPanelProps) {
   return (
     <div className={`settings-${type}`}>
       {items
-        ? items.map(({ title, render, className }, idx) => (
+        ? items.map(({ title, render, className, disabled }, idx) => (
             <div
-              className={cn('settings-row', className)}
+              className={cn(
+                'settings-row',
+                { 'settings-row--disabled': disabled },
+                className
+              )}
               key={`settings-${idx}`}
             >
               <span className='settings-title'>{title}</span>
