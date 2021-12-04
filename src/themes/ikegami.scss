@@ -46,9 +46,11 @@ body[data-theme='ikegami'] {
   // components
   --color-form-fg: var(--color-fg);
   --color-form-fg-active: #404040;
+  --color-form-fg-disabled: rgba(255, 255, 255, 0.7);
   --color-form-fg-selection: #404040;
   --color-form-bg: #404040;
   --color-form-bg-active: var(--color-fg);
+  --color-form-bg-disabled: var(--color-form-bg);
   --color-form-bg-selection: var(--color-fg);
   --shadow-form: none;
   --shadow-form-active: none;

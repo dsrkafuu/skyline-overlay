@@ -16,6 +16,7 @@ interface SSelectProps<TMap extends SSelectMap> {
   value: string; // selected value (map's key)
   onChange: (value: keyof TMap, data?: unknown) => void;
   map: TMap;
+  disabled?: boolean;
   className?: string;
 }
 
@@ -23,6 +24,7 @@ function SSelect<TMap extends SSelectMap>({
   value,
   onChange,
   map,
+  disabled,
   className,
 }: SSelectProps<TMap>) {
   const transRef = useRef<HTMLDivElement>(null); // ref for react-transition-group
@@ -38,10 +40,12 @@ function SSelect<TMap extends SSelectMap>({
   );
 
   return (
-    <div className={cn('s-select', className)}>
+    <div
+      className={cn('s-select', { 's-select--disabled': disabled }, className)}
+    >
       <div
         className={cn('s-select-value', { active })}
-        onClick={() => setActive((val) => !val)}
+        onClick={() => setActive((val) => !disabled && !val)}
       >
         <div className='disp'>{map[value] ? map[value].text : 'Unknown'}</div>
         <div className='btn'>{active ? <IChevronUp /> : <IChevronDown />}</div>

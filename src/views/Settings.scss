@@ -85,9 +85,15 @@
     min-width: 0;
   }
 
+  &-ticker-display,
+  &-ticker-align {
+    width: 0.8rem;
+    min-width: 0;
+  }
+
   &-theme,
   &-ccss {
-    width: 1.5rem;
+    width: 1.6rem;
     min-width: 0;
   }
 }

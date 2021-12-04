@@ -7,10 +7,12 @@ import {
   ShortNameMapKey,
   SortRuleMapKey,
   ThemeMapKey,
+  TickerAlignMapKey,
+  TickerMapKey,
 } from '../../utils/constants';
 
 interface PartialSettings {
-  [key: string]: number | string | boolean;
+  [key: string]: unknown;
 }
 
 /**
@@ -20,6 +22,24 @@ function saveSettings(settings: PartialSettings) {
   const savedSettings = (getLS('settings') || {}) as PartialSettings;
   const newSettings = { ...savedSettings, ...settings };
   setLS('settings', newSettings);
+}
+
+interface TickerSettings {
+  top: TickerMapKey;
+  bottom: TickerMapKey;
+}
+interface PartialTickerSettings {
+  top?: TickerMapKey;
+  bottom?: TickerMapKey;
+}
+
+interface TickerAlignSettings {
+  top: TickerAlignMapKey;
+  bottom: TickerAlignMapKey;
+}
+interface PartialTickerAlignSettings {
+  top?: TickerAlignMapKey;
+  bottom?: TickerAlignMapKey;
 }
 
 class Settings {
@@ -42,7 +62,8 @@ class Settings {
   // display
   showRanks = false; // show rank number before id
   hlYou = true; // highlight 'YOU'
-  showTickers = true;
+  ticker: TickerSettings = { top: 'none', bottom: 'dps' };
+  tickerAlign: TickerAlignSettings = { top: 'right', bottom: 'left' };
   shortName: ShortNameMapKey = 'fstlst';
   shortNumber = false;
 
@@ -137,9 +158,13 @@ class Settings {
     this.hlYou = payload;
     saveSettings({ hlYou: payload });
   }
-  updateShowTickers(payload: boolean) {
-    this.showTickers = payload;
-    saveSettings({ showTickers: payload });
+  updateTicker(payload: PartialTickerSettings) {
+    this.ticker = { ...this.ticker, ...payload };
+    saveSettings({ ticker: this.ticker });
+  }
+  updateTickerAlign(payload: PartialTickerAlignSettings) {
+    this.tickerAlign = { ...this.tickerAlign, ...payload };
+    saveSettings({ tickerAlign: this.tickerAlign });
   }
   updateShortName(payload: ShortNameMapKey) {
     this.shortName = payload;

@@ -1,6 +1,6 @@
 import './STicker.scss';
 
-interface STickerProps {
+export interface STickerProps {
   pcts: Array<number | string>; // percentages
   type?: 'dps' | 'healer';
   align?: 'left' | 'right';

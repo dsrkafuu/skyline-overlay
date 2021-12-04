@@ -21,6 +21,23 @@ const shortNameMap = {
 export type ShortNameMapKey = keyof typeof shortNameMap & string;
 export const MAP_SHORT_NAME = shortNameMap;
 
+// ticker map
+const tickerMap = {
+  healer: { text: 'S/H/OH' },
+  dps: { text: 'CD/C/D' },
+  none: { text: 'None' },
+};
+export type TickerMapKey = keyof typeof tickerMap & string;
+export const MAP_TICKER = tickerMap;
+
+// ticker align map
+const tickerAlignMap = {
+  left: { text: 'Left' },
+  right: { text: 'Right' },
+};
+export type TickerAlignMapKey = keyof typeof tickerAlignMap & string;
+export const MAP_TICKER_ALIGN = tickerAlignMap;
+
 // bottom display map
 const bottomDispMap = {
   maxhit: { text: 'Max Hit' },

@@ -13,6 +13,8 @@ import {
   MAP_BOTTOM_DISP,
   MAP_SHORT_NAME,
   MAP_SORT_RULE,
+  MAP_TICKER,
+  MAP_TICKER_ALIGN,
 } from '../utils/constants';
 import useStore from '../hooks/useStore';
 import { IChevronDown, IChevronUp } from '../assets/icons';
@@ -132,12 +134,43 @@ function Settings() {
             ),
           },
           {
-            title: t('Show Tickers'),
+            title: t('Tickers Display'),
             render: () => (
-              <SSwitch
-                value={s.showTickers}
-                onChange={(val) => s.updateShowTickers(val)}
-              />
+              <>
+                <SSelect
+                  className='settings-ticker-display'
+                  value={s.ticker.top}
+                  onChange={(val) => s.updateTicker({ top: val })}
+                  map={MAP_TICKER}
+                />
+                <SSelect
+                  className='settings-ticker-display'
+                  value={s.ticker.bottom}
+                  onChange={(val) => s.updateTicker({ bottom: val })}
+                  map={MAP_TICKER}
+                />
+              </>
+            ),
+          },
+          {
+            title: t('Tickers Align'),
+            render: () => (
+              <>
+                <SSelect
+                  className='settings-ticker-align'
+                  value={s.tickerAlign.top}
+                  onChange={(val) => s.updateTickerAlign({ top: val })}
+                  disabled={s.ticker.top === 'none'}
+                  map={MAP_TICKER_ALIGN}
+                />
+                <SSelect
+                  className='settings-ticker-align'
+                  value={s.tickerAlign.bottom}
+                  onChange={(val) => s.updateTickerAlign({ bottom: val })}
+                  disabled={s.ticker.bottom === 'none'}
+                  map={MAP_TICKER_ALIGN}
+                />
+              </>
             ),
           },
           {

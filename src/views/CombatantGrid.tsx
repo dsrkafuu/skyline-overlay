@@ -10,7 +10,7 @@ import { fmtNumber } from '../utils/formatters';
 import useStore from '../hooks/useStore';
 import CombatantBottom from './CombatantBottom';
 import { isLimitBreakData, isCombatantData } from '../utils/type';
-import STicker from '../components/STicker';
+import { STicker, STickerProps } from '../components';
 
 interface CombatantGridProps {
   player: CombatantData | LimitBreakData;
@@ -22,7 +22,7 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
   const { name, dps } = player;
   const gridClass: Argument[] = ['combatant-grid']; // grid classnames
   const { settings } = useStore();
-  const { hlYou, showTickers, shortNumber, bottomDisp } = settings;
+  const { hlYou, shortNumber, bottomDisp, ticker, tickerAlign } = settings;
 
   // class names related to job
   if (isLimitBreakData(player)) {
@@ -60,18 +60,28 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
       ] || jobIcons.FFXIV;
 
   // tickers
-  let dpsPcts: string[] = [];
   let healerPcts: string[] = [];
+  let dpsPcts: string[] = [];
   if (isCombatantData(player)) {
     dpsPcts = [player.directCritHitPct, player.critHitPct, player.directHitPct];
     healerPcts = [player.shieldPct, player.healsPct, player.overHealPct];
   }
+  const topTickerProps: STickerProps = {
+    pcts: ticker.top === 'healer' ? healerPcts : dpsPcts,
+    type: ticker.top === 'healer' ? 'healer' : 'dps',
+  };
+  const bottomTickerProps: STickerProps = {
+    pcts: ticker.bottom === 'healer' ? healerPcts : dpsPcts,
+    type: ticker.bottom === 'healer' ? 'healer' : 'dps',
+  };
 
   return (
     <div className={cn(...gridClass)}>
       <CombatantName player={player} index={index} />
 
-      {showTickers && <STicker pcts={healerPcts} type='healer' align='right' />}
+      {ticker.top && ticker.top !== 'none' && (
+        <STicker {...topTickerProps} align={tickerAlign.top} />
+      )}
 
       <div
         className='combatant-grid-content'
@@ -90,7 +100,9 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
         </span>
       </div>
 
-      {showTickers && <STicker pcts={dpsPcts} type='dps' align='left' />}
+      {ticker.bottom && ticker.bottom !== 'none' && (
+        <STicker {...bottomTickerProps} align={tickerAlign.bottom} />
+      )}
 
       <CSSTransition
         nodeRef={transBottomDispRef}
