@@ -126,6 +126,7 @@ function Settings() {
                 value={s.dispMode}
                 onChange={(val) => s.updateDispMode(val)}
                 map={MAP_DISPLAY_MODE}
+                disabled
               />
             ),
           },
@@ -145,6 +146,7 @@ function Settings() {
                   value={s.dispContent.right}
                   onChange={(val) => s.updateDispContent({ right: val })}
                   map={MAP_DISPLAY_CONTENT}
+                  disabled
                 />
               </>
             ),
