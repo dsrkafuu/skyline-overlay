@@ -51,8 +51,17 @@
     display: flex;
     justify-content: space-between;
 
+    // first settings line has top padding
     &:not(:first-child) {
       margin-top: $padding-md;
+    }
+
+    // child form items styles
+    & > *:first-child {
+      flex: 1 1 auto;
+    }
+    & > *:not(:last-child) {
+      margin-right: $padding-md;
     }
 
     .s-link {
@@ -69,12 +78,23 @@
   }
 }
 
+// custom settings items
 .settings {
-  &-theme .s-select {
-    width: 1.4rem;
+  &-sort-rule {
+    width: 0.72rem;
+    min-width: 0;
   }
 
-  &-font .s-input {
+  &-display-content,
+  &-ticker-display,
+  &-ticker-align {
+    width: 0.8rem;
+    min-width: 0;
+  }
+
+  &-theme,
+  &-custom-css {
     width: 1.6rem;
+    min-width: 0;
   }
 }

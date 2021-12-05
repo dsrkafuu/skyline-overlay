@@ -1,8 +1,9 @@
-import React, { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import cn from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import './SSelect.scss';
 import { IChevronDown, IChevronUp } from '../assets/icons';
+import { useOutsideClick } from '../hooks';
 
 export interface SSelectMap {
   [key: string]: {
@@ -11,32 +12,58 @@ export interface SSelectMap {
   };
 }
 
-interface SSelectProps {
+// type of onChange value is decided from what map keys are passed in
+interface SSelectProps<TMap extends SSelectMap> {
   value: string; // selected value (map's key)
-  onChange: (value: string, data?: unknown) => void;
-  map: SSelectMap;
+  onChange: (value: keyof TMap, data?: unknown) => void;
+  map: TMap;
+  disabled?: boolean;
+  className?: string;
 }
 
-function SSelect({ value, onChange, map }: SSelectProps) {
+function SSelect<TMap extends SSelectMap>({
+  value,
+  onChange,
+  map,
+  disabled,
+  className,
+}: SSelectProps<TMap>) {
   const transRef = useRef<HTMLDivElement>(null); // ref for react-transition-group
 
   const [active, setActive] = useState(false);
 
   const handleChange = useCallback(
-    (value: string, data?: unknown) => {
+    (value: keyof TMap, data?: unknown) => {
       setActive(false);
       onChange(value, data);
     },
     [onChange]
   );
 
+  const clickRef = useRef<HTMLDivElement>(null);
+  useOutsideClick(clickRef, () => {
+    setActive(false);
+  });
+
   return (
-    <div className='s-select'>
-      <div className={cn('s-select-value', { active })} onClick={() => setActive((val) => !val)}>
+    <div
+      className={cn('s-select', { 's-select--disabled': disabled }, className)}
+      ref={clickRef}
+    >
+      <div
+        className={cn('s-select-value', { active })}
+        onClick={() => setActive((val) => !disabled && !val)}
+      >
         <div className='disp'>{map[value] ? map[value].text : 'Unknown'}</div>
         <div className='btn'>{active ? <IChevronUp /> : <IChevronDown />}</div>
       </div>
-      <CSSTransition classNames='fade' in={active} timeout={150} unmountOnExit nodeRef={transRef}>
+      <CSSTransition
+        classNames='fade'
+        in={active}
+        timeout={150}
+        unmountOnExit
+        nodeRef={transRef}
+      >
         <div className='s-select-options' ref={transRef}>
           {Object.keys(map).map((key) => (
             <div

@@ -4,17 +4,17 @@
   <br />
 </h1>
 
-<h4 align="center">A horizon FFXIV miniparse overlay built with React & MobX.</h4>
+<h4 align="center">A modern customizable horizon FFXIV miniparse overlay.</h4>
 <br />
 
 ![](https://img.shields.io/github/package-json/v/dsrkafuu/skyline-overlay)
-![](https://img.shields.io/badge/ffxiv%20tested-5.5-orange)
+![](https://img.shields.io/badge/ffxiv-endwalker-orange)
 ![](https://img.shields.io/github/license/dsrkafuu/skyline-overlay)
 
 An extended version from [horizoverlay](https://github.com/bsides/horizoverlay/) with some of [ikegami](https://github.com/hibiyasleep/ikegami)'s features. The project is based on React with MobX & Vite, and the dedicated [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
 
-<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-v1.6.0.jpg" alt="Skyline Preview" />
-<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-v2.0.0.jpg" alt="Skyline Extended Preview" />
+<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-en-v3.jpg" alt="Skyline EN Preview" />
+<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-zh-v3.jpg" alt="Skyline ZH Preview" />
 
 ## Overlay Link
 
@@ -29,26 +29,21 @@ Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin)
 
 By default the overlay follows the pet-merging policy set in the FFXIV ACT Plugin. When playing on global servers with a custom language patch which causes the plugin's pet-merging not working, you can set your ID in an overlay config to manually merge your pets' data.
 
-## To-do List
+Local:
 
-- [x] Combatent sort - v1.1.x
-- [x] UI zoom - v1.2.x
-- [x] Multi-lingual support - v1.3.x
-- [x] Combatant number limit - v1.4.x
-- [x] Switch show LB - v1.4.x
-- [x] Short playername - v1.4.x
-- [x] Custom font family - v1.5.x
-- [x] Themes - v1.6.x
-- [x] HPS display - v1.7.x
-- [x] Highlight self - v1.7.x
-- [x] Detailed data for each player - v1.8.x
-- [x] Custom CSS - v1.8.x
-- [x] Optional shorten numbers - v2.0.x
-- [x] C/D/CD tickers - v2.0.x
-- [x] Minimal mode - v2.1.x
-- [x] Switch show maxhit - v2.1.x
-- [x] Custom pet-merging - v2.2.x
-- [ ] 24 combatants support - v2.x.x
+```bash
+git clone https://github.com/dsrkafuu/skyline-overlay.git
+cd skyline-overlay
+npm install
+npm start
+```
+
+## Env
+
+```
+VITE_BASE_URL="./" # dist base url
+VITE_GA_ID="" # analytics id
+```
 
 ## Contribute
 
@@ -85,6 +80,7 @@ Please use [ISO 639-1:2002](https://en.wikipedia.org/wiki/List_of_ISO_639-1_code
 - MobX: <https://mobx.js.org>
 - Vite: <https://vitejs.dev>
 - ffxiv-overlay-api: <https://github.com/dsrkafuu/ffxiv-overlay-api>
+- Job Icons: <https://github.com/xivapi/classjob-icons/tree/master/svg>
 
 ## LICENSE
 

@@ -8,6 +8,7 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended"
   ],
   "parser": "@typescript-eslint/parser",
@@ -19,13 +20,7 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint", "react", "react-hooks"],
-  "rules": {
-    // Just use TypeScript
-    "react/prop-types": "off",
-    // No need for React 17+
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
-  },
+  "rules": {},
   "settings": {
     "react": {
       "version": "detect"

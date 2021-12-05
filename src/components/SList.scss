@@ -1,0 +1,40 @@
+.s-list {
+  width: 100%;
+  font-size: $font-size-sm;
+  padding: 0.04rem 0.06rem;
+
+  &-section {
+    padding: 0.04rem 0.02rem;
+  }
+  &-section + &-section {
+    border-top: 0.02rem solid #ffffff;
+  }
+
+  &-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 1.25;
+
+    &-pct .s-counter {
+      display: inline-block;
+      text-align: right;
+      overflow: visible;
+      white-space: nowrap;
+    }
+
+    & > div:first-child,
+    & > span:first-child {
+      flex: 1 1 auto;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    & > div:last-child,
+    & > span:last-child {
+      flex: 0 0 auto;
+      overflow: visible;
+      white-space: nowrap;
+    }
+  }
+}

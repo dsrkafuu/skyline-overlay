@@ -1,27 +1,30 @@
-import path from 'path';
 import { defineConfig } from 'vite';
-import reactRefresh from '@vitejs/plugin-react-refresh';
+import react from '@vitejs/plugin-react';
+import svgr from '@svgr/rollup';
+import htmlEnv from 'vite-plugin-html-env';
 
 /**
  * https://vitejs.dev/config/
  */
 export default defineConfig({
-  base: process.env.BASE_URL || './',
-  plugins: [reactRefresh()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-    },
-  },
+  base: process.env.VITE_BASE_URL || './',
+  plugins: [
+    svgr({
+      icon: true,
+      typescript: true,
+      svgProps: { className: 'icon' },
+    }),
+    react(),
+    htmlEnv(process.env),
+  ],
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import '@/scss/variables.scss';`,
+        additionalData: `@import './src/scss/variables.scss';`,
       },
     },
   },
   build: {
     emptyOutDir: true,
-    sourcemap: true,
   },
 });

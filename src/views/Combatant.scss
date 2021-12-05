@@ -4,52 +4,27 @@
   justify-content: center;
   align-items: flex-start;
 
-  &-grid {
-    position: relative;
-    flex: 0 0 auto;
-    width: 1.2rem;
-    margin: 0 $padding-sm;
+  &-name,
+  &-bottom {
+    line-height: 0.22rem;
+    height: 0.22rem;
+    font-size: $font-size-sm;
+    text-align: center;
+    white-space: nowrap;
     display: flex;
-    flex-direction: column;
-    color: var(--color-combatant-fg);
-    text-shadow: var(--shadow-combatant);
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+  }
 
-    // job type colors
-    &.jobtype-dps &-content {
-      background-color: var(--color-combatant-bg-dps);
+  &-name {
+    &--blured {
+      filter: blur(0.04rem);
     }
-    &.jobtype-tank &-content {
-      background-color: var(--color-combatant-bg-tank);
-    }
-    &.jobtype-healer &-content {
-      background-color: var(--color-combatant-bg-heal);
-    }
-    &.jobtype-unknown &-content {
-      background-color: var(--color-combatant-bg-others);
-    }
-    // self highlight color
-    &.job-self &-content {
-      background-color: var(--color-combatant-bg-self);
-    }
+  }
 
-    &-id,
-    &-bottom {
-      line-height: 0.22rem;
-      height: 0.22rem;
-      font-size: $font-size-sm;
-      text-align: center;
-      white-space: nowrap;
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: center;
-      align-items: center;
-
-      &.blur {
-        filter: blur(0.04rem);
-      }
-    }
-
-    &-bottom.maxhit {
+  &-bottom {
+    &--maxhit {
       & > span:first-child {
         flex: 0 1 auto;
         overflow: hidden;
@@ -60,21 +35,52 @@
       }
     }
 
-    &-bottom.cdpcts {
+    &--cdpcts {
       text-align: center;
 
       & > span {
         text-align: center;
       }
     }
+  }
 
-    &-content {
-      height: 0.24rem;
-      position: relative;
-      padding: 0.04rem 0.08rem;
-      background-color: var(--color-combatant-bg-others);
-      backdrop-filter: $filter;
-    }
+  &-grid {
+    position: relative;
+    flex: 0 0 auto;
+    width: 1.2rem;
+    margin: 0 $padding-sm;
+    display: flex;
+    flex-direction: column;
+    color: var(--color-combatant-fg);
+    text-shadow: var(--shadow-combatant);
+  }
+
+  // job type colors
+  .jobtype-dps &-content {
+    background-color: var(--color-combatant-bg-dps);
+  }
+  .jobtype-tank &-content {
+    background-color: var(--color-combatant-bg-tank);
+  }
+  .jobtype-healer &-content {
+    background-color: var(--color-combatant-bg-heal);
+  }
+  .jobtype-hand &-content,
+  .jobtype-land &-content,
+  .jobtype-unknown &-content {
+    background-color: var(--color-combatant-bg-others);
+  }
+  // self highlight color
+  .job-self &-content {
+    background-color: var(--color-combatant-bg-self);
+  }
+
+  &-content {
+    height: 0.24rem;
+    position: relative;
+    padding: 0.04rem 0.08rem;
+    background-color: var(--color-combatant-bg-others);
+    backdrop-filter: $filter;
 
     &-data {
       height: 0.16rem;
@@ -102,7 +108,7 @@
       justify-content: center;
       align-items: center;
 
-      .ijob {
+      .icon {
         font-size: 0.24rem;
         filter: drop-shadow(var(--shadow-icon));
         color: var(--color-fg);
@@ -114,52 +120,11 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: 0.5rem;
+    // top: 0.50rem; // each ticker 0.04rem
     z-index: 99;
-    font-size: $font-size-sm;
-    padding: 0.04rem 0.06rem;
     backdrop-filter: $filter;
     background-color: var(--color-combatant-bg-others);
     @include transition();
-
-    &.minimal {
-      top: 0.28rem;
-    }
-
-    &-section {
-      padding: 0.04rem 0.02rem;
-    }
-    &-section + &-section {
-      border-top: 0.02rem solid #ffffff;
-    }
-
-    &-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      line-height: 1.25;
-
-      &-pct .s-counter {
-        display: inline-block;
-        text-align: right;
-        overflow: visible;
-        white-space: nowrap;
-      }
-
-      & > div:first-child,
-      & > span:first-child {
-        flex: 1 1 auto;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-      & > div:last-child,
-      & > span:last-child {
-        flex: 0 0 auto;
-        overflow: visible;
-        white-space: nowrap;
-      }
-    }
   }
 
   .jobtype-dps .combatant-detail.locked {
@@ -168,85 +133,69 @@
   .jobtype-tank .combatant-detail.locked {
     background-color: var(--color-combatant-bg-tank);
   }
-  .jobtype-heal .combatant-detail.locked {
+  .jobtype-healer .combatant-detail.locked {
     background-color: var(--color-combatant-bg-heal);
   }
-  .jobtype-others .combatant-detail.locked {
+  .jobtype-hand .combatant-detail.locked,
+  .jobtype-land .combatant-detail.locked,
+  .jobtype-unknown .combatant-detail.locked {
     background-color: var(--color-combatant-bg-others);
   }
   // self highlight color
   .job-self .combatant-detail.locked {
     background-color: var(--color-combatant-bg-self);
   }
-
-  &-ticker {
-    width: 100%;
-    height: 0.04rem;
-    display: flex;
-    align-items: stretch;
-    margin-bottom: 0.01rem;
-
-    &-d {
-      background-color: var(--color-combatant-ticker-d);
-    }
-    &-c {
-      background-color: var(--color-combatant-ticker-c);
-    }
-    &-dc {
-      background-color: var(--color-combatant-ticker-dc);
-    }
-  }
 }
 
-.combatant-grid-extend {
-  .combatant-grid {
-    &-content {
-      height: 0.4rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+// .combatant-grid-extend {
+//   .combatant-grid {
+//     &-content {
+//       height: 0.4rem;
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//     }
 
-    &-data {
-      height: 0.32rem;
-      flex: 1 1 auto;
-      width: 50%;
-      display: flex;
-      flex-direction: column-reverse;
-      justify-content: center;
+//     &-data {
+//       height: 0.32rem;
+//       flex: 1 1 auto;
+//       width: 50%;
+//       display: flex;
+//       flex-direction: column-reverse;
+//       justify-content: center;
 
-      &:first-child {
-        align-items: flex-start;
-      }
+//       &:first-child {
+//         align-items: flex-start;
+//       }
 
-      &:last-child {
-        align-items: flex-end;
-      }
+//       &:last-child {
+//         align-items: flex-end;
+//       }
 
-      .s-counter {
-        height: 0.14rem;
-        line-height: 0.14rem;
-        margin: 0 0.02rem;
-      }
+//       .s-counter {
+//         height: 0.14rem;
+//         line-height: 0.14rem;
+//         margin: 0 0.02rem;
+//       }
 
-      .s-number {
-        height: 0.18rem;
-        line-height: 0.18rem;
-        margin: 0 0.01rem;
-      }
-    }
-  }
+//       .s-number {
+//         height: 0.18rem;
+//         line-height: 0.18rem;
+//         margin: 0 0.01rem;
+//       }
+//     }
+//   }
 
-  .job-icon {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-    top: -0.05rem;
-    width: 0.24rem;
-    height: 0.24rem;
-  }
+//   .job-icon {
+//     position: absolute;
+//     left: 50%;
+//     transform: translate(-50%);
+//     top: -0.05rem;
+//     width: 0.24rem;
+//     height: 0.24rem;
+//   }
 
-  .combatant-detail {
-    top: 0.66rem;
-  }
-}
+//   .combatant-detail {
+//     top: 0.66rem;
+//   }
+// }

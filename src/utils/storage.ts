@@ -6,7 +6,10 @@ import { STORAGE_PREFIX } from './constants';
  */
 export function setLS(key: string, value: unknown) {
   try {
-    localStorage.setItem(STORAGE_PREFIX + key.toUpperCase(), JSON.stringify(value));
+    localStorage.setItem(
+      STORAGE_PREFIX + key.toUpperCase(),
+      JSON.stringify(value)
+    );
   } catch (e) {
     logError(e);
   }

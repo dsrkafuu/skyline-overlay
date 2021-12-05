@@ -54,4 +54,18 @@
       text-shadow: var(--shadow-form-active);
     }
   }
+
+  &--disabled {
+    .s-select-value {
+      color: var(--color-form-fg-disabled);
+      background-color: var(--color-form-bg-disabled);
+
+      &:hover {
+        cursor: not-allowed;
+        color: var(--color-form-fg-disabled);
+        background-color: var(--color-form-bg-disabled);
+        text-shadow: var(--shadow-form);
+      }
+    }
+  }
 }

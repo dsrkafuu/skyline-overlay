@@ -1,9 +1,20 @@
 import { makeAutoObservable } from 'mobx';
+import xss from 'xss';
 import i18n from '../../i18n';
 import { setLS, getLS } from '../../utils/storage';
+import {
+  LangMapKey,
+  ShortNameMapKey,
+  SortRuleMapKey,
+  ThemeMapKey,
+  DisplayModeMapKey,
+  DisplayContentMapKey,
+  TickerAlignMapKey,
+  TickerMapKey,
+} from '../../utils/constants';
 
 interface PartialSettings {
-  [key: string]: number | string | boolean;
+  [key: string]: unknown;
 }
 
 /**
@@ -15,34 +26,70 @@ function saveSettings(settings: PartialSettings) {
   setLS('settings', newSettings);
 }
 
+interface SortSettings {
+  key: SortRuleMapKey;
+  rule: -1 | 1;
+}
+interface PartialSortSettings {
+  key?: SortRuleMapKey;
+  rule?: -1 | 1;
+}
+
+interface DispContentSettings {
+  left: DisplayContentMapKey;
+  right: DisplayContentMapKey;
+}
+interface PartialDispContentSettings {
+  left?: DisplayContentMapKey;
+  right?: DisplayContentMapKey;
+}
+
+interface TickerSettings {
+  top: TickerMapKey;
+  bottom: TickerMapKey;
+}
+interface PartialTickerSettings {
+  top?: TickerMapKey;
+  bottom?: TickerMapKey;
+}
+
+interface TickerAlignSettings {
+  top: TickerAlignMapKey;
+  bottom: TickerAlignMapKey;
+}
+interface PartialTickerAlignSettings {
+  top?: TickerAlignMapKey;
+  bottom?: TickerAlignMapKey;
+}
+
 class Settings {
   /** @mobx state */
 
   // settings container display
   showSettings = false;
-  minimalMode = false;
+  blurName = false;
 
   // data
-  sortRule = -1; // sort data
+  sort: SortSettings = { key: 'dps', rule: -1 };
   playerLimit = 8; // combatant limit
   showLB = true;
+  youName = 'YOU'; // which to represent as 'YOU'
   petMergeID = ''; // merge pet data when using global client with cn language patch
-  showHPS = false;
   extendDetail = false;
   bottomDisp = 'maxhit';
 
   // display
-  showRanks = false; // show rank number before id
+  dispMode: DisplayModeMapKey = 'single';
+  dispContent: DispContentSettings = { left: 'hps', right: 'dps' };
   hlYou = true; // highlight 'YOU'
-  showTickers = true;
-  youName = 'YOU'; // which to represent as 'YOU'
-  shortName = 'fstlst';
+  ticker: TickerSettings = { top: 'none', bottom: 'dps' };
+  tickerAlign: TickerAlignSettings = { top: 'right', bottom: 'left' };
+  shortName: ShortNameMapKey = 'fstlst';
   shortNumber = false;
-  blurName = false;
 
   // general
-  theme = 'default';
-  lang = 'en';
+  theme: ThemeMapKey = 'default';
+  lang: LangMapKey = 'en';
   zoom = 1;
   customCSS = '#root {}';
 
@@ -64,11 +111,13 @@ class Settings {
     // apply initial lang
     document.documentElement.setAttribute('lang', this.lang);
     // apply initial zoom
-    document.documentElement.style.fontSize = `${Math.floor(100 * this.zoom) || 100}px`;
+    document.documentElement.style.fontSize = `${
+      Math.floor(100 * this.zoom) || 100
+    }px`;
     // apply initial custom style
     const customStyles = document.createElement('style');
     customStyles.setAttribute('id', 'skyline-custom-css');
-    customStyles.innerHTML = this.customCSS;
+    customStyles.innerHTML = xss(this.customCSS);
     document.head.appendChild(customStyles);
 
     // init mobx
@@ -81,15 +130,15 @@ class Settings {
     this.showSettings = !this.showSettings;
     saveSettings({ showSettings: this.showSettings });
   }
-  toggleMinimalMode() {
-    this.minimalMode = !this.minimalMode;
-    saveSettings({ minimalMode: this.minimalMode });
+  toggleBlurName() {
+    this.blurName = !this.blurName;
+    saveSettings({ blurName: this.blurName });
   }
 
   // data
-  updateSortRule(payload: number) {
-    this.sortRule = payload;
-    saveSettings({ sortRule: payload });
+  updateSort(payload: PartialSortSettings) {
+    this.sort = { ...this.sort, ...payload };
+    saveSettings({ sort: this.sort });
   }
   updatePlayerLimit(payload: number) {
     this.playerLimit = payload;
@@ -99,13 +148,13 @@ class Settings {
     this.showLB = payload;
     saveSettings({ showLB: payload });
   }
+  updateYouName(payload: string) {
+    this.youName = payload;
+    saveSettings({ youName: payload });
+  }
   updatePetMergeID(payload: string) {
     this.petMergeID = payload;
     saveSettings({ petMergeID: payload });
-  }
-  updateShowHPS(payload: boolean) {
-    this.showHPS = payload;
-    saveSettings({ showHPS: payload });
   }
   updateExtendDetail(payload: boolean) {
     this.extendDetail = payload;
@@ -117,23 +166,27 @@ class Settings {
   }
 
   /* display */
-  updateShowRanks(payload: boolean) {
-    this.showRanks = payload;
-    saveSettings({ showRanks: payload });
+  updateDispMode(payload: DisplayModeMapKey) {
+    this.dispMode = payload;
+    saveSettings({ dispMode: payload });
+  }
+  updateDispContent(payload: PartialDispContentSettings) {
+    this.dispContent = { ...this.dispContent, ...payload };
+    saveSettings({ dispContent: this.dispContent });
   }
   updateHlYou(payload: boolean) {
     this.hlYou = payload;
     saveSettings({ hlYou: payload });
   }
-  updateShowTickers(payload: boolean) {
-    this.showTickers = payload;
-    saveSettings({ showTickers: payload });
+  updateTicker(payload: PartialTickerSettings) {
+    this.ticker = { ...this.ticker, ...payload };
+    saveSettings({ ticker: this.ticker });
   }
-  updateYouName(payload: string) {
-    this.youName = payload;
-    saveSettings({ youName: payload });
+  updateTickerAlign(payload: PartialTickerAlignSettings) {
+    this.tickerAlign = { ...this.tickerAlign, ...payload };
+    saveSettings({ tickerAlign: this.tickerAlign });
   }
-  updateShortName(payload: string) {
+  updateShortName(payload: ShortNameMapKey) {
     this.shortName = payload;
     saveSettings({ shortName: payload });
   }
@@ -141,13 +194,9 @@ class Settings {
     this.shortNumber = payload;
     saveSettings({ shortNumber: payload });
   }
-  updateBlurName(payload: boolean) {
-    this.blurName = payload;
-    saveSettings({ blurName: payload });
-  }
 
   /* layout */
-  updateTheme(payload: string) {
+  updateTheme(payload: ThemeMapKey) {
     this.theme = payload;
     if (payload === 'default') {
       document.body.removeAttribute('data-theme');
@@ -156,7 +205,7 @@ class Settings {
     }
     saveSettings({ theme: payload });
   }
-  updateLang(payload: string) {
+  updateLang(payload: LangMapKey) {
     this.lang = payload;
     i18n.changeLanguage(payload);
     document.documentElement.setAttribute('lang', payload);
@@ -164,14 +213,16 @@ class Settings {
   }
   updateZoom(payload: number) {
     this.zoom = payload;
-    document.documentElement.style.fontSize = `${Math.floor(100 * payload) || 100}px`;
+    document.documentElement.style.fontSize = `${
+      Math.floor(100 * payload) || 100
+    }px`;
     saveSettings({ zoom: payload });
   }
   updateCustomCSS(payload: string) {
     this.customCSS = payload;
-    const customStyles = document.querySelector('#skyline-ccss');
+    const customStyles = document.querySelector('#skyline-custom-css');
     if (customStyles) {
-      customStyles.innerHTML = payload;
+      customStyles.innerHTML = xss(payload);
     }
     saveSettings({ customCSS: payload });
   }

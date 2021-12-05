@@ -1,4 +1,3 @@
-import React from 'react';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import { isCombatantData } from '../utils/type';
 
@@ -22,9 +21,18 @@ function CombatantTicker({ player }: CombatantTickerProps) {
 
     return (
       <div className='combatant-ticker'>
-        <span className='combatant-ticker-dc' style={{ width: parsePct(dc) }}></span>
-        <span className='combatant-ticker-c' style={{ width: parsePct(c) }}></span>
-        <span className='combatant-ticker-d' style={{ width: parsePct(d) }}></span>
+        <span
+          className='combatant-ticker-dc'
+          style={{ width: parsePct(dc) }}
+        ></span>
+        <span
+          className='combatant-ticker-c'
+          style={{ width: parsePct(c) }}
+        ></span>
+        <span
+          className='combatant-ticker-d'
+          style={{ width: parsePct(d) }}
+        ></span>
       </div>
     );
   }

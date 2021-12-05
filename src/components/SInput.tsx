@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { isCEF } from '../utils/env';
 import cn from 'classnames';
@@ -7,10 +7,10 @@ import './SInput.scss';
 interface SInputProps {
   value: string;
   onChange: (value: string) => void;
-  props?: unknown[];
+  className?: string;
 }
 
-function SInput({ value, onChange, ...props }: SInputProps) {
+function SInput({ value, onChange, className }: SInputProps) {
   const { t } = useTranslation();
   const [focused, setFocused] = useState(false);
 
@@ -36,21 +36,23 @@ function SInput({ value, onChange, ...props }: SInputProps) {
 
   if (isCEF()) {
     return (
-      <div className='s-input s-input-cef btn' onClick={handleClick} {...props}>
+      <div
+        className={cn('s-input s-input-cef btn', className)}
+        onClick={handleClick}
+      >
         {value}
       </div>
     );
   } else {
     return (
       <input
-        className={cn('s-input', { active: focused })}
+        className={cn('s-input', { active: focused }, className)}
         value={value}
         onInput={handleInput}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         type='text'
         autoComplete='off'
-        {...props}
       />
     );
   }

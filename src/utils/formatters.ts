@@ -45,7 +45,10 @@ interface PetMergeTempMap {
 /**
  * merge pet data into player
  */
-export function fmtMergePet(combatant: Array<CombatantData | LimitBreakData> = [], yid = 'YOU') {
+export function fmtMergePet(
+  combatant: Array<CombatantData | LimitBreakData> = [],
+  yid = 'YOU'
+) {
   const players = cloneDeep(combatant);
   const map: PetMergeTempMap = {};
   const lbIndexes: number[] = [];
