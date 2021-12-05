@@ -105,12 +105,11 @@ function Settings() {
             ),
           },
           {
-            title: t('Bottom Display'),
+            title: t('Shorten Number'),
             render: () => (
-              <SSelect
-                value={s.bottomDisp}
-                onChange={(val) => s.updateBottomDisp(val)}
-                map={MAP_BOTTOM_DISP}
+              <SSwitch
+                value={s.shortNumber}
+                onChange={(val) => s.updateShortNumber(val)}
               />
             ),
           },
@@ -197,21 +196,22 @@ function Settings() {
             ),
           },
           {
+            title: t('Bottom Display'),
+            render: () => (
+              <SSelect
+                value={s.bottomDisp}
+                onChange={(val) => s.updateBottomDisp(val)}
+                map={MAP_BOTTOM_DISP}
+              />
+            ),
+          },
+          {
             title: t('Shorten Name'),
             render: () => (
               <SSelect
                 value={s.shortName}
                 onChange={(val) => s.updateShortName(val)}
                 map={MAP_SHORT_NAME}
-              />
-            ),
-          },
-          {
-            title: t('Shorten Number'),
-            render: () => (
-              <SSwitch
-                value={s.shortNumber}
-                onChange={(val) => s.updateShortNumber(val)}
               />
             ),
           },
@@ -259,7 +259,7 @@ function Settings() {
             title: t('Custom CSS'),
             render: () => (
               <SInput
-                className='settings-ccss'
+                className='settings-custom-css'
                 value={s.customCSS}
                 onChange={(val) => s.updateCustomCSS(val)}
               />

@@ -21,7 +21,7 @@
   "Custom ID": "自定义 ID",
   "Pet-Merging ID": "召唤物合并 ID",
   "Extend Detail": "扩展详情显示",
-  "Bottom Display": "底部显示",
+  "Shorten Number": "短数字",
 
   "Display": "显示",
   "Display Mode": "显示模式",
@@ -29,8 +29,8 @@
   "Highlight Self": "高亮显示自身",
   "Tickers Display": "数据条显示",
   "Tickers Align": "数据条对齐",
+  "Bottom Display": "底部显示",
   "Shorten Name": "缩写玩家名 (国服无效)",
-  "Shorten Number": "短数字",
 
   "General": "通常",
   "Theme": "主题",

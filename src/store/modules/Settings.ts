@@ -116,7 +116,7 @@ class Settings {
     }px`;
     // apply initial custom style
     const customStyles = document.createElement('style');
-    customStyles.setAttribute('id', 'skyline-ccss');
+    customStyles.setAttribute('id', 'skyline-custom-css');
     customStyles.innerHTML = xss(this.customCSS);
     document.head.appendChild(customStyles);
 
@@ -220,7 +220,7 @@ class Settings {
   }
   updateCustomCSS(payload: string) {
     this.customCSS = payload;
-    const customStyles = document.querySelector('#skyline-ccss');
+    const customStyles = document.querySelector('#skyline-custom-css');
     if (customStyles) {
       customStyles.innerHTML = xss(payload);
     }

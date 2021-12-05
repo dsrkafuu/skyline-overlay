@@ -10,7 +10,7 @@ interface CombatantNameProps {
   index: number;
 }
 
-function CombatantName({ player, index }: CombatantNameProps) {
+function CombatantName({ player }: CombatantNameProps) {
   const { settings } = useStore();
   const { blurName, youName, shortName } = settings;
   const { toggleBlurName } = settings;
