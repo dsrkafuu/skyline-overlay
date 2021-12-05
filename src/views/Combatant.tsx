@@ -1,9 +1,8 @@
 import './Combatant.scss';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import cn, { Argument } from 'classnames';
 import cloneDeep from 'lodash/cloneDeep';
-import { CSSTransition } from 'react-transition-group';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import CombatantName from './CombatantName';
 import CombatantDetail from './CombatantDetail';
@@ -35,9 +34,6 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
     gridClass.push(`jobtype-${player.jobType || 'unknown'}`); // jobtype
   }
 
-  // sub display prop
-  const transBottomDispRef = useRef<HTMLDivElement>(null); // ref for react-transition-group
-  const transDetailRef = useRef<HTMLDivElement>(null); // ref for react-transition-group
   // detail controls data
   const needDetail = name !== 'Limit Break';
   const [showDetail, setShowDetail] = useState(false);
@@ -81,33 +77,18 @@ function CombatantGrid({ player, index }: CombatantGridProps) {
         <STicker {...bottomTickerProps} align={tickerAlign.bottom} />
       )}
 
-      <CSSTransition
-        nodeRef={transBottomDispRef}
-        in={!needDetail || !(lockDetail || showDetail)}
-        classNames='fade'
-        timeout={150}
-      >
-        <CombatantBottom
-          ref={transBottomDispRef}
-          player={player}
-          mode={bottomDisp}
-        />
-      </CSSTransition>
+      {!needDetail ||
+        (!(lockDetail || showDetail) && (
+          <CombatantBottom player={player} mode={bottomDisp} />
+        ))}
 
-      <CSSTransition
-        nodeRef={transDetailRef}
-        in={needDetail && (lockDetail || showDetail)}
-        classNames='fade'
-        timeout={150}
-        unmountOnExit={true}
-      >
+      {needDetail && (lockDetail || showDetail) && (
         <CombatantDetail
-          ref={transDetailRef}
           player={player}
           tickerNum={tickerNum}
           locked={lockDetail}
         />
-      </CSSTransition>
+      )}
     </div>
   );
 }

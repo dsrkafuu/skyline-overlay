@@ -26,7 +26,6 @@
     align-items: center;
     text-align: center;
     cursor: pointer;
-    @include transition();
 
     &:hover {
       color: var(--color-form-fg-active);

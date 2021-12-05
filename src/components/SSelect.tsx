@@ -1,6 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
 import cn from 'classnames';
-import { CSSTransition } from 'react-transition-group';
 import './SSelect.scss';
 import { IChevronDown, IChevronUp } from '../assets/icons';
 import { useOutsideClick } from '../hooks';
@@ -28,8 +27,6 @@ function SSelect<TMap extends SSelectMap>({
   disabled,
   className,
 }: SSelectProps<TMap>) {
-  const transRef = useRef<HTMLDivElement>(null); // ref for react-transition-group
-
   const [active, setActive] = useState(false);
 
   const handleChange = useCallback(
@@ -57,14 +54,8 @@ function SSelect<TMap extends SSelectMap>({
         <div className='disp'>{map[value] ? map[value].text : 'Unknown'}</div>
         <div className='btn'>{active ? <IChevronUp /> : <IChevronDown />}</div>
       </div>
-      <CSSTransition
-        classNames='fade'
-        in={active}
-        timeout={150}
-        unmountOnExit
-        nodeRef={transRef}
-      >
-        <div className='s-select-options' ref={transRef}>
+      {active && (
+        <div className='s-select-options'>
           {Object.keys(map).map((key) => (
             <div
               className='s-select-option'
@@ -75,7 +66,7 @@ function SSelect<TMap extends SSelectMap>({
             </div>
           ))}
         </div>
-      </CSSTransition>
+      )}
     </div>
   );
 }

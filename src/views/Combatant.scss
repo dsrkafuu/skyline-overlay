@@ -124,7 +124,6 @@
     z-index: 99;
     backdrop-filter: $filter;
     background-color: var(--color-combatant-bg-others);
-    @include transition();
   }
 
   .jobtype-dps .combatant-detail.locked {

@@ -14,7 +14,6 @@
   text-decoration: underline;
   padding-left: 0.03rem;
   padding-right: 0.03rem;
-  @include transition();
 
   &:hover {
     color: var(--color-form-fg-active);
@@ -37,30 +36,4 @@ span.s-counter {
 svg.icon {
   font-size: 0.18rem;
   display: inline-block;
-}
-
-// animations
-.fade-enter {
-  opacity: 0;
-
-  &-active {
-    opacity: 1;
-    @include transition();
-  }
-
-  &-done {
-    opacity: 1;
-  }
-}
-.fade-exit {
-  opacity: 1;
-
-  &-active {
-    opacity: 0;
-    @include transition();
-  }
-
-  &-done {
-    opacity: 0;
-  }
 }

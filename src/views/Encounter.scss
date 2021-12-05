@@ -13,7 +13,6 @@
     color: var(--color-cover-fg);
     background-color: var(--color-cover-bg);
     text-shadow: var(--shadow-encounter);
-    @include transition();
 
     &.active {
       color: var(--color-cover-fg-active);
@@ -61,7 +60,6 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      @include transition();
 
       &:hover {
         color: var(--color-form-fg-active);

@@ -11,7 +11,3 @@ $padding-lg: 0.07rem;
 $padding-xl: 0.1rem;
 
 $filter: blur(0.01rem);
-
-@mixin transition() {
-  transition: all 150ms ease;
-}

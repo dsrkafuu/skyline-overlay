@@ -1,4 +1,3 @@
-import { forwardRef } from 'react';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import { SSelectMap } from '../components';
 import { isCombatantData } from '../utils/type';
@@ -8,10 +7,7 @@ interface CombatantBottomProps {
   mode: keyof SSelectMap;
 }
 
-function CombatantBottom(
-  { player, mode = 'none' }: CombatantBottomProps,
-  ref: React.ForwardedRef<HTMLDivElement>
-) {
+function CombatantBottom({ player, mode = 'none' }: CombatantBottomProps) {
   if (mode === 'maxhit') {
     const maxHitDamage = isCombatantData(player)
       ? player.maxHitDamage
@@ -22,14 +18,14 @@ function CombatantBottom(
 
     if (maxHitDamage) {
       return (
-        <div className='combatant-bottom combatant-bottom--maxhit' ref={ref}>
+        <div className='combatant-bottom combatant-bottom--maxhit'>
           <span>&nbsp;{player.maxHit}&nbsp;</span>
           {maxHitDamage > 0 && <span>-&nbsp;{maxHitDamage}&nbsp;</span>}
         </div>
       );
     } else if (maxHealDamage) {
       return (
-        <div className='combatant-bottom combatant-bottom--maxhit' ref={ref}>
+        <div className='combatant-bottom combatant-bottom--maxhit'>
           <span>&nbsp;{player.maxHeal}&nbsp;</span>
           {maxHealDamage > 0 && <span>-&nbsp;{maxHealDamage}&nbsp;</span>}
         </div>
@@ -39,7 +35,7 @@ function CombatantBottom(
     const { directHitPct, critHitPct, directCritHitPct } = player;
 
     return (
-      <div className='combatant-bottom combatant-bottom--cdpcts' ref={ref}>
+      <div className='combatant-bottom combatant-bottom--cdpcts'>
         &nbsp;<span>{directCritHitPct}CD</span>
         &nbsp;<span>{critHitPct}D</span>
         &nbsp;<span>{directHitPct}C</span>&nbsp;
@@ -50,6 +46,4 @@ function CombatantBottom(
   return null;
 }
 
-const CombatantBottomWithRef = forwardRef(CombatantBottom);
-
-export default CombatantBottomWithRef;
+export default CombatantBottom;

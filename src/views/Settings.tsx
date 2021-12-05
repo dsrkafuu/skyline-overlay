@@ -1,9 +1,8 @@
 import './Settings.scss';
-import { useMemo, useState, useRef } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import cn from 'classnames';
-import { CSSTransition } from 'react-transition-group';
 import SettingsAbout from './SettingsAbout';
 import SettingsPanel, { SettingsPanelProps } from './SettingsPanel';
 import { SInputNumber, SSelect, SInput, SSwitch } from '../components';
@@ -26,8 +25,6 @@ export type SettingsType = 'about' | 'general' | 'data' | 'display';
 function Settings() {
   const { t } = useTranslation();
   const { settings: s } = useStore();
-
-  const transRef = useRef<HTMLDivElement>(null); // ref for react-transition-group
 
   const panels = useMemo<SettingsPanelProps[]>(
     () => [
@@ -279,38 +276,30 @@ function Settings() {
     [activeType, panels]
   );
 
-  return (
-    <CSSTransition
-      classNames='fade'
-      in={Boolean(s.showSettings)}
-      timeout={150}
-      unmountOnExit
-      nodeRef={transRef}
-    >
-      <div className='settings' ref={transRef}>
-        <div className='settings-tab'>
-          {panels.map(({ type, title }) => (
-            <div
-              className={cn('settings-tabitem', {
-                active: type === activeType,
-              })}
-              key={`tab-${type}`}
-              onClick={() => setActiveType(type)}
-            >
-              {title}
-            </div>
-          ))}
-        </div>
-        <div className='settings-content'>
-          {activeType === 'about' ? (
-            <SettingsAbout />
-          ) : (
-            <SettingsPanel {...activePanelProps} />
-          )}
-        </div>
+  return s.showSettings ? (
+    <div className='settings'>
+      <div className='settings-tab'>
+        {panels.map(({ type, title }) => (
+          <div
+            className={cn('settings-tabitem', {
+              active: type === activeType,
+            })}
+            key={`tab-${type}`}
+            onClick={() => setActiveType(type)}
+          >
+            {title}
+          </div>
+        ))}
       </div>
-    </CSSTransition>
-  );
+      <div className='settings-content'>
+        {activeType === 'about' ? (
+          <SettingsAbout />
+        ) : (
+          <SettingsPanel {...activePanelProps} />
+        )}
+      </div>
+    </div>
+  ) : null;
 }
 
 export default observer(Settings);

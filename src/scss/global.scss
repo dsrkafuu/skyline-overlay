@@ -13,10 +13,6 @@ body {
   position: relative;
 }
 
-html {
-  @include transition();
-}
-
 #root,
 .app {
   display: block;

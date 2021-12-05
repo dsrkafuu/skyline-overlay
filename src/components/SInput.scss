@@ -9,7 +9,6 @@
   padding: 0 $padding-md;
   width: $size-form-minwidth;
   user-select: auto;
-  @include transition();
   text-align: center;
   text-shadow: var(--shadow-form);
   border-radius: 0;
@@ -28,7 +27,6 @@
 
   &-cef {
     cursor: pointer;
-    @include transition();
 
     &:hover {
       text-shadow: var(--shadow-form-active);
