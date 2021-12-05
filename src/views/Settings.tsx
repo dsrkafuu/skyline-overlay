@@ -1,9 +1,9 @@
+import './Settings.scss';
 import { useMemo, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import cn from 'classnames';
 import { CSSTransition } from 'react-transition-group';
-import './Settings.scss';
 import SettingsAbout from './SettingsAbout';
 import SettingsPanel, { SettingsPanelProps } from './SettingsPanel';
 import { SInputNumber, SSelect, SInput, SSwitch } from '../components';

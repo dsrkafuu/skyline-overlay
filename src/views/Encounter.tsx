@@ -1,7 +1,7 @@
+import './Encounter.scss';
 import { useCallback } from 'react';
 import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
-import './Encounter.scss';
 import { version } from '../assets/meta';
 import { IRefresh, ISettings } from '../assets/icons';
 import { logInfo } from '../utils/loggers';
