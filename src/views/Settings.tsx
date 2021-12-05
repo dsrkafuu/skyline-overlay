@@ -40,13 +40,13 @@ function Settings() {
               <>
                 <SSelect
                   className='settings-sort-rule'
-                  value={s.sortKey}
-                  onChange={(val) => s.updateSortKey(val)}
+                  value={s.sort.key}
+                  onChange={(val) => s.updateSort({ key: val })}
                   map={MAP_SORT_RULE}
                 />
                 <SSwitch
-                  value={s.sortRule < 0}
-                  onChange={(value) => s.updateSortRule(value ? -1 : 1)}
+                  value={s.sort.rule < 0}
+                  onChange={(value) => s.updateSort({ rule: value ? -1 : 1 })}
                   ITrue={IChevronDown}
                   IFalse={IChevronUp}
                 />

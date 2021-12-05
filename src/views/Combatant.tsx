@@ -10,7 +10,7 @@ function Combatant() {
   // get data from store
   const {
     api: { combatant, lb },
-    settings: { sortKey, sortRule, playerLimit, showLB, petMergeID },
+    settings: { sort, playerLimit, showLB, petMergeID },
   } = useStore();
   let players: Array<CombatantData | LimitBreakData> = cloneDeep(combatant);
 
@@ -20,7 +20,7 @@ function Combatant() {
   }
 
   // sort combatant
-  players.sort((a, b) => sortRule * (a[sortKey] - b[sortKey]));
+  players.sort((a, b) => sort.rule * (a[sort.key] - b[sort.key]));
 
   // limit combatants
   const temp = players;

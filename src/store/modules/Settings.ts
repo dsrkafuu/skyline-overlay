@@ -24,6 +24,15 @@ function saveSettings(settings: PartialSettings) {
   setLS('settings', newSettings);
 }
 
+interface SortSettings {
+  key: SortRuleMapKey;
+  rule: -1 | 1;
+}
+interface PartialSortSettings {
+  key?: SortRuleMapKey;
+  rule?: -1 | 1;
+}
+
 interface TickerSettings {
   top: TickerMapKey;
   bottom: TickerMapKey;
@@ -50,8 +59,7 @@ class Settings {
   blurName = false;
 
   // data
-  sortKey: SortRuleMapKey = 'dps'; // sort data
-  sortRule: -1 | 1 = -1; // sort data
+  sort: SortSettings = { key: 'dps', rule: -1 };
   playerLimit = 8; // combatant limit
   showLB = true;
   youName = 'YOU'; // which to represent as 'YOU'
@@ -116,13 +124,9 @@ class Settings {
   }
 
   // data
-  updateSortKey(payload: SortRuleMapKey) {
-    this.sortKey = payload;
-    saveSettings({ sortKey: payload });
-  }
-  updateSortRule(payload: -1 | 1) {
-    this.sortRule = payload;
-    saveSettings({ sortRule: payload });
+  updateSort(payload: PartialSortSettings) {
+    this.sort = { ...this.sort, ...payload };
+    saveSettings({ sort: this.sort });
   }
   updatePlayerLimit(payload: number) {
     this.playerLimit = payload;
