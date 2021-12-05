@@ -1,21 +1,35 @@
 {
   "LANG": "日本語",
 
+  "Overheal": "オーバーヒール",
+  "Shielded": "シールド",
+  "Damage": "ダメージ",
+  "Deaths": "死亡回数",
+  "Direct": "Direct",
+  "Critical !": "Critical !",
+  "DC !!!": "DC !!!",
+
   "About": "情報",
   "Need Help": "コミュニティの翻訳者にもっと<1>協力</1>してもらいたい！",
   "Request Issue": "質問や提案があれば、<1>issue にお尋ね</1>ください。",
+  "Build Date": "コンパイル",
 
   "Data": "データ",
   "Sort Rule": "ソートルール",
   "Max Combatants": "最大戦闘員数",
   "Show Limit Break": "Limit Break 表示",
   "Custom ID": "カスタム ID",
+  "Pet-Merging ID": "ペット合算 ID",
   "Extend Detail": "詳細データ",
   "Shorten Number": "カウンターをイニシャルで表示",
 
   "Display": "表示",
+  "Display Mode": "表示モード",
+  "Display Content": "表示内容",
   "Highlight Self": "自分のデータを強調表示",
   "Tickers Display": "ティッカー表示",
+  "Tickers Align": "ティッカーアライメント",
+  "Bottom Display": "ボトム表示内容",
   "Shorten Name": "名前をイニシャルで表示",
 
   "General": "一般",

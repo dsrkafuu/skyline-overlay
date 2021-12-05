@@ -46,7 +46,7 @@ function CombatantDetail(
     rowItems.push([
       { key: 'HPS', value: player.hps },
       { key: t('Overheal'), value: player.overHealPct, pct: true },
-      { key: t('Shield'), value: player.shieldPct, pct: true },
+      { key: t('Shielded'), value: player.shieldPct, pct: true },
     ]);
   }
 
