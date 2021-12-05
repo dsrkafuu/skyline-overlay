@@ -15,6 +15,8 @@ import {
   MAP_SORT_RULE,
   MAP_TICKER,
   MAP_TICKER_ALIGN,
+  MAP_DISPLAY_MODE,
+  MAP_DISPLAY_CONTENT,
 } from '../utils/constants';
 import { useStore } from '../hooks';
 import { IChevronDown, IChevronUp } from '../assets/icons';
@@ -118,6 +120,36 @@ function Settings() {
         type: 'display',
         title: t('Display'),
         items: [
+          {
+            title: t('Display Mode'),
+            render: () => (
+              <SSelect
+                value={s.dispMode}
+                onChange={(val) => s.updateDispMode(val)}
+                map={MAP_DISPLAY_MODE}
+              />
+            ),
+          },
+          {
+            title: t('Display Content'),
+            render: () => (
+              <>
+                <SSelect
+                  className='settings-display-content'
+                  value={s.dispContent.left}
+                  onChange={(val) => s.updateDispContent({ left: val })}
+                  disabled={s.dispMode === 'single'}
+                  map={MAP_DISPLAY_CONTENT}
+                />
+                <SSelect
+                  className='settings-display-content'
+                  value={s.dispContent.right}
+                  onChange={(val) => s.updateDispContent({ right: val })}
+                  map={MAP_DISPLAY_CONTENT}
+                />
+              </>
+            ),
+          },
           {
             title: t('Show Ranks'),
             render: () => (

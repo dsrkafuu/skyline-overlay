@@ -21,6 +21,22 @@ const shortNameMap = {
 export type ShortNameMapKey = keyof typeof shortNameMap & string;
 export const MAP_SHORT_NAME = shortNameMap;
 
+// display mode map
+const displayModeMap = {
+  single: { text: 'Single' },
+  dual: { text: 'Dual' },
+};
+export type DisplayModeMapKey = keyof typeof displayModeMap & string;
+export const MAP_DISPLAY_MODE = displayModeMap;
+
+// display content map
+const displayContentMap = {
+  dps: { text: 'DPS' },
+  hps: { text: 'HPS' },
+};
+export type DisplayContentMapKey = keyof typeof displayContentMap & string;
+export const MAP_DISPLAY_CONTENT = displayContentMap;
+
 // ticker map
 const tickerMap = {
   healer: { text: 'S/H/OH' },

@@ -7,6 +7,8 @@ import {
   ShortNameMapKey,
   SortRuleMapKey,
   ThemeMapKey,
+  DisplayModeMapKey,
+  DisplayContentMapKey,
   TickerAlignMapKey,
   TickerMapKey,
 } from '../../utils/constants';
@@ -31,6 +33,15 @@ interface SortSettings {
 interface PartialSortSettings {
   key?: SortRuleMapKey;
   rule?: -1 | 1;
+}
+
+interface DispContentSettings {
+  left: DisplayContentMapKey;
+  right: DisplayContentMapKey;
+}
+interface PartialDispContentSettings {
+  left?: DisplayContentMapKey;
+  right?: DisplayContentMapKey;
 }
 
 interface TickerSettings {
@@ -68,6 +79,8 @@ class Settings {
   bottomDisp = 'maxhit';
 
   // display
+  dispMode: DisplayModeMapKey = 'single';
+  dispContent: DispContentSettings = { left: 'hps', right: 'dps' };
   showRanks = false; // show rank number before id
   hlYou = true; // highlight 'YOU'
   ticker: TickerSettings = { top: 'none', bottom: 'dps' };
@@ -154,6 +167,14 @@ class Settings {
   }
 
   /* display */
+  updateDispMode(payload: DisplayModeMapKey) {
+    this.dispMode = payload;
+    saveSettings({ dispMode: payload });
+  }
+  updateDispContent(payload: PartialDispContentSettings) {
+    this.dispContent = { ...this.dispContent, ...payload };
+    saveSettings({ dispContent: this.dispContent });
+  }
   updateShowRanks(payload: boolean) {
     this.showRanks = payload;
     saveSettings({ showRanks: payload });
