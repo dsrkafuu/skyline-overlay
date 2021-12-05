@@ -37,7 +37,7 @@ function SInput({ value, onChange, className }: SInputProps) {
   if (isCEF()) {
     return (
       <div
-        className={(cn('s-input s-input-cef btn'), className)}
+        className={cn('s-input s-input-cef btn', className)}
         onClick={handleClick}
       >
         {value}
