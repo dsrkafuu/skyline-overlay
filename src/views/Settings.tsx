@@ -16,7 +16,7 @@ import {
   MAP_TICKER,
   MAP_TICKER_ALIGN,
 } from '../utils/constants';
-import useStore from '../hooks/useStore';
+import { useStore } from '../hooks';
 import { IChevronDown, IChevronUp } from '../assets/icons';
 
 export type SettingsType = 'about' | 'general' | 'data' | 'display';

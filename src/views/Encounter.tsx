@@ -5,7 +5,7 @@ import './Encounter.scss';
 import { version } from '../assets/meta';
 import { IRefresh, ISettings } from '../assets/icons';
 import { logInfo } from '../utils/loggers';
-import useStore from '../hooks/useStore';
+import { useStore } from '../hooks';
 
 function Encounter() {
   const { api, settings } = useStore();

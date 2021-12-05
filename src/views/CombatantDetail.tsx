@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import cn from 'classnames';
 import { SList, SListRow } from '../components';
-import useStore from '../hooks/useStore';
+import { useStore } from '../hooks';
 import { isCombatantData } from '../utils/type';
 
 interface CombatantDetailProps {

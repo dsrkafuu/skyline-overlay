@@ -3,6 +3,7 @@ import cn from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import './SSelect.scss';
 import { IChevronDown, IChevronUp } from '../assets/icons';
+import { useOutsideClick } from '../hooks';
 
 export interface SSelectMap {
   [key: string]: {
@@ -39,9 +40,15 @@ function SSelect<TMap extends SSelectMap>({
     [onChange]
   );
 
+  const clickRef = useRef<HTMLDivElement>(null);
+  useOutsideClick(clickRef, () => {
+    setActive(false);
+  });
+
   return (
     <div
       className={cn('s-select', { 's-select--disabled': disabled }, className)}
+      ref={clickRef}
     >
       <div
         className={cn('s-select-value', { active })}

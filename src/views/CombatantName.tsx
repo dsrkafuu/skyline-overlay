@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { observer } from 'mobx-react-lite';
 import cn from 'classnames';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
-import useStore from '../hooks/useStore';
+import { useStore } from '../hooks';
 import { MAP_SHORT_NAME } from '../utils/constants';
 
 interface CombatantNameProps {

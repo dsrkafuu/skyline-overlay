@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import cloneDeep from 'lodash/cloneDeep';
 import './Combatant.scss';
 import CombatantGrid from './CombatantGrid';
-import useStore from '../hooks/useStore';
+import { useStore } from '../hooks';
 import { fmtMergePet } from '../utils/formatters';
 
 function Combatant() {

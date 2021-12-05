@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import { date } from '../assets/meta';
-import useStore from '../hooks/useStore';
+import { useStore } from '../hooks';
 
 function SettingsAbout() {
   const { t } = useTranslation();

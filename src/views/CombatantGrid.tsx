@@ -7,7 +7,7 @@ import CombatantName from './CombatantName';
 import CombatantDetail from './CombatantDetail';
 import * as jobIcons from '../assets/jobs';
 import { fmtNumber } from '../utils/formatters';
-import useStore from '../hooks/useStore';
+import { useStore } from '../hooks';
 import CombatantBottom from './CombatantBottom';
 import { isLimitBreakData, isCombatantData } from '../utils/type';
 import { STicker, STickerProps } from '../components';
