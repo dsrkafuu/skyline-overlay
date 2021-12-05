@@ -1,3 +1,6 @@
+# auto gen meta
+src/assets/meta.ts
+
 # vite
 *.local
 vite.config.ts.js

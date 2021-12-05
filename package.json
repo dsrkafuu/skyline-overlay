@@ -12,7 +12,7 @@
     "typecheck": "tsc",
     "bundle": "vite build",
     "script:genIconIdx": "node \"./scripts/genIconIdx.js\"",
-    "script:updMeta": "node \"./scripts/updMeta.js\"",
+    "script:genMeta": "node \"./scripts/genMeta.js\"",
     "script:removeSVG": "node \"./scripts/removeSVG.js\"",
     "build": "cross-env NODE_ENV=production run-s script:genIconIdx script:updMeta typecheck eslint bundle script:removeSVG",
     "dev": "cross-env NODE_ENV=development vite",
