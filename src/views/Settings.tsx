@@ -151,15 +151,6 @@ function Settings() {
             ),
           },
           {
-            title: t('Show Ranks'),
-            render: () => (
-              <SSwitch
-                value={s.showRanks}
-                onChange={(val) => s.updateShowRanks(val)}
-              />
-            ),
-          },
-          {
             title: t('Highlight Self'),
             render: () => (
               <SSwitch value={s.hlYou} onChange={(val) => s.updateHlYou(val)} />

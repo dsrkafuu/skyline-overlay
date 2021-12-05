@@ -12,7 +12,7 @@ interface CombatantNameProps {
 
 function CombatantName({ player, index }: CombatantNameProps) {
   const { settings } = useStore();
-  const { blurName, youName, shortName, showRanks } = settings;
+  const { blurName, youName, shortName } = settings;
   const { toggleBlurName } = settings;
 
   // gen display name
@@ -33,9 +33,8 @@ function CombatantName({ player, index }: CombatantNameProps) {
         (splitName[1] = `${splitName[1].charAt(0)}.`);
       dispName = splitName.join(' ');
     }
-    showRanks && (dispName = `${index + 1}. ${dispName}`); // if show ranks
     return dispName;
-  }, [index, player.name, shortName, showRanks, youName]);
+  }, [player.name, shortName, youName]);
 
   return (
     <div

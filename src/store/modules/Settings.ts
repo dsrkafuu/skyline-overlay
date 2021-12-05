@@ -81,7 +81,6 @@ class Settings {
   // display
   dispMode: DisplayModeMapKey = 'single';
   dispContent: DispContentSettings = { left: 'hps', right: 'dps' };
-  showRanks = false; // show rank number before id
   hlYou = true; // highlight 'YOU'
   ticker: TickerSettings = { top: 'none', bottom: 'dps' };
   tickerAlign: TickerAlignSettings = { top: 'right', bottom: 'left' };
@@ -174,10 +173,6 @@ class Settings {
   updateDispContent(payload: PartialDispContentSettings) {
     this.dispContent = { ...this.dispContent, ...payload };
     saveSettings({ dispContent: this.dispContent });
-  }
-  updateShowRanks(payload: boolean) {
-    this.showRanks = payload;
-    saveSettings({ showRanks: payload });
   }
   updateHlYou(payload: boolean) {
     this.hlYou = payload;
