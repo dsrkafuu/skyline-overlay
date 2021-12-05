@@ -13,7 +13,7 @@ function Encounter() {
 
   // encounter data
   const duration = encounter.duration || '00:00';
-  const zoneName = encounter.zoneName || `Skyline ${version}`;
+  const zoneName = encounter.zoneName || `Skyline Overlay ${version}`;
   const totalDPS = encounter.dps || 0;
 
   /**
