@@ -9,19 +9,15 @@ import { useStore, useMock } from './hooks';
 import { fmtMergePet } from './utils/formatters';
 
 function App() {
-  const {
-    api: { overlay },
-  } = useStore();
-
-  // debug mock data
-  useMock(overlay, false);
-
   // get data from store
   const {
-    api: { combatant, lb },
+    api: { combatant, lb, overlay },
     settings: { sort, playerLimit, showLB, petMergeID },
   } = useStore();
   let players: Array<CombatantData | LimitBreakData> = cloneDeep(combatant);
+
+  // debug mock data
+  useMock(overlay, true);
 
   // merge pet if enabled
   if (petMergeID) {
