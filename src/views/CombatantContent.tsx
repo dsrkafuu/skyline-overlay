@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import { useCallback } from 'react';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import * as jobIcons from '../assets/jobs';
@@ -49,10 +50,10 @@ function CombatantContent({
       onClick={onSwitchDetailLock}
     >
       <div className='combatant-content-data'>
-        <span className='s-number'>
+        <span className='g-number'>
           {(shortNumber ? fmtNumber(dps) : dps) || 0}
         </span>
-        <span className='s-counter'>DPS</span>
+        <span className='g-counter'>DPS</span>
       </div>
       <span className='job-icon'>
         <Icon />
@@ -61,4 +62,4 @@ function CombatantContent({
   );
 }
 
-export default CombatantContent;
+export default observer(CombatantContent);

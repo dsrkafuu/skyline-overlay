@@ -1,8 +1,12 @@
 .combatant {
+  position: relative;
+  flex: 0 0 auto;
+  width: 1.2rem;
+  margin: 0 $padding-sm;
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  color: var(--color-combatant-fg);
+  text-shadow: var(--shadow-combatant);
 
   &-name,
   &-bottom {
@@ -44,17 +48,6 @@
     }
   }
 
-  &-grid {
-    position: relative;
-    flex: 0 0 auto;
-    width: 1.2rem;
-    margin: 0 $padding-sm;
-    display: flex;
-    flex-direction: column;
-    color: var(--color-combatant-fg);
-    text-shadow: var(--shadow-combatant);
-  }
-
   // job type colors
   .jobtype-dps &-content {
     background-color: var(--color-combatant-bg-dps);
@@ -87,12 +80,12 @@
       line-height: 0.16rem;
       text-align: right;
 
-      .s-counter {
+      .g-counter {
         height: 0.14rem;
         line-height: 0.14rem;
       }
 
-      .s-number {
+      .g-number {
         height: 0.16rem;
         line-height: 0.16rem;
       }
@@ -126,22 +119,22 @@
     background-color: var(--color-combatant-bg-others);
   }
 
-  .jobtype-dps .combatant-detail.locked {
+  .jobtype-dps &-detail.locked {
     background-color: var(--color-combatant-bg-dps);
   }
-  .jobtype-tank .combatant-detail.locked {
+  .jobtype-tank &-detail.locked {
     background-color: var(--color-combatant-bg-tank);
   }
-  .jobtype-healer .combatant-detail.locked {
+  .jobtype-healer &-detail.locked {
     background-color: var(--color-combatant-bg-heal);
   }
-  .jobtype-hand .combatant-detail.locked,
-  .jobtype-land .combatant-detail.locked,
-  .jobtype-unknown .combatant-detail.locked {
+  .jobtype-hand &-detail.locked,
+  .jobtype-land &-detail.locked,
+  .jobtype-unknown &-detail.locked {
     background-color: var(--color-combatant-bg-others);
   }
   // self highlight color
-  .job-self .combatant-detail.locked {
+  .job-self &-detail.locked {
     background-color: var(--color-combatant-bg-self);
   }
 }
@@ -171,13 +164,13 @@
 //         align-items: flex-end;
 //       }
 
-//       .s-counter {
+//       .g-counter {
 //         height: 0.14rem;
 //         line-height: 0.14rem;
 //         margin: 0 0.02rem;
 //       }
 
-//       .s-number {
+//       .g-number {
 //         height: 0.18rem;
 //         line-height: 0.18rem;
 //         margin: 0 0.01rem;

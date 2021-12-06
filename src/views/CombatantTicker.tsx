@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import { isCombatantData } from '../utils/type';
 
@@ -46,4 +47,4 @@ function CombatantTicker({ player }: CombatantTickerProps) {
   );
 }
 
-export default CombatantTicker;
+export default observer(CombatantTicker);

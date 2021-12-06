@@ -92,6 +92,4 @@ function CombatantDetail(
   );
 }
 
-const CombatantDetailWithRef = observer(CombatantDetail, { forwardRef: true });
-
-export default CombatantDetailWithRef;
+export default observer(CombatantDetail, { forwardRef: true });

@@ -35,8 +35,8 @@ function Encounter() {
           <span>{zoneName}</span>
         </div>
         <div className='encounter-numbers'>
-          <span className='s-number'>{totalDPS}</span>
-          <span className='s-counter'>DPS</span>
+          <span className='g-number'>{totalDPS}</span>
+          <span className='g-counter'>DPS</span>
         </div>
       </div>
       <div className='encounter-buttons'>

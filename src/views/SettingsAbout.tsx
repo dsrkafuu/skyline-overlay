@@ -31,7 +31,7 @@ function SettingsAbout() {
           <Trans i18nKey='Need Help'>
             We need
             <a
-              className='s-link'
+              className='g-link'
               href='https://github.com/dsrkafuu/skyline-overlay#add-translations'
               target='_blank'
               rel='noopener noreferrer'
@@ -47,7 +47,7 @@ function SettingsAbout() {
           <Trans i18nKey='Request Issue'>
             Please
             <a
-              className='s-link'
+              className='g-link'
               href='https://github.com/dsrkafuu/skyline-overlay/issues'
               target='_blank'
               rel='noopener noreferrer'
@@ -65,7 +65,7 @@ function SettingsAbout() {
       <div className='settings-row'>
         <span className='settings-title'>{`Copyright ${new Date().getFullYear()} Apache-2.0 License`}</span>
         <a
-          className='s-link'
+          className='g-link'
           href='https://dsrkafuu.net'
           target='_blank'
           rel='noopener noreferrer'
@@ -76,7 +76,7 @@ function SettingsAbout() {
       <div className='settings-row'>
         <span className='settings-title'>Copyright 2015 MIT License</span>
         <a
-          className='s-link'
+          className='g-link'
           href='https://github.com/ionic-team/ionicons'
           target='_blank'
           rel='noopener noreferrer'
@@ -89,7 +89,7 @@ function SettingsAbout() {
           Copyright 2010 SQUARE ENIX CO., LTD.
         </span>
         <a
-          className='s-link'
+          className='g-link'
           href='https://www.finalfantasyxiv.com'
           target='_blank'
           rel='noopener noreferrer'

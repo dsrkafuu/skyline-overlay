@@ -1,14 +1,12 @@
-/* global utils */
+// global styles
 
-// center containers
-.s-container {
+.g-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-// links
-.s-link {
+.g-link {
   color: var(--color-fg);
   text-shadow: var(--shadow);
   text-decoration: underline;
@@ -22,18 +20,25 @@
   }
 }
 
-// counter spans
-span.s-number {
+.g-number {
   display: inline-block;
 }
-span.s-counter {
+.g-counter {
   display: inline-block;
   font-size: $font-size-xs;
   margin-left: 0.02rem;
 }
 
-// icons
-svg.icon {
+.icon {
   font-size: 0.18rem;
   display: inline-block;
+}
+
+// app styles
+
+.combatants {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
 }

@@ -20,10 +20,10 @@ function SList({ items }: SListProps) {
               <span>{row.key}</span>
               {row.pct ? (
                 <div className='s-list-row-pct'>
-                  <span className='s-number'>
+                  <span className='g-number'>
                     {((row.value || '0') as string).split('%')[0]}
                   </span>
-                  <span className='s-counter'>%</span>
+                  <span className='g-counter'>%</span>
                 </div>
               ) : (
                 <span>{row.value}</span>
