@@ -19,6 +19,7 @@ import {
 } from '../utils/constants';
 import { useStore } from '../hooks';
 import { IChevronDown, IChevronUp } from '../assets/icons';
+import { isDev } from '../utils/env';
 
 export type SettingsType = 'about' | 'general' | 'data' | 'display';
 
@@ -123,7 +124,7 @@ function Settings() {
                 value={s.dispMode}
                 onChange={(val) => s.updateDispMode(val)}
                 map={MAP_DISPLAY_MODE}
-                disabled
+                disabled={!isDev()}
               />
             ),
           },
@@ -143,7 +144,7 @@ function Settings() {
                   value={s.dispContent.right}
                   onChange={(val) => s.updateDispContent({ right: val })}
                   map={MAP_DISPLAY_CONTENT}
-                  disabled
+                  disabled={!isDev()}
                 />
               </>
             ),

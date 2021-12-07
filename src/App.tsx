@@ -14,7 +14,7 @@ function App() {
     api: { combatant, lb, overlay },
     settings: { sort, playerLimit, showLB, petMergeID },
   } = useStore();
-  let players: Array<CombatantData | LimitBreakData> = cloneDeep(combatant);
+  let players = cloneDeep(combatant);
 
   // debug mock data
   useMock(overlay, true);
@@ -35,8 +35,9 @@ function App() {
   }
 
   // add lb if enabled
-  if (showLB && lb && lb.name === 'Limit Break') {
-    players.push(cloneDeep(lb));
+  const playersWithLB: Array<CombatantData | LimitBreakData> = players;
+  if (showLB && lb) {
+    playersWithLB.push(cloneDeep(lb));
   }
 
   return (
@@ -44,7 +45,7 @@ function App() {
       <div className='g-container'>
         {Boolean(combatant) && combatant.length > 0 && (
           <div className='combatants'>
-            {players.map((player, index) => (
+            {playersWithLB.map((player, index) => (
               <Combatant player={player} index={index} key={player.name} />
             ))}
           </div>

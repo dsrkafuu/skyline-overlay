@@ -1,6 +1,5 @@
 import cloneDeep from 'lodash/cloneDeep';
-import OverlayAPI, { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
-import { isLimitBreakData } from './type';
+import OverlayAPI, { CombatantData } from 'ffxiv-overlay-api';
 
 /**
  * format number
@@ -45,21 +44,13 @@ interface PetMergeTempMap {
 /**
  * merge pet data into player
  */
-export function fmtMergePet(
-  combatant: Array<CombatantData | LimitBreakData> = [],
-  yid = 'YOU'
-) {
+export function fmtMergePet(combatant: CombatantData[] = [], yid = 'YOU') {
   const players = cloneDeep(combatant);
   const map: PetMergeTempMap = {};
-  const lbIndexes: number[] = [];
 
-  // init all players (record LimitBreak)
+  // init all players
   for (let i = 0; i < players.length; i++) {
     const player = players[i];
-    if (isLimitBreakData(player)) {
-      lbIndexes.push(i);
-      continue;
-    }
 
     if (!/\([^)]+\)/gi.exec(player.name)) {
       if (player.name === 'YOU') {
@@ -70,13 +61,9 @@ export function fmtMergePet(
     }
   }
 
-  // init all pets (ignore LimitBreak)
+  // init all pets
   for (let i = 0; i < players.length; i++) {
     const player = players[i];
-    if (isLimitBreakData(player)) {
-      continue;
-    }
-
     const owner = /\(([^)]+)\)/gi.exec(player.name);
     if (owner && owner[1]) {
       let name = owner[1];
@@ -88,15 +75,10 @@ export function fmtMergePet(
   }
 
   // merge all players
-  const ret: Array<CombatantData | LimitBreakData> = [];
+  const ret: CombatantData[] = [];
   for (const name of Object.keys(map)) {
     const res = OverlayAPI.mergeCombatant(map[name].player, ...map[name].pets);
     res && ret.push(res);
-  }
-
-  // inject lbs
-  for (const i of lbIndexes) {
-    ret.push(players[i]);
   }
   return ret;
 }

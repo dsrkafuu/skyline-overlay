@@ -19,17 +19,22 @@ interface CombatantProps {
 function Combatant({ player, index }: CombatantProps) {
   // get data
   const { name } = player;
-  const gridClass: Argument[] = ['combatant']; // grid classnames
+  const classes: Argument[] = ['combatant']; // grid classnames
   const { settings } = useStore();
-  const { hlYou, bottomDisp, ticker, tickerAlign } = settings;
+  const { hlYou, bottomDisp, ticker, tickerAlign, dispMode } = settings;
 
   // class names related to job
   if (isLimitBreakData(player)) {
-    gridClass.push('job-unknown');
+    classes.push('job-unknown');
   } else {
-    gridClass.push({ 'job-self': hlYou && name === 'YOU' }); // highlight
-    gridClass.push(`job-${player.job || 'unknown'}`); // job
-    gridClass.push(`jobtype-${player.jobType || 'unknown'}`); // jobtype
+    classes.push({ 'job-self': hlYou && name === 'YOU' }); // highlight
+    classes.push(`job-${player.job || 'unknown'}`); // job
+    classes.push(`jobtype-${player.jobType || 'unknown'}`); // jobtype
+  }
+
+  // if dual display mode
+  if (dispMode === 'dual') {
+    classes.push('combatant-dual');
   }
 
   // detail controls data
@@ -57,7 +62,7 @@ function Combatant({ player, index }: CombatantProps) {
   ticker.bottom === 'none' && tickerNum--;
 
   return (
-    <div className={cn(...gridClass)}>
+    <div className={cn(...classes)}>
       <CombatantName player={player} index={index} />
 
       {ticker.top && ticker.top !== 'none' && (

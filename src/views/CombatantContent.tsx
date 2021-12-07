@@ -21,7 +21,7 @@ function CombatantContent({
 }: CombatantContentProps) {
   const { dps } = player;
   const { settings } = useStore();
-  const { shortNumber } = settings;
+  const { shortNumber, dispMode } = settings;
 
   // detail controls controllers
   const onDetailEnter = useCallback(() => {
@@ -58,6 +58,14 @@ function CombatantContent({
       <span className='job-icon'>
         <Icon />
       </span>
+      {dispMode === 'dual' && (
+        <div className='combatant-content-data'>
+          <span className='g-number'>
+            {(shortNumber ? fmtNumber(dps) : dps) || 0}
+          </span>
+          <span className='g-counter'>DPS</span>
+        </div>
+      )}
     </div>
   );
 }
