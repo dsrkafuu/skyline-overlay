@@ -12,6 +12,7 @@ vite.config.js
 # output
 dist/
 dist-ssr/
+stats.html
 
 # logs
 logs/
