@@ -1,11 +1,11 @@
 import './App.scss';
 import { observer } from 'mobx-react-lite';
-import cloneDeep from 'lodash/cloneDeep';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import Combatant from './views/Combatant';
 import Encounter from './views/Encounter';
 import Settings from './views/Settings';
 import { useStore, useMock } from './hooks';
+import { cloneDeep } from './utils/lodash';
 import { fmtMergePet } from './utils/formatters';
 
 function App() {

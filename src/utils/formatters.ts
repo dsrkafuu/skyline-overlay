@@ -1,4 +1,3 @@
-import cloneDeep from 'lodash/cloneDeep';
 import { mergeCombatant, CombatantData } from 'ffxiv-overlay-api';
 
 /**
@@ -45,7 +44,7 @@ interface PetMergeTempMap {
  * merge pet data into player
  */
 export function fmtMergePet(combatant: CombatantData[] = [], yid = 'YOU') {
-  const players = cloneDeep(combatant);
+  const players = combatant;
   const map: PetMergeTempMap = {};
 
   // init all players

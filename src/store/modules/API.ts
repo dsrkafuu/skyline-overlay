@@ -1,5 +1,5 @@
 import OverlayAPI, { ExtendData } from 'ffxiv-overlay-api';
-import cloneDeep from 'lodash/cloneDeep';
+import { cloneDeep } from '../../utils/lodash';
 import { makeAutoObservable } from 'mobx';
 
 const cleanData: ExtendData = {
@@ -13,7 +13,7 @@ class API {
   /** @mobx state */
 
   overlay = new OverlayAPI();
-  data: ExtendData = cloneDeep(cleanData);
+  data: ExtendData = cleanData;
 
   /** @mobx computed */
 
