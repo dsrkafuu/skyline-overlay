@@ -57,9 +57,9 @@ function CombatantContent({
       {dispMode === 'dual' && (
         <div className='combatant-content-data'>
           <span className='g-number'>
-            {(shortNumber && typeof leftDisp === 'number'
-              ? fmtNumber(leftDisp)
-              : leftDisp) || 0}
+            {(typeof leftDisp === 'number' &&
+              fmtNumber(shortNumber, leftDisp)) ||
+              leftDisp}
           </span>
           <span className='g-counter'>{leftDispUnit}</span>
         </div>
@@ -69,9 +69,9 @@ function CombatantContent({
       </span>
       <div className='combatant-content-data'>
         <span className='g-number'>
-          {(shortNumber && typeof rightDisp === 'number'
-            ? fmtNumber(rightDisp)
-            : rightDisp) || 0}
+          {(typeof rightDisp === 'number' &&
+            fmtNumber(shortNumber, rightDisp)) ||
+            rightDisp}
         </span>
         <span className='g-counter'>{rightDispUnit}</span>
       </div>

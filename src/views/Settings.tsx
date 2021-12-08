@@ -92,7 +92,7 @@ function Settings() {
             ),
           },
           {
-            title: t('Shorten Number'),
+            title: t('Auto Short Number'),
             render: () => (
               <SSwitch
                 value={s.shortNumber}

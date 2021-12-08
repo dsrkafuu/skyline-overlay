@@ -3,7 +3,11 @@ import { mergeCombatant, CombatantData } from 'ffxiv-overlay-api';
 /**
  * format number
  */
-export function fmtNumber(number: number, decimal = 1) {
+export function fmtNumber(shortNumber: boolean, number: number, decimal = 2) {
+  if (!shortNumber) {
+    return `${number}`;
+  }
+
   if (typeof number !== 'number') {
     number = Number(number);
   }
@@ -21,13 +25,13 @@ export function fmtNumber(number: number, decimal = 1) {
       numberString = number.toFixed(0);
       break;
     case number < 1e7:
-      numberString = `${(number / 1e3).toFixed(decimal)}k`;
+      numberString = `${Number((number / 1e3).toFixed(decimal))}k`;
       break;
     case number < 1e10:
-      numberString = `${(number / 1e6).toFixed(decimal)}m`;
+      numberString = `${Number((number / 1e6).toFixed(decimal))}m`;
       break;
     default:
-      numberString = number.toFixed(decimal);
+      numberString = `${Number(number.toFixed(decimal))}`;
   }
 
   return `${sign}${numberString}`;

@@ -6,6 +6,7 @@ import { useStore, useTranslation } from '../hooks';
 import { isLimitBreakData } from '../utils/type';
 import { DisplayContentMapKey } from '../utils/constants';
 import { useCallback, useMemo } from 'react';
+import { fmtNumber } from '../utils/formatters';
 
 interface CombatantDetailProps {
   player: CombatantData | LimitBreakData;
@@ -18,7 +19,7 @@ function CombatantDetail(
 ) {
   const t = useTranslation();
   const { settings } = useStore();
-  const { dispMode, dispContent, bottomDisp } = settings;
+  const { dispMode, dispContent, bottomDisp, shortNumber } = settings;
 
   // calculate top position according to tickerNum
   let tickerNum = 0;
@@ -50,9 +51,15 @@ function CombatantDetail(
 
     // dps and hps
     keyNotDisplayed('dps') &&
-      items[items.length - 1].push({ key: 'DPS', value: player.dps });
+      items[items.length - 1].push({
+        key: 'DPS',
+        value: fmtNumber(shortNumber, player.dps),
+      });
     keyNotDisplayed('hps') &&
-      items[items.length - 1].push({ key: 'HPS', value: player.hps });
+      items[items.length - 1].push({
+        key: 'HPS',
+        value: fmtNumber(shortNumber, player.hps),
+      });
     keyNotDisplayed('overHealPct') &&
       items[items.length - 1].push({
         key: t('Overheal'),
@@ -95,19 +102,19 @@ function CombatantDetail(
       player.maxHit &&
       items[items.length - 1].push({
         key: player.maxHit,
-        value: player.maxHitDamage,
+        value: fmtNumber(shortNumber, player.maxHitDamage),
       });
     bottomDisp !== 'maxhit' &&
       player.maxHeal &&
       items[items.length - 1].push({
         key: player.maxHeal,
-        value: player.maxHealDamage,
+        value: fmtNumber(shortNumber, player.maxHealDamage),
       });
 
     // remove unused spliter
     !items[items.length - 1].length && items.pop();
     return items;
-  }, [bottomDisp, keyNotDisplayed, player, t]);
+  }, [bottomDisp, keyNotDisplayed, player, shortNumber, t]);
 
   if (isLimitBreakData(player)) {
     return null;

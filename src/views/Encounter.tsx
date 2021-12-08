@@ -6,10 +6,12 @@ import { version } from '../assets/meta';
 import { IRefresh, ISettings } from '../assets/icons';
 import { logInfo } from '../utils/loggers';
 import { useStore } from '../hooks';
+import { fmtNumber } from '../utils/formatters';
 
 function Encounter() {
   const { api, settings } = useStore();
   const { active, encounter, overlay } = api;
+  const { shortNumber } = settings;
 
   // encounter data
   const duration = encounter.duration || '00:00';
@@ -35,7 +37,7 @@ function Encounter() {
           <span>{zoneName}</span>
         </div>
         <div className='encounter-numbers'>
-          <span className='g-number'>{totalDPS}</span>
+          <span className='g-number'>{fmtNumber(shortNumber, totalDPS)}</span>
           <span className='g-counter'>DPS</span>
         </div>
       </div>
