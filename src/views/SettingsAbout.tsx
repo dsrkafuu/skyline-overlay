@@ -1,11 +1,10 @@
 import { useCallback } from 'react';
-import { useTranslation, Trans } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import { date } from '../assets/meta';
-import { useStore } from '../hooks';
+import { useStore, useTranslation } from '../hooks';
 
 function SettingsAbout() {
-  const { t } = useTranslation();
+  const t = useTranslation();
 
   /**
    * @param {Date} date
@@ -28,34 +27,30 @@ function SettingsAbout() {
     <div className='settings-about'>
       <div className='settings-row'>
         <span className='settings-title'>
-          <Trans i18nKey='Need Help'>
-            We need
-            <a
-              className='g-link'
-              href='https://github.com/dsrkafuu/skyline-overlay#add-translations'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              help
-            </a>
-            from more community translators!
-          </Trans>
+          {t('Need Help', 0)}
+          <a
+            className='g-link'
+            href='https://github.com/dsrkafuu/skyline-overlay#add-translations'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            {t('Need Help', 1)}
+          </a>
+          {t('Need Help', 2)}
         </span>
       </div>
       <div className='settings-row'>
         <span className='settings-title'>
-          <Trans i18nKey='Request Issue'>
-            Please
-            <a
-              className='g-link'
-              href='https://github.com/dsrkafuu/skyline-overlay/issues'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              raise an issue
-            </a>
-            if you have questions or ideas.
-          </Trans>
+          {t('Request Issue', 0)}
+          <a
+            className='g-link'
+            href='https://github.com/dsrkafuu/skyline-overlay/issues'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            {t('Request Issue', 1)}
+          </a>
+          {t('Request Issue', 2)}
         </span>
       </div>
       <div className='settings-row'>

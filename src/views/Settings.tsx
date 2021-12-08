@@ -1,6 +1,5 @@
 import './Settings.scss';
 import { useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { observer } from 'mobx-react-lite';
 import cn from 'classnames';
 import SettingsAbout from './SettingsAbout';
@@ -17,13 +16,13 @@ import {
   MAP_DISPLAY_MODE,
   MAP_DISPLAY_CONTENT,
 } from '../utils/constants';
-import { useStore } from '../hooks';
+import { useStore, useTranslation } from '../hooks';
 import { IChevronDown, IChevronUp } from '../assets/icons';
 
 export type SettingsType = 'about' | 'general' | 'data' | 'display';
 
 function Settings() {
-  const { t } = useTranslation();
+  const t = useTranslation();
   const { settings: s } = useStore();
 
   const panels = useMemo<SettingsPanelProps[]>(

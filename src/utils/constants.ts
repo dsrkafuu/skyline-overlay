@@ -1,5 +1,7 @@
 // local storage key
 export const STORAGE_PREFIX = 'SKYLINE_V3_';
+// translation hook key
+export const LANG_KEY = 'SKYLINE_LANG';
 
 // value maps for selection component
 

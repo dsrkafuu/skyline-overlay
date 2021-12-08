@@ -1,8 +1,8 @@
+import './SInput.scss';
 import { useCallback, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { isCEFSharp } from 'ffxiv-overlay-api';
 import cn from 'classnames';
-import './SInput.scss';
+import { useTranslation } from '../hooks';
 
 interface SInputProps {
   value: string;
@@ -13,7 +13,7 @@ interface SInputProps {
 const isCEF = isCEFSharp();
 
 function SInput({ value, onChange, className }: SInputProps) {
-  const { t } = useTranslation();
+  const t = useTranslation();
   const [focused, setFocused] = useState(false);
 
   const handleInput = useCallback(

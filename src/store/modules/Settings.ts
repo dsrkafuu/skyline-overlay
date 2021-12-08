@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import i18n from '../../i18n';
+import Translation from './Translation';
 import { setLS, getLS } from '../../utils/storage';
 import { xssEscape } from '../../utils/lodash';
 import {
@@ -62,6 +62,9 @@ interface PartialTickerAlignSettings {
   bottom?: TickerAlignMapKey;
 }
 
+// translation store
+let trans: Translation;
+
 class Settings {
   /** @mobx state */
 
@@ -98,7 +101,9 @@ class Settings {
   /**
    * @constructor
    */
-  constructor() {
+  constructor(translation: Translation) {
+    trans = translation;
+
     // merge saved settings into default settings
     const savedSettings = (getLS('settings') || {}) as PartialSettings;
     for (const key of Object.keys(savedSettings)) {
@@ -207,8 +212,7 @@ class Settings {
   }
   updateLang(payload: LangMapKey) {
     this.lang = payload;
-    i18n.changeLanguage(payload);
-    document.documentElement.setAttribute('lang', payload);
+    trans.setTranslation(payload);
     saveSettings({ lang: payload });
   }
   updateZoom(payload: number) {

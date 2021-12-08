@@ -1,9 +1,8 @@
 import { observer } from 'mobx-react-lite';
-import { useTranslation } from 'react-i18next';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import cn from 'classnames';
 import { SList, SListRow } from '../components';
-import { useStore } from '../hooks';
+import { useStore, useTranslation } from '../hooks';
 import { isCombatantData } from '../utils/type';
 
 interface CombatantDetailProps {
@@ -16,7 +15,7 @@ function CombatantDetail(
   { player, tickerNum, locked, ...props }: CombatantDetailProps,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
-  const { t } = useTranslation();
+  const t = useTranslation();
 
   // calculate top position according to tickerNum
   let tickerValidNum = Math.floor(tickerNum);

@@ -2,6 +2,7 @@ import { createContext } from 'react';
 import { configure } from 'mobx';
 
 // store modules
+import Translation from './modules/Translation';
 import API from './modules/API';
 import Settings from './modules/Settings';
 
@@ -18,8 +19,9 @@ configure({
  * combined root store
  */
 class Store {
+  translation = new Translation();
   api = new API();
-  settings = new Settings();
+  settings = new Settings(this.translation);
 }
 
 // init store instance
