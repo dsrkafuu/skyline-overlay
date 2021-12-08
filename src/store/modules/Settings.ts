@@ -79,7 +79,6 @@ class Settings {
   showLB = true;
   youName = 'YOU'; // which to represent as 'YOU'
   petMergeID = ''; // merge pet data when using global client with cn language patch
-  extendDetail = false;
   bottomDisp: BottomDispMapKey = 'maxhit';
 
   // display
@@ -161,10 +160,6 @@ class Settings {
   updatePetMergeID(payload: string) {
     this.petMergeID = payload;
     saveSettings({ petMergeID: payload });
-  }
-  updateExtendDetail(payload: boolean) {
-    this.extendDetail = payload;
-    saveSettings({ extendDetail: payload });
   }
   updateBottomDisp(payload: BottomDispMapKey) {
     this.bottomDisp = payload;

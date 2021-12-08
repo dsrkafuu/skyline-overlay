@@ -3,7 +3,7 @@ import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import cn from 'classnames';
 import { SList, SListRow } from '../components';
 import { useStore, useTranslation } from '../hooks';
-import { isCombatantData } from '../utils/type';
+import { isLimitBreakData } from '../utils/type';
 import { DisplayContentMapKey } from '../utils/constants';
 import { useCallback, useMemo } from 'react';
 
@@ -18,7 +18,7 @@ function CombatantDetail(
 ) {
   const t = useTranslation();
   const { settings } = useStore();
-  const { extendDetail, dispMode, dispContent, bottomDisp } = settings;
+  const { dispMode, dispContent, bottomDisp } = settings;
 
   // calculate top position according to tickerNum
   let tickerNum = 0;
@@ -42,67 +42,52 @@ function CombatantDetail(
 
   // row data render props
   const rowItems = useMemo<SListRow[][]>(() => {
+    if (isLimitBreakData(player)) {
+      return [];
+    }
+
     const items: SListRow[][] = [[]];
 
-    // dps related
-    if (extendDetail && isCombatantData(player)) {
-      items[items.length - 1].push(
-        { key: '30s', value: player.last30DPS },
-        { key: '60s', value: player.last60DPS }
-      );
-      items[items.length - 1].push({
-        key: '60s',
-        value: player.last60DPS,
-      });
-    }
+    // dps and hps
     keyNotDisplayed('dps') &&
       items[items.length - 1].push({ key: 'DPS', value: player.dps });
-
-    items[items.length - 1].length && items.push([]);
-    // hps related
     keyNotDisplayed('hps') &&
       items[items.length - 1].push({ key: 'HPS', value: player.hps });
-    if (isCombatantData(player)) {
-      keyNotDisplayed('overHealPct') &&
-        items[items.length - 1].push({
-          key: t('Overheal'),
-          value: player.overHealPct,
-          pct: true,
-        });
-      keyNotDisplayed('shieldPct') &&
-        items[items.length - 1].push({
-          key: t('Shielded'),
-          value: player.shieldPct,
-          pct: true,
-        });
-    }
+    keyNotDisplayed('overHealPct') &&
+      items[items.length - 1].push({
+        key: t('Overheal'),
+        value: player.overHealPct,
+        pct: true,
+      });
+    keyNotDisplayed('shieldPct') &&
+      items[items.length - 1].push({
+        key: t('Shielded'),
+        value: player.shieldPct,
+        pct: true,
+      });
 
     items[items.length - 1].length && items.push([]);
     // damage and deaths
-    if (isCombatantData(player)) {
-      keyNotDisplayed('damagePct') &&
-        items[items.length - 1].push({
-          key: t('Damage'),
-          value: player.damagePct,
-          pct: true,
-        });
-      keyNotDisplayed('deaths') &&
-        items[items.length - 1].push({
-          key: t('Deaths'),
-          value: player.deaths,
-        });
-    }
+    keyNotDisplayed('damagePct') &&
+      items[items.length - 1].push({
+        key: t('Damage'),
+        value: player.damagePct,
+        pct: true,
+      });
+    keyNotDisplayed('deaths') &&
+      items[items.length - 1].push({
+        key: t('Deaths'),
+        value: player.deaths,
+      });
 
     items[items.length - 1].length && items.push([]);
     // C/D/CD
-    if (isCombatantData(player)) {
-      bottomDisp !== 'cdpcts' &&
-        items[items.length - 1].push(
-          { key: t('Direct'), value: player.directHitPct, pct: true },
-          { key: t('Critical !'), value: player.critHitPct, pct: true },
-          { key: t('DC !!!'), value: player.directCritHitPct, pct: true }
-        );
-    }
+    bottomDisp !== 'cdpcts' &&
+      items[items.length - 1].push(
+        { key: t('Direct'), value: player.directHitPct, pct: true },
+        { key: t('Critical !'), value: player.critHitPct, pct: true },
+        { key: t('DC !!!'), value: player.directCritHitPct, pct: true }
+      );
 
     items[items.length - 1].length && items.push([]);
     // max hit
@@ -110,30 +95,34 @@ function CombatantDetail(
       player.maxHit &&
       items[items.length - 1].push({
         key: player.maxHit,
-        value: isCombatantData(player) ? player.maxHitDamage : player.damage,
+        value: player.maxHitDamage,
       });
     bottomDisp !== 'maxhit' &&
       player.maxHeal &&
       items[items.length - 1].push({
         key: player.maxHeal,
-        value: isCombatantData(player) ? player.maxHealDamage : player.healed,
+        value: player.maxHealDamage,
       });
 
     // remove unused spliter
     !items[items.length - 1].length && items.pop();
     return items;
-  }, [bottomDisp, extendDetail, keyNotDisplayed, player, t]);
+  }, [bottomDisp, keyNotDisplayed, player, t]);
 
-  return (
-    <div
-      className={cn(['combatant-detail', { locked }])}
-      ref={ref}
-      {...props}
-      style={{ top: topWithTick }}
-    >
-      <SList items={rowItems} />
-    </div>
-  );
+  if (isLimitBreakData(player)) {
+    return null;
+  } else {
+    return (
+      <div
+        className={cn(['combatant-detail', { locked }])}
+        ref={ref}
+        {...props}
+        style={{ top: topWithTick }}
+      >
+        <SList items={rowItems} />
+      </div>
+    );
+  }
 }
 
 export default observer(CombatantDetail, { forwardRef: true });

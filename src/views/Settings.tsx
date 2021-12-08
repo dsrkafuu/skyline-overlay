@@ -92,15 +92,6 @@ function Settings() {
             ),
           },
           {
-            title: t('Extend Detail'),
-            render: () => (
-              <SSwitch
-                value={s.extendDetail}
-                onChange={(value) => s.updateExtendDetail(value)}
-              />
-            ),
-          },
-          {
             title: t('Shorten Number'),
             render: () => (
               <SSwitch
@@ -122,7 +113,6 @@ function Settings() {
                 value={s.dispMode}
                 onChange={(val) => s.updateDispMode(val)}
                 map={MAP_DISPLAY_MODE}
-                disabled={import.meta.env.PROD}
               />
             ),
           },
@@ -142,7 +132,6 @@ function Settings() {
                   value={s.dispContent.right}
                   onChange={(val) => s.updateDispContent({ right: val })}
                   map={MAP_DISPLAY_CONTENT}
-                  disabled={import.meta.env.PROD}
                 />
               </>
             ),
