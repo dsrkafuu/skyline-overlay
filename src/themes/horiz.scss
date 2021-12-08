@@ -3,7 +3,8 @@ body[data-theme='horiz'] {
   --color-fg: #ffffff;
   --color-bg: rgba(0, 0, 0, 0.3);
   --shadow: 0 0 0.04rem #000000;
-  --shadow-icon: 0 0 0.04rem rgba(0, 0, 0, 0.6);
+  --icon-color: var(--color-fg);
+  --icon-shadow: 0 0 0.04rem rgba(0, 0, 0, 0.6);
 
   // s-ticker
   --color-s-ticker-dps-a: rgba(255, 111, 0, 0.7); // crit direct

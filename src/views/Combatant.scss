@@ -103,8 +103,8 @@
 
       .icon {
         font-size: 0.24rem;
-        filter: drop-shadow(var(--shadow-icon));
-        color: var(--color-fg);
+        filter: drop-shadow(var(--icon-shadow));
+        color: var(--icon-color);
       }
     }
   }

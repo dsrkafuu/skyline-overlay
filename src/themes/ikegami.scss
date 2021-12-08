@@ -3,7 +3,8 @@ body[data-theme='ikegami'] {
   --color-fg: #ffffff;
   --color-bg: rgba(17, 17, 17, 0.5);
   --shadow: 0 0 0.05rem #000000;
-  --shadow-icon: 0 0 0.05rem rgba(0, 0, 0, 0.7);
+  --icon-color: var(--color-fg);
+  --icon-shadow: 0 0 0.04rem rgba(0, 0, 0, 0.6);
 
   // s-ticker
   --color-s-ticker-dps-a: #ff6f00; // crit direct
