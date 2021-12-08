@@ -1,13 +1,10 @@
 {
   "LANG": "日本語",
 
+  "Deaths": "死亡回数",
+  "Damage": "ダメージ",
   "Overheal": "オーバーヒール",
   "Shielded": "シールド",
-  "Damage": "ダメージ",
-  "Deaths": "死亡回数",
-  "Direct": "Direct",
-  "Critical !": "Critical !",
-  "DC !!!": "DC !!!",
 
   "About": "情報",
   "Need Help": "コミュニティの翻訳者にもっと|協力|してもらいたい！",

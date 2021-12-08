@@ -1,10 +1,11 @@
 {
   "LANG": "English",
 
+  "Swings": "Swings",
+  "Deaths": "Deaths",
+  "Damage": "Damage",
   "Overheal": "Overheal",
   "Shielded": "Shielded",
-  "Damage": "Damage",
-  "Deaths": "Deaths",
   "Direct": "Direct",
   "Critical !": "Critical !",
   "DC !!!": "DC !!!",
