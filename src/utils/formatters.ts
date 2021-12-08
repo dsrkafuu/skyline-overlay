@@ -1,5 +1,5 @@
 import cloneDeep from 'lodash/cloneDeep';
-import OverlayAPI, { CombatantData } from 'ffxiv-overlay-api';
+import { mergeCombatant, CombatantData } from 'ffxiv-overlay-api';
 
 /**
  * format number
@@ -77,7 +77,7 @@ export function fmtMergePet(combatant: CombatantData[] = [], yid = 'YOU') {
   // merge all players
   const ret: CombatantData[] = [];
   for (const name of Object.keys(map)) {
-    const res = OverlayAPI.mergeCombatant(map[name].player, ...map[name].pets);
+    const res = mergeCombatant(map[name].player, ...map[name].pets);
     res && ret.push(res);
   }
   return ret;

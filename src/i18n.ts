@@ -1,6 +1,5 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { isDev } from './utils/env';
 import { getLS, setLS } from './utils/storage';
 
 import lang from './lang';
@@ -26,7 +25,7 @@ i18n.use(initReactI18next).init({
   fallbackLng: 'en',
   keySeparator: false,
 
-  debug: isDev(),
+  debug: import.meta.env.DEV,
   interpolation: {
     escapeValue: false, // not needed for react as it escapes by default
   },

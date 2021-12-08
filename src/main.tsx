@@ -7,10 +7,10 @@ import ReactDOM from 'react-dom';
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
 
-const dsn = import.meta.env.VITE_SENTRY_DSN;
-if (dsn && dsn !== 'undefined' && import.meta.env.PROD) {
+const sentryDsn = import.meta.env.VITE_SENTRY_DSN;
+if (sentryDsn && import.meta.env.PROD) {
   Sentry.init({
-    dsn: `${dsn}`,
+    dsn: `${sentryDsn}`,
     integrations: [new Integrations.BrowserTracing()],
     tracesSampleRate: 1.0,
   });

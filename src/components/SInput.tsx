@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { isCEF } from '../utils/env';
+import { isCEFSharp } from 'ffxiv-overlay-api';
 import cn from 'classnames';
 import './SInput.scss';
 
@@ -9,6 +9,8 @@ interface SInputProps {
   onChange: (value: string) => void;
   className?: string;
 }
+
+const isCEF = isCEFSharp();
 
 function SInput({ value, onChange, className }: SInputProps) {
   const { t } = useTranslation();
@@ -25,7 +27,7 @@ function SInput({ value, onChange, className }: SInputProps) {
    * handle click in cef env
    */
   const handleClick = useCallback(() => {
-    if (isCEF()) {
+    if (isCEF) {
       const ret = prompt(t('Please enter the new value'), value) || '';
       const str = `${ret}`.trim();
       if (ret && str) {
@@ -34,7 +36,7 @@ function SInput({ value, onChange, className }: SInputProps) {
     }
   }, [onChange, t, value]);
 
-  if (isCEF()) {
+  if (isCEF) {
     return (
       <div
         className={cn('s-input s-input-cef btn', className)}

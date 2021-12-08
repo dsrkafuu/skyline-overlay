@@ -1,5 +1,3 @@
-import { isProd } from './env';
-
 /**
  * log info
  */
@@ -18,7 +16,7 @@ export function logError(...args: unknown[]) {
  * log component rerender
  */
 export function logRender(...args: unknown[]) {
-  if (isProd()) {
+  if (import.meta.env.PROD) {
     return;
   }
   console.info('[rerendered]', ...args);
