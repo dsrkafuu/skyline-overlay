@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
-import xss from 'xss';
 import i18n from '../../i18n';
 import { setLS, getLS } from '../../utils/storage';
+import { xssEscape } from '../../utils/lodash';
 import {
   LangMapKey,
   ShortNameMapKey,
@@ -117,7 +117,7 @@ class Settings {
     // apply initial custom style
     const customStyles = document.createElement('style');
     customStyles.setAttribute('id', 'skyline-custom-css');
-    customStyles.innerHTML = xss(this.customCSS);
+    customStyles.innerHTML = xssEscape(this.customCSS);
     document.head.appendChild(customStyles);
 
     // init mobx
@@ -222,7 +222,7 @@ class Settings {
     this.customCSS = payload;
     const customStyles = document.querySelector('#skyline-custom-css');
     if (customStyles) {
-      customStyles.innerHTML = xss(payload);
+      customStyles.innerHTML = xssEscape(payload);
     }
     saveSettings({ customCSS: payload });
   }

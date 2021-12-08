@@ -25,3 +25,18 @@ export function cloneDeep<T>(src: T): T {
   map.clear();
   return ret;
 }
+
+export function xssEscape(str: string) {
+  return str.replace(/[<>&]/g, (c) => {
+    switch (c) {
+      case '<':
+        return '&lt;';
+      case '>':
+        return '&gt;';
+      case '&':
+        return '&amp;';
+      default:
+        return c;
+    }
+  });
+}
