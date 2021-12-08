@@ -5,6 +5,7 @@ import * as jobIcons from '../assets/jobs';
 import { useStore } from '../hooks';
 import { isLimitBreakData } from '../utils/type';
 import { fmtNumber } from '../utils/formatters';
+import { MAP_DISPLAY_CONTENT } from '../utils/constants';
 
 interface CombatantContentProps {
   player: CombatantData | LimitBreakData;
@@ -19,9 +20,13 @@ function CombatantContent({
   lockDetail,
   setLockDetail,
 }: CombatantContentProps) {
-  const { dps } = player;
   const { settings } = useStore();
-  const { shortNumber, dispMode } = settings;
+  const { shortNumber, dispMode, dispContent } = settings;
+
+  const leftDisp = (player as CombatantData)[dispContent.left] || 0;
+  const leftDispUnit = MAP_DISPLAY_CONTENT[dispContent.left].data.unit;
+  const rightDisp = (player as CombatantData)[dispContent.right] || 0;
+  const rightDispUnit = MAP_DISPLAY_CONTENT[dispContent.right].data.unit;
 
   // detail controls controllers
   const onDetailEnter = useCallback(() => {
@@ -49,23 +54,27 @@ function CombatantContent({
       onMouseLeave={onDetailLeave}
       onClick={onSwitchDetailLock}
     >
-      <div className='combatant-content-data'>
-        <span className='g-number'>
-          {(shortNumber ? fmtNumber(dps) : dps) || 0}
-        </span>
-        <span className='g-counter'>DPS</span>
-      </div>
-      <span className='job-icon'>
-        <Icon />
-      </span>
       {dispMode === 'dual' && (
         <div className='combatant-content-data'>
           <span className='g-number'>
-            {(shortNumber ? fmtNumber(dps) : dps) || 0}
+            {(shortNumber && typeof leftDisp === 'number'
+              ? fmtNumber(leftDisp)
+              : leftDisp) || 0}
           </span>
-          <span className='g-counter'>DPS</span>
+          <span className='g-counter'>{leftDispUnit}</span>
         </div>
       )}
+      <span className='job-icon'>
+        <Icon />
+      </span>
+      <div className='combatant-content-data'>
+        <span className='g-number'>
+          {(shortNumber && typeof rightDisp === 'number'
+            ? fmtNumber(rightDisp)
+            : rightDisp) || 0}
+        </span>
+        <span className='g-counter'>{rightDispUnit}</span>
+      </div>
     </div>
   );
 }

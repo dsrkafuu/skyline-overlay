@@ -11,6 +11,7 @@ import {
   DisplayContentMapKey,
   TickerAlignMapKey,
   TickerMapKey,
+  BottomDispMapKey,
 } from '../../utils/constants';
 
 interface PartialSettings {
@@ -79,7 +80,7 @@ class Settings {
   youName = 'YOU'; // which to represent as 'YOU'
   petMergeID = ''; // merge pet data when using global client with cn language patch
   extendDetail = false;
-  bottomDisp = 'maxhit';
+  bottomDisp: BottomDispMapKey = 'maxhit';
 
   // display
   dispMode: DisplayModeMapKey = 'single';
@@ -165,7 +166,7 @@ class Settings {
     this.extendDetail = payload;
     saveSettings({ extendDetail: payload });
   }
-  updateBottomDisp(payload: string) {
+  updateBottomDisp(payload: BottomDispMapKey) {
     this.bottomDisp = payload;
     saveSettings({ bottomDisp: payload });
   }

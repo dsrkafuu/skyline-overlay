@@ -57,9 +57,6 @@ function Combatant({ player, index }: CombatantProps) {
     pcts: ticker.bottom === 'healer' ? healerPcts : dpsPcts,
     type: ticker.bottom === 'healer' ? 'healer' : 'dps',
   };
-  let tickerNum = 2;
-  ticker.top === 'none' && tickerNum--;
-  ticker.bottom === 'none' && tickerNum--;
 
   return (
     <div className={cn(...classes)}>
@@ -86,11 +83,7 @@ function Combatant({ player, index }: CombatantProps) {
         ))}
 
       {needDetail && (lockDetail || showDetail) && (
-        <CombatantDetail
-          player={player}
-          tickerNum={tickerNum}
-          locked={lockDetail}
-        />
+        <CombatantDetail player={player} locked={lockDetail} />
       )}
     </div>
   );

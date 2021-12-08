@@ -4,87 +4,132 @@ import cn from 'classnames';
 import { SList, SListRow } from '../components';
 import { useStore, useTranslation } from '../hooks';
 import { isCombatantData } from '../utils/type';
+import { DisplayContentMapKey } from '../utils/constants';
+import { useCallback, useMemo } from 'react';
 
 interface CombatantDetailProps {
   player: CombatantData | LimitBreakData;
-  tickerNum: number; // how many tickers has
   locked: boolean;
 }
 
 function CombatantDetail(
-  { player, tickerNum, locked, ...props }: CombatantDetailProps,
+  { player, locked, ...props }: CombatantDetailProps,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
   const t = useTranslation();
+  const { settings } = useStore();
+  const { extendDetail, dispMode, dispContent, bottomDisp } = settings;
 
   // calculate top position according to tickerNum
-  let tickerValidNum = Math.floor(tickerNum);
-  if (tickerValidNum < 0 || tickerValidNum > 2) {
-    tickerValidNum = 0;
+  let tickerNum = 0;
+  if (settings.ticker.top !== 'none') {
+    tickerNum++;
   }
-  const top = (0.46 + tickerValidNum * 0.04).toFixed(2) + 'rem';
+  if (settings.ticker.bottom !== 'none') {
+    tickerNum++;
+  }
+  const baseTop = settings.dispMode === 'dual' ? 0.22 + 0.4 : 0.22 + 0.24; // name + content
+  const topWithTick = (baseTop + tickerNum * 0.04).toFixed(2) + 'rem'; // + ticker
 
-  // settings
-  const { settings } = useStore();
-  const { extendDetail } = settings;
+  const keyNotDisplayed = useCallback(
+    (key: DisplayContentMapKey) =>
+      (dispMode === 'single' && dispContent.right !== key) ||
+      (dispMode === 'dual' &&
+        dispContent.left !== key &&
+        dispContent.right !== key),
+    [dispContent.left, dispContent.right, dispMode]
+  );
 
   // row data render props
-  const rowItems: SListRow[][] = [];
+  const rowItems = useMemo<SListRow[][]>(() => {
+    const items: SListRow[][] = [[]];
 
-  // last 30 60 dps
-  if (extendDetail && isCombatantData(player)) {
-    rowItems.push([
-      { key: '30s', value: player.last30DPS },
-      { key: '60s', value: player.last60DPS },
-      { key: 'DPS', value: player.dps },
-    ]);
-  }
+    // dps related
+    if (extendDetail && isCombatantData(player)) {
+      items[items.length - 1].push(
+        { key: '30s', value: player.last30DPS },
+        { key: '60s', value: player.last60DPS }
+      );
+      items[items.length - 1].push({
+        key: '60s',
+        value: player.last60DPS,
+      });
+    }
+    keyNotDisplayed('dps') &&
+      items[items.length - 1].push({ key: 'DPS', value: player.dps });
 
-  // overheal & hps
-  if (isCombatantData(player)) {
-    rowItems.push([
-      { key: 'HPS', value: player.hps },
-      { key: t('Overheal'), value: player.overHealPct, pct: true },
-      { key: t('Shielded'), value: player.shieldPct, pct: true },
-    ]);
-  }
+    items[items.length - 1].length && items.push([]);
+    // hps related
+    keyNotDisplayed('hps') &&
+      items[items.length - 1].push({ key: 'HPS', value: player.hps });
+    if (isCombatantData(player)) {
+      keyNotDisplayed('overHealPct') &&
+        items[items.length - 1].push({
+          key: t('Overheal'),
+          value: player.overHealPct,
+          pct: true,
+        });
+      keyNotDisplayed('shieldPct') &&
+        items[items.length - 1].push({
+          key: t('Shielded'),
+          value: player.shieldPct,
+          pct: true,
+        });
+    }
 
-  if (isCombatantData(player)) {
-    // damage
-    rowItems.push([
-      { key: t('Damage'), value: player.damagePct, pct: true },
-      { key: t('Deaths'), value: player.deaths },
-    ]);
+    items[items.length - 1].length && items.push([]);
+    // damage and deaths
+    if (isCombatantData(player)) {
+      keyNotDisplayed('damagePct') &&
+        items[items.length - 1].push({
+          key: t('Damage'),
+          value: player.damagePct,
+          pct: true,
+        });
+      keyNotDisplayed('deaths') &&
+        items[items.length - 1].push({
+          key: t('Deaths'),
+          value: player.deaths,
+        });
+    }
 
-    // c & d & cd
-    rowItems.push([
-      { key: t('Direct'), value: player.directHitPct, pct: true },
-      { key: t('Critical !'), value: player.critHitPct, pct: true },
-      { key: t('DC !!!'), value: player.directCritHitPct, pct: true },
-    ]);
-  }
+    items[items.length - 1].length && items.push([]);
+    // C/D/CD
+    if (isCombatantData(player)) {
+      bottomDisp !== 'cdpcts' &&
+        items[items.length - 1].push(
+          { key: t('Direct'), value: player.directHitPct, pct: true },
+          { key: t('Critical !'), value: player.critHitPct, pct: true },
+          { key: t('DC !!!'), value: player.directCritHitPct, pct: true }
+        );
+    }
 
-  // max hit
-  if (extendDetail) {
-    rowItems.push([]);
-    player.maxHit &&
-      rowItems[rowItems.length - 1].push({
+    items[items.length - 1].length && items.push([]);
+    // max hit
+    bottomDisp !== 'maxhit' &&
+      player.maxHit &&
+      items[items.length - 1].push({
         key: player.maxHit,
         value: isCombatantData(player) ? player.maxHitDamage : player.damage,
       });
-    player.maxHeal &&
-      rowItems[rowItems.length - 1].push({
+    bottomDisp !== 'maxhit' &&
+      player.maxHeal &&
+      items[items.length - 1].push({
         key: player.maxHeal,
         value: isCombatantData(player) ? player.maxHealDamage : player.healed,
       });
-  }
+
+    // remove unused spliter
+    !items[items.length - 1].length && items.pop();
+    return items;
+  }, [bottomDisp, extendDetail, keyNotDisplayed, player, t]);
 
   return (
     <div
       className={cn(['combatant-detail', { locked }])}
       ref={ref}
       {...props}
-      style={{ top }}
+      style={{ top: topWithTick }}
     >
       <SList items={rowItems} />
     </div>

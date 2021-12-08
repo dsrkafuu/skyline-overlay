@@ -31,8 +31,14 @@ export const MAP_DISPLAY_MODE = displayModeMap;
 
 // display content map
 const displayContentMap = {
-  dps: { text: 'DPS' },
-  hps: { text: 'HPS' },
+  dps: { text: 'DPS', data: { unit: 'DPS' } },
+  hps: { text: 'HPS', data: { unit: 'HPS' } },
+  swings: { text: 'Swings', data: { unit: 'SWS' } },
+  deaths: { text: 'Deaths', data: { unit: 'DT' } },
+  damagePct: { text: 'Damage', data: { unit: 'DMG' } },
+  healsPct: { text: 'Heals', data: { unit: 'HLS' } },
+  overHealPct: { text: 'Overheal', data: { unit: 'OH' } },
+  shieldPct: { text: 'Shield', data: { unit: 'SLD' } },
 };
 export type DisplayContentMapKey = keyof typeof displayContentMap & string;
 export const MAP_DISPLAY_CONTENT = displayContentMap;

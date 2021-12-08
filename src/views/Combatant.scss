@@ -144,36 +144,34 @@
     &-content {
       height: 0.4rem;
       display: flex;
-      justify-content: center;
-      align-items: center;
-    }
 
-    &-data {
-      height: 0.32rem;
-      flex: 1 1 auto;
-      width: 50%;
-      display: flex;
-      flex-direction: column-reverse;
-      justify-content: center;
+      &-data {
+        height: 0.32rem;
+        flex: 1 1 auto;
+        width: 50%;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
 
-      &:first-child {
-        align-items: flex-start;
-      }
+        &:first-child {
+          align-items: flex-start;
+        }
 
-      &:last-child {
-        align-items: flex-end;
-      }
+        &:last-child {
+          align-items: flex-end;
+        }
 
-      .g-counter {
-        height: 0.14rem;
-        line-height: 0.14rem;
-        margin: 0 0.02rem;
-      }
+        .g-counter {
+          height: 0.14rem;
+          line-height: 0.14rem;
+          margin: 0 0.02rem;
+        }
 
-      .g-number {
-        height: 0.18rem;
-        line-height: 0.18rem;
-        margin: 0 0.01rem;
+        .g-number {
+          height: 0.18rem;
+          line-height: 0.18rem;
+          margin: 0 0.01rem;
+        }
       }
     }
   }
@@ -182,12 +180,8 @@
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    top: -0.05rem;
-    width: 0.24rem;
-    height: 0.24rem;
-  }
-
-  .combatant-detail {
-    top: 0.66rem;
+    top: 0;
+    width: 0.22rem;
+    height: 0.22rem;
   }
 }
