@@ -11,7 +11,7 @@ if (sentryDsn && import.meta.env.PROD) {
   Sentry.init({
     dsn: `${sentryDsn}`,
     integrations: [new Integrations.BrowserTracing()],
-    tracesSampleRate: 1.0,
+    tracesSampleRate: 0.5,
   });
 }
 
