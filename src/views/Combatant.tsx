@@ -21,13 +21,14 @@ function Combatant({ player, index }: CombatantProps) {
   const { name } = player;
   const classes: Argument[] = ['combatant']; // grid classnames
   const { settings } = useStore();
-  const { hlYou, bottomDisp, ticker, tickerAlign, dispMode } = settings;
+  const { hlYou, youName, bottomDisp, ticker, tickerAlign, dispMode } =
+    settings;
 
   // class names related to job
   if (isLimitBreakData(player)) {
     classes.push('job-unknown');
   } else {
-    classes.push({ 'job-self': hlYou && name === 'YOU' }); // highlight
+    classes.push({ 'job-self': hlYou && name === youName }); // highlight
     classes.push(`job-${player.job || 'unknown'}`); // job
     classes.push(`jobtype-${player.jobType || 'unknown'}`); // jobtype
   }
