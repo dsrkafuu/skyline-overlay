@@ -11,7 +11,13 @@ if (sentryDsn && import.meta.env.PROD) {
   Sentry.init({
     dsn: `${sentryDsn}`,
     integrations: [new Integrations.BrowserTracing()],
-    tracesSampleRate: 0.5,
+    tracesSampleRate: 1.0,
+    beforeSend(event) {
+      if (event.exception) {
+        Sentry.showReportDialog({ eventId: event.event_id });
+      }
+      return event;
+    },
   });
 }
 
