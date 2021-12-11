@@ -1,16 +1,14 @@
 import './SInput.scss';
 import { useCallback, useState } from 'react';
-import { isCEFSharp } from 'ffxiv-overlay-api';
 import cn from 'classnames';
 import { useTranslation } from '../hooks';
+import { ICreate } from '../assets/icons';
 
 interface SInputProps {
   value: string;
   onChange: (value: string) => void;
   className?: string;
 }
-
-const isCEF = isCEFSharp();
 
 function SInput({ value, onChange, className }: SInputProps) {
   const t = useTranslation();
@@ -23,32 +21,21 @@ function SInput({ value, onChange, className }: SInputProps) {
     [onChange]
   );
 
-  /**
-   * handle click in cef env
-   */
   const handleClick = useCallback(() => {
-    if (isCEF) {
-      const ret = prompt(t('Please enter the new value'), value) || '';
-      const str = `${ret}`.trim();
-      if (ret && str) {
-        onChange(str);
-      }
+    const ret = prompt(t('Please enter the new value'), value) || '';
+    const str = `${ret}`.trim();
+    if (ret && str) {
+      onChange(str);
     }
   }, [onChange, t, value]);
 
-  if (isCEF) {
-    return (
-      <div
-        className={cn('s-input s-input-cef btn', className)}
-        onClick={handleClick}
-      >
-        {value}
+  return (
+    <div className={cn('s-input', className)}>
+      <div className='s-input-btn' onClick={handleClick}>
+        <ICreate />
       </div>
-    );
-  } else {
-    return (
       <input
-        className={cn('s-input', { active: focused }, className)}
+        className={cn('s-input-inner', { active: focused })}
         value={value}
         onInput={handleInput}
         onFocus={() => setFocused(true)}
@@ -56,8 +43,8 @@ function SInput({ value, onChange, className }: SInputProps) {
         type='text'
         autoComplete='off'
       />
-    );
-  }
+    </div>
+  );
 }
 
 export default SInput;

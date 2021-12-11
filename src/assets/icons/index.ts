@@ -6,6 +6,7 @@ export { ReactComponent as IChevronDown } from './i-chevron-down.svg';
 export { ReactComponent as IChevronUpCircle } from './i-chevron-up-circle.svg';
 export { ReactComponent as IChevronUp } from './i-chevron-up.svg';
 export { ReactComponent as IClose } from './i-close.svg';
+export { ReactComponent as ICreate } from './i-create.svg';
 export { ReactComponent as IRefreshCircle } from './i-refresh-circle.svg';
 export { ReactComponent as IRemove } from './i-remove.svg';
 export { ReactComponent as ISettings } from './i-settings.svg';

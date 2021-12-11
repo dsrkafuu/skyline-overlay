@@ -1,37 +1,58 @@
 .s-input {
-  display: inline-block;
-  border: none;
-  outline: none;
-  color: var(--color-form-fg);
-  background-color: var(--color-form-bg);
+  display: flex;
+  width: $size-form-minwidth;
   height: $size-form;
   line-height: $size-form;
-  padding: 0 $padding-md;
-  width: $size-form-minwidth;
-  user-select: auto;
-  text-align: center;
-  text-shadow: var(--shadow-form);
-  border-radius: 0;
+  color: var(--color-form-fg);
+  background-color: var(--color-form-bg);
 
-  &.active {
-    text-shadow: var(--shadow-form-active);
-    color: var(--color-form-fg-active);
-    background-color: var(--color-form-bg-active);
-  }
-
-  &::selection {
-    text-shadow: var(--shadow-form-selection);
-    color: var(--color-form-fg-selection);
-    background-color: var(--color-form-bg-selection);
-  }
-
-  &-cef {
+  &-btn {
+    flex: 0 0 auto;
+    height: $size-form;
+    width: $size-form;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     cursor: pointer;
 
     &:hover {
+      color: var(--color-form-fg-active);
+      background-color: var(--color-form-bg-active);
+    }
+
+    & > svg {
+      position: relative;
+      left: 0.01rem;
+      bottom: 0.01rem;
+    }
+  }
+
+  &-inner {
+    display: inline-block;
+    border: none;
+    outline: none;
+    color: var(--color-form-fg);
+    background-color: var(--color-form-bg);
+    height: $size-form;
+    line-height: $size-form;
+    padding: 0 $padding-md;
+    user-select: auto;
+    text-align: center;
+    text-shadow: var(--shadow-form);
+    border-radius: 0;
+    min-width: 0;
+
+    &.active {
       text-shadow: var(--shadow-form-active);
       color: var(--color-form-fg-active);
       background-color: var(--color-form-bg-active);
+    }
+
+    &::selection {
+      text-shadow: var(--shadow-form-selection);
+      color: var(--color-form-fg-selection);
+      background-color: var(--color-form-bg-selection);
     }
   }
 }
