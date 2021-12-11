@@ -1,4 +1,5 @@
 import { makeAutoObservable } from 'mobx';
+import { Store } from '..';
 import lang from '../../lang';
 import { LangMapKey } from '../../utils/constants';
 import { getLS, setLS } from '../../utils/storage';
@@ -14,6 +15,8 @@ interface TranslationData {
 const defaultData: TranslationData = lang.en.translation;
 
 class Translation {
+  rootStore: Store = null as never;
+
   /** @mobx state */
 
   data: TranslationData = defaultData;
@@ -21,7 +24,7 @@ class Translation {
   /**
    * @constructor
    */
-  constructor() {
+  constructor(rootStore: Store) {
     // get initial language from storage , if not exist then auto detected
     const settings = (getLS('settings') || {}) as PartialSettingsWithLang;
     if (!settings.lang) {
@@ -39,7 +42,8 @@ class Translation {
     document.documentElement.setAttribute('lang', settings.lang);
 
     // init mobx
-    makeAutoObservable(this, {}, { autoBind: true });
+    this.rootStore = rootStore;
+    makeAutoObservable(this, { rootStore: false }, { autoBind: true });
   }
 
   /** @mobx actions */

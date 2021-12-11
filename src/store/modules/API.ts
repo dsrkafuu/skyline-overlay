@@ -1,7 +1,6 @@
 import OverlayAPI, { ExtendData } from 'ffxiv-overlay-api';
-import { cloneDeep } from '../../utils/lodash';
 import { makeAutoObservable } from 'mobx';
-import Settings from './Settings';
+import { Store } from '..';
 
 const cleanData: ExtendData = {
   isActive: false,
@@ -10,11 +9,9 @@ const cleanData: ExtendData = {
   combatant: [],
 };
 
-/** @mobx ext state */
-
-let sets: Settings;
-
 class API {
+  rootStore: Store = null as never;
+
   /** @mobx state */
 
   overlay = new OverlayAPI();
@@ -38,9 +35,7 @@ class API {
   /**
    * @constructor
    */
-  constructor(settings: Settings) {
-    sets = settings;
-
+  constructor(rootStore: Store) {
     // add overlay callback
     this.overlay.addListener('CombatData', (data) => {
       if (data.extendData) {
@@ -51,7 +46,8 @@ class API {
     this.overlay.startEvent();
 
     // init mobx
-    makeAutoObservable(this, {}, { autoBind: true });
+    this.rootStore = rootStore;
+    makeAutoObservable(this, { rootStore: false }, { autoBind: true });
   }
 
   /** @mobx actions */
@@ -66,14 +62,8 @@ class API {
       payload.combatant
     ) {
       this.data = payload;
-      sets.toggleShowCombatants(true);
+      this.rootStore.settings.toggleShowCombatants(true);
     }
-  }
-  /**
-   * clear combat data
-   */
-  clearCombat() {
-    this.data = cloneDeep(cleanData);
   }
 }
 

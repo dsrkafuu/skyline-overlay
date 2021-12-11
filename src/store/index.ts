@@ -2,9 +2,9 @@ import { createContext } from 'react';
 import { configure } from 'mobx';
 
 // store modules
-import Translation from './modules/Translation';
 import API from './modules/API';
 import Settings from './modules/Settings';
+import Translation from './modules/Translation';
 
 // strict mobx linter
 configure({
@@ -18,10 +18,10 @@ configure({
 /**
  * combined root store
  */
-class Store {
-  translation = new Translation();
-  settings = new Settings(this.translation);
-  api = new API(this.settings);
+export class Store {
+  api = new API(this);
+  settings = new Settings(this);
+  translation = new Translation(this);
 }
 
 // init store instance
