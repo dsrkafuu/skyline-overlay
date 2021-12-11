@@ -1,10 +1,10 @@
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
-import { SSelectMap } from '../components';
+import { BottomDispMapKey } from '../utils/constants';
 import { isCombatantData } from '../utils/type';
 
 interface CombatantBottomProps {
   player: CombatantData | LimitBreakData;
-  mode: keyof SSelectMap;
+  mode: BottomDispMapKey;
 }
 
 function CombatantBottom({ player, mode = 'none' }: CombatantBottomProps) {
@@ -37,13 +37,23 @@ function CombatantBottom({ player, mode = 'none' }: CombatantBottomProps) {
     return (
       <div className='combatant-bottom combatant-bottom--cdpcts'>
         &nbsp;<span>{directCritHitPct}CD</span>
-        &nbsp;<span>{critHitPct}D</span>
-        &nbsp;<span>{directHitPct}C</span>&nbsp;
+        &nbsp;<span>{critHitPct}C</span>
+        &nbsp;<span>{directHitPct}D</span>&nbsp;
+      </div>
+    );
+  } else if (mode === 'cdpcts-reverse' && isCombatantData(player)) {
+    const { directHitPct, critHitPct, directCritHitPct } = player;
+
+    return (
+      <div className='combatant-bottom combatant-bottom--cdpcts'>
+        &nbsp;<span>{directHitPct}D</span>
+        &nbsp;<span>{critHitPct}C</span>
+        &nbsp;<span>{directCritHitPct}CD</span>&nbsp;
       </div>
     );
   }
 
-  return null;
+  return <div className='combatant-bottom'></div>;
 }
 
 export default CombatantBottom;
