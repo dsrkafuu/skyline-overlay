@@ -7,12 +7,12 @@ body[data-theme='ikegami'] {
   --icon-shadow: 0 0 0.04rem rgba(0, 0, 0, 0.6);
 
   // s-ticker
-  --color-s-ticker-dps-a: #ff6f00; // crit direct
-  --color-s-ticker-dps-b: #ffca28; // crit
-  --color-s-ticker-dps-c: #1de9b6; // direct
-  --color-s-ticker-healer-a: #40c4ff; // shield
-  --color-s-ticker-healer-b: #00e676; // healed
-  --color-s-ticker-healer-c: #e53935; // over healed
+  --color-s-ticker-cd: #ff6f00; // crit direct
+  --color-s-ticker-c: #ffca28; // crit
+  --color-s-ticker-d: #1de9b6; // direct
+  --color-s-ticker-oh: #e53935; // over healed
+  --color-s-ticker-h: #00e676; // healed
+  --color-s-ticker-s: #40c4ff; // shield
 
   // combatant
   --color-combatant-fg: var(--color-fg);

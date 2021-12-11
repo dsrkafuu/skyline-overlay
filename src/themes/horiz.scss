@@ -7,12 +7,12 @@ body[data-theme='horiz'] {
   --icon-shadow: 0 0 0.04rem rgba(0, 0, 0, 0.6);
 
   // s-ticker
-  --color-s-ticker-dps-a: rgba(255, 111, 0, 0.7); // crit direct
-  --color-s-ticker-dps-b: rgba(255, 202, 40, 0.7); // crit
-  --color-s-ticker-dps-c: rgba(29, 233, 182, 0.7); // direct
-  --color-s-ticker-healer-a: rgba(82, 205, 243, 0.8); // shield
-  --color-s-ticker-healer-b: rgba(127, 243, 82, 0.8); // healed
-  --color-s-ticker-healer-c: rgba(255, 102, 0, 0.7); // over healed
+  --color-s-ticker-cd: rgba(255, 111, 0, 0.7); // crit direct
+  --color-s-ticker-c: rgba(255, 202, 40, 0.7); // crit
+  --color-s-ticker-d: rgba(29, 233, 182, 0.7); // direct
+  --color-s-ticker-oh: rgba(255, 102, 0, 0.7); // over healed
+  --color-s-ticker-h: rgba(127, 243, 82, 0.8); // healed
+  --color-s-ticker-s: rgba(82, 205, 243, 0.8); // shield
 
   // combatant
   --color-combatant-fg: var(--color-fg);

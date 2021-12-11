@@ -45,8 +45,10 @@ export const MAP_DISPLAY_CONTENT = displayContentMap;
 
 // ticker map
 const tickerMap = {
-  healer: { text: 'S/H/OH' },
+  healer: { text: 'OH/H/S' },
+  'healer-reverse': { text: 'S/H/OH' },
   dps: { text: 'CD/C/D' },
+  'dps-reverse': { text: 'D/C/CD' },
   none: { text: 'None' },
 };
 export type TickerMapKey = keyof typeof tickerMap & string;
@@ -63,7 +65,8 @@ export const MAP_TICKER_ALIGN = tickerAlignMap;
 // bottom display map
 const bottomDispMap = {
   maxhit: { text: 'Max Hit' },
-  cdpcts: { text: 'C/D/CD' },
+  cdpcts: { text: 'CD/C/D' },
+  'cdpcts-reverse': { text: 'D/C/CD' },
   none: { text: 'None' },
 };
 export type BottomDispMapKey = keyof typeof bottomDispMap & string;

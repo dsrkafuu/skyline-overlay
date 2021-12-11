@@ -1,42 +1,37 @@
 import './STicker.scss';
 
+export type STickerClass = 'oh' | 'h' | 's' | 'cd' | 'c' | 'd' | 'space';
+
 export interface STickerProps {
-  pcts: Array<number | string>; // percentages
-  type?: 'dps' | 'healer';
+  pcts: number[]; // numbers from left to right
+  classes: STickerClass[];
+  space: number; // number of space
   align?: 'left' | 'right';
 }
 
-function parseCSSPct(pct: number | string) {
-  if (typeof pct === 'number') {
-    const num = Math.floor(Math.abs(pct));
-    if (num === 0) {
-      return '0';
-    } else {
-      return `${num}%`;
-    }
-  } else {
-    pct = `${pct}`.trim();
-    const num = /^([0-9]+)%$/i.exec(pct);
-    if (num && num[1] && Number(num[1]) > 0) {
-      return `${pct}`;
-    } else {
-      return '0';
-    }
+function STicker({ pcts, classes, space = 0, align = 'left' }: STickerProps) {
+  const localPcts = pcts.map((pct) => Math.floor(pct) || 0);
+  const localClasses = [...classes];
+  if (localPcts.length > 3) {
+    localPcts.splice(3, localPcts.length - 3);
   }
-}
-
-function STicker({ pcts, type = 'dps', align = 'left' }: STickerProps) {
-  const cssPcts = pcts.map(parseCSSPct);
-  if (cssPcts.length > 3) {
-    cssPcts.splice(3, cssPcts.length - 3);
+  if (localClasses.length > 3) {
+    localClasses.splice(3, localClasses.length - 3);
+  }
+  if (align === 'right') {
+    localPcts.unshift(space);
+    localClasses.unshift('space');
+  } else {
+    localPcts.push(space);
+    localClasses.push('space');
   }
 
   return (
-    <div className={`s-ticker s-ticker-${type} s-ticker-${align}`}>
-      {cssPcts.map((pct, idx) => (
+    <div className='s-ticker'>
+      {localPcts.map((pct, idx) => (
         <span
-          className={`s-ticker-${(idx + 10).toString(36)}`}
-          style={{ width: pct }}
+          className={`s-ticker-${localClasses[idx]}`}
+          style={{ flexGrow: pct }}
           key={idx}
         ></span>
       ))}

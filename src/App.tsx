@@ -17,7 +17,7 @@ function App() {
   let players = cloneDeep(combatant);
 
   // debug mock data
-  useMock(overlay, true);
+  useMock(overlay, false);
 
   // merge pet if enabled
   if (petMergeID) {

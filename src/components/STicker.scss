@@ -3,35 +3,30 @@
   height: 0.04rem;
   display: flex;
   align-items: stretch;
+  flex-direction: row;
+  justify-content: stretch;
 
-  &-dps {
-    .s-ticker-a {
-      background-color: var(--color-s-ticker-dps-a);
-    }
-    .s-ticker-b {
-      background-color: var(--color-s-ticker-dps-b);
-    }
-    .s-ticker-c {
-      background-color: var(--color-s-ticker-dps-c);
-    }
+  & > span {
+    flex: 1 1 auto;
   }
 
-  &-healer {
-    .s-ticker-a {
-      background-color: var(--color-s-ticker-healer-a);
-    }
-    .s-ticker-b {
-      background-color: var(--color-s-ticker-healer-b);
-    }
-    .s-ticker-c {
-      background-color: var(--color-s-ticker-healer-c);
-    }
+  &-cd {
+    background-color: var(--color-s-ticker-cd);
+  }
+  &-c {
+    background-color: var(--color-s-ticker-c);
+  }
+  &-d {
+    background-color: var(--color-s-ticker-d);
   }
 
-  &-left {
-    flex-direction: row;
+  &-oh {
+    background-color: var(--color-s-ticker-oh);
   }
-  &-right {
-    flex-direction: row-reverse;
+  &-h {
+    background-color: var(--color-s-ticker-h);
+  }
+  &-s {
+    background-color: var(--color-s-ticker-s);
   }
 }

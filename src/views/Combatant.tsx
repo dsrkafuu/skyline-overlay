@@ -1,5 +1,5 @@
 import './Combatant.scss';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import cn, { Argument } from 'classnames';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
@@ -8,8 +8,9 @@ import CombatantDetail from './CombatantDetail';
 import CombatantBottom from './CombatantBottom';
 import CombatantContent from './CombatantContent';
 import { useStore } from '../hooks';
-import { STicker, STickerProps } from '../components';
+import { STicker, STickerProps, STickerClass } from '../components';
 import { isLimitBreakData, isCombatantData } from '../utils/type';
+import { TickerMapKey } from '../utils/constants';
 
 interface CombatantProps {
   player: CombatantData | LimitBreakData;
@@ -44,27 +45,71 @@ function Combatant({ player, index }: CombatantProps) {
   const [lockDetail, setLockDetail] = useState(false);
 
   // tickers
-  let healerPcts: string[] = [];
-  let dpsPcts: string[] = [];
-  if (isCombatantData(player)) {
-    dpsPcts = [player.directCritHitPct, player.critHitPct, player.directHitPct];
-    healerPcts = [player.shieldPct, player.healsPct, player.overHealPct];
-  }
-  const topTickerProps: STickerProps = {
-    pcts: ticker.top === 'healer' ? healerPcts : dpsPcts,
-    type: ticker.top === 'healer' ? 'healer' : 'dps',
-  };
-  const bottomTickerProps: STickerProps = {
-    pcts: ticker.bottom === 'healer' ? healerPcts : dpsPcts,
-    type: ticker.bottom === 'healer' ? 'healer' : 'dps',
-  };
+  const getTickerProps = useCallback(
+    (mapKey: TickerMapKey) => {
+      let healerPcts: number[] = [];
+      let healerClasses: STickerClass[] = [];
+      let dpsPcts: number[] = [];
+      let dpsClasses: STickerClass[] = [];
+      let dpsSpace = 0;
+      if (isCombatantData(player)) {
+        // CD/C/D
+        dpsPcts = [
+          player.directCritHits,
+          // CD is included in C/D
+          player.critHits - player.directCritHits,
+          player.directHits - player.directCritHits,
+        ];
+        dpsClasses = ['cd', 'c', 'd'];
+        // all normal hits
+        dpsSpace =
+          player.hits -
+          (player.critHits + player.directHits - player.directCritHits);
+        // OH/H/S
+        healerPcts = [
+          player.overHeal,
+          // H = OH + S + H(actually)
+          player.healed - player.overHeal - player.shield,
+          player.shield,
+        ];
+        healerClasses = ['oh', 'h', 's'];
+      }
+      let ret: STickerProps;
+      switch (mapKey) {
+        case 'healer':
+          ret = { pcts: healerPcts, classes: healerClasses, space: 0 };
+          break;
+        case 'healer-reverse':
+          ret = {
+            pcts: [...healerPcts].reverse(),
+            classes: [...healerClasses].reverse(),
+            space: 0,
+          };
+          break;
+        case 'dps':
+          ret = { pcts: dpsPcts, classes: dpsClasses, space: dpsSpace };
+          break;
+        case 'dps-reverse':
+          ret = {
+            pcts: [...dpsPcts].reverse(),
+            classes: [...dpsClasses].reverse(),
+            space: dpsSpace,
+          };
+          break;
+        default:
+          ret = { pcts: [], classes: new Array(3).fill('space'), space: 0 };
+      }
+      return ret;
+    },
+    [player]
+  );
 
   return (
     <div className={cn(...classes)}>
       <CombatantName player={player} index={index} />
 
       {ticker.top && ticker.top !== 'none' && (
-        <STicker {...topTickerProps} align={tickerAlign.top} />
+        <STicker {...getTickerProps(ticker.top)} align={tickerAlign.top} />
       )}
 
       <CombatantContent
@@ -75,7 +120,10 @@ function Combatant({ player, index }: CombatantProps) {
       />
 
       {ticker.bottom && ticker.bottom !== 'none' && (
-        <STicker {...bottomTickerProps} align={tickerAlign.bottom} />
+        <STicker
+          {...getTickerProps(ticker.bottom)}
+          align={tickerAlign.bottom}
+        />
       )}
 
       {!needDetail ||
