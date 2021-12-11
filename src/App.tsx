@@ -12,12 +12,12 @@ function App() {
   // get data from store
   const {
     api: { combatant, lb, overlay },
-    settings: { sort, playerLimit, showLB, petMergeID },
+    settings: { showCombatants, sort, playerLimit, showLB, petMergeID },
   } = useStore();
   let players = cloneDeep(combatant);
 
   // debug mock data
-  useMock(overlay, false);
+  useMock(overlay, true);
 
   // merge pet if enabled
   if (petMergeID) {
@@ -43,7 +43,7 @@ function App() {
   return (
     <div className='app'>
       <div className='g-container'>
-        {Boolean(combatant) && combatant.length > 0 && (
+        {showCombatants && Boolean(combatant) && combatant.length > 0 && (
           <div className='combatants'>
             {playersWithLB.map((player, index) => (
               <Combatant player={player} index={index} key={player.name} />

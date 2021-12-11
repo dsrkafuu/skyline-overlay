@@ -1,9 +1,14 @@
 import './Encounter.scss';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { version } from '../assets/meta';
-import { IRefresh, ISettings } from '../assets/icons';
+import {
+  IChevronUpCircle,
+  IChevronDownCircle,
+  ISettings,
+  IRefreshCircle,
+} from '../assets/icons';
 import { logInfo } from '../utils/loggers';
 import { useStore } from '../hooks';
 import { fmtNumber } from '../utils/formatters';
@@ -11,7 +16,7 @@ import { fmtNumber } from '../utils/formatters';
 function Encounter() {
   const { api, settings } = useStore();
   const { active, encounter, overlay } = api;
-  const { shortNumber } = settings;
+  const { showCombatants, shortNumber, toggleShowCombatants } = settings;
 
   // encounter data
   const duration = encounter.duration || '00:00';
@@ -21,16 +26,37 @@ function Encounter() {
   /**
    * reset all combat data
    */
-  const handleReset = useCallback(() => {
-    overlay.endEncounter();
-    api.clearCombat();
-    logInfo('overlay cleared');
-  }, [api, overlay]);
+  const handleEndEncounter = useCallback(async () => {
+    await overlay.endEncounter();
+    logInfo('encounter ended');
+  }, [overlay]);
+
+  const handleToggleShowCombatants = useCallback(() => {
+    toggleShowCombatants();
+  }, [toggleShowCombatants]);
+
+  const [durationHovered, setDurationHovered] = useState(false);
+  const DurationInner = durationHovered ? (
+    <IRefreshCircle />
+  ) : (
+    <span>{duration}</span>
+  );
+  const onDurationEnter = useCallback(() => {
+    setDurationHovered(true);
+  }, []);
+  const onDurationLeave = useCallback(() => {
+    setDurationHovered(false);
+  }, []);
 
   return (
     <div className='encounter'>
-      <div className={cn('encounter-duration', { active })}>
-        <span>{duration}</span>
+      <div
+        className={cn('encounter-duration', { active })}
+        onMouseEnter={onDurationEnter}
+        onMouseLeave={onDurationLeave}
+        onClick={handleEndEncounter}
+      >
+        {DurationInner}
       </div>
       <div className='encounter-content'>
         <div className='encounter-zone'>
@@ -42,8 +68,8 @@ function Encounter() {
         </div>
       </div>
       <div className='encounter-buttons'>
-        <div className='btn' onClick={handleReset}>
-          <IRefresh />
+        <div className='btn' onClick={handleToggleShowCombatants}>
+          {showCombatants ? <IChevronUpCircle /> : <IChevronDownCircle />}
         </div>
         <div className='btn' onClick={() => settings.toggleSettings()}>
           <ISettings />

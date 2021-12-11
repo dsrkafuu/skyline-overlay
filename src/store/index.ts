@@ -20,8 +20,8 @@ configure({
  */
 class Store {
   translation = new Translation();
-  api = new API();
   settings = new Settings(this.translation);
+  api = new API(this.settings);
 }
 
 // init store instance

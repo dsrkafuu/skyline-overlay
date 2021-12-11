@@ -63,13 +63,15 @@ interface PartialTickerAlignSettings {
   bottom?: TickerAlignMapKey;
 }
 
-// translation store
+/** @mobx ext state */
+
 let trans: Translation;
 
 class Settings {
   /** @mobx state */
 
   // settings container display
+  showCombatants = true;
   showSettings = false;
   blurName = false;
 
@@ -131,6 +133,14 @@ class Settings {
 
   /** @mobx actions */
 
+  toggleShowCombatants(payload?: boolean) {
+    if (payload !== undefined) {
+      this.showCombatants = payload;
+    } else {
+      this.showCombatants = !this.showCombatants;
+    }
+    saveSettings({ showCombatants: this.showCombatants });
+  }
   toggleSettings() {
     this.showSettings = !this.showSettings;
     saveSettings({ showSettings: this.showSettings });
