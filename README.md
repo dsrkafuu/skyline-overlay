@@ -41,8 +41,9 @@ npm start
 ## Env
 
 ```
-VITE_BASE_URL="./" # dist base url
-VITE_GA_ID="" # analytics id
+VITE_BASE_URL="./"    # dist base url (optional)
+VITE_GA_ID=""         # google analytics id (optional)
+VITE_SENTRY_DSN=""    # sentry dsn for error tracking & perfromance measuring (optional)
 ```
 
 ## Contribute
@@ -76,7 +77,7 @@ Please use [ISO 639-1:2002](https://en.wikipedia.org/wiki/List_of_ISO_639-1_code
 
 ## Major Dependencies
 
-- React: <https://reactjs.org/>
+- React: <https://reactjs.org>
 - MobX: <https://mobx.js.org>
 - Vite: <https://vitejs.dev>
 - ffxiv-overlay-api: <https://github.com/dsrkafuu/ffxiv-overlay-api>
