@@ -27,7 +27,7 @@
       text-align: center;
     }
 
-    &.active,
+    &--active,
     &:hover {
       color: var(--color-form-fg-active);
       background-color: var(--color-form-bg-active);

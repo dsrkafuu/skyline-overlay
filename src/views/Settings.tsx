@@ -270,7 +270,7 @@ function Settings() {
         {panels.map(({ type, title }) => (
           <div
             className={cn('settings-tabitem', {
-              active: type === activeType,
+              'settings-tabitem--active': type === activeType,
             })}
             key={`tab-${type}`}
             onClick={() => setActiveType(type)}

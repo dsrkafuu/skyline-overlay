@@ -25,7 +25,7 @@
     text-align: center;
     cursor: pointer;
 
-    &.active,
+    &--active,
     &:hover {
       text-shadow: var(--shadow-settings-tab-active);
       color: var(--color-settings-tab-fg-active);

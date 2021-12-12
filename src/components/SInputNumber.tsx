@@ -1,5 +1,6 @@
-import { useCallback } from 'react';
 import './SInputNumber.scss';
+import { useCallback } from 'react';
+import cn from 'classnames';
 import { IAdd, IRemove } from '../assets/icons';
 
 interface SInputNumberProps {
@@ -9,7 +10,7 @@ interface SInputNumberProps {
   max?: number;
   step?: number;
   accuracy?: number;
-  props?: unknown[];
+  className?: string;
 }
 
 function SInputNumber({
@@ -19,7 +20,7 @@ function SInputNumber({
   max = 100,
   step = 1,
   accuracy = 0,
-  ...props
+  className,
 }: SInputNumberProps) {
   const dispValue = value.toFixed(accuracy);
 
@@ -44,7 +45,7 @@ function SInputNumber({
   }, [accuracy, min, onChange, step, value]);
 
   return (
-    <div className='s-input-number' {...props}>
+    <div className={cn('s-input-number', className)}>
       <div className='value'>{dispValue}</div>
       <div className='btn plus' onClick={handlePlus}>
         <IAdd />

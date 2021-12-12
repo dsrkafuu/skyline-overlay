@@ -43,7 +43,7 @@
     border-radius: 0;
     min-width: 0;
 
-    &.active {
+    &--active {
       text-shadow: var(--shadow-form-active);
       color: var(--color-form-fg-active);
       background-color: var(--color-form-bg-active);

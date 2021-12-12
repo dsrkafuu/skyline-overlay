@@ -19,7 +19,7 @@
     align-items: center;
     text-align: center;
 
-    &.active {
+    &--active {
       color: var(--color-cover-fg-active);
       background-color: var(--color-cover-bg-active);
       text-shadow: var(--shadow-encounter-active);

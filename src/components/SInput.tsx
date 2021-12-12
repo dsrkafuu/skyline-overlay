@@ -35,7 +35,7 @@ function SInput({ value, onChange, className }: SInputProps) {
         <ICreate />
       </div>
       <input
-        className={cn('s-input-inner', { active: focused })}
+        className={cn('s-input-inner', { 's-input-inner--active': focused })}
         value={value}
         onInput={handleInput}
         onFocus={() => setFocused(true)}

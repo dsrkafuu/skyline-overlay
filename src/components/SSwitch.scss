@@ -7,7 +7,7 @@
   color: var(--color-form-fg);
   background-color: var(--color-form-bg);
 
-  .btn {
+  .s-switch-btn {
     flex: 0 0 auto;
     height: $size-form;
     width: $size-form;
@@ -16,7 +16,7 @@
     align-items: center;
     text-align: center;
 
-    &.active,
+    &--active,
     &:hover {
       text-shadow: var(--shadow-form-active);
       color: var(--color-form-fg-active);

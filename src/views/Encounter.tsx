@@ -51,7 +51,9 @@ function Encounter() {
   return (
     <div className='encounter'>
       <div
-        className={cn('encounter-duration', { active })}
+        className={cn('encounter-duration', {
+          'encounter-duration--active': active,
+        })}
         onMouseEnter={onDurationEnter}
         onMouseLeave={onDurationLeave}
         onClick={handleEndEncounter}

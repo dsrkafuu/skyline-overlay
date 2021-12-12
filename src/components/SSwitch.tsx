@@ -18,13 +18,15 @@ function SSwitch({
   return (
     <div className='s-switch'>
       <div
-        className={cn('btn', { active: value })}
+        className={cn('btn', 's-switch-btn', { 's-switch-btn--active': value })}
         onClick={() => onChange(true)}
       >
         <ITrue />
       </div>
       <div
-        className={cn('btn', { active: !value })}
+        className={cn('btn', 's-switch-btn', {
+          's-switch-btn--active': !value,
+        })}
         onClick={() => onChange(false)}
       >
         <IFalse />
