@@ -121,7 +121,9 @@ function CombatantDetail(
   } else {
     return (
       <div
-        className={cn(['combatant-detail', { locked }])}
+        className={cn('combatant-detail', {
+          'combatant-detail--locked': locked,
+        })}
         ref={ref}
         {...props}
         style={{ top: topWithTick }}

@@ -1,6 +1,6 @@
+import './SSelect.scss';
 import { useState, useRef, useCallback } from 'react';
 import cn from 'classnames';
-import './SSelect.scss';
 import { IChevronDown, IChevronUp } from '../assets/icons';
 import { useOutsideClick } from '../hooks';
 

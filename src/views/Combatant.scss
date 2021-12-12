@@ -119,22 +119,22 @@
     background-color: var(--color-combatant-bg-others);
   }
 
-  .jobtype-dps &-detail.locked {
+  .jobtype-dps &-detail--locked {
     background-color: var(--color-combatant-bg-dps);
   }
-  .jobtype-tank &-detail.locked {
+  .jobtype-tank &-detail--locked {
     background-color: var(--color-combatant-bg-tank);
   }
-  .jobtype-healer &-detail.locked {
+  .jobtype-healer &-detail--locked {
     background-color: var(--color-combatant-bg-heal);
   }
-  .jobtype-hand &-detail.locked,
-  .jobtype-land &-detail.locked,
-  .jobtype-unknown &-detail.locked {
+  .jobtype-hand &-detail--locked,
+  .jobtype-land &-detail--locked,
+  .jobtype-unknown &-detail--locked {
     background-color: var(--color-combatant-bg-others);
   }
   // self highlight color
-  .job-self &-detail.locked {
+  .job-self &-detail--locked {
     background-color: var(--color-combatant-bg-self);
   }
 }

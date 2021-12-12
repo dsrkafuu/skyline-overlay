@@ -1,4 +1,5 @@
 import './STicker.scss';
+import cn from 'classnames';
 
 export type STickerClass = 'oh' | 'h' | 's' | 'cd' | 'c' | 'd' | 'space';
 
@@ -7,9 +8,16 @@ export interface STickerProps {
   classes: STickerClass[];
   space: number; // number of space
   align?: 'left' | 'right';
+  className?: string;
 }
 
-function STicker({ pcts, classes, space = 0, align = 'left' }: STickerProps) {
+function STicker({
+  pcts,
+  classes,
+  space = 0,
+  align = 'left',
+  className,
+}: STickerProps) {
   const localPcts = pcts.map((pct) => Math.floor(pct) || 0);
   const localClasses = [...classes];
   if (localPcts.length > 3) {
@@ -27,7 +35,7 @@ function STicker({ pcts, classes, space = 0, align = 'left' }: STickerProps) {
   }
 
   return (
-    <div className='s-ticker'>
+    <div className={cn('s-ticker', className)}>
       {localPcts.map((pct, idx) => (
         <span
           className={`s-ticker-${localClasses[idx]}`}
