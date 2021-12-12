@@ -114,7 +114,7 @@
     left: 0;
     right: 0;
     // top: 0.50rem; // each ticker 0.04rem
-    z-index: 99;
+    z-index: 999;
     backdrop-filter: $filter;
     background-color: var(--color-combatant-bg-others);
   }

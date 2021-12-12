@@ -35,6 +35,19 @@
 }
 
 // app styles
+.g-container:nth-child(1),
+.combatants {
+  z-index: 100;
+}
+.g-container:nth-child(2),
+.encounter {
+  z-index: 10;
+}
+.g-container:nth-child(3),
+.settings {
+  z-index: 1;
+}
+
 .combatants {
   display: flex;
   flex-wrap: nowrap;
