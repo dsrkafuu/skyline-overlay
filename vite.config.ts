@@ -28,5 +28,28 @@ export default defineConfig({
   },
   build: {
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          // do not split css
+          if (
+            /\.css$/i.test(id) ||
+            /\.s[ac]ss$/i.test(id) ||
+            /\.less$/i.test(id)
+          ) {
+            return;
+          }
+          // sentry chunk
+          if (/node_modules[/\\]@sentry/i.test(id)) {
+            return 'sentry';
+          }
+          // vendor deps chunk
+          else if (/node_modules/i.test(id)) {
+            return 'vendor';
+          }
+          // automatic dynamic import spliting should work as is
+        },
+      },
+    },
   },
 });
