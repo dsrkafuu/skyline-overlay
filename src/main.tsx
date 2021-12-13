@@ -1,6 +1,7 @@
 import 'normalize.css';
 import './themes';
 import './scss/fonts.scss';
+import './scss/utils.scss';
 
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';

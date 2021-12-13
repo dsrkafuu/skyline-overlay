@@ -36,41 +36,6 @@ body,
   }
 }
 
-.icon {
-  stroke: currentColor;
-  fill: currentColor;
-}
-
-.g-link {
-  color: var(--color-fg);
-  text-shadow: var(--shadow);
-  text-decoration: underline;
-  padding-left: 0.03rem;
-  padding-right: 0.03rem;
-
-  &:hover {
-    color: var(--color-form-fg-active);
-    background-color: var(--color-form-bg-active);
-    text-shadow: var(--shadow-form-active);
-  }
-}
-
-.g-number {
-  display: inline-block;
-}
-.g-counter {
-  display: inline-block;
-  font-size: $font-size-xs;
-  margin-left: 0.02rem;
-}
-
-.icon {
-  font-size: 0.18rem;
-  display: inline-block;
-  stroke: currentColor;
-  fill: currentColor;
-}
-
 .container {
   display: flex;
   justify-content: center;

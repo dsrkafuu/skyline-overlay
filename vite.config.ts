@@ -13,7 +13,7 @@ export default defineConfig({
     svgr({
       icon: true,
       typescript: true,
-      svgProps: { className: 'icon' },
+      svgProps: { className: 'g-icon' },
     }),
     react(),
     htmlEnv(process.env),
