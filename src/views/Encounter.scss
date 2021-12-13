@@ -1,7 +1,8 @@
 .encounter {
-  margin-top: 0.04rem;
+  margin-top: $padding-md;
   font-size: $font-size-sm;
-  flex: 0 0 3.72rem;
+  flex: 0 0 auto;
+  width: 3.72rem;
   display: flex;
   backdrop-filter: $filter;
 
@@ -35,7 +36,6 @@
 
   &-content {
     flex: 1 1 auto;
-    padding: $padding-sm $padding-xl;
     display: flex;
     flex-wrap: nowrap;
     height: $size-form;
@@ -45,20 +45,30 @@
     text-shadow: var(--shadow-encounter);
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
-  }
 
-  &-zone {
-    flex: 1 1 auto;
-    text-align: left;
-    padding-right: $padding-lg;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+    &-zone {
+      padding: $padding-sm 0;
+      padding-left: $padding-xl;
+      padding-right: $padding-lg;
+      flex: 1 1 auto;
+      text-align: left;
+      white-space: nowrap;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-  &-numbers {
-    flex: 0 0 auto;
+    &-numbers {
+      padding: $padding-sm 0;
+      padding-right: $padding-xl;
+      flex: 0 0 auto;
+    }
+
+    &--full {
+      .encounter-content-numbers {
+        display: none;
+      }
+    }
   }
 
   &-buttons {

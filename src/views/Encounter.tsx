@@ -1,5 +1,5 @@
 import './Encounter.scss';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import cn from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { version } from '../assets/meta';
@@ -31,10 +31,14 @@ function Encounter() {
     logInfo('encounter ended');
   }, [overlay]);
 
+  /**
+   * hide or show combatants
+   */
   const handleToggleShowCombatants = useCallback(() => {
     toggleShowCombatants();
   }, [toggleShowCombatants]);
 
+  // end encounter related
   const [durationHovered, setDurationHovered] = useState(false);
   const DurationInner = durationHovered ? (
     <IRefreshCircle />
@@ -46,6 +50,26 @@ function Encounter() {
   }, []);
   const onDurationLeave = useCallback(() => {
     setDurationHovered(false);
+  }, []);
+
+  // overflow zonename related
+  const [fullZoneName, setFullZoneName] = useState(false);
+  const zoneWrapperRef = useRef<HTMLDivElement>(null);
+  const zoneInnerRef = useRef<HTMLSpanElement>(null);
+  /**
+   * if inner text is too long, show full zone name when hovered
+   */
+  const handleShowFullZoneName = useCallback(() => {
+    if (
+      zoneWrapperRef.current &&
+      zoneInnerRef.current &&
+      zoneWrapperRef.current.offsetWidth < zoneInnerRef.current.offsetWidth
+    ) {
+      setFullZoneName(true);
+    }
+  }, []);
+  const handleHideFullZoneName = useCallback(() => {
+    setFullZoneName(false);
   }, []);
 
   return (
@@ -60,11 +84,20 @@ function Encounter() {
       >
         {DurationInner}
       </div>
-      <div className='encounter-content'>
-        <div className='encounter-zone'>
-          <span>{zoneName}</span>
+      <div
+        className={cn('encounter-content', {
+          'encounter-content--full': fullZoneName,
+        })}
+      >
+        <div
+          className='encounter-content-zone'
+          ref={zoneWrapperRef}
+          onMouseEnter={handleShowFullZoneName}
+          onMouseLeave={handleHideFullZoneName}
+        >
+          <span ref={zoneInnerRef}>{zoneName}</span>
         </div>
-        <div className='encounter-numbers'>
+        <div className='encounter-content-numbers'>
           <span className='g-number'>{fmtNumber(shortNumber, totalDPS)}</span>
           <span className='g-counter'>DPS</span>
         </div>
