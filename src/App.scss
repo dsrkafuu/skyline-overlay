@@ -1,9 +1,44 @@
-// global styles
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
 
-.g-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+html,
+body,
+#root {
+  font-size: 0.14rem;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+#root {
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    display: block;
+    width: 9px;
+    background-color: #f0f0f0;
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #cdcdcd;
+    &:hover {
+      background-color: #a6a6a6;
+    }
+    &:active {
+      background-color: #606060;
+    }
+  }
+}
+
+.icon {
+  stroke: currentColor;
+  fill: currentColor;
 }
 
 .g-link {
@@ -32,20 +67,30 @@
 .icon {
   font-size: 0.18rem;
   display: inline-block;
+  stroke: currentColor;
+  fill: currentColor;
 }
 
-// app styles
-.g-container:nth-child(1),
-.combatants {
-  z-index: 100;
-}
-.g-container:nth-child(2),
-.encounter {
-  z-index: 10;
-}
-.g-container:nth-child(3),
-.settings {
-  z-index: 1;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:first-child,
+  .combatants {
+    z-index: 100;
+  }
+
+  &:last-child {
+    z-index: 10;
+
+    .encounter {
+      z-index: 10;
+    }
+    .settings {
+      z-index: 1;
+    }
+  }
 }
 
 .combatants {

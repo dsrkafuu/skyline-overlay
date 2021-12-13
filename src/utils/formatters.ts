@@ -3,7 +3,7 @@ import { mergeCombatant, CombatantData } from 'ffxiv-overlay-api';
 /**
  * format number
  */
-export function fmtNumber(shortNumber: boolean, number: number, decimal = 2) {
+export function fmtNumber(shortNumber: boolean, number: number, decimal = 1) {
   if (!shortNumber) {
     return `${number}`;
   }

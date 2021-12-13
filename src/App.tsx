@@ -42,7 +42,7 @@ function App() {
 
   return (
     <div className='app'>
-      <div className='g-container'>
+      <div className='container'>
         {showCombatants && Boolean(combatant) && combatant.length > 0 && (
           <div className='combatants'>
             {playersWithLB.map((player, index) => (
@@ -51,10 +51,10 @@ function App() {
           </div>
         )}
       </div>
-      <div className='g-container'>
+      <div className='container'>
         <Encounter />
       </div>
-      <div className='g-container'>
+      <div className='container'>
         <Settings />
       </div>
     </div>

@@ -1,11 +1,12 @@
 .encounter {
   margin-top: 0.04rem;
   font-size: $font-size-sm;
-  flex: 0 0 3.5rem;
+  flex: 0 0 3.72rem;
   display: flex;
   backdrop-filter: $filter;
 
   &-duration {
+    flex: 0 0 $size-form * 2 + 0.01rem;
     height: $size-form;
     width: $size-form * 2 + 0.01rem;
     line-height: $size-form;
@@ -33,7 +34,7 @@
   }
 
   &-content {
-    flex: 1 0 auto;
+    flex: 1 1 auto;
     padding: $padding-sm $padding-xl;
     display: flex;
     flex-wrap: nowrap;
@@ -42,11 +43,18 @@
     color: var(--color-encounter-fg);
     background-color: var(--color-encounter-bg);
     text-shadow: var(--shadow-encounter);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &-zone {
     flex: 1 1 auto;
     text-align: left;
+    padding-right: $padding-lg;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &-numbers {
@@ -54,6 +62,7 @@
   }
 
   &-buttons {
+    flex: 0 0 $size-form * 2;
     cursor: pointer;
     color: var(--color-cover-fg);
     background-color: var(--color-cover-bg);
