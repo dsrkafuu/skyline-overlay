@@ -235,9 +235,9 @@ function Settings() {
               <SInputNumber
                 value={s.zoom}
                 onChange={(val) => s.updateZoom(val)}
-                min={0.4}
+                min={0.5}
                 max={4}
-                step={0.2}
+                step={0.1}
                 accuracy={1}
               />
             ),

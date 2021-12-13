@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "name": "skyline-overlay",
-  "version": "3.0.0-rc.2",
+  "version": "3.0.0-rc.3",
   "description": "A modern customizable horizon FFXIV miniparse overlay.",
   "license": "Apache-2.0",
   "author": "DSRKafuU <dsrkafuu@outlook.com> (https://dsrkafuu.net)",
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "~7.16.0",
-    "@svgr/rollup": "~6.1.1",
+    "@svgr/rollup": "~6.1.2",
     "@types/node": "~16.11.12",
     "@types/react": "~17.0.37",
     "@types/react-dom": "~17.0.11",
