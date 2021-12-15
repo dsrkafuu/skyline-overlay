@@ -20,7 +20,6 @@
     "start": "serve"
   },
   "dependencies": {
-    "@babel/core": "~7.16.5",
     "@sentry/react": "~6.16.1",
     "@sentry/tracing": "~6.16.1",
     "classnames": "~2.3.1",
@@ -32,6 +31,7 @@
     "react-dom": "~17.0.2"
   },
   "devDependencies": {
+    "@babel/core": "~7.16.5",
     "@babel/preset-typescript": "~7.16.5",
     "@svgr/rollup": "~6.1.2",
     "@types/node": "~16.11.13",
