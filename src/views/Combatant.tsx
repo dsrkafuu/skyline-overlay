@@ -134,7 +134,7 @@ function Combatant({ player, index }: CombatantProps) {
       )}
 
       {needDetail && (lockDetail || showDetail) && (
-        <CombatantDetail player={player} locked={lockDetail} />
+        <CombatantDetail player={player} lockDetail={lockDetail} />
       )}
     </div>
   );
