@@ -101,7 +101,7 @@ function Encounter() {
           onMouseEnter={handleShowFullZoneName}
           onMouseLeave={handleHideFullZoneName}
         >
-          <span ref={zoneInnerRef}>{zoneName + zoneName + zoneName}</span>
+          <span ref={zoneInnerRef}>{zoneName}</span>
         </div>
         <div className='encounter-content-numbers' onClick={handleSwitchDHPS}>
           <span className='g-number'>{fmtNumber(shortNumber, totalDPS)}</span>
