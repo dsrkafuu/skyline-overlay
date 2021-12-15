@@ -12,7 +12,7 @@ if (sentryDsn && import.meta.env.PROD) {
     dsn: `${sentryDsn}`,
     integrations: [new Integrations.BrowserTracing()],
     sampleRate: 1, // report all errors
-    tracesSampleRate: 0.1, // report 10% of traces
+    tracesSampleRate: 0.05, // report 5% of traces
     // show dialog when error
     // beforeSend(event) {
     //   if (event.exception) {
