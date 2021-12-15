@@ -21,7 +21,6 @@ function Encounter() {
   // encounter data
   const duration = encounter.duration || '00:00';
   const zoneName = encounter.zoneName || `Skyline Overlay ${version}`;
-  const totalDPS = encounter.dps || 0;
 
   /**
    * reset all combat data
@@ -72,6 +71,13 @@ function Encounter() {
     setFullZoneName(false);
   }, []);
 
+  // handle switch team dps/hps
+  const [showDHPS, setShowDHPS] = useState<'dps' | 'hps'>('dps');
+  const handleSwitchDHPS = useCallback(() => {
+    setShowDHPS((prev) => (prev === 'dps' ? 'hps' : 'dps'));
+  }, []);
+  const totalDPS = encounter[showDHPS] || 0;
+
   return (
     <div className='encounter'>
       <div
@@ -95,11 +101,11 @@ function Encounter() {
           onMouseEnter={handleShowFullZoneName}
           onMouseLeave={handleHideFullZoneName}
         >
-          <span ref={zoneInnerRef}>{zoneName}</span>
+          <span ref={zoneInnerRef}>{zoneName + zoneName + zoneName}</span>
         </div>
-        <div className='encounter-content-numbers'>
+        <div className='encounter-content-numbers' onClick={handleSwitchDHPS}>
           <span className='g-number'>{fmtNumber(shortNumber, totalDPS)}</span>
-          <span className='g-counter'>DPS</span>
+          <span className='g-counter'>{showDHPS.toUpperCase()}</span>
         </div>
       </div>
       <div className='encounter-buttons'>

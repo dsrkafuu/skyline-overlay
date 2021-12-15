@@ -49,7 +49,6 @@
     &-zone {
       padding: $padding-sm 0;
       padding-left: $padding-xl;
-      padding-right: $padding-lg;
       flex: 1 1 auto;
       text-align: left;
       white-space: nowrap;
@@ -61,10 +60,22 @@
     &-numbers {
       padding: $padding-sm 0;
       padding-right: $padding-xl;
+      padding-left: $padding-lg;
       flex: 0 0 auto;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--color-form-fg-active);
+        background-color: var(--color-form-bg-active);
+        text-shadow: none;
+      }
     }
 
     &--full {
+      .encounter-content-zone {
+        padding-right: $padding-xl;
+      }
+
       .encounter-content-numbers {
         display: none;
       }
