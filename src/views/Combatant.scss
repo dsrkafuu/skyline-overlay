@@ -22,6 +22,8 @@
   }
 
   &-name {
+    cursor: pointer;
+
     &--blured {
       filter: blur(0.04rem);
     }
@@ -74,6 +76,7 @@
     padding: 0.04rem 0.08rem;
     background-color: var(--color-combatant-bg-others);
     backdrop-filter: $filter;
+    cursor: pointer;
 
     &-data {
       height: 0.16rem;
