@@ -14,8 +14,9 @@
     "serve": "vite",
     "script:genIconIdx": "node \"./scripts/genIconIdx.js\"",
     "script:genMeta": "node \"./scripts/genMeta.js\"",
+    "script:modSource": "node \"./scripts/modSource.js\"",
     "script:removeSVG": "node \"./scripts/removeSVG.js\"",
-    "build": "cross-env NODE_ENV=production run-s script:genIconIdx script:genMeta eslint typecheck bundle script:removeSVG",
+    "build": "cross-env NODE_ENV=production run-s script:genIconIdx script:genMeta eslint typecheck bundle script:modSource script:removeSVG",
     "dev": "cross-env NODE_ENV=development run-s script:genIconIdx script:genMeta serve",
     "start": "serve"
   },

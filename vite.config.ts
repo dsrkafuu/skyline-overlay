@@ -28,6 +28,7 @@ export default defineConfig({
     },
   },
   build: {
+    sourcemap: true,
     emptyOutDir: true,
     rollupOptions: {
       plugins: [visualizer()],
