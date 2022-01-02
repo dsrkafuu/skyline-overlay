@@ -12,6 +12,7 @@ import {
   TickerAlignMapKey,
   TickerMapKey,
   BottomDispMapKey,
+  FontFamilyMapKey,
 } from '../../utils/constants';
 
 interface PartialSettings {
@@ -94,6 +95,7 @@ class Settings {
   theme: ThemeMapKey = 'default';
   lang: LangMapKey = 'en';
   zoom = 1;
+  font: FontFamilyMapKey = 'default';
   customCSS = '#root {}';
 
   /** @mobx computed */
@@ -111,6 +113,8 @@ class Settings {
 
     // apply initial theme
     document.body.setAttribute('data-theme', this.theme);
+    // apply initial font
+    document.documentElement.setAttribute('data-font', this.font);
     // apply initial lang
     document.documentElement.setAttribute('lang', this.lang);
     // apply initial zoom
@@ -224,6 +228,11 @@ class Settings {
       Math.floor(100 * payload) || 100
     }px`;
     saveSettings({ zoom: payload });
+  }
+  updateFont(payload: FontFamilyMapKey) {
+    this.font = payload;
+    document.documentElement.setAttribute('data-font', payload);
+    saveSettings({ font: payload });
   }
   updateCustomCSS(payload: string) {
     this.customCSS = payload;

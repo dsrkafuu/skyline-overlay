@@ -1,16 +1,18 @@
-// defaults
-html {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+// default
+html,
+html[data-font='default'] {
+  font-family: 'Inter', sans-serif;
+
+  &[lang='ja'] {
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  }
+
+  &[lang='zh'] {
+    font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  }
 }
 
-// ja
-html[lang='ja'] {
-  font-family: Inter, 'Noto Sans JP', -apple-system, BlinkMacSystemFont,
-    sans-serif;
-}
-
-// zh
-html[lang='zh'] {
-  font-family: Inter, 'Noto Sans SC', -apple-system, BlinkMacSystemFont,
-    sans-serif;
+// misans
+html[data-font='misans'] {
+  font-family: 'MiSans', sans-serif;
 }

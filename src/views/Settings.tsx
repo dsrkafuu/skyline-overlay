@@ -15,6 +15,7 @@ import {
   MAP_TICKER_ALIGN,
   MAP_DISPLAY_MODE,
   MAP_DISPLAY_CONTENT,
+  MAP_FONT_FAMILY,
 } from '../utils/constants';
 import { useStore, useTranslation } from '../hooks';
 import { IChevronDown, IChevronUp } from '../assets/icons';
@@ -239,6 +240,16 @@ function Settings() {
                 max={4}
                 step={0.1}
                 accuracy={1}
+              />
+            ),
+          },
+          {
+            title: t('Font Family'),
+            render: () => (
+              <SSelect
+                value={s.font}
+                onChange={(val) => s.updateFont(val)}
+                map={MAP_FONT_FAMILY}
               />
             ),
           },

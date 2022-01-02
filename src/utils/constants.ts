@@ -81,3 +81,11 @@ export const MAP_LANG = rawLang;
 import themes from '../themes';
 export type ThemeMapKey = keyof typeof themes & string;
 export const MAP_THEMES = themes;
+
+// font family map
+const fontFamilyMap = {
+  default: { text: 'Default' },
+  misans: { text: 'MiSans' },
+};
+export type FontFamilyMapKey = keyof typeof fontFamilyMap & string;
+export const MAP_FONT_FAMILY = fontFamilyMap;
