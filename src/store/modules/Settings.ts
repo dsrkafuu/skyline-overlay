@@ -13,6 +13,8 @@ import {
   TickerMapKey,
   BottomDispMapKey,
   FontFamilyMapKey,
+  FontWeightMapKey,
+  MAP_FONT_WEIGHT,
 } from '../../utils/constants';
 
 interface PartialSettings {
@@ -96,6 +98,7 @@ class Settings {
   lang: LangMapKey = 'en';
   zoom = 1;
   font: FontFamilyMapKey = 'default';
+  fontWeight: FontWeightMapKey = 'regular';
   customCSS = '#root {}';
 
   /** @mobx computed */
@@ -115,6 +118,9 @@ class Settings {
     document.body.setAttribute('data-theme', this.theme);
     // apply initial font
     document.documentElement.setAttribute('data-font', this.font);
+    // apply initial font weight
+    const weight = MAP_FONT_WEIGHT[this.fontWeight].data.weight;
+    document.documentElement.style.fontWeight = weight;
     // apply initial lang
     document.documentElement.setAttribute('lang', this.lang);
     // apply initial zoom
@@ -233,6 +239,12 @@ class Settings {
     this.font = payload;
     document.documentElement.setAttribute('data-font', payload);
     saveSettings({ font: payload });
+  }
+  updateFontWeight(payload: FontWeightMapKey) {
+    this.fontWeight = payload;
+    const weight = MAP_FONT_WEIGHT[payload].data.weight;
+    document.documentElement.style.fontWeight = weight;
+    saveSettings({ fontWeight: payload });
   }
   updateCustomCSS(payload: string) {
     this.customCSS = payload;

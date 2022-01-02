@@ -89,3 +89,12 @@ const fontFamilyMap = {
 };
 export type FontFamilyMapKey = keyof typeof fontFamilyMap & string;
 export const MAP_FONT_FAMILY = fontFamilyMap;
+
+// font weight map
+const fontWeightMap = {
+  light: { text: 'Light', data: { weight: '300' } },
+  regular: { text: 'Regular', data: { weight: '400' } },
+  medium: { text: 'Medium', data: { weight: '500' } },
+};
+export type FontWeightMapKey = keyof typeof fontWeightMap & string;
+export const MAP_FONT_WEIGHT = fontWeightMap;

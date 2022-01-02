@@ -16,6 +16,7 @@ import {
   MAP_DISPLAY_MODE,
   MAP_DISPLAY_CONTENT,
   MAP_FONT_FAMILY,
+  MAP_FONT_WEIGHT,
 } from '../utils/constants';
 import { useStore, useTranslation } from '../hooks';
 import { IChevronDown, IChevronUp } from '../assets/icons';
@@ -250,6 +251,16 @@ function Settings() {
                 value={s.font}
                 onChange={(val) => s.updateFont(val)}
                 map={MAP_FONT_FAMILY}
+              />
+            ),
+          },
+          {
+            title: t('Font Weight'),
+            render: () => (
+              <SSelect
+                value={s.fontWeight}
+                onChange={(val) => s.updateFontWeight(val)}
+                map={MAP_FONT_WEIGHT}
               />
             ),
           },
