@@ -25,5 +25,7 @@
   "Theme": "Theme",
   "Language": "Sprache",
   "UI Scale": "UI Skalierung",
+  "Font Family": "Schriftart",
+  "Font Weight": "Schriftstärke",
   "Custom CSS": "Custom CSS"
 }

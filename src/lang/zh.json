@@ -36,6 +36,8 @@
   "Theme": "主题",
   "Language": "语言",
   "UI Scale": "界面缩放",
+  "Font Family": "字体",
+  "Font Weight": "字重",
   "Custom CSS": "自定义 CSS",
 
   "Please enter the new value": "请输入新值"
