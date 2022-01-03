@@ -40,9 +40,9 @@ npm start
 
 You can use [CSSNANO](https://cssnano.co/playground/) to minify your CSS into single line.
 
-## Support
+<!-- ## Support
 
-Some of my projects is using the CDN provided by jsDelivr whose ICP license was unexpectedly lost in 2021-12, which **may** causes slow connections in mainland China. Replacing the CDN will not be considered since it **works well in other regions** and its the best free CDN I've ever used. Ref: <https://github.com/jsdelivr/jsdelivr/issues/18348#issuecomment-997777996>.
+Some of my projects is using the CDN provided by jsDelivr whose ICP license was unexpectedly lost in 2021-12, which **may** causes slow connections in mainland China. Replacing the CDN will not be considered since it **works well in other regions** and its the best free CDN I've ever used. Ref: <https://github.com/jsdelivr/jsdelivr/issues/18348#issuecomment-997777996>. -->
 
 ## Environment
 

@@ -1,4 +1,5 @@
 // default
+// files by Google Fonts in `index.html`
 html,
 html[data-font='default'] {
   font-family: 'Inter', sans-serif;
@@ -13,6 +14,27 @@ html[data-font='default'] {
 }
 
 // misans
+@font-face {
+  font-family: 'MiSans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/assets/misans-light-300.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'MiSans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/misans-regular-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'MiSans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/misans-medium-500.woff2') format('woff2');
+}
 html[data-font='misans'] {
   font-family: 'MiSans', sans-serif;
 }
