@@ -9,7 +9,8 @@
 
 ![](https://img.shields.io/github/package-json/v/dsrkafuu/skyline-overlay)
 ![](https://img.shields.io/badge/ffxiv-endwalker-orange)
-![](https://img.shields.io/github/license/dsrkafuu/skyline-overlay)
+[![](https://img.shields.io/github/license/dsrkafuu/skyline-overlay)](https://github.com/dsrkafuu/skyline-overlay/blob/main/LICENSE)
+[![](https://img.shields.io/lgtm/grade/javascript/github/dsrkafuu/skyline-overlay)](https://lgtm.com/projects/g/dsrkafuu/skyline-overlay/context:javascript)
 
 An extended horizon overlay like [horizoverlay](https://github.com/bsides/horizoverlay/) with some of [ikegami](https://github.com/hibiyasleep/ikegami)'s features. The project is based on React with MobX & Vite, and the dedicated [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
 
@@ -20,11 +21,9 @@ An extended horizon overlay like [horizoverlay](https://github.com/bsides/horizo
 - CloudFlare (Global): `https://skyline.dsrkafuu.net`
 - Mirror (CN DieMoe Mod): `https://act.diemoe.net/overlays/skyline/`
 
-**Global deployment is using the CDN provided by jsDelivr whose ICP license was unexpectedly lost, which causes slow connections in mainland China. Replacing the CDN will not be considered since it works well in all other regions and the project itself works well except for parts related to the CDN. Ref: <https://github.com/jsdelivr/jsdelivr/issues/18348#issuecomment-997777996>.**
-
 ## Usage
 
-Need to be used with [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin). For WebSocket mode, note that `backdrop-filter` support needs to be enabled manually on Firefox, check [Can I use](https://caniuse.com/css-backdrop-filter) for more details.
+Check [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin). For WebSocket mode, note that `backdrop-filter` support needs to be enabled manually on Firefox, check [Can I use](https://caniuse.com/css-backdrop-filter) for more details.
 
 2K+ (WQHD+) screen with 1.1x scale is recommended for better experience in FFXIV.
 
@@ -41,7 +40,11 @@ npm start
 
 You can use [CSSNANO](https://cssnano.co/playground/) to minify your CSS into single line.
 
-## Env
+## Support
+
+Some of my projects is using the CDN provided by jsDelivr whose ICP license was unexpectedly lost in 2021-12, which **may** causes slow connections in mainland China. Replacing the CDN will not be considered since it **works well in other regions** and its the best free CDN I've ever used. Ref: <https://github.com/jsdelivr/jsdelivr/issues/18348#issuecomment-997777996>.
+
+## Environment
 
 ```
 VITE_BASE_URL="./"    # dist base url (optional)
@@ -80,9 +83,7 @@ Please use [ISO 639-1:2002](https://en.wikipedia.org/wiki/List_of_ISO_639-1_code
 
 ## Credits
 
-- React: <https://reactjs.org>
-- MobX: <https://mobx.js.org>
-- Vite: <https://vitejs.dev>
+- jsDelivr: <https://www.jsdelivr.com>
 - ffxiv-overlay-api: <https://github.com/dsrkafuu/ffxiv-overlay-api>
 - Job Icons: <https://github.com/xivapi/classjob-icons/tree/master/svg>
 - MiSans: <https://home.miui.com>
