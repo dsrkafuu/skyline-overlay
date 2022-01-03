@@ -43,6 +43,9 @@ function Combatant({ player, index }: CombatantProps) {
   const needDetail = name !== 'Limit Break' && bottomDisp !== 'none';
   const [showDetail, setShowDetail] = useState(false);
   const [lockDetail, setLockDetail] = useState(false);
+  if (!needDetail) {
+    classes.push('combatant-no-detail');
+  }
 
   // tickers
   const getTickerProps = useCallback(

@@ -140,6 +140,10 @@
   .job-self &-detail--locked {
     background-color: var(--color-combatant-bg-self);
   }
+
+  &-no-detail &-content {
+    cursor: default;
+  }
 }
 
 .combatant-dual {
