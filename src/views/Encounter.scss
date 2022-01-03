@@ -39,7 +39,7 @@
     display: flex;
     flex-wrap: nowrap;
     height: $size-form;
-    line-height: 0.15rem;
+    line-height: 0.22rem;
     color: var(--color-encounter-fg);
     background-color: var(--color-encounter-bg);
     text-shadow: var(--shadow-encounter);
@@ -47,7 +47,6 @@
     overflow: hidden;
 
     &-zone {
-      padding: $padding-sm 0;
       padding-left: $padding-xl;
       flex: 1 1 auto;
       text-align: left;
@@ -58,7 +57,6 @@
     }
 
     &-numbers {
-      padding: $padding-sm 0;
       padding-right: $padding-xl;
       padding-left: $padding-lg;
       flex: 0 0 auto;
