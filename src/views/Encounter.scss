@@ -20,6 +20,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    overflow-y: hidden;
 
     &--active {
       color: var(--color-cover-fg-active);
@@ -39,7 +40,7 @@
     display: flex;
     flex-wrap: nowrap;
     height: $size-form;
-    line-height: 0.22rem;
+    line-height: $size-form;
     color: var(--color-encounter-fg);
     background-color: var(--color-encounter-bg);
     text-shadow: var(--shadow-encounter);
@@ -89,6 +90,7 @@
     height: $size-form;
     width: $size-form * 2;
     display: flex;
+    overflow-y: hidden;
 
     .btn {
       position: relative;
