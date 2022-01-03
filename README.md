@@ -47,7 +47,7 @@ Some of my projects is using the CDN provided by jsDelivr whose ICP license was 
 ## Environment
 
 ```
-VITE_BASE_URL="./"    # dist base url (optional)
+VITE_BASE_URL="/"    # dist base url (optional)
 VITE_GA_ID=""         # google analytics id
 VITE_SENTRY_DSN=""    # sentry dsn for error tracking & perfromance measuring (optional)
 ```
