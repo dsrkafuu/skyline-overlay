@@ -1,2 +1,2 @@
 * text=auto
-public/assets/*.woff2 filter=lfs diff=lfs merge=lfs -text
+public/fonts/*.woff2 filter=lfs diff=lfs merge=lfs -text

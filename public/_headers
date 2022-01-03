@@ -1,0 +1,6 @@
+/*
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: interest-cohort=()
+
+/fonts/*
+  Cache-Control: public, max-age=2592000
