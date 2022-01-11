@@ -84,8 +84,8 @@ function Encounter() {
         className={cn('encounter-duration', {
           'encounter-duration--active': active,
         })}
-        onMouseEnter={onDurationEnter}
-        onMouseLeave={onDurationLeave}
+        onMouseOver={onDurationEnter}
+        onMouseOut={onDurationLeave}
         onClick={handleEndEncounter}
       >
         {DurationInner}

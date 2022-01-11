@@ -7,7 +7,6 @@ import { MAP_SHORT_NAME } from '../utils/constants';
 
 interface CombatantNameProps {
   player: CombatantData | LimitBreakData;
-  index: number;
 }
 
 function CombatantName({ player }: CombatantNameProps) {

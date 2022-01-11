@@ -50,8 +50,8 @@ function CombatantContent({
   return (
     <div
       className='combatant-content'
-      onMouseEnter={onDetailEnter}
-      onMouseLeave={onDetailLeave}
+      onMouseOver={onDetailEnter}
+      onMouseOut={onDetailLeave}
       onClick={onSwitchDetailLock}
     >
       {dispMode === 'dual' && (

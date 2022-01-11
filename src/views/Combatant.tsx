@@ -17,7 +17,7 @@ interface CombatantProps {
   index: number;
 }
 
-function Combatant({ player, index }: CombatantProps) {
+function Combatant({ player }: CombatantProps) {
   // get data
   const { name } = player;
   const classes: Argument[] = ['combatant']; // grid classnames
@@ -109,7 +109,7 @@ function Combatant({ player, index }: CombatantProps) {
 
   return (
     <div className={cn(...classes)}>
-      <CombatantName player={player} index={index} />
+      <CombatantName player={player} />
 
       {ticker.top && ticker.top !== 'none' && (
         <STicker {...getTickerProps(ticker.top)} align={tickerAlign.top} />
