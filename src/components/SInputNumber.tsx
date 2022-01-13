@@ -1,6 +1,6 @@
 import './SInputNumber.scss';
 import { useCallback } from 'react';
-import cn from 'classnames';
+import clsx from 'clsx';
 import { IAdd, IRemove } from '../assets/icons';
 
 interface SInputNumberProps {
@@ -45,7 +45,7 @@ function SInputNumber({
   }, [accuracy, min, onChange, step, value]);
 
   return (
-    <div className={cn('s-input-number', className)}>
+    <div className={clsx('s-input-number', className)}>
       <div className='value'>{dispValue}</div>
       <div className='btn plus' onClick={handlePlus}>
         <IAdd />

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { observer } from 'mobx-react-lite';
-import cn from 'classnames';
+import clsx from 'clsx';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import { useStore } from '../hooks';
 import { MAP_SHORT_NAME } from '../utils/constants';
@@ -37,7 +37,7 @@ function CombatantName({ player }: CombatantNameProps) {
 
   return (
     <div
-      className={cn('combatant-name', { 'combatant-name--blured': blurName })}
+      className={clsx('combatant-name', { 'combatant-name--blured': blurName })}
       onClick={toggleBlurName}
     >
       {displayName}

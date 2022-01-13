@@ -1,7 +1,7 @@
 import './Settings.scss';
 import { useMemo, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import cn from 'classnames';
+import clsx from 'clsx';
 import SettingsAbout from './SettingsAbout';
 import SettingsPanel, { SettingsPanelProps } from './SettingsPanel';
 import { SInputNumber, SSelect, SInput, SSwitch } from '../components';
@@ -291,7 +291,7 @@ function Settings() {
       <div className='settings-tab'>
         {panels.map(({ type, title }) => (
           <div
-            className={cn('settings-tabitem', {
+            className={clsx('settings-tabitem', {
               'settings-tabitem--active': type === activeType,
             })}
             key={`tab-${type}`}

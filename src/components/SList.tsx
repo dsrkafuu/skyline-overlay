@@ -1,5 +1,5 @@
 import './SList.scss';
-import cn from 'classnames';
+import clsx from 'clsx';
 
 export interface SListRow {
   key: string;
@@ -14,7 +14,7 @@ interface SListProps {
 
 function SList({ items, className }: SListProps) {
   return (
-    <div className={cn('s-list', className)}>
+    <div className={clsx('s-list', className)}>
       {items.map((section, idx) => (
         <div className='s-list-section' key={idx}>
           {section.map((row) => (

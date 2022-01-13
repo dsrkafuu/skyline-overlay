@@ -1,5 +1,5 @@
 import './STicker.scss';
-import cn from 'classnames';
+import clsx from 'clsx';
 
 export type STickerClass = 'oh' | 'h' | 's' | 'cd' | 'c' | 'd' | 'space';
 
@@ -35,7 +35,7 @@ function STicker({
   }
 
   return (
-    <div className={cn('s-ticker', className)}>
+    <div className={clsx('s-ticker', className)}>
       {localPcts.map((pct, idx) => (
         <span
           className={`s-ticker-${localClasses[idx]}`}

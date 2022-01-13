@@ -1,7 +1,7 @@
 import './Combatant.scss';
 import { useCallback, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import cn, { Argument } from 'classnames';
+import clsx, { ClassArray } from 'clsx';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import CombatantName from './CombatantName';
 import CombatantDetail from './CombatantDetail';
@@ -20,7 +20,7 @@ interface CombatantProps {
 function Combatant({ player }: CombatantProps) {
   // get data
   const { name } = player;
-  const classes: Argument[] = ['combatant']; // grid classnames
+  const classes: ClassArray = ['combatant']; // grid classnames
   const { settings } = useStore();
   const { hlYou, youName, bottomDisp, ticker, tickerAlign, dispMode } =
     settings;
@@ -108,7 +108,7 @@ function Combatant({ player }: CombatantProps) {
   );
 
   return (
-    <div className={cn(...classes)}>
+    <div className={clsx(...classes)}>
       <CombatantName player={player} />
 
       {ticker.top && ticker.top !== 'none' && (

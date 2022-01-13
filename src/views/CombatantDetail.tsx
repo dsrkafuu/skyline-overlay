@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
-import cn from 'classnames';
+import clsx from 'clsx';
 import { SList, SListRow } from '../components';
 import { useStore, useTranslation } from '../hooks';
 import { isLimitBreakData } from '../utils/type';
@@ -118,7 +118,7 @@ function CombatantDetail({ player, lockDetail }: CombatantDetailProps) {
   } else {
     return (
       <div
-        className={cn('combatant-detail', {
+        className={clsx('combatant-detail', {
           'combatant-detail--locked': lockDetail,
         })}
         style={{ top: topWithTick }}

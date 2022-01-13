@@ -1,6 +1,6 @@
 import './SInput.scss';
 import { useCallback, useState } from 'react';
-import cn from 'classnames';
+import clsx from 'clsx';
 import { useTranslation } from '../hooks';
 import { ICreate } from '../assets/icons';
 
@@ -30,12 +30,12 @@ function SInput({ value, onChange, className }: SInputProps) {
   }, [onChange, t, value]);
 
   return (
-    <div className={cn('s-input', className)}>
+    <div className={clsx('s-input', className)}>
       <div className='s-input-btn' onClick={handleClick}>
         <ICreate />
       </div>
       <input
-        className={cn('s-input-inner', { 's-input-inner--active': focused })}
+        className={clsx('s-input-inner', { 's-input-inner--active': focused })}
         value={value}
         onInput={handleInput}
         onFocus={() => setFocused(true)}

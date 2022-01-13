@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import cn from 'classnames';
+import clsx from 'clsx';
 import { SettingsType } from './Settings';
 
 interface SettingsPanelItem {
@@ -24,7 +24,7 @@ function SettingsPanel({ type, items }: SettingsPanelProps) {
       {items
         ? items.map(({ title, render, className, disabled }, idx) => (
             <div
-              className={cn(
+              className={clsx(
                 'settings-row',
                 { 'settings-row--disabled': disabled },
                 className
