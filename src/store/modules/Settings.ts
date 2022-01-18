@@ -107,6 +107,8 @@ class Settings {
    * @constructor
    */
   constructor(rootStore: Store) {
+    this.rootStore = rootStore;
+
     // merge saved settings into default settings
     const savedSettings = (getLS('settings') || {}) as PartialSettings;
     for (const key of Object.keys(savedSettings)) {
@@ -134,7 +136,6 @@ class Settings {
     document.head.appendChild(customStyles);
 
     // init mobx
-    this.rootStore = rootStore;
     makeAutoObservable(this, { rootStore: false }, { autoBind: true });
   }
 
@@ -225,7 +226,6 @@ class Settings {
   }
   updateLang(payload: LangMapKey) {
     this.lang = payload;
-    this.rootStore.translation.setTranslation(payload);
     saveSettings({ lang: payload });
   }
   updateZoom(payload: number) {

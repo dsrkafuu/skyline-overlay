@@ -25,7 +25,7 @@ export type SettingsType = 'about' | 'general' | 'data' | 'display';
 
 function Settings() {
   const t = useTranslation();
-  const { settings: s } = useStore();
+  const { settings, translation } = useStore();
 
   const panels = useMemo<SettingsPanelProps[]>(
     () => [
@@ -40,13 +40,15 @@ function Settings() {
               <>
                 <SSelect
                   className='settings-sort-rule'
-                  value={s.sort.key}
-                  onChange={(val) => s.updateSort({ key: val })}
+                  value={settings.sort.key}
+                  onChange={(val) => settings.updateSort({ key: val })}
                   map={MAP_SORT_RULE}
                 />
                 <SSwitch
-                  value={s.sort.rule < 0}
-                  onChange={(value) => s.updateSort({ rule: value ? -1 : 1 })}
+                  value={settings.sort.rule < 0}
+                  onChange={(value) =>
+                    settings.updateSort({ rule: value ? -1 : 1 })
+                  }
                   ITrue={IChevronDown}
                   IFalse={IChevronUp}
                 />
@@ -57,8 +59,8 @@ function Settings() {
             title: t('Max Combatants'),
             render: () => (
               <SInputNumber
-                value={s.playerLimit}
-                onChange={(value) => s.updatePlayerLimit(value)}
+                value={settings.playerLimit}
+                onChange={(value) => settings.updatePlayerLimit(value)}
                 min={1}
                 max={24}
                 step={1}
@@ -70,8 +72,8 @@ function Settings() {
             title: t('Show Limit Break'),
             render: () => (
               <SSwitch
-                value={s.showLB}
-                onChange={(value) => s.updateShowLB(value)}
+                value={settings.showLB}
+                onChange={(value) => settings.updateShowLB(value)}
               />
             ),
           },
@@ -79,8 +81,8 @@ function Settings() {
             title: t('Custom ID'),
             render: () => (
               <SInput
-                value={s.youName}
-                onChange={(val) => s.updateYouName(val)}
+                value={settings.youName}
+                onChange={(val) => settings.updateYouName(val)}
               />
             ),
           },
@@ -88,8 +90,8 @@ function Settings() {
             title: t('Pet-Merging ID'),
             render: () => (
               <SInput
-                value={s.petMergeID}
-                onChange={(value) => s.updatePetMergeID(value)}
+                value={settings.petMergeID}
+                onChange={(value) => settings.updatePetMergeID(value)}
               />
             ),
           },
@@ -97,8 +99,8 @@ function Settings() {
             title: t('Auto Short Number'),
             render: () => (
               <SSwitch
-                value={s.shortNumber}
-                onChange={(val) => s.updateShortNumber(val)}
+                value={settings.shortNumber}
+                onChange={(val) => settings.updateShortNumber(val)}
               />
             ),
           },
@@ -112,8 +114,8 @@ function Settings() {
             title: t('Display Mode'),
             render: () => (
               <SSelect
-                value={s.dispMode}
-                onChange={(val) => s.updateDispMode(val)}
+                value={settings.dispMode}
+                onChange={(val) => settings.updateDispMode(val)}
                 map={MAP_DISPLAY_MODE}
               />
             ),
@@ -124,15 +126,15 @@ function Settings() {
               <>
                 <SSelect
                   className='settings-display-content'
-                  value={s.dispContent.left}
-                  onChange={(val) => s.updateDispContent({ left: val })}
-                  disabled={s.dispMode === 'single'}
+                  value={settings.dispContent.left}
+                  onChange={(val) => settings.updateDispContent({ left: val })}
+                  disabled={settings.dispMode === 'single'}
                   map={MAP_DISPLAY_CONTENT}
                 />
                 <SSelect
                   className='settings-display-content'
-                  value={s.dispContent.right}
-                  onChange={(val) => s.updateDispContent({ right: val })}
+                  value={settings.dispContent.right}
+                  onChange={(val) => settings.updateDispContent({ right: val })}
                   map={MAP_DISPLAY_CONTENT}
                 />
               </>
@@ -141,7 +143,10 @@ function Settings() {
           {
             title: t('Highlight Self'),
             render: () => (
-              <SSwitch value={s.hlYou} onChange={(val) => s.updateHlYou(val)} />
+              <SSwitch
+                value={settings.hlYou}
+                onChange={(val) => settings.updateHlYou(val)}
+              />
             ),
           },
           {
@@ -150,14 +155,14 @@ function Settings() {
               <>
                 <SSelect
                   className='settings-ticker-display'
-                  value={s.ticker.top}
-                  onChange={(val) => s.updateTicker({ top: val })}
+                  value={settings.ticker.top}
+                  onChange={(val) => settings.updateTicker({ top: val })}
                   map={MAP_TICKER}
                 />
                 <SSelect
                   className='settings-ticker-display'
-                  value={s.ticker.bottom}
-                  onChange={(val) => s.updateTicker({ bottom: val })}
+                  value={settings.ticker.bottom}
+                  onChange={(val) => settings.updateTicker({ bottom: val })}
                   map={MAP_TICKER}
                 />
               </>
@@ -169,16 +174,18 @@ function Settings() {
               <>
                 <SSelect
                   className='settings-ticker-align'
-                  value={s.tickerAlign.top}
-                  onChange={(val) => s.updateTickerAlign({ top: val })}
-                  disabled={s.ticker.top === 'none'}
+                  value={settings.tickerAlign.top}
+                  onChange={(val) => settings.updateTickerAlign({ top: val })}
+                  disabled={settings.ticker.top === 'none'}
                   map={MAP_TICKER_ALIGN}
                 />
                 <SSelect
                   className='settings-ticker-align'
-                  value={s.tickerAlign.bottom}
-                  onChange={(val) => s.updateTickerAlign({ bottom: val })}
-                  disabled={s.ticker.bottom === 'none'}
+                  value={settings.tickerAlign.bottom}
+                  onChange={(val) =>
+                    settings.updateTickerAlign({ bottom: val })
+                  }
+                  disabled={settings.ticker.bottom === 'none'}
                   map={MAP_TICKER_ALIGN}
                 />
               </>
@@ -188,8 +195,8 @@ function Settings() {
             title: t('Bottom Display'),
             render: () => (
               <SSelect
-                value={s.bottomDisp}
-                onChange={(val) => s.updateBottomDisp(val)}
+                value={settings.bottomDisp}
+                onChange={(val) => settings.updateBottomDisp(val)}
                 map={MAP_BOTTOM_DISP}
               />
             ),
@@ -198,8 +205,8 @@ function Settings() {
             title: t('Shorten Name'),
             render: () => (
               <SSelect
-                value={s.shortName}
-                onChange={(val) => s.updateShortName(val)}
+                value={settings.shortName}
+                onChange={(val) => settings.updateShortName(val)}
                 map={MAP_SHORT_NAME}
               />
             ),
@@ -215,8 +222,8 @@ function Settings() {
             render: () => (
               <SSelect
                 className='settings-theme'
-                value={s.theme}
-                onChange={(val) => s.updateTheme(val)}
+                value={settings.theme}
+                onChange={(val) => settings.updateTheme(val)}
                 map={MAP_THEMES}
               />
             ),
@@ -225,8 +232,11 @@ function Settings() {
             title: t('Language'),
             render: () => (
               <SSelect
-                value={s.lang}
-                onChange={(val) => s.updateLang(val)}
+                value={settings.lang}
+                onChange={(val) => {
+                  settings.updateLang(val);
+                  translation.setTranslation(val);
+                }}
                 map={MAP_LANG}
               />
             ),
@@ -235,8 +245,8 @@ function Settings() {
             title: t('UI Scale'),
             render: () => (
               <SInputNumber
-                value={s.zoom}
-                onChange={(val) => s.updateZoom(val)}
+                value={settings.zoom}
+                onChange={(val) => settings.updateZoom(val)}
                 min={0.5}
                 max={4}
                 step={0.1}
@@ -248,8 +258,8 @@ function Settings() {
             title: t('Font Family'),
             render: () => (
               <SSelect
-                value={s.font}
-                onChange={(val) => s.updateFont(val)}
+                value={settings.font}
+                onChange={(val) => settings.updateFont(val)}
                 map={MAP_FONT_FAMILY}
               />
             ),
@@ -258,8 +268,8 @@ function Settings() {
             title: t('Font Weight'),
             render: () => (
               <SSelect
-                value={s.fontWeight}
-                onChange={(val) => s.updateFontWeight(val)}
+                value={settings.fontWeight}
+                onChange={(val) => settings.updateFontWeight(val)}
                 map={MAP_FONT_WEIGHT}
               />
             ),
@@ -269,15 +279,15 @@ function Settings() {
             render: () => (
               <SInput
                 className='settings-custom-css'
-                value={s.customCSS}
-                onChange={(val) => s.updateCustomCSS(val)}
+                value={settings.customCSS}
+                onChange={(val) => settings.updateCustomCSS(val)}
               />
             ),
           },
         ],
       },
     ],
-    [s, t]
+    [settings, t]
   );
 
   const [activeType, setActiveType] = useState<SettingsType>('about');
@@ -286,7 +296,7 @@ function Settings() {
     [activeType, panels]
   );
 
-  return s.showSettings ? (
+  return settings.showSettings ? (
     <div className='settings'>
       <div className='settings-tab'>
         {panels.map(({ type, title }) => (

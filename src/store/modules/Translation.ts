@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import { Store } from '..';
 import lang from '../../lang';
 import { LangMapKey } from '../../utils/constants';
-import { getLS, setLS } from '../../utils/storage';
+import { getLS } from '../../utils/storage';
 
 interface PartialSettingsWithLang {
   lang?: LangMapKey;
@@ -25,24 +25,33 @@ class Translation {
    * @constructor
    */
   constructor(rootStore: Store) {
-    // get initial language from storage , if not exist then auto detected
+    this.rootStore = rootStore;
+
+    let initialLang: LangMapKey;
+    // get initial language from storage & browser
     const settings = (getLS('settings') || {}) as PartialSettingsWithLang;
-    if (!settings.lang) {
-      const detectedLang = navigator.language.substr(0, 2);
+    const detectedLang = navigator.language.substring(0, 2);
+    // settings exist & valid
+    if (settings.lang && Object.keys(lang).includes(settings.lang)) {
+      initialLang = settings.lang;
+    }
+    // settings not exist or not valid
+    else {
+      // detected lang is supported
       if (Object.keys(lang).includes(detectedLang)) {
-        // if detected language is supported
-        settings.lang = detectedLang as LangMapKey;
-        setLS('settings', settings);
-      } else {
-        // keep english as default
-        settings.lang = 'en';
+        initialLang = detectedLang as LangMapKey;
+        this.rootStore.settings.updateLang(detectedLang as LangMapKey);
+      }
+      // detected lang not supported
+      else {
+        initialLang = 'en';
+        this.rootStore.settings.updateLang('en');
       }
     }
-    this.setTranslation(settings.lang);
-    document.documentElement.setAttribute('lang', settings.lang);
+    // set initial language
+    this.setTranslation(initialLang);
 
     // init mobx
-    this.rootStore = rootStore;
     makeAutoObservable(this, { rootStore: false }, { autoBind: true });
   }
 
@@ -52,7 +61,9 @@ class Translation {
    * set language
    */
   setTranslation(targetLang: LangMapKey) {
-    this.data = Object.assign({}, defaultData, lang[targetLang].translation);
+    // ensure language exists
+    const targetData = (lang[targetLang] || {}).translation || defaultData;
+    this.data = Object.assign({}, defaultData, targetData);
     document.documentElement.setAttribute('lang', targetLang);
   }
 }

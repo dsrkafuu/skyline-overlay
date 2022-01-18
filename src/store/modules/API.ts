@@ -36,6 +36,8 @@ class API {
    * @constructor
    */
   constructor(rootStore: Store) {
+    this.rootStore = rootStore;
+
     // add overlay callback
     this.overlay.addListener('CombatData', (data) => {
       if (data.extendData) {
@@ -46,7 +48,6 @@ class API {
     this.overlay.startEvent();
 
     // init mobx
-    this.rootStore = rootStore;
     makeAutoObservable(this, { rootStore: false }, { autoBind: true });
   }
 
