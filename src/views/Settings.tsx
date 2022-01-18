@@ -287,7 +287,7 @@ function Settings() {
         ],
       },
     ],
-    [settings, t]
+    [settings, t, translation]
   );
 
   const [activeType, setActiveType] = useState<SettingsType>('about');
