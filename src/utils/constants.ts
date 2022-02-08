@@ -106,12 +106,10 @@ export const DefaultThemeOptions: ThemeOptions = {
 
 export type Theme = {
   text: string,
-  key: ThemeMapKey,
   options: ThemeOptions,
 };
 export type ThemePartial = {
   text: string,
-  key: ThemeMapKey,
   options?: RecursivePartial<ThemeOptions>,
 };
 

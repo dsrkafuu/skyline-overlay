@@ -5,21 +5,11 @@ import './barephoenix.scss';
 import { ThemePartial } from '../utils/constants';
 
 const themes: {[k: string]: ThemePartial} = {
-  default: { 
-    text: 'Skyline Overlay',
-    key: 'default',
-  },
-  horiz: { 
-    text: 'HORIZOVERLAY',
-    key: 'horiz',
-  },
-  ikegami: { 
-    text: 'ikegami',
-    key: 'ikegami',
-  },
+  default: { text: 'Skyline Overlay' },
+  horiz: { text: 'HORIZOVERLAY' },
+  ikegami: { text: 'ikegami' },
   enix: { 
     text: 'Enix',
-    key: 'enix',
     options: {
       combatants: {
         combatant: {

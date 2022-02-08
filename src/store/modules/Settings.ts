@@ -121,7 +121,7 @@ class Settings {
     }
 
     // apply initial theme
-    document.body.setAttribute('data-theme', this.theme.key);
+    document.body.setAttribute('data-theme', this.themeMapKey);
     // apply initial font
     document.documentElement.setAttribute('data-font', this.font);
     // apply initial font weight
@@ -222,7 +222,7 @@ class Settings {
   updateTheme(payload: ThemeMapKey) {
     this.theme = applyDefaultThemeOptions(themes[payload]);
     this.themeMapKey = payload;
-    
+
     if (payload === 'default') {
       document.body.removeAttribute('data-theme');
     } else {
