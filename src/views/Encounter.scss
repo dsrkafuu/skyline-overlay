@@ -109,3 +109,42 @@
     }
   }
 }
+
+.app--vertical {
+  .encounter {
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 0;
+    flex-wrap: wrap;
+
+    /** TODO This &-content section is a little wonky and needs some work */
+    &-content {
+      order: 1;
+      flex: 0 0 100%;
+      justify-content: center;
+      background-color: transparent;
+
+      &-zone {
+        background-color: var(--color-encounter-bg);
+        flex: 0 0 auto;
+      }
+
+      &-numbers {
+        background-color: var(--color-encounter-bg);
+        flex: 0 0 auto;
+      }
+    }
+    
+    &-duration {
+      order: 2;
+      flex: 0 0 auto;
+    }
+
+    &-buttons {
+      order: 3;
+      align-items: center;
+      flex: 0 0 auto;
+    }
+  }
+}

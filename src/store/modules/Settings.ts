@@ -9,6 +9,7 @@ import {
   ThemeMapKey,
   DisplayModeMapKey,
   DisplayContentMapKey,
+  DisplayOrientation,
   TickerAlignMapKey,
   TickerMapKey,
   BottomDispMapKey,
@@ -87,6 +88,7 @@ class Settings {
   // display
   dispMode: DisplayModeMapKey = 'single';
   dispContent: DispContentSettings = { left: 'hps', right: 'dps' };
+  dispOrientation: DisplayOrientation = 'horizontal';
   hlYou = true; // highlight 'YOU'
   ticker: TickerSettings = { top: 'none', bottom: 'dps' };
   tickerAlign: TickerAlignSettings = { top: 'right', bottom: 'left' };
@@ -192,6 +194,10 @@ class Settings {
   updateDispContent(payload: PartialDispContentSettings) {
     this.dispContent = { ...this.dispContent, ...payload };
     saveSettings({ dispContent: this.dispContent });
+  }
+  updateDispOrientation(payload: DisplayOrientation) {
+    this.dispOrientation = payload;
+    saveSettings({ dispOrientation: this.dispOrientation });
   }
   updateHlYou(payload: boolean) {
     this.hlYou = payload;

@@ -14,6 +14,7 @@ import {
   MAP_TICKER,
   MAP_TICKER_ALIGN,
   MAP_DISPLAY_MODE,
+  MAP_DISPLAY_ORIENTATION,
   MAP_DISPLAY_CONTENT,
   MAP_FONT_FAMILY,
   MAP_FONT_WEIGHT,
@@ -138,6 +139,16 @@ function Settings() {
                   map={MAP_DISPLAY_CONTENT}
                 />
               </>
+            ),
+          },
+          {
+            title: t('Display Orientation'),
+            render: () => (
+              <SSelect
+                value={settings.dispOrientation}
+                onChange={(val) => settings.updateDispOrientation(val)}
+                map={MAP_DISPLAY_ORIENTATION}
+              />
             ),
           },
           {

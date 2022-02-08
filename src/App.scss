@@ -45,3 +45,19 @@ body,
   justify-content: center;
   align-items: flex-start;
 }
+
+.app--vertical {
+  .combatants {
+    flex-direction: column;
+
+    .combatant {
+      margin: 4px 0;
+    }
+  }
+}
+
+.app--horizontal {
+  .combatants {
+    flex-direction: row;
+  }
+}

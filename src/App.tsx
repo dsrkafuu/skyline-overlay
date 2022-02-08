@@ -7,12 +7,13 @@ import Settings from './views/Settings';
 import { useStore, useMock } from './hooks';
 import { cloneDeep } from './utils/lodash';
 import { fmtMergePet } from './utils/formatters';
+import clsx from 'clsx';
 
 function App() {
   // get data from store
   const {
     api: { combatant, lb, overlay },
-    settings: { showCombatants, sort, playerLimit, showLB, petMergeID },
+    settings: { showCombatants, sort, playerLimit, showLB, petMergeID, dispOrientation },
   } = useStore();
   let players = cloneDeep(combatant);
 
@@ -41,7 +42,7 @@ function App() {
   }
 
   return (
-    <div className='app'>
+    <div className={clsx('app', `app--${dispOrientation}`)}>
       <div className='container'>
         {showCombatants && Boolean(combatant) && combatant.length > 0 && (
           <div className='combatants'>

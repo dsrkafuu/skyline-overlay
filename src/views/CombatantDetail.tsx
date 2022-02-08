@@ -16,7 +16,7 @@ interface CombatantDetailProps {
 function CombatantDetail({ player, lockDetail }: CombatantDetailProps) {
   const t = useTranslation();
   const { settings } = useStore();
-  const { dispMode, dispContent, bottomDisp, shortNumber } = settings;
+  const { dispMode, dispContent, bottomDisp, shortNumber, dispOrientation } = settings;
 
   // calculate top position according to tickerNum
   let tickerNum = 0;
@@ -26,8 +26,6 @@ function CombatantDetail({ player, lockDetail }: CombatantDetailProps) {
   if (settings.ticker.bottom !== 'none') {
     tickerNum++;
   }
-  const baseTop = settings.dispMode === 'dual' ? 0.22 + 0.4 : 0.22 + 0.24; // name + content
-  const topWithTick = (baseTop + tickerNum * 0.04).toFixed(2) + 'rem'; // + ticker
 
   const keyNotDisplayed = useCallback(
     (key: DisplayContentMapKey) =>
@@ -116,12 +114,27 @@ function CombatantDetail({ player, lockDetail }: CombatantDetailProps) {
   if (isLimitBreakData(player)) {
     return null;
   } else {
+    let style = {
+      top: '0',
+      left: '0',
+      right: '0',
+    }
+
+    if (dispOrientation === 'horizontal') {
+      const baseTop = settings.dispMode === 'dual' ? 0.22 + 0.4 : 0.22 + 0.24; // name + content
+      const topWithTick = (baseTop + tickerNum * 0.04).toFixed(2) + 'rem'; // + ticker
+      style.top = topWithTick;
+    } else {
+      style.left = '-1.2rem';
+      style.right = '1.2rem';
+    }
+
     return (
       <div
         className={clsx('combatant-detail', {
           'combatant-detail--locked': lockDetail,
         })}
-        style={{ top: topWithTick }}
+        style={style}
       >
         <SList items={rowItems} />
       </div>

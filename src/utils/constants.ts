@@ -29,6 +29,14 @@ const displayModeMap = {
 export type DisplayModeMapKey = keyof typeof displayModeMap & string;
 export const MAP_DISPLAY_MODE = displayModeMap;
 
+// display orientation map
+const displayOrientationMap = {
+  vertical: { text: 'Vertical (Beta)' },
+  horizontal: { text: 'Horizontal' },
+};
+export type DisplayOrientation = 'vertical' | 'horizontal';
+export const MAP_DISPLAY_ORIENTATION = displayOrientationMap;
+
 // display content map
 const displayContentMap = {
   dps: { text: 'DPS', data: { unit: 'DPS' } },
