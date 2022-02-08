@@ -7,7 +7,6 @@ import { isLimitBreakData } from '../utils/type';
 import { DisplayContentMapKey } from '../utils/constants';
 import { useCallback, useMemo } from 'react';
 import { fmtNumber } from '../utils/formatters';
-import themes from '../themes';
 
 interface CombatantDetailProps {
   player: CombatantData | LimitBreakData;
