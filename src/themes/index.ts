@@ -9,7 +9,7 @@ const themes: {[k: string]: ThemePartial} = {
   horiz: { text: 'HORIZOVERLAY' },
   ikegami: { text: 'ikegami' },
   enix: { 
-    text: 'Enix',
+    text: 'Jimmy Enix',
     options: {
       combatants: {
         combatant: {
