@@ -13,6 +13,7 @@ body[data-theme=enix] {
     .combatants {
       @include enix-container;
       padding-bottom: 38px;
+      min-width: 420px;
     
       .combatant {
         &-content {

@@ -1,7 +1,7 @@
 import './default.scss';
 import './horiz.scss';
 import './ikegami.scss';
-import './barephoenix.scss';
+import './enix.scss';
 import { ThemePartial } from '../utils/constants';
 
 const themes: {[k: string]: ThemePartial} = {
