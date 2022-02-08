@@ -12,7 +12,7 @@ function App() {
   // get data from store
   const {
     api: { combatant, lb, overlay },
-    settings: { showCombatants, sort, playerLimit, showLB, petMergeID },
+    settings: { showCombatants, sort, playerLimit, showLB, petMergeID, opacity },
   } = useStore();
   let players = cloneDeep(combatant);
 
@@ -40,9 +40,11 @@ function App() {
     playersWithLB.push(cloneDeep(lb));
   }
 
+  const opacityStyle = { opacity: (opacity / 10)}
+
   return (
     <div className='app'>
-      <div className='container'>
+      <div className='container' style={opacityStyle}>
         {showCombatants && Boolean(combatant) && combatant.length > 0 && (
           <div className='combatants'>
             {playersWithLB.map((player, index) => (
@@ -51,7 +53,7 @@ function App() {
           </div>
         )}
       </div>
-      <div className='container'>
+      <div className='container' style={opacityStyle}>
         <Encounter />
       </div>
       <div className='container'>

@@ -242,6 +242,17 @@ function Settings() {
             ),
           },
           {
+            title: t('Opacity'),
+            render: () => (
+              <SInputNumber
+                value={settings.opacity}
+                onChange={(val) => settings.updateOpacity(val)}
+                min={1}
+                max={10}
+              />
+            ),
+          },
+          {
             title: t('UI Scale'),
             render: () => (
               <SInputNumber

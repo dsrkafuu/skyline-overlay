@@ -100,6 +100,7 @@ class Settings {
   font: FontFamilyMapKey = 'default';
   fontWeight: FontWeightMapKey = 'regular';
   customCSS = '#root {}';
+  opacity: number = 10;
 
   /** @mobx computed */
 
@@ -223,6 +224,10 @@ class Settings {
       document.body.setAttribute('data-theme', payload);
     }
     saveSettings({ theme: payload });
+  }
+  updateOpacity(payload: number) {
+    this.opacity = payload;
+    saveSettings({ opacity: this.opacity });
   }
   updateLang(payload: LangMapKey) {
     this.lang = payload;
