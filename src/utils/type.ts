@@ -21,3 +21,7 @@ export function isLimitBreakData(
 ): player is LimitBreakData {
   return player.name === 'Limit Break';
 }
+
+export type RecursivePartial<T> = {
+  [P in keyof T]?: RecursivePartial<T[P]>;
+};

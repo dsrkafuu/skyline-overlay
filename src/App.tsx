@@ -41,7 +41,7 @@ function App() {
   }
 
   return (
-    <div className='app'>
+    <div className={`app ${showCombatants ? '' : 'app--minimized'}`}>
       <div className='container'>
         {showCombatants && Boolean(combatant) && combatant.length > 0 && (
           <div className='combatants'>

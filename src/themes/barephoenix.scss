@@ -1,0 +1,87 @@
+/** TODO remove importants */
+body[data-theme=enix] {
+  @mixin enix-container {
+    border: 3px outset #93855A;
+    box-shadow: 0 0 0 2px #333333;
+    border-radius: 8px;
+    background: linear-gradient(#5b626b, #312F31 20px);
+    background-color: #312F31;
+    padding: 8px;
+  }
+
+  .app {
+    .combatants {
+      @include enix-container;
+      padding-bottom: 38px;
+    
+      .combatant {
+        &-content {
+          background-color: transparent !important;
+        }
+    
+        &-name {
+          border-bottom: 4px solid;
+          padding-bottom: 4px;
+          margin-bottom: 4px;
+        }
+    
+        &.jobtype-tank { 
+          & .combatant-name {
+            border-color: var(--color-combatant-bg-tank);
+          }
+        }
+    
+        &.jobtype-dps { 
+          & .combatant-name {
+            border-color: var(--color-combatant-bg-dps);
+          }
+        }
+    
+        &.jobtype-healer { 
+          & .combatant-name {
+            border-color: var(--color-combatant-bg-heal);
+          }
+        }
+
+        &-detail {
+          @include enix-container;
+        }
+      }
+    }
+    
+    .encounter {
+      div {
+        background-color: transparent;
+      }
+
+      &-buttons {
+        .btn:hover {
+          color: #AAAAAA;
+        }
+      }
+    }
+    
+    &:not(.app--minimized) .encounter {
+      position: relative;
+      z-index: 100;
+      top: -38px;
+      padding-top: 4px;
+      border-top: 4px groove #444444;
+      box-shadow: 0px -2px 0px #333333;
+    }
+
+    &.app--minimized .encounter {
+      @include enix-container;
+    }
+
+    .settings {
+      @include enix-container;
+      position: relative;
+      top: 8px;
+    }
+
+    &:not(.app--minimized) .settings {
+      top: -24px;
+    }
+  }
+}

@@ -222,8 +222,8 @@ function Settings() {
             render: () => (
               <SSelect
                 className='settings-theme'
-                value={settings.theme}
-                onChange={(val) => settings.updateTheme(val)}
+                value={settings.themeMapKey}
+                onChange={(val) => settings.updateTheme(val.toString())}
                 map={MAP_THEMES}
               />
             ),

@@ -22,8 +22,7 @@ function Combatant({ player }: CombatantProps) {
   const { name } = player;
   const classes: ClassArray = ['combatant']; // grid classnames
   const { settings } = useStore();
-  const { hlYou, youName, bottomDisp, ticker, tickerAlign, dispMode } =
-    settings;
+  const { hlYou, youName, bottomDisp, ticker, tickerAlign, dispMode, theme } = settings;
 
   // class names related to job
   if (isLimitBreakData(player)) {
@@ -132,7 +131,7 @@ function Combatant({ player }: CombatantProps) {
       {needDetail && (
         <CombatantBottom
           player={player}
-          mode={lockDetail || showDetail ? 'none' : bottomDisp}
+          mode={lockDetail || showDetail && theme.options.combatants.combatant.hideBottomOnHover ? 'none' : bottomDisp}
         />
       )}
 

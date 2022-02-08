@@ -15,7 +15,10 @@ import {
   FontFamilyMapKey,
   FontWeightMapKey,
   MAP_FONT_WEIGHT,
+  Theme,
 } from '../../utils/constants';
+import themes from '../../themes';
+import { applyDefaultThemeOptions } from '../../utils/themes';
 
 interface PartialSettings {
   [key: string]: unknown;
@@ -94,7 +97,8 @@ class Settings {
   shortNumber = false;
 
   // general
-  theme: ThemeMapKey = 'default';
+  theme: Theme = applyDefaultThemeOptions(themes.default);
+  themeMapKey: ThemeMapKey = 'default';
   lang: LangMapKey = 'en';
   zoom = 1;
   font: FontFamilyMapKey = 'default';
@@ -117,7 +121,7 @@ class Settings {
     }
 
     // apply initial theme
-    document.body.setAttribute('data-theme', this.theme);
+    document.body.setAttribute('data-theme', this.theme.key);
     // apply initial font
     document.documentElement.setAttribute('data-font', this.font);
     // apply initial font weight
@@ -216,13 +220,15 @@ class Settings {
 
   /* layout */
   updateTheme(payload: ThemeMapKey) {
-    this.theme = payload;
+    this.theme = applyDefaultThemeOptions(themes[payload]);
+    this.themeMapKey = payload;
+    
     if (payload === 'default') {
       document.body.removeAttribute('data-theme');
     } else {
       document.body.setAttribute('data-theme', payload);
     }
-    saveSettings({ theme: payload });
+    saveSettings({ theme: this.theme, themeMapKey: payload });
   }
   updateLang(payload: LangMapKey) {
     this.lang = payload;

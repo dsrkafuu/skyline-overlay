@@ -7,6 +7,7 @@ import { isLimitBreakData } from '../utils/type';
 import { DisplayContentMapKey } from '../utils/constants';
 import { useCallback, useMemo } from 'react';
 import { fmtNumber } from '../utils/formatters';
+import themes from '../themes';
 
 interface CombatantDetailProps {
   player: CombatantData | LimitBreakData;
@@ -16,7 +17,7 @@ interface CombatantDetailProps {
 function CombatantDetail({ player, lockDetail }: CombatantDetailProps) {
   const t = useTranslation();
   const { settings } = useStore();
-  const { dispMode, dispContent, bottomDisp, shortNumber } = settings;
+  const { dispMode, dispContent, bottomDisp, shortNumber, theme } = settings;
 
   // calculate top position according to tickerNum
   let tickerNum = 0;
@@ -27,7 +28,7 @@ function CombatantDetail({ player, lockDetail }: CombatantDetailProps) {
     tickerNum++;
   }
   const baseTop = settings.dispMode === 'dual' ? 0.22 + 0.4 : 0.22 + 0.24; // name + content
-  const topWithTick = (baseTop + tickerNum * 0.04).toFixed(2) + 'rem'; // + ticker
+  const topWithTick = (baseTop + tickerNum * 0.04 + (theme.options.combatants.combatant.detail.paddingTop)).toFixed(2) + 'rem'; // + ticker
 
   const keyNotDisplayed = useCallback(
     (key: DisplayContentMapKey) =>

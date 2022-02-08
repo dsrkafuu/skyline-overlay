@@ -79,8 +79,41 @@ export const MAP_LANG = rawLang;
 
 // themes map
 import themes from '../themes';
+import { RecursivePartial } from './type';
 export type ThemeMapKey = keyof typeof themes & string;
 export const MAP_THEMES = themes;
+
+type ThemeOptions = {
+  combatants: {
+    combatant: {
+      hideBottomOnHover: boolean,
+      detail: {
+        paddingTop: number
+      }
+    }
+  }
+}
+export const DefaultThemeOptions: ThemeOptions = {
+  combatants: {
+    combatant: {
+      hideBottomOnHover: true,
+      detail: {
+        paddingTop: 0
+      }
+    }
+  }
+}
+
+export type Theme = {
+  text: string,
+  key: ThemeMapKey,
+  options: ThemeOptions,
+};
+export type ThemePartial = {
+  text: string,
+  key: ThemeMapKey,
+  options?: RecursivePartial<ThemeOptions>,
+};
 
 // font family map
 const fontFamilyMap = {
