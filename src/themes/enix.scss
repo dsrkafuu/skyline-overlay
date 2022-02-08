@@ -43,6 +43,35 @@ body[data-theme=enix] {
             border-color: var(--color-combatant-bg-heal);
           }
         }
+    
+        &.job-self { 
+          background-color: rgba(255, 255, 255, .1);
+          border-radius: 5px;
+          box-shadow: 0 0 0 2px rgba(255, 255, 255, .5);
+    
+          & .combatant-name {
+            padding-top: 4px;
+            border-radius: 5px;
+          }
+
+          &.jobtype-tank { 
+            & .combatant-name {
+              background-color: var(--color-combatant-bg-tank);
+            }
+          }
+      
+          &.jobtype-dps { 
+            & .combatant-name {
+              background-color: var(--color-combatant-bg-dps);
+            }
+          }
+      
+          &.jobtype-healer { 
+            & .combatant-name {
+              background-color: var(--color-combatant-bg-heal);
+            }
+          }
+        }
 
         &-detail {
           @include enix-container;
