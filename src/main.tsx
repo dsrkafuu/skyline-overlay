@@ -5,6 +5,7 @@ import './scss/utils.scss';
 
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
+import DevPlayground from './DevPlayground';
 
 const sentryDsn = import.meta.env.VITE_SENTRY_DSN;
 if (sentryDsn && import.meta.env.PROD) {
@@ -27,9 +28,14 @@ import ReactDOM from 'react-dom';
 import { StoreContext, store } from './store';
 import App from './App';
 
+let app = <App />;
+if (import.meta.env.DEV) {
+  app = <DevPlayground>{app}</DevPlayground>
+}
+
 ReactDOM.render(
   <StoreContext.Provider value={store}>
-    <App />
+    {app}
   </StoreContext.Provider>,
   document.getElementById('root')
 );
