@@ -45,8 +45,6 @@ export default function DevPlayground({children}: DevAppProps) {
     backgroundImage: backgroundImage ? `url(${backgroundImages[backgroundImage]})` : undefined,
   }
 
-  console.log(style);
-
   return (
     <div className="playground" style={style}>
       <div className="playground-children">

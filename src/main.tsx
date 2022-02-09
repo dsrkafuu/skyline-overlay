@@ -28,8 +28,6 @@ import ReactDOM from 'react-dom';
 import { StoreContext, store } from './store';
 import App from './App';
 
-console.log(import.meta.env)
-
 let app = <App />;
 if (import.meta.env.DEV) {
   app = <DevPlayground>{app}</DevPlayground>
