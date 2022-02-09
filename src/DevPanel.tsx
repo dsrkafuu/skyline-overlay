@@ -1,5 +1,5 @@
 import './DevPanel.scss';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { getLS, setLS } from './utils/storage';
 import * as images from './assets/devbg';
 import { SInput, SSelect } from './components';
