@@ -82,7 +82,9 @@ Please use [ISO 639-1:2002](https://en.wikipedia.org/wiki/List_of_ISO_639-1_code
 
 ### Contributors
 
-[@DieMoe233](https://github.com/DieMoe233) [@Slightlyxz](https://github.com/Slightlyxz)
+[@DieMoe233](https://github.com/DieMoe233)
+[@Slightlyxz](https://github.com/Slightlyxz)
+[@j0sh77](https://github.com/j0sh77)
 
 ## Credits
 
