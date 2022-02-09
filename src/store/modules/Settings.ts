@@ -97,10 +97,10 @@ class Settings {
   theme: ThemeMapKey = 'default';
   lang: LangMapKey = 'en';
   zoom = 1;
+  opacity = 1;
   font: FontFamilyMapKey = 'default';
   fontWeight: FontWeightMapKey = 'regular';
   customCSS = '#root {}';
-  opacity: number = 10;
 
   /** @mobx computed */
 
