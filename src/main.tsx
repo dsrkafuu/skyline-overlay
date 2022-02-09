@@ -30,6 +30,7 @@ import App from './App';
 import DevPanel from './DevPanel';
 
 let app = <App />;
+// should be tree-shaked in production by vite
 if (import.meta.env.DEV && !isCEFSharp()) {
   app = <DevPanel>{app}</DevPanel>;
 }

@@ -1,5 +1,5 @@
 /**
- * remove redundant svg files in vite's output folder
+ * remove redundant files in vite's output folder
  */
 
 import fs from 'fs';
@@ -9,7 +9,7 @@ import glob from 'glob';
 import chalk from 'chalk';
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
-console.log(chalk.blue('removing redundant svg files...'));
+console.log(chalk.blue('removing redundant svg/image files...'));
 
 /**
  * @param {string} path
@@ -27,7 +27,10 @@ function deleteFile(path) {
 }
 
 const workers = [];
-const svgs = glob.sync('dist/assets/*.svg');
+const svgs = [
+  ...glob.sync('dist/assets/*.svg'),
+  ...glob.sync('dist/assets/*.jpg'),
+];
 svgs.forEach((val) => {
   const p = path.resolve(__dirname, '../', val);
   workers.push(deleteFile(p));
@@ -35,10 +38,10 @@ svgs.forEach((val) => {
 
 Promise.all(workers)
   .then(() => {
-    console.log(chalk.green(`removed ${svgs.length} svg files`));
+    console.log(chalk.green(`removed ${svgs.length} svg/image files`));
   })
   .catch((e) => {
-    console.log(chalk.red('failed to remove some of svg files'));
+    console.log(chalk.red('failed to remove some of svg/image files'));
     console.error(e);
     process.exitCode = 1;
   });
