@@ -37,11 +37,17 @@
 
   &-options {
     position: absolute;
-    top: $size-form;
     color: var(--color-form-fg);
     background-color: var(--color-form-bg);
     z-index: 999;
     width: 100%;
+
+    &-bottom {
+      top: $size-form;
+    }
+    &-top {
+      bottom: $size-form;
+    }
   }
 
   &-option {

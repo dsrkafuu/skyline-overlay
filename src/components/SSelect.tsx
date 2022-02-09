@@ -16,6 +16,7 @@ interface SSelectProps<TMap extends SSelectMap> {
   value: string; // selected value (map's key)
   onChange: (value: keyof TMap, data?: unknown) => void;
   map: TMap;
+  position?: 'top' | 'bottom';
   disabled?: boolean;
   className?: string;
 }
@@ -24,6 +25,7 @@ function SSelect<TMap extends SSelectMap>({
   value,
   onChange,
   map,
+  position = 'bottom',
   disabled,
   className,
 }: SSelectProps<TMap>) {
@@ -44,7 +46,11 @@ function SSelect<TMap extends SSelectMap>({
 
   return (
     <div
-      className={clsx('s-select', { 's-select--disabled': disabled }, className)}
+      className={clsx(
+        's-select',
+        { 's-select--disabled': disabled },
+        className
+      )}
       ref={clickRef}
     >
       <div
@@ -52,10 +58,20 @@ function SSelect<TMap extends SSelectMap>({
         onClick={() => setActive((val) => !disabled && !val)}
       >
         <div className='disp'>{map[value] ? map[value].text : 'Unknown'}</div>
-        <div className='btn'>{active ? <IChevronUp /> : <IChevronDown />}</div>
+        {position === 'bottom' ? (
+          <div className='btn'>
+            {active ? <IChevronUp /> : <IChevronDown />}
+          </div>
+        ) : (
+          <div className='btn'>
+            {active ? <IChevronDown /> : <IChevronUp />}
+          </div>
+        )}
       </div>
       {active && (
-        <div className='s-select-options'>
+        <div
+          className={clsx('s-select-options', `s-select-options-${position}`)}
+        >
           {Object.keys(map).map((key) => (
             <div
               className='s-select-option'

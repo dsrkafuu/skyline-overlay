@@ -5,7 +5,6 @@ import './scss/utils.scss';
 
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
-import DevPlayground from './DevPlayground';
 
 const sentryDsn = import.meta.env.VITE_SENTRY_DSN;
 if (sentryDsn && import.meta.env.PROD) {
@@ -25,17 +24,17 @@ if (sentryDsn && import.meta.env.PROD) {
 }
 
 import ReactDOM from 'react-dom';
+import { isCEFSharp } from 'ffxiv-overlay-api';
 import { StoreContext, store } from './store';
 import App from './App';
+import DevPanel from './DevPanel';
 
 let app = <App />;
-if (import.meta.env.DEV) {
-  app = <DevPlayground>{app}</DevPlayground>
+if (import.meta.env.DEV && !isCEFSharp()) {
+  app = <DevPanel>{app}</DevPanel>;
 }
 
 ReactDOM.render(
-  <StoreContext.Provider value={store}>
-    {app}
-  </StoreContext.Provider>,
+  <StoreContext.Provider value={store}>{app}</StoreContext.Provider>,
   document.getElementById('root')
 );

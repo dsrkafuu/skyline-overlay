@@ -1,0 +1,58 @@
+.devp {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-position: top center;
+  background-repeat: no-repeat;
+
+  &-settings {
+    font-size: 0.12rem;
+    position: absolute;
+    width: 3rem;
+    margin: 0 auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-settings-fg);
+    background-color: var(--color-settings-bg);
+    text-shadow: var(--shadow-settings);
+  }
+
+  &-toggle {
+    width: 3rem;
+    line-height: 0.22rem;
+    text-align: center;
+    background-color: var(--color-settings-bg);
+    cursor: pointer;
+
+    &:hover {
+      text-shadow: var(--shadow-settings-tab-active);
+      color: var(--color-settings-tab-fg-active);
+      background-color: var(--color-settings-tab-bg-active);
+    }
+  }
+
+  &-content {
+    width: 3rem;
+    padding: 0.06rem 0.08rem;
+
+    &-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &:not(:first-child) {
+        margin-top: 0.04rem;
+      }
+    }
+
+    &-ctrl {
+      width: 1.2rem;
+    }
+  }
+}
