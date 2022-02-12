@@ -97,7 +97,7 @@ class Settings {
 
   // general
   theme: ThemeMapKey = 'default';
-  colors: {[k: ThemeMapKey]: RGBAColor[]} = {};
+  colors: {[k: ThemeMapKey]: {[k: string]: RGBAColor}} = {};
   lang: LangMapKey = 'en';
   zoom = 1;
   opacity = 1;
@@ -142,9 +142,9 @@ class Settings {
     // init mobx
     makeAutoObservable(this, { rootStore: false }, { autoBind: true });
 
-    // init defualt hteme colors
+    // init defualt theme colors
     Object.keys(themes).forEach(theme => {
-      this.colors[theme] = themes[theme].colors || [];
+      this.colors[theme] = this.colors[theme] || themes[theme].colors || {};
     });
   }
 
@@ -233,8 +233,8 @@ class Settings {
     }
     saveSettings({ theme: payload });
   }
-  updateColor(payload: {index: number, value: RGBAColor}) {
-    this.colors[this.theme][payload.index] = payload.value;
+  updateColor(payload: {key: string, value: RGBAColor}) {
+    this.colors[this.theme][payload.key] = payload.value;
     saveSettings({ colors: this.colors });
   }
   updateOpacity(payload: number) {

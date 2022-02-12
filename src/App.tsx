@@ -31,9 +31,9 @@ function App() {
     const themeColors = colors[theme];
 
     if (themeColors) {
-      for (let i = 0; i < themeColors.length; i++) {
-        const color = themeColors[i];
-        document.documentElement.style.setProperty(`--color-theme-${i}`, `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`);
+      for (const key of Object.keys(themeColors)) {
+        const color = themeColors[key];
+        document.documentElement.style.setProperty(`--color-theme-${key}`, `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`);
       }
     }
   }, [JSON.stringify(colors), theme]);

@@ -13,7 +13,7 @@ export type Author = {
 
 export type Theme = {
   text: string,
-  colors?: RGBAColor[],
+  colors?: {[k: string]: RGBAColor},
   data?: {
     author: Author
   }

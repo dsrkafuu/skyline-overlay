@@ -1,7 +1,7 @@
 body[data-theme='jround'] {
   // global
   --color-fg: #ffffff;
-  --color-bg: rgba(0, 0, 0, 0.3);
+  --color-bg: var(--color-theme-background);
   --shadow: 0 0 0.04rem #000000;
   --icon-color: var(--color-fg);
   --icon-shadow: 0 0 0.04rem rgba(0, 0, 0, 0.6);
