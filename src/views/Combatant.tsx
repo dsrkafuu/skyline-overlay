@@ -8,7 +8,7 @@ import CombatantBottom from './CombatantBottom';
 import CombatantContent from './CombatantContent';
 import { useAppSelector } from '../hooks';
 import { STicker, STickerProps, STickerClass } from '../components';
-import { isLimitBreakData, isCombatantData } from '../utils/type';
+import { isLimitBreakData, isCombatantData } from '../types/type';
 import { TickerMapKey } from '../utils/constants';
 
 interface CombatantProps {

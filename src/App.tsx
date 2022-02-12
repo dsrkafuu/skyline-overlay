@@ -1,5 +1,5 @@
 import './App.scss';
-import { CSSProperties } from 'react';
+import { CSSProperties, useEffect } from 'react';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import Combatant from './views/Combatant';
 import Encounter from './views/Encounter';
@@ -17,6 +17,8 @@ function App() {
   const showLB = useAppSelector((state) => state.settings.showLB);
   const petMergeID = useAppSelector((state) => state.settings.petMergeID);
   const opacity = useAppSelector((state) => state.settings.opacity);
+  const colors = useAppSelector((state) => state.settings.colors);
+  const theme = useAppSelector((state) => state.settings.theme);
 
   // get data from store
   const data = useAppSelector((state) => state.api.data);
@@ -25,13 +27,27 @@ function App() {
 
   let players = combatant;
 
+  useEffect(() => {
+    const themeColors = colors[theme];
+
+    if (themeColors) {
+      for (let i = 0; i < themeColors.length; i++) {
+        const color = themeColors[i];
+        document.documentElement.style.setProperty(`--color-theme-${i}`, `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`);
+      }
+    }
+  }, [JSON.stringify(colors), theme]);
+
+  // debug mock data
+  useMock(overlay, true);
+
   // merge pet if enabled
   if (petMergeID) {
     players = fmtMergePet(players, petMergeID);
   }
 
   // sort combatant
-  players.sort((a, b) => sort.rule * (a[sort.key] - b[sort.key]));
+  players.sort((a: any, b: any) => sort.rule * (a[sort.key] - b[sort.key]));
 
   // limit combatants
   const temp = players;

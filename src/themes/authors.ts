@@ -1,8 +1,7 @@
+import { Author } from "../types/configuration";
+
 interface Authors {
-  [key: string]: {
-    name: string;
-    link: string;
-  };
+  [key: string]: Author;
 }
 
 const authors: Authors = {
