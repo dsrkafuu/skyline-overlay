@@ -2,6 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import { Store } from '..';
 import { setLS, getLS } from '../../utils/storage';
 import { xssEscape } from '../../utils/lodash';
+import { RGBAColor } from '../../utils/type';
 import {
   LangMapKey,
   ShortNameMapKey,
@@ -16,6 +17,7 @@ import {
   FontWeightMapKey,
   MAP_FONT_WEIGHT,
 } from '../../utils/constants';
+import themes from '../../themes';
 
 interface PartialSettings {
   [key: string]: unknown;
@@ -95,6 +97,7 @@ class Settings {
 
   // general
   theme: ThemeMapKey = 'default';
+  colors: {[k: ThemeMapKey]: RGBAColor[]} = {};
   lang: LangMapKey = 'en';
   zoom = 1;
   opacity = 1;
@@ -138,6 +141,11 @@ class Settings {
 
     // init mobx
     makeAutoObservable(this, { rootStore: false }, { autoBind: true });
+
+    // init defualt hteme colors
+    Object.keys(themes).forEach(theme => {
+      this.colors[theme] = themes[theme].colors || [];
+    });
   }
 
   /** @mobx actions */
@@ -224,6 +232,10 @@ class Settings {
       document.body.setAttribute('data-theme', payload);
     }
     saveSettings({ theme: payload });
+  }
+  updateColor(payload: {index: number, value: RGBAColor}) {
+    this.colors[this.theme][payload.index] = payload.value;
+    saveSettings({ colors: this.colors });
   }
   updateOpacity(payload: number) {
     this.opacity = payload;

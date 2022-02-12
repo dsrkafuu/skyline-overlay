@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import clsx from 'clsx';
 import SettingsAbout from './SettingsAbout';
 import SettingsPanel, { SettingsPanelProps } from './SettingsPanel';
-import { SInputNumber, SSelect, SInput, SSwitch } from '../components';
+import { SInputNumber, SSelect, SInput, SSwitch, SInputColors } from '../components';
 import {
   MAP_LANG,
   MAP_THEMES,
@@ -20,6 +20,7 @@ import {
 } from '../utils/constants';
 import { useStore, useTranslation } from '../hooks';
 import { IChevronDown, IChevronUp } from '../assets/icons';
+import themes from '../themes';
 
 export type SettingsType = 'about' | 'general' | 'data' | 'display';
 
@@ -227,6 +228,17 @@ function Settings() {
                 map={MAP_THEMES}
               />
             ),
+          },
+          {
+            title: t('Colors'),
+            render: () => (
+              <SInputColors 
+                onChange={(index, value) => settings.updateColor({index, value})} 
+                count={themes[settings.theme].colors?.length || 0} 
+                values={JSON.parse(JSON.stringify(settings.colors[settings.theme])) || []}
+              />
+            ),
+            hidden: !themes[settings.theme].colors
           },
           {
             title: t('Language'),

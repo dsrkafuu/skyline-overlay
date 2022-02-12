@@ -21,3 +21,10 @@ export function isLimitBreakData(
 ): player is LimitBreakData {
   return player.name === 'Limit Break';
 }
+
+export type RGBAColor = {
+  r: number,
+  g: number,
+  b: number,
+  a: number,
+}

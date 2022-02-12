@@ -1,0 +1,56 @@
+.s-input-color {
+  display: flex;
+  height: $size-form;
+  line-height: $size-form;
+
+  &-btn {
+    flex: 0 0 auto;
+    height: $size-form;
+    width: $size-form;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    padding: 4px;
+    margin: 0 2px;
+    background-color: var(--color-form-bg);
+
+    &:hover {
+      color: var(--color-form-fg-active);
+      background-color: var(--color-form-bg-active);
+    }
+
+    &-preview {
+      width: 100%;
+      height: 100%;
+    }
+
+    &--active {
+      background-color: var(--color-form-bg-active);
+    }
+  }
+
+  &-picker {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-left: 10px;
+
+    /** Overrides for color picker */
+    &-overlay {
+      width: 250px !important;
+      background-color: var(--color-settings-bg) !important;
+      border-radius: 0 !important;
+
+      label {
+        color: var(--color-settings-fg) !important;
+      }
+
+      input {
+        text-align: center;
+      }
+    }
+  }
+}

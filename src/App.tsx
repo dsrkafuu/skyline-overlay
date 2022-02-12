@@ -1,5 +1,5 @@
 import './App.scss';
-import { CSSProperties } from 'react';
+import { CSSProperties, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import Combatant from './views/Combatant';
@@ -8,6 +8,7 @@ import Settings from './views/Settings';
 import { useStore, useMock } from './hooks';
 import { cloneDeep } from './utils/lodash';
 import { fmtMergePet } from './utils/formatters';
+import themes from './themes';
 
 function App() {
   // get data from store
@@ -20,9 +21,22 @@ function App() {
       showLB,
       petMergeID,
       opacity,
+      colors,
+      theme
     },
   } = useStore();
   let players = cloneDeep(combatant);
+
+  useEffect(() => {
+    const themeColors = colors[theme];
+
+    if (themeColors) {
+      for (let i = 0; i < themeColors.length; i++) {
+        const color = themeColors[i];
+        document.documentElement.style.setProperty(`--color-theme-${i}`, `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`);
+      }
+    }
+  }, [JSON.stringify(colors), theme]);
 
   // debug mock data
   useMock(overlay, true);
