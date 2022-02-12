@@ -233,8 +233,7 @@ function Settings() {
             title: t('Colors'),
             render: () => (
               <SInputColors 
-                onChange={(index, value) => settings.updateColor({index, value})} 
-                count={themes[settings.theme].colors?.length || 0} 
+                onChange={(key, value) => settings.updateColor({key, value})} 
                 values={JSON.parse(JSON.stringify(settings.colors[settings.theme])) || []}
               />
             ),

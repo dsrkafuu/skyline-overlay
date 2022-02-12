@@ -5,30 +5,29 @@ import { SketchPicker } from 'react-color';
 import { RGBAColor } from "../utils/type";
 
 interface SInputColorProps {
-  count: number;
-  values: RGBAColor[];
-  onChange: (index: number, value: RGBAColor) => void;
+  values: {[k: string]: RGBAColor};
+  onChange: (key: string, value: RGBAColor) => void;
   className?: string;
 }
 
-function SInputColors({ values, onChange, className, count }: SInputColorProps) {
-  const [colorIndexActive, setColorIndexActive] = useState<number | undefined>(undefined);
+function SInputColors({ values, onChange, className }: SInputColorProps) {
+  const [colorActive, setColorActive] = useState<string | undefined>(undefined);
 
   const handleInput = useCallback(
-    (index: number) => ({rgb}: {rgb: RGBAColor}) => {
-      onChange(index, rgb);
+    (key: string) => ({rgb}: {rgb: RGBAColor}) => {
+      onChange(key, rgb);
     },
     [onChange, values]
   );
 
-  const handleButtonClick = useCallback((index: number) => {
-    setColorIndexActive(index === colorIndexActive ? undefined : index);
-  }, [colorIndexActive])
+  const handleButtonClick = useCallback((key: string) => {
+    setColorActive(key === colorActive ? undefined : key);
+  }, [colorActive])
 
-  const colorButtons = Array.from(Array(count).keys()).map((index) => {
+  const colorButtons = Object.keys(values).map((index) => {
     const color = values[index];
     return (
-      <div key={index} className={clsx('s-input-color-btn', index === colorIndexActive && 's-input-color-btn--active')} onClick={() => handleButtonClick(index)}>
+      <div key={index} className={clsx('s-input-color-btn', index === colorActive && 's-input-color-btn--active')} onClick={() => handleButtonClick(index)}>
         <div className='s-input-color-btn-preview' style={{backgroundColor: `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`}}/>
       </div>
     )
@@ -37,9 +36,12 @@ function SInputColors({ values, onChange, className, count }: SInputColorProps) 
   return (
     <div className={clsx('s-input-color', className)}>
       {colorButtons}
-      {colorIndexActive !== undefined && (
+      {colorActive !== undefined && (
         <div className='s-input-color-picker'>
-          <SketchPicker className='s-input-color-picker-overlay' color={values[colorIndexActive]} onChangeComplete={handleInput(colorIndexActive)} />
+          <div className='s-input-color-picker-title'>
+            {colorActive.split('-').join(' ')}
+          </div>
+          <SketchPicker className='s-input-color-picker-overlay' color={values[colorActive]} onChangeComplete={handleInput(colorActive)} />
         </div>
       )}
     </div>
