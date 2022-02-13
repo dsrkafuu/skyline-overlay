@@ -80,6 +80,24 @@ Please use [ISO 639-1:2002](https://en.wikipedia.org/wiki/List_of_ISO_639-1_code
 2. Import `your-theme-filename.scss` in `@/src/themes/index.js`
 3. Add a new theme in `@/src/themes/index.js` exported map, like `'your-theme-filename': { text: 'The New Theme' }`
 
+#### Customizable Colors
+
+If you'd like to add colors to your theme that users can customize, add a "colors" key to your theme object in `@/src/themes/index.js`.
+
+```
+myTheme: { 
+  text: 'My Theme', 
+  colors: { 
+    'background': {r: 0, g: 0, b: 0, a: 0.3},
+    'text-color': {r: 255, g: 255, b: 255, a: 1},
+    'accent-color': {r: 0, g: 60, b: 160, a: 0.3},
+  }
+},
+```
+
+These variables will now be accessible within your `.scss` file as `var(--color-theme-X)`, where `X` is the color key name. (Example: `var(--color-theme-accent-color)`)
+The colors set within the theme file will be the default colors.
+
 ### Contributors
 
 [@DieMoe233](https://github.com/DieMoe233)

@@ -142,9 +142,26 @@ class Settings {
     // init mobx
     makeAutoObservable(this, { rootStore: false }, { autoBind: true });
 
-    // init defualt theme colors
+    // init default theme colors
     Object.keys(themes).forEach(theme => {
-      this.colors[theme] = this.colors[theme] || themes[theme].colors || {};
+      if (themes[theme].colors) {
+        if (this.colors[theme]) {
+          // merge old set colors with theme colors
+          // this covers the case where themes add/subtract colors,
+          // we keep backwards compatibility
+          const colors: {[k: string]: RGBAColor} = {};
+          Object.keys(themes[theme].colors!).forEach(colorKey => {
+            colors[colorKey] = this.colors[theme][colorKey] || themes[theme].colors![colorKey]
+          })
+          this.colors[theme] = colors
+        } else {
+          // no colors have been set for this theme, so just default them
+          this.colors[theme] = themes[theme].colors!;
+        }
+      } else {
+        // no colors for this theme are available
+        this.colors[theme] = {};
+      }
     });
   }
 
