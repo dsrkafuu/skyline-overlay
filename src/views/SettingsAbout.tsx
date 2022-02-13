@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { observer } from 'mobx-react-lite';
 import { date } from '../assets/meta';
 import { useStore, useTranslation } from '../hooks';
+import themes from '../themes';
 
 function SettingsAbout() {
   const t = useTranslation();
@@ -19,9 +20,51 @@ function SettingsAbout() {
   }, []);
 
   const {
-    settings: { lang },
+    settings: { lang, theme },
   } = useStore();
   const parsedDate = toDate(new Date(date), lang);
+
+  const themeAuthor = themes[theme].author;
+  let themeAuthorRow = null;
+  if (themeAuthor) {
+    const github = themeAuthor.github
+      ? (
+        <a
+          className='g-link'
+          href={themeAuthor.github.link}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          {themeAuthor.github.name}
+        </a>
+      ) : null;
+
+    let ffxiv = null;
+    if (themeAuthor.ffxiv) {
+      ffxiv = themeAuthor.ffxiv.link
+        ? <>
+          <a
+            className='g-link'
+            href={themeAuthor.ffxiv.link}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            {themeAuthor.ffxiv.name}
+          </a><span className="settings-title">of {themeAuthor.ffxiv.world}</span>
+        </> : <span className="settings-title">{themeAuthor.ffxiv.name} of {themeAuthor.ffxiv.world}</span>;
+    }
+
+    themeAuthorRow = (
+      <div className='settings-row'>
+        <span className='settings-title'>
+          {t('Theme Author')}
+        </span>
+        {github}
+        {ffxiv && github ? <span className="settings-title">·</span> : ''}
+        {ffxiv}
+      </div>
+    )
+  }
 
   return (
     <div className='settings-about'>
@@ -92,6 +135,7 @@ function SettingsAbout() {
           FFXIV
         </a>
       </div>
+      {themeAuthorRow}
     </div>
   );
 }
