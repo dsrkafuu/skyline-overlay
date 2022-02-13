@@ -6,8 +6,8 @@ import './jround.scss';
 import authors from './authors';
 
 export default {
-  default: { text: 'Skyline Overlay', author: authors.DSRKafuU },
-  horiz: { text: 'HORIZOVERLAY', author: authors.DSRKafuU },
-  ikegami: { text: 'ikegami', author: authors.DSRKafuU },
-  jround: { text: 'Round', author: authors.j0sh77 },
+  default: { text: 'Skyline Overlay', data: { author: authors.DSRKafuU } },
+  horiz: { text: 'HORIZOVERLAY', data: { author: authors.DSRKafuU } },
+  ikegami: { text: 'ikegami', data: { author: authors.DSRKafuU } },
+  jround: { text: 'Round', data: { author: authors.j0sh77 } },
 };
