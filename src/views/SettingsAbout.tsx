@@ -61,6 +61,17 @@ function SettingsAbout() {
         <span className='settings-title'>{parsedDate}</span>
       </div>
       <div className='settings-row'>
+        <span className='settings-title'>{t('Theme Credits')}</span>
+        <a
+          className='g-link'
+          href={themeAuthor.link}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          {themeAuthor.name}
+        </a>
+      </div>
+      <div className='settings-row'>
         <span className='settings-title'>{`Copyright ${new Date().getFullYear()} Apache-2.0 License`}</span>
         <a
           className='g-link'
@@ -93,17 +104,6 @@ function SettingsAbout() {
           rel='noopener noreferrer'
         >
           FFXIV
-        </a>
-      </div>
-      <div className='settings-row'>
-        <span className='settings-title'>{t('Theme Credits')}</span>
-        <a
-          className='g-link'
-          href={themeAuthor.link}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          {themeAuthor.name}
         </a>
       </div>
     </div>
