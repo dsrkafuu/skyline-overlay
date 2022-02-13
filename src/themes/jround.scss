@@ -135,12 +135,12 @@ body[data-theme='jround'] {
   .settings {
     margin-top: 0.08rem;
     border-radius: var(--border-radius);
-    box-shadow: 0 0 0 0.01rem var(--border-color);
     background-color: transparent;
 
     &-tab {
       margin: 0 0.04rem;
       border-radius: var(--border-radius);
+      box-shadow: 0 0 0 0.01rem var(--border-color);
 
       &item:first-child {
         border-top-left-radius: var(--border-radius);
@@ -153,6 +153,7 @@ body[data-theme='jround'] {
     }
 
     &-content {
+      box-shadow: 0 0 0 0.01rem var(--border-color);
       margin: 0 0.04rem;
       margin-top: 0.06rem;
       background-color: var(--color-settings-bg);
