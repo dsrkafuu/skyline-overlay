@@ -8,7 +8,6 @@ import Settings from './views/Settings';
 import { useStore, useMock } from './hooks';
 import { cloneDeep } from './utils/lodash';
 import { fmtMergePet } from './utils/formatters';
-import themes from './themes';
 
 function App() {
   // get data from store
