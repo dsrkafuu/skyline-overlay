@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { observer } from 'mobx-react-lite';
 import { date } from '../assets/meta';
 import { useStore, useTranslation } from '../hooks';
+import themes from '../themes';
 
 function SettingsAbout() {
   const t = useTranslation();
@@ -19,9 +20,11 @@ function SettingsAbout() {
   }, []);
 
   const {
-    settings: { lang },
+    settings: { lang, theme },
   } = useStore();
   const parsedDate = toDate(new Date(date), lang);
+
+  const themeAuthor = themes[theme].data.author;
 
   return (
     <div className='settings-about'>
@@ -56,6 +59,17 @@ function SettingsAbout() {
       <div className='settings-row'>
         <span className='settings-title'>{t('Build Date')}</span>
         <span className='settings-title'>{parsedDate}</span>
+      </div>
+      <div className='settings-row'>
+        <span className='settings-title'>{t('Theme Credits')}</span>
+        <a
+          className='g-link'
+          href={themeAuthor.link}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          {themeAuthor.name}
+        </a>
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{`Copyright ${new Date().getFullYear()} Apache-2.0 License`}</span>
