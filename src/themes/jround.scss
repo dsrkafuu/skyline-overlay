@@ -6,7 +6,7 @@ body[data-theme='jround'] {
   --icon-color: var(--color-fg);
   --icon-shadow: 0 0 0.04rem rgba(0, 0, 0, 0.6);
   --border-radius: 0.1rem;
-  --border-color: rgba(255, 255, 255, 0.5);
+  --border-radius-inner: 0.085rem;
 
   // s-ticker
   --color-s-ticker-cd: rgba(255, 111, 0, 0.7); // crit direct
@@ -63,7 +63,6 @@ body[data-theme='jround'] {
   .combatants {
     .combatant {
       background-color: var(--color-bg);
-      box-shadow: 0 0 0 0.01rem var(--border-color);
       padding: 0.02rem;
       margin: 0 0.06rem;
       border-radius: var(--border-radius);
@@ -79,7 +78,7 @@ body[data-theme='jround'] {
 
       & .combatant-name {
         padding-top: 0.04rem;
-        border-radius: var(--border-radius);
+        border-radius: var(--border-radius-inner);
       }
 
       &.jobtype-tank {
@@ -88,8 +87,7 @@ body[data-theme='jround'] {
         }
 
         &.job-self {
-          box-shadow: 0 0 0 0.01rem var(--border-color),
-            0 0 0.1rem 0.06rem var(--color-combatant-bg-tank);
+          box-shadow: 0 0 0.1rem 0.06rem var(--color-combatant-bg-tank);
         }
       }
 
@@ -99,8 +97,7 @@ body[data-theme='jround'] {
         }
 
         &.job-self {
-          box-shadow: 0 0 0 0.01rem var(--border-color),
-            0 0 0.1rem 0.06rem var(--color-combatant-bg-dps);
+          box-shadow: 0 0 0.1rem 0.06rem var(--color-combatant-bg-dps);
         }
       }
 
@@ -110,15 +107,13 @@ body[data-theme='jround'] {
         }
 
         &.job-self {
-          box-shadow: 0 0 0 0.01rem var(--border-color),
-            0 0 0.1rem 0.06rem var(--color-combatant-bg-heal);
+          box-shadow: 0 0 0.1rem 0.06rem var(--color-combatant-bg-heal);
         }
       }
 
       &-detail {
         margin-top: 0.08rem;
         border-radius: var(--border-radius);
-        box-shadow: 0 0 0 0.01rem var(--border-color);
       }
     }
   }
@@ -126,7 +121,6 @@ body[data-theme='jround'] {
   .encounter {
     padding-top: 0.08rem;
     & > div {
-      box-shadow: 0 0 0 0.01rem var(--border-color);
       border-radius: var(--border-radius);
       margin: 0 0.04rem;
     }
@@ -140,7 +134,6 @@ body[data-theme='jround'] {
     &-tab {
       margin: 0 0.04rem;
       border-radius: var(--border-radius);
-      box-shadow: 0 0 0 0.01rem var(--border-color);
 
       &item:first-child {
         border-top-left-radius: var(--border-radius);
@@ -153,7 +146,6 @@ body[data-theme='jround'] {
     }
 
     &-content {
-      box-shadow: 0 0 0 0.01rem var(--border-color);
       margin: 0 0.04rem;
       margin-top: 0.06rem;
       background-color: var(--color-settings-bg);
