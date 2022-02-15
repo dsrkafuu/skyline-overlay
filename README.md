@@ -34,10 +34,9 @@ Local server:
 ```bash
 git clone https://github.com/dsrkafuu/skyline-overlay.git
 cd skyline-overlay
-npm i -g pnpm
-pnpm install
-pnpm run build
-pnpm start
+npm install
+npm run build
+npm start
 ```
 
 You can use [CSSNANO](https://cssnano.co/playground/) to minify your CSS into single line.
@@ -61,9 +60,8 @@ Clone this repo, install packages and run the development server:
 ```bash
 git clone https://github.com/dsrkafuu/skyline-overlay.git
 cd skyline-overlay
-npm i -g pnpm
-pnpm install
-pnpm run dev
+npm install
+npm run dev
 ```
 
 ### Add Translations
@@ -77,20 +75,21 @@ Please use [ISO 639-1:2002](https://en.wikipedia.org/wiki/List_of_ISO_639-1_code
 ### Add Custom Themes
 
 1. Create a new `your-theme-filename.scss` file in `@/src/themes`, use `default.scss` and `ikegami.scss` as examples
-2. Import `your-theme-filename.scss` in `@/src/themes/index.js`
-3. Add a new theme in `@/src/themes/index.js` exported map, like `'your-theme-filename': { text: 'The New Theme' }`
+2. Import `your-theme-filename.scss` in `@/src/themes/index.ts`
+3. Add a new author in `@/src/themes/authors.ts` exported map
+4. Add a new theme in `@/src/themes/index.js` exported map
 
 ### Contributors
 
 [@DieMoe233](https://github.com/DieMoe233)
-[@Slightlyxz](https://github.com/Slightlyxz)
 [@j0sh77](https://github.com/j0sh77)
+[@Slightlyxz](https://github.com/Slightlyxz)
 
 ## Credits
 
-- jsDelivr: <https://www.jsdelivr.com>
 - ffxiv-overlay-api: <https://github.com/dsrkafuu/ffxiv-overlay-api>
 - Job Icons: <https://github.com/xivapi/classjob-icons/tree/master/svg>
+- jsDelivr: <https://www.jsdelivr.com>
 - MiSans: <https://home.miui.com>
 
 ## LICENSE
