@@ -34,9 +34,9 @@ Local server:
 ```bash
 git clone https://github.com/dsrkafuu/skyline-overlay.git
 cd skyline-overlay
-npm install
-npm run build
-npm start
+pnpm install
+pnpm run build
+pnpm start
 ```
 
 You can use [CSSNANO](https://cssnano.co/playground/) to minify your CSS into single line.
@@ -60,8 +60,8 @@ Clone this repo, install packages and run the development server:
 ```bash
 git clone https://github.com/dsrkafuu/skyline-overlay.git
 cd skyline-overlay
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
 ### Add Translations
