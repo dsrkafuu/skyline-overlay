@@ -27,6 +27,8 @@ function Settings() {
   const t = useTranslation();
   const { settings, translation } = useStore();
 
+  // render functions can safely access store
+  // since they are wrapped in `Observer` in `SettingsPanel`
   const panels = useMemo<SettingsPanelProps[]>(
     () => [
       { type: 'about', title: t('About') },
