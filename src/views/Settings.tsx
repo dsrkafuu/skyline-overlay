@@ -272,21 +272,20 @@ function Settings() {
           {
             title: t('Font Family'),
             render: () => (
-              <SSelect
-                value={settings.font}
-                onChange={(val) => settings.updateFont(val)}
-                map={MAP_FONT_FAMILY}
-              />
-            ),
-          },
-          {
-            title: t('Font Weight'),
-            render: () => (
-              <SSelect
-                value={settings.fontWeight}
-                onChange={(val) => settings.updateFontWeight(val)}
-                map={MAP_FONT_WEIGHT}
-              />
+              <>
+                <SSelect
+                  className='settings-font-family'
+                  value={settings.fonts.family}
+                  onChange={(family) => settings.updateFonts({ family })}
+                  map={MAP_FONT_FAMILY}
+                />
+                <SSelect
+                  className='settings-font-weight'
+                  value={settings.fonts.weight}
+                  onChange={(weight) => settings.updateFonts({ weight })}
+                  map={MAP_FONT_WEIGHT}
+                />
+              </>
             ),
           },
           {

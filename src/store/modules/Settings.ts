@@ -66,6 +66,15 @@ interface PartialTickerAlignSettings {
   bottom?: TickerAlignMapKey;
 }
 
+interface FontSettings {
+  family: FontFamilyMapKey;
+  weight: FontWeightMapKey;
+}
+interface PartialFontSettings {
+  family?: FontFamilyMapKey;
+  weight?: FontWeightMapKey;
+}
+
 class Settings {
   rootStore: Store = null as never;
 
@@ -98,8 +107,7 @@ class Settings {
   lang: LangMapKey = 'en';
   zoom = 1;
   opacity = 1;
-  font: FontFamilyMapKey = 'default';
-  fontWeight: FontWeightMapKey = 'regular';
+  fonts: FontSettings = { family: 'default', weight: 'regular' };
   customCSS = '#root {}';
 
   /** @mobx computed */
@@ -118,23 +126,25 @@ class Settings {
     }
 
     // apply initial theme
-    document.body.setAttribute('data-theme', this.theme);
-    // apply initial font
-    document.documentElement.setAttribute('data-font', this.font);
+    document.body.setAttribute('data-theme', this.theme || 'default');
+    // apply initial fonts
+    const family = this.fonts?.family || 'default';
+    document.documentElement.setAttribute('data-font', family);
     // apply initial font weight
-    const weight = MAP_FONT_WEIGHT[this.fontWeight].data.weight;
+    const weight = MAP_FONT_WEIGHT[this.fonts?.weight || 'regular'].text;
     document.documentElement.style.fontWeight = weight;
     // apply initial lang
-    document.documentElement.setAttribute('lang', this.lang);
+    document.documentElement.setAttribute('lang', this.lang || 'en');
     // apply initial zoom
-    document.documentElement.style.fontSize = `${
-      Math.floor(100 * this.zoom) || 100
-    }px`;
+    const zoomFontSize = `${Math.floor(100 * (this.zoom || 1)) || 100}px`;
+    document.documentElement.style.fontSize = zoomFontSize;
     // apply initial custom style
-    const customStyles = document.createElement('style');
-    customStyles.setAttribute('id', 'skyline-custom-css');
-    customStyles.innerHTML = xssEscape(this.customCSS);
-    document.head.appendChild(customStyles);
+    if (this.customCSS) {
+      const customStyles = document.createElement('style');
+      customStyles.setAttribute('id', 'skyline-custom-css');
+      customStyles.innerHTML = xssEscape(this.customCSS);
+      document.head.appendChild(customStyles);
+    }
 
     // init mobx
     makeAutoObservable(this, { rootStore: false }, { autoBind: true });
@@ -240,16 +250,17 @@ class Settings {
     }px`;
     saveSettings({ zoom: payload });
   }
-  updateFont(payload: FontFamilyMapKey) {
-    this.font = payload;
-    document.documentElement.setAttribute('data-font', payload);
-    saveSettings({ font: payload });
-  }
-  updateFontWeight(payload: FontWeightMapKey) {
-    this.fontWeight = payload;
-    const weight = MAP_FONT_WEIGHT[payload].data.weight;
-    document.documentElement.style.fontWeight = weight;
-    saveSettings({ fontWeight: payload });
+  updateFonts(payload: PartialFontSettings) {
+    const { family, weight } = payload;
+    if (family) {
+      document.documentElement.setAttribute('data-font', family);
+    }
+    if (weight) {
+      const fontWeight = MAP_FONT_WEIGHT[weight].text;
+      document.documentElement.style.fontWeight = fontWeight;
+    }
+    this.fonts = { ...this.fonts, ...payload };
+    saveSettings({ fonts: this.fonts });
   }
   updateCustomCSS(payload: string) {
     this.customCSS = payload;
