@@ -28,3 +28,14 @@ export function getLS(key: string): unknown {
     return null;
   }
 }
+
+/**
+ * remove local storage
+ */
+export function removeLS(key: string) {
+  try {
+    localStorage.removeItem(STORAGE_PREFIX + key.toUpperCase());
+  } catch (e) {
+    logError(e);
+  }
+}

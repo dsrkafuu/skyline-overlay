@@ -107,3 +107,45 @@
     min-width: 0;
   }
 }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.settings-transfer {
+  display: flex;
+
+  &-btn {
+    width: 0.22rem;
+    min-width: 0;
+    cursor: pointer;
+    flex: 0 0 auto;
+    height: $size-form;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--color-form-fg);
+    background-color: var(--color-form-bg);
+    text-shadow: var(--shadow-form);
+
+    &:not(:last-child) {
+      margin-right: $padding-md;
+    }
+
+    &:hover {
+      color: var(--color-form-fg-active);
+      background-color: var(--color-form-bg-active);
+      text-shadow: var(--shadow-form-active);
+    }
+
+    &-rotate .g-icon {
+      animation: spin 1s linear infinite;
+    }
+  }
+}

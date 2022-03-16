@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite';
 import clsx from 'clsx';
 import SettingsAbout from './SettingsAbout';
 import SettingsPanel, { SettingsPanelProps } from './SettingsPanel';
+import SettingsTransfer from './SettingsTransfer';
 import { SInputNumber, SSelect, SInput, SSwitch } from '../components';
 import {
   MAP_LANG,
@@ -297,6 +298,11 @@ function Settings() {
                 onChange={(val) => settings.updateCustomCSS(val)}
               />
             ),
+          },
+          {
+            title: t('Transfer Settings'),
+            render: () => <SettingsTransfer />,
+            observe: false,
           },
         ],
       },

@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import { Store } from '..';
-import { setLS, getLS } from '../../utils/storage';
+import { setLS, getLS, removeLS } from '../../utils/storage';
 import { xssEscape } from '../../utils/lodash';
 import {
   LangMapKey,
@@ -15,6 +15,7 @@ import {
   FontFamilyMapKey,
   FontWeightMapKey,
   MAP_FONT_WEIGHT,
+  EXPORT_PREFIX,
 } from '../../utils/constants';
 
 interface PartialSettings {
@@ -269,6 +270,43 @@ class Settings {
       customStyles.innerHTML = xssEscape(payload);
     }
     saveSettings({ customCSS: payload });
+  }
+
+  exportSettings() {
+    const settings = getLS('settings') as PartialSettings;
+    if (settings && typeof settings === 'object') {
+      try {
+        return EXPORT_PREFIX + window.btoa(JSON.stringify(settings));
+      } catch {
+        return '';
+      }
+    }
+    return '';
+  }
+  importSettings(payload: string) {
+    if (!payload.startsWith(EXPORT_PREFIX)) {
+      return false;
+    }
+    payload = payload.slice(EXPORT_PREFIX.length);
+    const validKeys = Object.keys(this);
+    try {
+      const settings = JSON.parse(window.atob(payload));
+      if (!settings || typeof settings !== 'object') {
+        return false;
+      }
+      for (const key of Object.keys(settings)) {
+        if (!validKeys.includes(key)) {
+          return false;
+        }
+      }
+      setLS('settings', settings);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+  clearSettings() {
+    removeLS('settings');
   }
 }
 
