@@ -1,11 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useStore, useLongPress } from '../hooks';
-import {
-  IDownload,
-  ICheckmark,
-  IUpload,
-  IRefreshCircle,
-} from '../assets/icons';
+import { IDownload, ICheckmark, IUpload, IRefresh } from '../assets/icons';
 import clsx from 'clsx';
 
 function SettingsTransfer() {
@@ -99,7 +94,7 @@ function SettingsTransfer() {
         onTouchEnd={onTouchEndRotate}
         onMouseLeave={onMouseLeaveRotate}
       >
-        <IRefreshCircle />
+        <IRefresh />
       </div>
     </div>
   );

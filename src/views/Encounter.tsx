@@ -7,7 +7,7 @@ import {
   IChevronUpCircle,
   IChevronDownCircle,
   ISettings,
-  IRefreshCircle,
+  IRefresh,
 } from '../assets/icons';
 import { logInfo } from '../utils/loggers';
 import { useStore } from '../hooks';
@@ -40,7 +40,7 @@ function Encounter() {
   // end encounter related
   const [durationHovered, setDurationHovered] = useState(false);
   const DurationInner = durationHovered ? (
-    <IRefreshCircle />
+    <IRefresh />
   ) : (
     <span>{duration}</span>
   );
