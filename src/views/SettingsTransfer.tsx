@@ -29,7 +29,7 @@ function SettingsTransfer() {
     }
   }, [exportStatus, settings]);
 
-  const handleImport = useCallback(async () => {
+  const handleImport = useCallback(() => {
     const data = (prompt('Please enter settings data') || '').trim();
     if (!data) {
       return;
@@ -37,6 +37,8 @@ function SettingsTransfer() {
     const res = settings.importSettings(data);
     if (res) {
       location.reload();
+    } else {
+      alert('Invalid settings data');
     }
   }, [settings]);
 

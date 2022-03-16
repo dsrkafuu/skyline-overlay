@@ -38,5 +38,7 @@
   "Custom CSS": "カスタム CSS",
   "Transfer Settings": "設定を転送",
 
-  "Please enter the new value": "新しい値を入力してください"
+  "Please enter the new value": "新しい値を入力してください",
+  "Please enter settings data": "設定データを入力してください",
+  "Invalid settings data": "設定データが不正です"
 }

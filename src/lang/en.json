@@ -42,5 +42,7 @@
   "Custom CSS": "Custom CSS",
   "Transfer Settings": "Transfer Settings",
 
-  "Please enter the new value": "Please enter the new value"
+  "Please enter the new value": "Please enter the new value",
+  "Please enter settings data": "Please enter settings data",
+  "Invalid settings data": "Invalid settings data"
 }

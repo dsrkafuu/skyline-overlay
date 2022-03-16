@@ -1,6 +1,6 @@
 // local storage key
 export const STORAGE_PREFIX = 'SKYLINE_V3_';
-export const EXPORT_PREFIX = 'SKYLINE_V3_DATA_';
+export const EXPORT_PREFIX = 'SKYLINE_V3_SETTINGS_';
 
 // value maps for selection component
 
