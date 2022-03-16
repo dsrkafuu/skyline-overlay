@@ -43,6 +43,7 @@
   "Transfer Settings": "转移设置",
 
   "Please enter the new value": "请输入新值",
+  "Copy to clipboard using Ctrl+C": "Ctrl+C 复制到剪贴板",
   "Please enter settings data": "请输入设置数据",
   "Invalid settings data": "无效的设置数据"
 }

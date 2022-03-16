@@ -39,6 +39,7 @@
   "Transfer Settings": "設定を転送",
 
   "Please enter the new value": "新しい値を入力してください",
+  "Copy to clipboard using Ctrl+C": "Ctrl+C を押してクリップボードにコピー",
   "Please enter settings data": "設定データを入力してください",
   "Invalid settings data": "設定データが不正です"
 }

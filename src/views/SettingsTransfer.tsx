@@ -1,33 +1,17 @@
 import { useCallback, useState } from 'react';
-import { useStore, useLongPress } from '../hooks';
-import { IDownload, ICheckmark, IUpload, IRefresh } from '../assets/icons';
 import clsx from 'clsx';
+import { useStore, useLongPress } from '../hooks';
+import { IDownload, IUpload, IRefresh } from '../assets/icons';
 
 function SettingsTransfer() {
   const { settings } = useStore();
 
-  const [exportStatus, setExportStatus] = useState(false);
-  const handleExport = useCallback(async () => {
-    // do not copy if just copied
-    if (exportStatus) {
-      return;
-    }
+  const handleExport = useCallback(() => {
     const data = settings.exportSettings();
-    let status = true;
     if (data) {
-      try {
-        await navigator.clipboard.writeText(data);
-        status = true;
-      } catch {
-        status = false;
-      }
+      prompt('Copy to clipboard using Ctrl+C', data);
     }
-    // set export status then reset after 2s
-    if (status) {
-      setExportStatus(true);
-      setTimeout(() => setExportStatus(false), 2000);
-    }
-  }, [exportStatus, settings]);
+  }, [settings]);
 
   const handleImport = useCallback(() => {
     const data = (prompt('Please enter settings data') || '').trim();
@@ -81,7 +65,7 @@ function SettingsTransfer() {
   return (
     <div className='settings-transfer'>
       <div className='settings-transfer-btn' onClick={handleExport}>
-        {exportStatus ? <ICheckmark /> : <IDownload />}
+        <IDownload />
       </div>
       <div className='settings-transfer-btn' onClick={handleImport}>
         <IUpload />

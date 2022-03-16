@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "name": "skyline-overlay",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "description": "A modern customizable horizon FFXIV miniparse overlay.",
   "license": "Apache-2.0",
   "author": "DSRKafuU <dsrkafuu@outlook.com> (https://dsrkafuu.net)",
