@@ -7,7 +7,7 @@ import {
   IChevronUpCircle,
   IChevronDownCircle,
   ISettings,
-  IRefresh,
+  IGitBranch,
 } from '../assets/icons';
 import { logInfo } from '../utils/loggers';
 import { useStore } from '../hooks';
@@ -51,15 +51,6 @@ function Encounter() {
     toggleShowCombatants();
   }, [toggleShowCombatants]);
 
-  // end encounter related
-  const [durationHovered, setDurationHovered] = useState(false);
-  const onDurationEnter = useCallback(() => {
-    setDurationHovered(true);
-  }, []);
-  const onDurationLeave = useCallback(() => {
-    setDurationHovered(false);
-  }, []);
-
   // overflow zonename related
   const [fullZoneName, setFullZoneName] = useState(false);
   const zoneWrapperRef = useRef<HTMLDivElement>(null);
@@ -93,11 +84,11 @@ function Encounter() {
         className={clsx('encounter-duration', {
           'encounter-duration--active': active,
         })}
-        onMouseOver={onDurationEnter}
-        onMouseOut={onDurationLeave}
-        onClick={handleEndEncounter}
       >
-        {durationHovered ? <IRefresh /> : <span>{duration}</span>}
+        <span>{duration}</span>
+      </div>
+      <div className='encounter-btn' onClick={handleEndEncounter}>
+        <IGitBranch />
       </div>
       <div
         className={clsx('encounter-content', {
@@ -117,13 +108,11 @@ function Encounter() {
           <span className='g-counter'>{showDHPS.toUpperCase()}</span>
         </div>
       </div>
-      <div className='encounter-buttons'>
-        <div className='btn' onClick={handleToggleShowCombatants}>
-          {showCombatants ? <IChevronUpCircle /> : <IChevronDownCircle />}
-        </div>
-        <div className='btn' onClick={() => settings.toggleSettings()}>
-          <ISettings />
-        </div>
+      <div className='encounter-btn' onClick={handleToggleShowCombatants}>
+        {showCombatants ? <IChevronUpCircle /> : <IChevronDownCircle />}
+      </div>
+      <div className='encounter-btn' onClick={() => settings.toggleSettings()}>
+        <ISettings />
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ export { ReactComponent as IChevronUp } from './i-chevron-up.svg';
 export { ReactComponent as IClose } from './i-close.svg';
 export { ReactComponent as ICreate } from './i-create.svg';
 export { ReactComponent as IDownload } from './i-download.svg';
+export { ReactComponent as IGitBranch } from './i-git-branch.svg';
 export { ReactComponent as IRefresh } from './i-refresh.svg';
 export { ReactComponent as IRemove } from './i-remove.svg';
 export { ReactComponent as ISettings } from './i-settings.svg';
