@@ -123,6 +123,7 @@ body[data-theme='jround'] {
     & > div {
       border-radius: var(--border-radius);
       margin: 0 0.04rem;
+      overflow: hidden;
     }
   }
 

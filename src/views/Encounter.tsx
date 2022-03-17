@@ -7,9 +7,7 @@ import {
   IChevronUpCircle,
   IChevronDownCircle,
   ISettings,
-  IGitBranch,
 } from '../assets/icons';
-import { logInfo } from '../utils/loggers';
 import { useStore } from '../hooks';
 import { fmtNumber } from '../utils/formatters';
 
@@ -41,7 +39,6 @@ function Encounter() {
    */
   const handleEndEncounter = useCallback(async () => {
     await overlay.endEncounter();
-    logInfo('encounter ended');
   }, [overlay]);
 
   /**
@@ -84,11 +81,9 @@ function Encounter() {
         className={clsx('encounter-duration', {
           'encounter-duration--active': active,
         })}
+        onClick={handleEndEncounter}
       >
         <span>{duration}</span>
-      </div>
-      <div className='encounter-btn' onClick={handleEndEncounter}>
-        <IGitBranch />
       </div>
       <div
         className={clsx('encounter-content', {
@@ -108,11 +103,16 @@ function Encounter() {
           <span className='g-counter'>{showDHPS.toUpperCase()}</span>
         </div>
       </div>
-      <div className='encounter-btn' onClick={handleToggleShowCombatants}>
-        {showCombatants ? <IChevronUpCircle /> : <IChevronDownCircle />}
-      </div>
-      <div className='encounter-btn' onClick={() => settings.toggleSettings()}>
-        <ISettings />
+      <div className='encounter-btns'>
+        <div className='encounter-btn' onClick={handleToggleShowCombatants}>
+          {showCombatants ? <IChevronUpCircle /> : <IChevronDownCircle />}
+        </div>
+        <div
+          className='encounter-btn'
+          onClick={() => settings.toggleSettings()}
+        >
+          <ISettings />
+        </div>
       </div>
     </div>
   );

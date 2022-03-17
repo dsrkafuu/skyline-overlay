@@ -7,6 +7,7 @@
   backdrop-filter: $filter;
 
   &-duration {
+    cursor: pointer;
     flex: 0 0 $size-form * 2 + 0.01rem;
     height: $size-form;
     width: $size-form * 2 + 0.01rem;
@@ -25,6 +26,12 @@
       color: var(--color-cover-fg-active);
       background-color: var(--color-cover-bg-active);
       text-shadow: var(--shadow-encounter-active);
+    }
+
+    &:hover {
+      color: var(--color-form-fg-active);
+      background-color: var(--color-form-bg-active);
+      text-shadow: none;
     }
   }
 
@@ -72,6 +79,10 @@
         display: none;
       }
     }
+  }
+
+  &-btns {
+    display: flex;
   }
 
   &-btn {

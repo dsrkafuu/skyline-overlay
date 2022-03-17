@@ -61,7 +61,7 @@ body[data-theme='ikegami'] {
   .settings-tabitem {
     flex: 0 0 auto;
 
-    &.active {
+    &--active {
       position: relative;
 
       &::after {
@@ -78,6 +78,11 @@ body[data-theme='ikegami'] {
 
   .s-input {
     border: 0.01rem solid #ffffff;
+  }
+
+  .s-input-inner {
+    height: 0.2rem;
+    line-height: 0.2rem;
   }
 
   .s-input-number,

@@ -27,8 +27,10 @@
     width: 3rem;
     line-height: 0.22rem;
     text-align: center;
-    background-color: var(--color-settings-bg);
     cursor: pointer;
+    color: var(--color-settings-tab-fg);
+    background-color: var(--color-settings-tab-bg);
+    text-shadow: var(--shadow-settings-tab);
 
     &:hover {
       text-shadow: var(--shadow-settings-tab-active);
