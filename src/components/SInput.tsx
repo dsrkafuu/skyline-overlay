@@ -1,4 +1,5 @@
 import './SInput.scss';
+import { runInAction } from 'mobx';
 import { useCallback, useState } from 'react';
 import clsx from 'clsx';
 import { useTranslation } from '../hooks';
@@ -22,11 +23,13 @@ function SInput({ value, onChange, className }: SInputProps) {
   );
 
   const handleClick = useCallback(() => {
-    const ret = prompt(t('Please enter the new value'), value) || '';
-    const str = `${ret}`.trim();
-    if (ret && str) {
-      onChange(str);
-    }
+    runInAction(() => {
+      const ret = prompt(t('Please enter the new value'), value) || '';
+      const str = `${ret}`.trim();
+      if (ret && str) {
+        onChange(str);
+      }
+    });
   }, [onChange, t, value]);
 
   return (
