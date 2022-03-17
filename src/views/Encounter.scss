@@ -15,7 +15,6 @@
     color: var(--color-cover-fg);
     background-color: var(--color-cover-bg);
     text-shadow: var(--shadow-encounter);
-    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,12 +25,6 @@
       color: var(--color-cover-fg-active);
       background-color: var(--color-cover-bg-active);
       text-shadow: var(--shadow-encounter-active);
-    }
-
-    &:hover {
-      color: var(--color-form-fg-active);
-      background-color: var(--color-form-bg-active);
-      text-shadow: none;
     }
   }
 
@@ -55,12 +48,6 @@
       min-width: 0;
       overflow: hidden;
       text-overflow: ellipsis;
-
-      &:hover {
-        color: var(--color-form-fg-active);
-        background-color: var(--color-form-bg-active);
-        text-shadow: none;
-      }
     }
 
     &-numbers {
