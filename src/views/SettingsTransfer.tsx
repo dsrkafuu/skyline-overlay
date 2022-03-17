@@ -1,20 +1,21 @@
 import { useCallback, useState } from 'react';
 import clsx from 'clsx';
-import { useStore, useLongPress } from '../hooks';
+import { useStore, useLongPress, useTranslation } from '../hooks';
 import { IDownload, IUpload, IRefresh } from '../assets/icons';
 
 function SettingsTransfer() {
   const { settings } = useStore();
+  const t = useTranslation();
 
   const handleExport = useCallback(() => {
     const data = settings.exportSettings();
     if (data) {
-      prompt('Copy to clipboard using Ctrl+C', data);
+      prompt(t('Copy to clipboard using Ctrl+C'), data);
     }
-  }, [settings]);
+  }, [settings, t]);
 
   const handleImport = useCallback(() => {
-    const data = (prompt('Please enter settings data') || '').trim();
+    const data = (prompt(t('Please enter settings data')) || '').trim();
     if (!data) {
       return;
     }
@@ -22,9 +23,9 @@ function SettingsTransfer() {
     if (res) {
       location.reload();
     } else {
-      alert('Invalid settings data');
+      alert(t('Invalid settings data'));
     }
-  }, [settings]);
+  }, [settings, t]);
 
   const handleClear = useCallback(() => {
     settings.clearSettings();
