@@ -53,11 +53,6 @@ function Encounter() {
 
   // end encounter related
   const [durationHovered, setDurationHovered] = useState(false);
-  const DurationInner = durationHovered ? (
-    <IRefresh />
-  ) : (
-    <span>{duration}</span>
-  );
   const onDurationEnter = useCallback(() => {
     setDurationHovered(true);
   }, []);
@@ -102,7 +97,7 @@ function Encounter() {
         onMouseOut={onDurationLeave}
         onClick={handleEndEncounter}
       >
-        {DurationInner}
+        {durationHovered ? <IRefresh /> : <span>{duration}</span>}
       </div>
       <div
         className={clsx('encounter-content', {
