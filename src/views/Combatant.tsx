@@ -29,7 +29,7 @@ function Combatant({ player }: CombatantProps) {
   if (isLimitBreakData(player)) {
     classes.push('job-unknown');
   } else {
-    classes.push({ 'job-self': hlYou && name === youName }); // highlight
+    classes.push({ 'job-self': hlYou && (name === youName || name === 'YOU') }); // highlight
     classes.push(`job-${player.job || 'unknown'}`); // job
     classes.push(`jobtype-${player.jobType || 'unknown'}`); // jobtype
   }
