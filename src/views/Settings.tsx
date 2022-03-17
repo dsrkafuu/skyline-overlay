@@ -161,12 +161,14 @@ function Settings() {
                   value={settings.ticker.top}
                   onChange={(val) => settings.updateTicker({ top: val })}
                   map={MAP_TICKER}
+                  position='top'
                 />
                 <SSelect
                   className='settings-ticker-display'
                   value={settings.ticker.bottom}
                   onChange={(val) => settings.updateTicker({ bottom: val })}
                   map={MAP_TICKER}
+                  position='top'
                 />
               </>
             ),
@@ -181,6 +183,7 @@ function Settings() {
                   onChange={(val) => settings.updateTickerAlign({ top: val })}
                   disabled={settings.ticker.top === 'none'}
                   map={MAP_TICKER_ALIGN}
+                  position='top'
                 />
                 <SSelect
                   className='settings-ticker-align'
@@ -190,6 +193,7 @@ function Settings() {
                   }
                   disabled={settings.ticker.bottom === 'none'}
                   map={MAP_TICKER_ALIGN}
+                  position='top'
                 />
               </>
             ),
@@ -201,6 +205,7 @@ function Settings() {
                 value={settings.bottomDisp}
                 onChange={(val) => settings.updateBottomDisp(val)}
                 map={MAP_BOTTOM_DISP}
+                position='top'
               />
             ),
           },
@@ -211,6 +216,7 @@ function Settings() {
                 value={settings.shortName}
                 onChange={(val) => settings.updateShortName(val)}
                 map={MAP_SHORT_NAME}
+                position='top'
               />
             ),
           },
@@ -279,12 +285,14 @@ function Settings() {
                   value={settings.fonts.family}
                   onChange={(family) => settings.updateFonts({ family })}
                   map={MAP_FONT_FAMILY}
+                  position='top'
                 />
                 <SSelect
                   className='settings-font-weight'
                   value={settings.fonts.weight}
                   onChange={(weight) => settings.updateFonts({ weight })}
                   map={MAP_FONT_WEIGHT}
+                  position='top'
                 />
               </>
             ),
