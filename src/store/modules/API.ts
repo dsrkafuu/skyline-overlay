@@ -2,6 +2,7 @@ import OverlayAPI, { ExtendData } from 'ffxiv-overlay-api';
 import { makeAutoObservable } from 'mobx';
 import { Store } from '..';
 import { cloneDeep } from '../../utils/lodash';
+import { getLS, setLS } from '../../utils/storage';
 
 const cleanData: ExtendData = {
   isActive: false,
@@ -46,6 +47,12 @@ class API {
    */
   constructor(rootStore: Store) {
     this.rootStore = rootStore;
+
+    // load historys from storage
+    const historys = getLS('historys');
+    if (historys && Array.isArray(historys) && historys.length <= 5) {
+      this.historys = historys;
+    }
 
     // add overlay callback
     this.overlay.addListener('CombatData', (rawData) => {
@@ -93,6 +100,8 @@ class API {
     if (lastData && !lastData.isActive && payload.isActive) {
       this.historys.length >= 5 && this.historys.pop();
       this.historys.unshift({ time: Date.now(), ...lastData });
+      // save to storage
+      setLS('historys', this.historys);
     }
     // record data for future use
     lastData = cloneDeep(payload);
