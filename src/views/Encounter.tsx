@@ -85,7 +85,7 @@ function Encounter() {
           <span ref={zoneInnerRef}>{zoneName}</span>
         </div>
         <div className='encounter-content-numbers' onClick={handleSwitchDHPS}>
-          <span className='g-number'>{fmtNumber(shortNumber, totalDPS)}</span>
+          <span className='g-number'>{fmtNumber(totalDPS, shortNumber)}</span>
           <span className='g-counter'>{showDHPS.toUpperCase()}</span>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../hooks';
 import clsx from 'clsx';
-import { fmtDuration, fmtZoneName } from '../utils/formatters';
+import { fmtDuration, fmtNumber, fmtZoneName } from '../utils/formatters';
 import { useEffect, useState } from 'react';
 
 function parseTime(time: number) {
@@ -22,6 +22,7 @@ interface SettingsHistoryRowProps {
   zoneName: string;
   time?: number;
   onClick?: () => void;
+  shortNumber?: boolean;
 }
 
 function SettingsHistoryRow({
@@ -31,6 +32,7 @@ function SettingsHistoryRow({
   zoneName,
   time,
   onClick,
+  shortNumber,
 }: SettingsHistoryRowProps) {
   const [now, setNow] = useState(Date.now());
   useEffect(() => {
@@ -55,7 +57,7 @@ function SettingsHistoryRow({
         {fmtZoneName(zoneName)}
       </div>
       <div className='settings-history-item settings-history-dps'>
-        <span className='g-number'>{dps}</span>
+        <span className='g-number'>{fmtNumber(dps, shortNumber)}</span>
         <span className='g-counter'>DPS</span>
       </div>
     </div>
@@ -64,9 +66,11 @@ function SettingsHistoryRow({
 
 function SettingsHistory() {
   const { api } = useStore();
-  // do not use getters here,
-  // since getter may returns history data when selected
+  // do not use getters here, since getter may returns history data when selected
   const { duration, dps, zoneName } = api.data.encounter;
+
+  const { settings } = useStore();
+  const { shortNumber } = settings;
 
   return (
     <div className='settings-history'>
@@ -77,6 +81,7 @@ function SettingsHistory() {
         dps={dps}
         zoneName={zoneName}
         onClick={() => api.showHistory(-1)}
+        shortNumber={shortNumber}
       />
       {api.historys.map((item, idx) => {
         const { duration, dps, zoneName } = item.encounter;
@@ -89,6 +94,7 @@ function SettingsHistory() {
             dps={dps}
             zoneName={zoneName}
             onClick={() => api.showHistory(idx)}
+            shortNumber={shortNumber}
           />
         );
       })}

@@ -58,7 +58,7 @@ function CombatantContent({
         <div className='combatant-content-data'>
           <span className='g-number'>
             {(typeof leftDisp === 'number' &&
-              fmtNumber(shortNumber, leftDisp)) ||
+              fmtNumber(leftDisp, shortNumber)) ||
               leftDisp}
           </span>
           <span className='g-counter'>{leftDispUnit}</span>
@@ -70,7 +70,7 @@ function CombatantContent({
       <div className='combatant-content-data'>
         <span className='g-number'>
           {(typeof rightDisp === 'number' &&
-            fmtNumber(shortNumber, rightDisp)) ||
+            fmtNumber(rightDisp, shortNumber)) ||
             rightDisp}
         </span>
         <span className='g-counter'>{rightDispUnit}</span>

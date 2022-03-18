@@ -4,13 +4,13 @@ import { version } from '../assets/meta';
 /**
  * format number
  */
-export function fmtNumber(shortNumber: boolean, number: number, decimal = 1) {
-  if (!shortNumber) {
-    return `${number}`;
-  }
-
+export function fmtNumber(number: number, shortNumber = false, decimal = 1) {
   if (typeof number !== 'number') {
     number = Number(number);
+  }
+
+  if (!shortNumber) {
+    return number ? `${number}` : '0';
   }
 
   let sign = '';

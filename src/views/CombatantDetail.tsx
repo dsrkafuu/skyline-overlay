@@ -50,12 +50,12 @@ function CombatantDetail({ player, lockDetail }: CombatantDetailProps) {
     keyNotDisplayed('dps') &&
       items[items.length - 1].push({
         key: 'DPS',
-        value: fmtNumber(shortNumber, player.dps),
+        value: fmtNumber(player.dps, shortNumber),
       });
     keyNotDisplayed('hps') &&
       items[items.length - 1].push({
         key: 'HPS',
-        value: fmtNumber(shortNumber, player.hps),
+        value: fmtNumber(player.hps, shortNumber),
       });
     keyNotDisplayed('overHealPct') &&
       items[items.length - 1].push({
@@ -99,13 +99,13 @@ function CombatantDetail({ player, lockDetail }: CombatantDetailProps) {
       player.maxHit &&
       items[items.length - 1].push({
         key: player.maxHit,
-        value: fmtNumber(shortNumber, player.maxHitDamage),
+        value: fmtNumber(player.maxHitDamage, shortNumber),
       });
     bottomDisp !== 'maxhit' &&
       player.maxHeal &&
       items[items.length - 1].push({
         key: player.maxHeal,
-        value: fmtNumber(shortNumber, player.maxHealDamage),
+        value: fmtNumber(player.maxHealDamage, shortNumber),
       });
 
     // remove unused spliter
