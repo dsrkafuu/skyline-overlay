@@ -9,7 +9,7 @@ import {
   ISettings,
 } from '../assets/icons';
 import { useStore } from '../hooks';
-import { fmtNumber } from '../utils/formatters';
+import { fmtDuration, fmtNumber, fmtZoneName } from '../utils/formatters';
 
 function Encounter() {
   const { api, settings } = useStore();
@@ -17,22 +17,8 @@ function Encounter() {
   const { showCombatants, shortNumber, toggleShowCombatants } = settings;
 
   // encounter data
-  let duration = encounter.duration || '00:00';
-  const time = duration.split(':');
-  if (time.length === 3) {
-    // add hours to minutes
-    const hours = Number.parseInt(time[0], 10);
-    let minutes = Number.parseInt(time[1], 10);
-    minutes = minutes + hours * 60;
-    if (minutes > 99) {
-      duration = '99:59';
-    } else {
-      duration = `${minutes}:${time[2]}`;
-    }
-  } else if (time.length > 3) {
-    duration = '99:59';
-  }
-  const zoneName = encounter.zoneName || `Skyline Overlay ${version}`;
+  const duration = fmtDuration(encounter.duration);
+  const zoneName = fmtZoneName(encounter.zoneName);
 
   /**
    * reset all combat data

@@ -10,8 +10,8 @@
 
   &-name,
   &-bottom {
-    line-height: 0.22rem;
-    height: 0.22rem;
+    line-height: $size-form;
+    height: $size-form;
     font-size: $font-size-sm;
     text-align: center;
     white-space: nowrap;
@@ -25,12 +25,12 @@
     cursor: pointer;
 
     &--blured {
-      filter: blur(0.04rem);
+      filter: $filter;
     }
   }
 
   &-bottom {
-    &--maxhit {
+    &-maxhit {
       & > span:first-child {
         flex: 0 1 auto;
         overflow: hidden;
@@ -41,7 +41,7 @@
       }
     }
 
-    &--cdpcts {
+    &-cdpcts {
       text-align: center;
 
       & > span {

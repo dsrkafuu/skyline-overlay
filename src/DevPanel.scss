@@ -1,3 +1,5 @@
+$devp-width: 3rem;
+
 .devp {
   position: relative;
   width: 100%;
@@ -7,9 +9,9 @@
   background-repeat: no-repeat;
 
   &-settings {
-    font-size: 0.12rem;
+    font-size: $font-size-sm;
     position: absolute;
-    width: 3rem;
+    width: $devp-width;
     margin: 0 auto;
     bottom: 0;
     left: 0;
@@ -24,8 +26,8 @@
   }
 
   &-toggle {
-    width: 3rem;
-    line-height: 0.22rem;
+    width: $devp-width;
+    line-height: $size-form;
     text-align: center;
     cursor: pointer;
     color: var(--color-settings-tab-fg);
@@ -40,8 +42,8 @@
   }
 
   &-content {
-    width: 3rem;
-    padding: 0.06rem 0.08rem;
+    width: $devp-width;
+    padding: $padding-lg;
 
     &-row {
       display: flex;
@@ -54,7 +56,7 @@
     }
 
     &-ctrl {
-      width: 1.2rem;
+      width: $size-form-minwidth;
     }
   }
 }

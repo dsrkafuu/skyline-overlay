@@ -9,8 +9,8 @@
   color: var(--color-fg);
   text-shadow: var(--shadow);
   text-decoration: underline;
-  padding-left: 0.03rem;
-  padding-right: 0.03rem;
+  padding-left: $padding-sm;
+  padding-right: $padding-sm;
 
   &:hover {
     color: var(--color-form-fg-active);

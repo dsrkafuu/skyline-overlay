@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import SettingsAbout from './SettingsAbout';
 import SettingsPanel, { SettingsPanelProps } from './SettingsPanel';
 import SettingsTransfer from './SettingsTransfer';
+import SettingsHistory from './SettingsHistory';
 import { SInputNumber, SSelect, SInput, SSwitch } from '../components';
 import {
   MAP_LANG,
@@ -22,7 +23,7 @@ import {
 import { useStore, useTranslation } from '../hooks';
 import { IChevronDown, IChevronUp } from '../assets/icons';
 
-export type SettingsType = 'about' | 'general' | 'data' | 'display';
+export type SettingsType = 'history' | 'about' | 'general' | 'data' | 'display';
 
 function Settings() {
   const t = useTranslation();
@@ -32,6 +33,7 @@ function Settings() {
   // since they are wrapped in `Observer` in `SettingsPanel`
   const panels = useMemo<SettingsPanelProps[]>(
     () => [
+      { type: 'history', title: t('History') },
       { type: 'about', title: t('About') },
       {
         type: 'data',
@@ -318,7 +320,7 @@ function Settings() {
     [settings, t, translation]
   );
 
-  const [activeType, setActiveType] = useState<SettingsType>('about');
+  const [activeType, setActiveType] = useState<SettingsType>('history');
   const activePanelProps = useMemo<SettingsPanelProps>(
     () => panels.find((p) => p.type === activeType) || panels[0],
     [activeType, panels]
@@ -342,6 +344,8 @@ function Settings() {
       <div className='settings-content'>
         {activeType === 'about' ? (
           <SettingsAbout />
+        ) : activeType === 'history' ? (
+          <SettingsHistory />
         ) : (
           <SettingsPanel {...activePanelProps} />
         )}
