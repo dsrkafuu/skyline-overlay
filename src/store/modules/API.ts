@@ -65,10 +65,16 @@ class API {
   /** @mobx actions */
 
   /**
-   * show a history data
+   * show a history data (-1 to disable)
    */
-  showHistory(data: HistoryData | null) {
-    this.history = data;
+  showHistory(index: number) {
+    if (index < 0 || index >= 5 || !this.historys[index]) {
+      this.history = null;
+      return;
+    }
+    // direct set reference instead of deep clone,
+    // for Object.is() comparsion
+    this.history = this.historys[index];
   }
   /**
    * update new combat data

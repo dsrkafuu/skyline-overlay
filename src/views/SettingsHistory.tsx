@@ -69,7 +69,7 @@ function SettingsHistory() {
         current={!api.history}
         duration={api.data.encounter.duration}
         zone={api.data.encounter.zoneName}
-        onClick={() => api.showHistory(null)}
+        onClick={() => api.showHistory(-1)}
       />
       {api.historys.map((item, idx) => {
         return (
@@ -79,7 +79,7 @@ function SettingsHistory() {
             time={item.time}
             duration={item.encounter.duration}
             zone={item.encounter.zoneName}
-            onClick={() => api.showHistory(item)}
+            onClick={() => api.showHistory(idx)}
           />
         );
       })}
