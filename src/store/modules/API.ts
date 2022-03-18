@@ -2,7 +2,6 @@ import OverlayAPI, { ExtendData } from 'ffxiv-overlay-api';
 import { makeAutoObservable } from 'mobx';
 import { Store } from '..';
 import { cloneDeep } from '../../utils/lodash';
-import { getLS, setLS } from '../../utils/storage';
 
 const cleanData: ExtendData = {
   isActive: false,
@@ -25,21 +24,24 @@ class API {
   overlay = new OverlayAPI();
   data: ExtendData = cleanData;
   historys: HistoryData[] = [];
-  history: HistoryData | null = null;
+  history = {
+    idx: -1, // mark current history index for active comparsion
+    data: null as HistoryData | null,
+  };
 
   /** @mobx computed */
 
   get active() {
-    return (this.history || this.data).isActive;
+    return (this.history.data || this.data).isActive;
   }
   get encounter() {
-    return (this.history || this.data).encounter;
+    return (this.history.data || this.data).encounter;
   }
   get lb() {
-    return (this.history || this.data).limitBreak;
+    return (this.history.data || this.data).limitBreak;
   }
   get combatant() {
-    return (this.history || this.data).combatant;
+    return (this.history.data || this.data).combatant;
   }
 
   /**
@@ -47,12 +49,6 @@ class API {
    */
   constructor(rootStore: Store) {
     this.rootStore = rootStore;
-
-    // load historys from storage
-    const historys = getLS('historys');
-    if (historys && Array.isArray(historys) && historys.length <= 5) {
-      this.historys = historys;
-    }
 
     // add overlay callback
     this.overlay.addListener('CombatData', (rawData) => {
@@ -74,34 +70,36 @@ class API {
   /**
    * show a history data (-1 to disable)
    */
-  showHistory(index: number) {
-    if (index < 0 || index >= 5 || !this.historys[index]) {
-      this.history = null;
+  showHistory(idx: number) {
+    if (idx < 0 || idx >= 5 || !this.historys[idx]) {
+      this.history.idx = -1;
+      this.history.data = null;
       return;
     }
-    // direct set reference instead of deep clone,
-    // for Object.is() comparsion
-    this.history = this.historys[index];
+    this.history.idx = idx;
+    this.history.data = this.historys[idx];
   }
   /**
    * update new combat data
    */
   updateCombat(payload: ExtendData) {
     this.data = payload;
-    this.history && (this.history = null);
+    // clear current history display if new data appears
+    if (this.history.data) {
+      this.history.idx = -1;
+      this.history.data = null;
+    }
     this.rootStore.settings.toggleShowCombatants(true);
   }
   /**
    * push a history (active must be false) (5 max)
    */
   tryPushHistory(payload: ExtendData) {
-    // if last data (false) this data (true) which indicates a new encounter
+    // if last data (false) this data (true) which indicates a new battle,
     // push last data (false) into a new history
     if (lastData && !lastData.isActive && payload.isActive) {
       this.historys.length >= 5 && this.historys.pop();
       this.historys.unshift({ time: Date.now(), ...lastData });
-      // save to storage
-      setLS('historys', this.historys);
     }
     // record data for future use
     lastData = cloneDeep(payload);

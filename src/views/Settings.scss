@@ -175,30 +175,35 @@
     white-space: nowrap;
     overflow: hidden;
     flex: 0 0 auto;
-    margin-left: $padding-md;
 
+    margin-left: $padding-md;
     &:last-child {
       margin-right: $padding-md;
     }
+  }
 
-    &:first-child,
-    &:nth-child(3) {
-      flex: 0 0 auto;
-      width: 0.4rem;
-      text-align: center;
-    }
+  &-duration {
+    flex: 0 0 auto;
+    width: 0.38rem;
+    text-align: center;
+  }
 
-    &:nth-child(2) {
-      flex: 0 0 auto;
-      width: 0.6rem;
-      text-align: center;
-    }
+  &-time {
+    flex: 0 0 auto;
+    width: 0.58rem;
+    text-align: center;
+  }
 
-    &:last-child {
-      flex: 1 1 auto;
-      min-width: 0;
-      text-overflow: ellipsis;
-      padding: 0 $padding-sm;
-    }
+  &-zone {
+    flex: 1 1 auto;
+    text-overflow: ellipsis;
+    min-width: 0;
+    padding: 0 $padding-sm;
+  }
+
+  &-dps {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: $padding-lg;
   }
 }

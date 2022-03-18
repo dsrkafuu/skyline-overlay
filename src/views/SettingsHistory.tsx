@@ -2,23 +2,9 @@ import { observer } from 'mobx-react-lite';
 import { useStore } from '../hooks';
 import clsx from 'clsx';
 import { fmtDuration, fmtZoneName } from '../utils/formatters';
+import { useEffect, useState } from 'react';
 
-function parseDate(time?: number) {
-  if (!time) {
-    return '';
-  }
-  const d = new Date(time);
-  const mon = d.getMonth() + 1;
-  const day = d.getDate();
-  const MM = mon < 10 ? `0${mon}` : mon;
-  const DD = day < 10 ? `0${day}` : day;
-  return `${MM}-${DD}`;
-}
-
-function parseTime(time?: number) {
-  if (!time) {
-    return '';
-  }
+function parseTime(time: number) {
   const d = new Date(time);
   const hour = d.getHours();
   const min = d.getMinutes();
@@ -32,7 +18,8 @@ function parseTime(time?: number) {
 interface SettingsHistoryRowProps {
   current: boolean;
   duration: string;
-  zone: string;
+  dps: number;
+  zoneName: string;
   time?: number;
   onClick?: () => void;
 }
@@ -40,10 +27,17 @@ interface SettingsHistoryRowProps {
 function SettingsHistoryRow({
   current,
   duration,
-  zone,
+  dps,
+  zoneName,
   time,
   onClick,
 }: SettingsHistoryRowProps) {
+  const [now, setNow] = useState(Date.now());
+  useEffect(() => {
+    const timer = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div
       className={clsx('settings-history-row', {
@@ -51,34 +45,49 @@ function SettingsHistoryRow({
       })}
       onClick={onClick}
     >
-      <span className='settings-history-item'>{parseDate(time)}</span>
-      <span className='settings-history-item'>{parseTime(time)}</span>
-      <span className='settings-history-item'>{fmtDuration(duration)}</span>
-      <span className='settings-history-item'>{fmtZoneName(zone)}</span>
+      <div className='settings-history-item settings-history-time'>
+        {parseTime(time || now)}
+      </div>
+      <div className='settings-history-item settings-history-duration'>
+        {fmtDuration(duration)}
+      </div>
+      <div className='settings-history-item settings-history-zone'>
+        {fmtZoneName(zoneName)}
+      </div>
+      <div className='settings-history-item settings-history-dps'>
+        <span className='g-number'>{dps}</span>
+        <span className='g-counter'>DPS</span>
+      </div>
     </div>
   );
 }
 
 function SettingsHistory() {
   const { api } = useStore();
+  // do not use getters here,
+  // since getter may returns history data when selected
+  const { duration, dps, zoneName } = api.data.encounter;
 
   return (
     <div className='settings-history'>
       <div className='settings-history-space'></div>
       <SettingsHistoryRow
-        current={!api.history}
-        duration={api.data.encounter.duration}
-        zone={api.data.encounter.zoneName}
+        current={api.history.idx === -1}
+        duration={duration}
+        dps={dps}
+        zoneName={zoneName}
         onClick={() => api.showHistory(-1)}
       />
       {api.historys.map((item, idx) => {
+        const { duration, dps, zoneName } = item.encounter;
         return (
           <SettingsHistoryRow
             key={idx}
-            current={Object.is(api.history, item)}
+            current={api.history.idx === idx}
             time={item.time}
-            duration={item.encounter.duration}
-            zone={item.encounter.zoneName}
+            duration={duration}
+            dps={dps}
+            zoneName={zoneName}
             onClick={() => api.showHistory(idx)}
           />
         );

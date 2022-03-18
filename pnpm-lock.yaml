@@ -19,11 +19,11 @@ specifiers:
   eslint-plugin-react-hooks: ~4.3.0
   ffxiv-overlay-api: ~4.2.0
   glob: ~7.2.0
-  mobx: ~6.4.2
+  mobx: ~6.5.0
   mobx-react-lite: ~3.3.0
   normalize.css: ~8.0.1
   npm-run-all: ~4.1.5
-  prettier: ~2.5.1
+  prettier: ~2.6.0
   react: ~17.0.2
   react-dom: ~17.0.2
   rollup-plugin-visualizer: ~5.6.0
@@ -39,8 +39,8 @@ dependencies:
   '@sentry/tracing': 6.18.2
   clsx: 1.1.1
   ffxiv-overlay-api: 4.2.0
-  mobx: 6.4.2
-  mobx-react-lite: 3.3.0_4e589064ce40a783661f96d46f38f574
+  mobx: 6.5.0
+  mobx-react-lite: 3.3.0_3b110ddd052df537d55bc762cdd4d0b8
   normalize.css: 8.0.1
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -61,7 +61,7 @@ devDependencies:
   eslint-plugin-react-hooks: 4.3.0_eslint@8.11.0
   glob: 7.2.0
   npm-run-all: 4.1.5
-  prettier: 2.5.1
+  prettier: 2.6.0
   rollup-plugin-visualizer: 5.6.0
   sass: 1.49.9
   serve: 13.0.2
@@ -2285,7 +2285,7 @@ packages:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
     dev: true
 
-  /mobx-react-lite/3.3.0_4e589064ce40a783661f96d46f38f574:
+  /mobx-react-lite/3.3.0_3b110ddd052df537d55bc762cdd4d0b8:
     resolution: {integrity: sha512-U/kMSFtV/bNVgY01FuiGWpRkaQVHozBq5CEBZltFvPt4FcV111hEWkgwqVg9GPPZSEuEdV438PEz8mk8mKpYlA==}
     peerDependencies:
       mobx: ^6.1.0
@@ -2298,13 +2298,13 @@ packages:
       react-native:
         optional: true
     dependencies:
-      mobx: 6.4.2
+      mobx: 6.5.0
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
-  /mobx/6.4.2:
-    resolution: {integrity: sha512-b4xQJYiH8sb0sEbfq/Ws3N77DEJtSihUFD1moeiz2jNoJ5B+mqJutt54ouO9iEfkp7Wk4jQDsVUOh7DPEW3wEw==}
+  /mobx/6.5.0:
+    resolution: {integrity: sha512-pHZ/cySF00FVENDWIDzJyoObFahK6Eg4d0papqm6d7yMkxWTZ/S/csqJX1A3PsYy4t5k3z2QnlwuCfMW5lSEwA==}
     dev: false
 
   /ms/2.0.0:
@@ -2571,8 +2571,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier/2.5.1:
-    resolution: {integrity: sha512-vBZcPRUR5MZJwoyi3ZoyQlc1rXeEck8KgeC9AwwOn+exuxLxq5toTRDTSaVrXHxelDMHy9zlicw8u66yxoSUFg==}
+  /prettier/2.6.0:
+    resolution: {integrity: sha512-m2FgJibYrBGGgQXNzfd0PuDGShJgRavjUoRCw1mZERIWVSXF0iLzLm+aOqTAbLnC3n6JzUhAA8uZnFVghHJ86A==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
