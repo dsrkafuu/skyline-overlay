@@ -98,8 +98,16 @@ class API {
     // if last data (false) this data (true) which indicates a new battle,
     // push last data (false) into a new history
     if (lastData && !lastData.isActive && payload.isActive) {
-      this.historys.length >= 5 && this.historys.pop();
-      this.historys.unshift({ time: Date.now(), ...lastData });
+      // extra validation before push,
+      // do not push empty battle into history
+      if (
+        lastData.encounter.duration !== '00:00' &&
+        lastData.encounter.durationSeconds !== 0 &&
+        lastData.encounter.dps !== 0
+      ) {
+        this.historys.length >= 5 && this.historys.pop();
+        this.historys.unshift({ time: Date.now(), ...lastData });
+      }
     }
     // record data for future use
     lastData = cloneDeep(payload);
