@@ -58,15 +58,7 @@ function SSelect<TMap extends SSelectMap>({
         onClick={() => setActive((val) => !disabled && !val)}
       >
         <div className='disp'>{map[value] ? map[value].text : 'Unknown'}</div>
-        {position === 'bottom' ? (
-          <div className='btn'>
-            {active ? <IChevronUp /> : <IChevronDown />}
-          </div>
-        ) : (
-          <div className='btn'>
-            {active ? <IChevronDown /> : <IChevronUp />}
-          </div>
-        )}
+        <div className='btn'>{active ? <IChevronUp /> : <IChevronDown />}</div>
       </div>
       {active && (
         <div
