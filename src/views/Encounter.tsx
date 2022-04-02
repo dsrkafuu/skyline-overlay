@@ -2,7 +2,6 @@ import './Encounter.scss';
 import { useCallback, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { observer } from 'mobx-react-lite';
-import { version } from '../assets/meta';
 import {
   IChevronUpCircle,
   IChevronDownCircle,
