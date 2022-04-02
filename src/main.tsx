@@ -23,7 +23,8 @@ if (sentryDsn && import.meta.env.PROD) {
   });
 }
 
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import { StrictMode } from 'react';
 import { isCEFSharp } from 'ffxiv-overlay-api';
 import { StoreContext, store } from './store';
 import App from './App';
@@ -35,7 +36,10 @@ if (import.meta.env.DEV && !isCEFSharp()) {
   app = <DevPanel>{app}</DevPanel>;
 }
 
-ReactDOM.render(
-  <StoreContext.Provider value={store}>{app}</StoreContext.Provider>,
-  document.getElementById('root')
-);
+const root = document.getElementById('root');
+root &&
+  createRoot(root).render(
+    <StrictMode>
+      <StoreContext.Provider value={store}>{app}</StoreContext.Provider>
+    </StrictMode>
+  );
