@@ -38,27 +38,7 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       plugins: [visualizer()],
-      // output: {
-      //   manualChunks(id) {
-      //     // do not split css
-      //     if (
-      //       /\.css$/i.test(id) ||
-      //       /\.s[ac]ss$/i.test(id) ||
-      //       /\.less$/i.test(id)
-      //     ) {
-      //       return;
-      //     }
-      //     // sentry chunk
-      //     if (/node_modules[/\\]@sentry/i.test(id)) {
-      //       return 'sentry';
-      //     }
-      //     // vendor deps chunk
-      //     else if (/node_modules/i.test(id)) {
-      //       return 'vendor';
-      //     }
-      //     // automatic dynamic import spliting should work as is
-      //   },
-      // },
     },
+    target: ['chrome90', 'firefox90', 'safari14'],
   },
 });

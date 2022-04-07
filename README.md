@@ -34,6 +34,10 @@ By default the overlay follows the pet-merging policy set in the FFXIV ACT Plugi
 
 You can use [CSSNANO](https://cssnano.co/playground/) to minify your CSS into single line.
 
+## Browser Support
+
+Chrome (Chromium) >= 90, Firefox >= 90, Safari >= 14
+
 ## Environment
 
 ```
