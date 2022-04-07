@@ -1,18 +1,19 @@
 import { useMemo } from 'react';
-import { observer } from 'mobx-react-lite';
 import clsx from 'clsx';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
-import { useStore } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import { MAP_SHORT_NAME } from '../utils/constants';
+import { toggleBlurName } from '../store/slices/settings';
 
 interface CombatantNameProps {
   player: CombatantData | LimitBreakData;
 }
 
 function CombatantName({ player }: CombatantNameProps) {
-  const { settings } = useStore();
-  const { blurName, youName, shortName } = settings;
-  const { toggleBlurName } = settings;
+  const dispatch = useAppDispatch();
+  const blurName = useAppSelector((state) => state.settings.blurName);
+  const youName = useAppSelector((state) => state.settings.youName);
+  const shortName = useAppSelector((state) => state.settings.shortName);
 
   // gen display name
   const displayName = useMemo(() => {
@@ -38,11 +39,11 @@ function CombatantName({ player }: CombatantNameProps) {
   return (
     <div
       className={clsx('combatant-name', { 'combatant-name--blured': blurName })}
-      onClick={toggleBlurName}
+      onClick={() => dispatch(toggleBlurName())}
     >
       {displayName}
     </div>
   );
 }
 
-export default observer(CombatantName);
+export default CombatantName;

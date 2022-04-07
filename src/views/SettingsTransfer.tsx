@@ -1,41 +1,40 @@
 import { useCallback, useState } from 'react';
-import { runInAction } from 'mobx';
 import clsx from 'clsx';
-import { useStore, useLongPress, useTranslation } from '../hooks';
+import { useLongPress, useTranslation } from '../hooks';
 import { IDownload, IUpload, IRefresh } from '../assets/icons';
+import {
+  importSettings,
+  exportSettings,
+  clearSettings,
+} from '../utils/settings';
 
 function SettingsTransfer() {
-  const { settings } = useStore();
   const t = useTranslation();
 
   const handleExport = useCallback(() => {
-    runInAction(() => {
-      const data = settings.exportSettings();
-      if (data) {
-        prompt(t('Copy to clipboard using Ctrl+C'), data);
-      }
-    });
-  }, [settings, t]);
+    const data = exportSettings();
+    if (data) {
+      prompt(t('Copy to clipboard using Ctrl+C'), data);
+    }
+  }, [t]);
 
   const handleImport = useCallback(() => {
-    runInAction(() => {
-      const data = (prompt(t('Please enter settings data')) || '').trim();
-      if (!data) {
-        return;
-      }
-      const res = settings.importSettings(data);
-      if (res) {
-        location.reload();
-      } else {
-        alert(t('Invalid settings data'));
-      }
-    });
-  }, [settings, t]);
+    const data = (prompt(t('Please enter settings data')) || '').trim();
+    if (!data) {
+      return;
+    }
+    const res = importSettings(data);
+    if (res) {
+      window.location.reload();
+    } else {
+      alert(t('Invalid settings data'));
+    }
+  }, [t]);
 
   const handleClear = useCallback(() => {
-    settings.clearSettings();
+    clearSettings();
     window.location.reload();
-  }, [settings]);
+  }, []);
   // clear settings after 5s
   const { onMouseDown, onTouchStart, onMouseUp, onTouchEnd, onMouseLeave } =
     useLongPress(handleClear, { delay: 5000 });

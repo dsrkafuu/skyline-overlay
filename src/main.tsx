@@ -13,20 +13,14 @@ if (sentryDsn && import.meta.env.PROD) {
     integrations: [new Integrations.BrowserTracing()],
     sampleRate: 1, // report all errors
     tracesSampleRate: 0.05, // report 5% of traces
-    // show dialog when error
-    // beforeSend(event) {
-    //   if (event.exception) {
-    //     Sentry.showReportDialog({ eventId: event.event_id });
-    //   }
-    //   return event;
-    // },
   });
 }
 
-import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import { isCEFSharp } from 'ffxiv-overlay-api';
-import { StoreContext, store } from './store';
+import { Provider } from 'react-redux';
+import { store } from './store';
 import App from './App';
 import DevPanel from './DevPanel';
 
@@ -35,11 +29,11 @@ let app = <App />;
 if (import.meta.env.DEV && !isCEFSharp()) {
   app = <DevPanel>{app}</DevPanel>;
 }
-
+// mount the app
 const root = document.getElementById('root');
 root &&
   createRoot(root).render(
     <StrictMode>
-      <StoreContext.Provider value={store}>{app}</StoreContext.Provider>
+      <Provider store={store}>{app}</Provider>
     </StrictMode>
   );

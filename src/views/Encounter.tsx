@@ -1,19 +1,24 @@
 import './Encounter.scss';
 import { useCallback, useRef, useState } from 'react';
 import clsx from 'clsx';
-import { observer } from 'mobx-react-lite';
+import overlay from '../utils/overlay';
 import {
   IChevronUpCircle,
   IChevronDownCircle,
   ISettings,
 } from '../assets/icons';
-import { useStore } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import { fmtDuration, fmtNumber, fmtZoneName } from '../utils/formatters';
+import { toggleSettings, toggleShowCombatants } from '../store/slices/settings';
 
 function Encounter() {
-  const { api, settings } = useStore();
-  const { active, encounter, overlay } = api;
-  const { showCombatants, shortNumber, toggleShowCombatants } = settings;
+  const dispatch = useAppDispatch();
+  const active = useAppSelector((state) => state.api.data.active);
+  const encounter = useAppSelector((state) => state.api.data.encounter);
+  const showCombatants = useAppSelector(
+    (state) => state.settings.showCombatants
+  );
+  const shortNumber = useAppSelector((state) => state.settings.shortNumber);
 
   // encounter data
   const duration = fmtDuration(encounter.duration);
@@ -24,14 +29,14 @@ function Encounter() {
    */
   const handleEndEncounter = useCallback(async () => {
     await overlay.endEncounter();
-  }, [overlay]);
+  }, []);
 
   /**
    * hide or show combatants
    */
   const handleToggleShowCombatants = useCallback(() => {
-    toggleShowCombatants();
-  }, [toggleShowCombatants]);
+    dispatch(toggleShowCombatants());
+  }, [dispatch]);
 
   // overflow zonename related
   const [fullZoneName, setFullZoneName] = useState(false);
@@ -94,7 +99,7 @@ function Encounter() {
         </div>
         <div
           className='encounter-btn'
-          onClick={() => settings.toggleSettings()}
+          onClick={() => dispatch(toggleSettings())}
         >
           <ISettings />
         </div>
@@ -103,4 +108,4 @@ function Encounter() {
   );
 }
 
-export default observer(Encounter);
+export default Encounter;

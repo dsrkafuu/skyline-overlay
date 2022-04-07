@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
-import { observer } from 'mobx-react-lite';
 import { date } from '../assets/meta';
-import { useStore, useTranslation } from '../hooks';
+import { useAppSelector, useTranslation } from '../hooks';
 import themes from '../themes';
 
 function SettingsAbout() {
@@ -19,11 +18,9 @@ function SettingsAbout() {
     }
   }, []);
 
-  const {
-    settings: { lang, theme },
-  } = useStore();
+  const lang = useAppSelector((state) => state.settings.lang);
+  const theme = useAppSelector((state) => state.settings.theme);
   const parsedDate = toDate(new Date(date), lang);
-
   const themeAuthor = themes[theme].data.author;
 
   return (
@@ -110,4 +107,4 @@ function SettingsAbout() {
   );
 }
 
-export default observer(SettingsAbout);
+export default SettingsAbout;

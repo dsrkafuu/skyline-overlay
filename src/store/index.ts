@@ -1,29 +1,16 @@
-import { createContext } from 'react';
-import { configure } from 'mobx';
+import { configureStore } from '@reduxjs/toolkit';
+import api from './slices/api';
+import settings from './slices/settings';
 
-// store modules
-import API from './modules/API';
-import Settings from './modules/Settings';
-import Translation from './modules/Translation';
-
-// strict mobx linter
-configure({
-  enforceActions: 'always',
-  computedRequiresReaction: true,
-  reactionRequiresObservable: true,
-  observableRequiresReaction: true,
-  // disableErrorBoundaries: true,
+export const store = configureStore({
+  reducer: {
+    api: api.reducer,
+    settings: settings.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().prepend(api.middleware).prepend(settings.middleware),
 });
 
-/**
- * combined root store
- */
-export class Store {
-  api = new API(this);
-  settings = new Settings(this);
-  translation = new Translation(this);
-}
+export type RootState = ReturnType<typeof store.getState>;
 
-// init store instance
-export const store = new Store();
-export const StoreContext = createContext(store);
+export type AppDispatch = typeof store.dispatch;

@@ -1,8 +1,7 @@
-import { observer } from 'mobx-react-lite';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import clsx from 'clsx';
 import { SList, SListRow } from '../components';
-import { useStore, useTranslation } from '../hooks';
+import { useAppSelector, useTranslation } from '../hooks';
 import { isLimitBreakData } from '../utils/type';
 import { DisplayContentMapKey } from '../utils/constants';
 import { useCallback, useMemo } from 'react';
@@ -15,18 +14,21 @@ interface CombatantDetailProps {
 
 function CombatantDetail({ player, lockDetail }: CombatantDetailProps) {
   const t = useTranslation();
-  const { settings } = useStore();
-  const { dispMode, dispContent, bottomDisp, shortNumber } = settings;
+  const dispMode = useAppSelector((state) => state.settings.dispMode);
+  const dispContent = useAppSelector((state) => state.settings.dispContent);
+  const bottomDisp = useAppSelector((state) => state.settings.bottomDisp);
+  const shortNumber = useAppSelector((state) => state.settings.shortNumber);
+  const ticker = useAppSelector((state) => state.settings.ticker);
 
   // calculate top position according to tickerNum
   let tickerNum = 0;
-  if (settings.ticker.top !== 'none') {
+  if (ticker.top !== 'none') {
     tickerNum++;
   }
-  if (settings.ticker.bottom !== 'none') {
+  if (ticker.bottom !== 'none') {
     tickerNum++;
   }
-  const baseTop = settings.dispMode === 'dual' ? 0.22 + 0.4 : 0.22 + 0.24; // name + content
+  const baseTop = dispMode === 'dual' ? 0.22 + 0.4 : 0.22 + 0.24; // name + content
   const topWithTick = (baseTop + tickerNum * 0.04).toFixed(2) + 'rem'; // + ticker
 
   const keyNotDisplayed = useCallback(
@@ -129,4 +131,4 @@ function CombatantDetail({ player, lockDetail }: CombatantDetailProps) {
   }
 }
 
-export default observer(CombatantDetail);
+export default CombatantDetail;

@@ -7,7 +7,7 @@ interface Authors {
 
 const authors: Authors = {
   DSRKafuU: {
-    name: 'DSRKafuU',
+    name: 'Roxy | 宇宙和音',
     link: 'https://github.com/dsrkafuu',
   },
   j0sh77: {

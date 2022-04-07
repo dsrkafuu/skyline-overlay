@@ -12,14 +12,15 @@
 [![](https://img.shields.io/github/license/dsrkafuu/skyline-overlay)](https://github.com/dsrkafuu/skyline-overlay/blob/main/LICENSE)
 [![](https://img.shields.io/lgtm/grade/javascript/github/dsrkafuu/skyline-overlay)](https://lgtm.com/projects/g/dsrkafuu/skyline-overlay/context:javascript)
 
-Features: Basic overlay, extended details, customizable display/data settings, battle history, and more. The project is based on React with MobX & Vite, and the dedicated [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
+Features: Basic overlay, extended details, customizable display/data settings, battle history, and more. The project is based on React 18, and the dedicated [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
 
 <img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-en-v3.jpg" alt="Skyline Preview" />
 
-## Overlay Link
+## Overlay Links
 
 - CloudFlare (Global): `https://skyline.dsrkafuu.net`
-- Mirror (CN DieMoe Mod): `https://act.diemoe.net/overlays/skyline/`
+- Mirror (CN FFCafe): `https://act.diemoe.net/overlays/skyline/`
+- Mirror (CN DieMoe): `https://act.diemoe.net/overlays/skyline/`
 
 ## Usage
 
@@ -31,26 +32,12 @@ Click the encounter can ends current battle and start a new one; zone name will 
 
 By default the overlay follows the pet-merging policy set in the FFXIV ACT Plugin. When playing on global servers with a custom language patch which causes the plugin's pet-merging not working, you can set your ID in an overlay config to manually merge your pets' data.
 
-Local server:
-
-```bash
-git clone https://github.com/dsrkafuu/skyline-overlay.git
-cd skyline-overlay
-pnpm install
-pnpm run build
-pnpm start
-```
-
 You can use [CSSNANO](https://cssnano.co/playground/) to minify your CSS into single line.
-
-<!-- ## Support
-
-Some of my projects is using the CDN provided by jsDelivr whose ICP license was unexpectedly lost in 2021-12, which **may** causes slow connections in mainland China. Replacing the CDN will not be considered since it **works well in other regions** and its the best free CDN I've ever used. Ref: <https://github.com/jsdelivr/jsdelivr/issues/18348#issuecomment-997777996>. -->
 
 ## Environment
 
 ```
-VITE_BASE_URL="/"    # dist base url (optional)
+VITE_BASE_URL="/"     # dist base url (optional)
 VITE_GA_ID=""         # google analytics id
 VITE_SENTRY_DSN=""    # sentry dsn for error tracking & perfromance measuring (optional)
 ```

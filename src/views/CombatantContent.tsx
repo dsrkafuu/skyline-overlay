@@ -1,8 +1,7 @@
-import { observer } from 'mobx-react-lite';
 import { useCallback } from 'react';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import * as jobIcons from '../assets/jobs';
-import { useStore } from '../hooks';
+import { useAppSelector } from '../hooks';
 import { isLimitBreakData } from '../utils/type';
 import { fmtNumber } from '../utils/formatters';
 import { MAP_DISPLAY_CONTENT } from '../utils/constants';
@@ -20,8 +19,9 @@ function CombatantContent({
   lockDetail,
   setLockDetail,
 }: CombatantContentProps) {
-  const { settings } = useStore();
-  const { shortNumber, dispMode, dispContent } = settings;
+  const dispMode = useAppSelector((state) => state.settings.dispMode);
+  const dispContent = useAppSelector((state) => state.settings.dispContent);
+  const shortNumber = useAppSelector((state) => state.settings.shortNumber);
 
   const leftDisp = (player as CombatantData)[dispContent.left] || 0;
   const leftDispUnit = MAP_DISPLAY_CONTENT[dispContent.left].data.unit;
@@ -79,4 +79,4 @@ function CombatantContent({
   );
 }
 
-export default observer(CombatantContent);
+export default CombatantContent;

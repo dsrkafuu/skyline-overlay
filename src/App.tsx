@@ -1,31 +1,32 @@
 import './App.scss';
 import { CSSProperties } from 'react';
-import { observer } from 'mobx-react-lite';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
+import overlay from './utils/overlay';
 import Combatant from './views/Combatant';
 import Encounter from './views/Encounter';
 import Settings from './views/Settings';
-import { useStore, useMock } from './hooks';
+import { useAppSelector, useMock } from './hooks';
 import { cloneDeep } from './utils/lodash';
 import { fmtMergePet } from './utils/formatters';
 
 function App() {
   // get data from store
-  const {
-    api: { combatant, lb, overlay },
-    settings: {
-      showCombatants,
-      sort,
-      playerLimit,
-      showLB,
-      petMergeID,
-      opacity,
-    },
-  } = useStore();
-  let players = cloneDeep(combatant);
+  const data = useAppSelector((state) => state.api.data);
+  const history = useAppSelector((state) => state.api.history);
+  const { combatant, limitBreak } = cloneDeep(history.data || data);
+  const showCombatants = useAppSelector(
+    (state) => state.settings.showCombatants
+  );
+  const sort = useAppSelector((state) => state.settings.sort);
+  const playerLimit = useAppSelector((state) => state.settings.playerLimit);
+  const showLB = useAppSelector((state) => state.settings.showLB);
+  const petMergeID = useAppSelector((state) => state.settings.petMergeID);
+  const opacity = useAppSelector((state) => state.settings.opacity);
 
   // debug mock data
   useMock(overlay, true);
+
+  let players = combatant;
 
   // merge pet if enabled
   if (petMergeID) {
@@ -44,8 +45,8 @@ function App() {
 
   // add lb if enabled
   const playersWithLB: Array<CombatantData | LimitBreakData> = players;
-  if (showLB && lb) {
-    playersWithLB.push(cloneDeep(lb));
+  if (showLB && limitBreak) {
+    playersWithLB.push(limitBreak);
   }
 
   const opacityStyle: CSSProperties = {
@@ -73,4 +74,4 @@ function App() {
   );
 }
 
-export default observer(App);
+export default App;

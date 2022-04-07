@@ -1,8 +1,8 @@
-import { observer } from 'mobx-react-lite';
-import { useStore } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import clsx from 'clsx';
 import { fmtDuration, fmtNumber, fmtZoneName } from '../utils/formatters';
 import { useEffect, useState } from 'react';
+import { showHistory } from '../store/slices/api';
 
 function parseTime(time: number) {
   const d = new Date(time);
@@ -65,35 +65,34 @@ function SettingsHistoryRow({
 }
 
 function SettingsHistory() {
-  const { api } = useStore();
-  // do not use getters here, since getter may returns history data when selected
-  const { duration, dps, zoneName } = api.data.encounter;
-
-  const { settings } = useStore();
-  const { shortNumber } = settings;
+  const dispatch = useAppDispatch();
+  const data = useAppSelector((state) => state.api.data);
+  const historys = useAppSelector((state) => state.api.historys);
+  const history = useAppSelector((state) => state.api.history);
+  const shortNumber = useAppSelector((state) => state.settings.shortNumber);
 
   return (
     <div className='settings-history'>
       <div className='settings-history-space'></div>
       <SettingsHistoryRow
-        current={api.history.idx === -1}
-        duration={duration}
-        dps={dps}
-        zoneName={zoneName}
-        onClick={() => api.showHistory(-1)}
+        current={history.idx === -1}
+        duration={data.encounter.duration}
+        dps={data.encounter.dps}
+        zoneName={data.encounter.zoneName}
+        onClick={() => dispatch(showHistory(-1))}
         shortNumber={shortNumber}
       />
-      {api.historys.map((item, idx) => {
+      {historys.map((item, idx) => {
         const { duration, dps, zoneName } = item.encounter;
         return (
           <SettingsHistoryRow
             key={idx}
-            current={api.history.idx === idx}
+            current={history.idx === idx}
             time={item.time}
             duration={duration}
             dps={dps}
             zoneName={zoneName}
-            onClick={() => api.showHistory(idx)}
+            onClick={() => dispatch(showHistory(idx))}
             shortNumber={shortNumber}
           />
         );
@@ -103,4 +102,4 @@ function SettingsHistory() {
   );
 }
 
-export default observer(SettingsHistory);
+export default SettingsHistory;

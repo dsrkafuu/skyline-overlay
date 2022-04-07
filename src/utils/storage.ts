@@ -1,10 +1,12 @@
 import { logError } from './loggers';
 import { STORAGE_PREFIX } from './constants';
 
+export type StorageKey = 'settings' | 'settings-dev';
+
 /**
  * set local storage
  */
-export function setLS(key: string, value: unknown) {
+export function setLS(key: StorageKey, value: unknown) {
   try {
     localStorage.setItem(
       STORAGE_PREFIX + key.toUpperCase(),
@@ -18,7 +20,7 @@ export function setLS(key: string, value: unknown) {
 /**
  * get local storage
  */
-export function getLS(key: string): unknown {
+export function getLS(key: StorageKey): unknown {
   try {
     const realKey = STORAGE_PREFIX + key.toUpperCase();
     const data = JSON.parse(localStorage.getItem(realKey) || 'null');
@@ -32,7 +34,7 @@ export function getLS(key: string): unknown {
 /**
  * remove local storage
  */
-export function removeLS(key: string) {
+export function removeLS(key: StorageKey) {
   try {
     localStorage.removeItem(STORAGE_PREFIX + key.toUpperCase());
   } catch (e) {

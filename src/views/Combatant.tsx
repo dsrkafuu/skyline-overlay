@@ -1,13 +1,12 @@
 import './Combatant.scss';
 import { useCallback, useState } from 'react';
-import { observer } from 'mobx-react-lite';
 import clsx, { ClassArray } from 'clsx';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import CombatantName from './CombatantName';
 import CombatantDetail from './CombatantDetail';
 import CombatantBottom from './CombatantBottom';
 import CombatantContent from './CombatantContent';
-import { useStore } from '../hooks';
+import { useAppSelector } from '../hooks';
 import { STicker, STickerProps, STickerClass } from '../components';
 import { isLimitBreakData, isCombatantData } from '../utils/type';
 import { TickerMapKey } from '../utils/constants';
@@ -18,12 +17,15 @@ interface CombatantProps {
 }
 
 function Combatant({ player }: CombatantProps) {
-  // get data
   const { name } = player;
   const classes: ClassArray = ['combatant']; // grid classnames
-  const { settings } = useStore();
-  const { hlYou, youName, bottomDisp, ticker, tickerAlign, dispMode } =
-    settings;
+
+  const hlYou = useAppSelector((state) => state.settings.hlYou);
+  const youName = useAppSelector((state) => state.settings.youName);
+  const bottomDisp = useAppSelector((state) => state.settings.bottomDisp);
+  const ticker = useAppSelector((state) => state.settings.ticker);
+  const tickerAlign = useAppSelector((state) => state.settings.tickerAlign);
+  const dispMode = useAppSelector((state) => state.settings.dispMode);
 
   // class names related to job
   if (isLimitBreakData(player)) {
@@ -143,4 +145,4 @@ function Combatant({ player }: CombatantProps) {
   );
 }
 
-export default observer(Combatant);
+export default Combatant;

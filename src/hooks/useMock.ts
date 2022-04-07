@@ -1,12 +1,18 @@
 import OverlayAPI from 'ffxiv-overlay-api';
 import { useEffect } from 'react';
 
+let inited = false;
+
 /**
  * hook for init mock data
  */
 function useMock(overlay: OverlayAPI, random = true) {
   useEffect(() => {
-    import.meta.env.DEV &&
+    if (inited) {
+      return;
+    }
+    inited = true;
+    if (import.meta.env.DEV) {
       fetch(
         'https://cdn.jsdelivr.net/gh/dsrkafuu/ffxiv-overlay-api@4/test/fake_cn.json'
       )
@@ -33,6 +39,7 @@ function useMock(overlay: OverlayAPI, random = true) {
             overlay.simulateData(obj);
           }
         });
+    }
   }, [overlay, random]);
 }
 

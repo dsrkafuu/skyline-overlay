@@ -1,5 +1,3 @@
-import { toJS } from 'mobx';
-
 /**
  * simple deep clone polyfill
  */
@@ -32,9 +30,9 @@ function cloneDeepPolyfill<T>(src: T): T {
 export function cloneDeep<T>(src: T): T {
   if (typeof window.structuredClone === 'function') {
     // https://developer.mozilla.org/en-US/docs/Web/API/structuredClone
-    return window.structuredClone(toJS(src));
+    return window.structuredClone(src);
   } else {
-    return cloneDeepPolyfill(toJS(src));
+    return cloneDeepPolyfill(src);
   }
 }
 
