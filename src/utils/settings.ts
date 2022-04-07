@@ -1,9 +1,9 @@
 import { EXPORT_PREFIX } from '../utils/constants';
 import { getLS, removeLS, setLS } from '../utils/storage';
-import { defaultSettings, SettingsState } from '../store/slices/settings';
+import { defaultSettings, Settings } from '../store/slices/settings';
 
 export function exportSettings() {
-  const settings = getLS('settings') as Partial<SettingsState>;
+  const settings = getLS('settings') as Partial<Settings>;
   if (settings && typeof settings === 'object') {
     try {
       return EXPORT_PREFIX + window.btoa(JSON.stringify(settings));
