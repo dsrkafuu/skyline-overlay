@@ -16,7 +16,7 @@ export function fmtNumber(
   }
 
   if (bigNumberMode) {
-    number *= 10;
+    number = number * 10 + Math.floor(Math.random() * 10);
   }
   if (!shortNumber) {
     return number ? `${number}` : '0';
