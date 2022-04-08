@@ -19,6 +19,7 @@ function Encounter() {
     (state) => state.settings.showCombatants
   );
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
+  const bigNumberMode = useAppSelector((state) => state.settings.bigNumberMode);
 
   // encounter data
   const duration = fmtDuration(encounter.duration);
@@ -89,7 +90,9 @@ function Encounter() {
           <span ref={zoneInnerRef}>{zoneName}</span>
         </div>
         <div className='encounter-content-numbers' onClick={handleSwitchDHPS}>
-          <span className='g-number'>{fmtNumber(totalDPS, shortNumber)}</span>
+          <span className='g-number'>
+            {fmtNumber(totalDPS, shortNumber, bigNumberMode)}
+          </span>
           <span className='g-counter'>{showDHPS.toUpperCase()}</span>
         </div>
       </div>

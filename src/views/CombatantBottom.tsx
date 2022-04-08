@@ -1,5 +1,7 @@
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
+import { useAppSelector } from '../hooks';
 import { BottomDispMapKey } from '../utils/constants';
+import { fmtNumber } from '../utils/formatters';
 import { isCombatantData } from '../utils/type';
 
 interface CombatantBottomProps {
@@ -8,6 +10,9 @@ interface CombatantBottomProps {
 }
 
 function CombatantBottom({ player, mode = 'none' }: CombatantBottomProps) {
+  const shortNumber = useAppSelector((state) => state.settings.shortNumber);
+  const bigNumberMode = useAppSelector((state) => state.settings.bigNumberMode);
+
   if (mode === 'maxhit') {
     const maxHitDamage = isCombatantData(player)
       ? player.maxHitDamage
@@ -20,14 +25,23 @@ function CombatantBottom({ player, mode = 'none' }: CombatantBottomProps) {
       return (
         <div className='combatant-bottom combatant-bottom-maxhit'>
           <span>&nbsp;{player.maxHit}&nbsp;</span>
-          {maxHitDamage > 0 && <span>-&nbsp;{maxHitDamage}&nbsp;</span>}
+          {maxHitDamage > 0 && (
+            <span>
+              -&nbsp;{fmtNumber(maxHitDamage, shortNumber, bigNumberMode)}&nbsp;
+            </span>
+          )}
         </div>
       );
     } else if (maxHealDamage) {
       return (
         <div className='combatant-bottom combatant-bottom-maxhit'>
           <span>&nbsp;{player.maxHeal}&nbsp;</span>
-          {maxHealDamage > 0 && <span>-&nbsp;{maxHealDamage}&nbsp;</span>}
+          {maxHealDamage > 0 && (
+            <span>
+              -&nbsp;{fmtNumber(maxHealDamage, shortNumber, bigNumberMode)}
+              &nbsp;
+            </span>
+          )}
         </div>
       );
     }

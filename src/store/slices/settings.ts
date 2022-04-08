@@ -52,15 +52,16 @@ export interface Settings {
   showLB: boolean;
   youName: string; // which to represent as 'YOU'
   petMergeID: string; // merge pet data when using global client with cn language patch
-  bottomDisp: BottomDispMapKey;
+  shortNumber: boolean;
+  bigNumberMode: boolean;
   // display
   dispMode: DisplayModeMapKey;
   dispContent: DispContentSettings;
   hlYou: boolean;
   ticker: TickerSettings;
   tickerAlign: TickerAlignSettings;
+  bottomDisp: BottomDispMapKey;
   shortName: ShortNameMapKey;
-  shortNumber: boolean;
   // general
   theme: ThemeMapKey;
   lang: LangMapKey;
@@ -85,14 +86,15 @@ export const defaultSettings: Settings = {
   showLB: true,
   youName: 'YOU',
   petMergeID: '',
-  bottomDisp: 'maxhit',
+  shortNumber: false,
+  bigNumberMode: false,
   dispMode: 'single',
   dispContent: { left: 'hps', right: 'dps' },
   hlYou: true,
   ticker: { top: 'none', bottom: 'dps' },
   tickerAlign: { top: 'right', bottom: 'left' },
+  bottomDisp: 'maxhit',
   shortName: 'fstlst',
-  shortNumber: false,
   theme: 'default',
   lang: 'en',
   zoom: 1,
@@ -202,9 +204,13 @@ export const settingsSlice = createSlice({
       state.petMergeID = payload;
       saveSettings({ petMergeID: state.petMergeID });
     },
-    updateBottomDisp(state, { payload }: PA<BottomDispMapKey>) {
-      state.bottomDisp = payload;
-      saveSettings({ bottomDisp: state.bottomDisp });
+    updateShortNumber(state, { payload }: PA<boolean>) {
+      state.shortNumber = payload;
+      saveSettings({ shortNumber: state.shortNumber });
+    },
+    updateBigNumberMode(state, { payload }: PA<boolean>) {
+      state.bigNumberMode = payload;
+      saveSettings({ bigNumberMode: state.bigNumberMode });
     },
     // display
     updateDispMode(state, { payload }: PA<DisplayModeMapKey>) {
@@ -227,13 +233,13 @@ export const settingsSlice = createSlice({
       state.tickerAlign = { ...state.tickerAlign, ...payload };
       saveSettings({ tickerAlign: state.tickerAlign });
     },
+    updateBottomDisp(state, { payload }: PA<BottomDispMapKey>) {
+      state.bottomDisp = payload;
+      saveSettings({ bottomDisp: state.bottomDisp });
+    },
     updateShortName(state, { payload }: PA<ShortNameMapKey>) {
       state.shortName = payload;
       saveSettings({ shortName: state.shortName });
-    },
-    updateShortNumber(state, { payload }: PA<boolean>) {
-      state.shortNumber = payload;
-      saveSettings({ shortNumber: state.shortNumber });
     },
     // general
     updateTheme(state, { payload }: PA<ThemeMapKey>) {
@@ -272,14 +278,15 @@ export const {
   updateShowLB,
   updateYouName,
   updatePetMergeID,
-  updateBottomDisp,
+  updateShortNumber,
+  updateBigNumberMode,
   updateDispMode,
   updateDispContent,
   updateHlYou,
   updateTicker,
   updateTickerAlign,
+  updateBottomDisp,
   updateShortName,
-  updateShortNumber,
   updateTheme,
   updateOpacity,
   updateLang,

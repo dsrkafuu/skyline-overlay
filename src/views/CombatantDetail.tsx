@@ -19,6 +19,7 @@ function CombatantDetail({ player, lockDetail }: CombatantDetailProps) {
   const bottomDisp = useAppSelector((state) => state.settings.bottomDisp);
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
   const ticker = useAppSelector((state) => state.settings.ticker);
+  const bigNumberMode = useAppSelector((state) => state.settings.bigNumberMode);
 
   // calculate top position according to tickerNum
   let tickerNum = 0;
@@ -52,12 +53,12 @@ function CombatantDetail({ player, lockDetail }: CombatantDetailProps) {
     keyNotDisplayed('dps') &&
       items[items.length - 1].push({
         key: 'DPS',
-        value: fmtNumber(player.dps, shortNumber),
+        value: fmtNumber(player.dps, shortNumber, bigNumberMode),
       });
     keyNotDisplayed('hps') &&
       items[items.length - 1].push({
         key: 'HPS',
-        value: fmtNumber(player.hps, shortNumber),
+        value: fmtNumber(player.hps, shortNumber, bigNumberMode),
       });
     keyNotDisplayed('overHealPct') &&
       items[items.length - 1].push({
@@ -101,19 +102,19 @@ function CombatantDetail({ player, lockDetail }: CombatantDetailProps) {
       player.maxHit &&
       items[items.length - 1].push({
         key: player.maxHit,
-        value: fmtNumber(player.maxHitDamage, shortNumber),
+        value: fmtNumber(player.maxHitDamage, shortNumber, bigNumberMode),
       });
     bottomDisp !== 'maxhit' &&
       player.maxHeal &&
       items[items.length - 1].push({
         key: player.maxHeal,
-        value: fmtNumber(player.maxHealDamage, shortNumber),
+        value: fmtNumber(player.maxHealDamage, shortNumber, bigNumberMode),
       });
 
     // remove unused spliter
     !items[items.length - 1].length && items.pop();
     return items;
-  }, [bottomDisp, keyNotDisplayed, player, shortNumber, t]);
+  }, [bottomDisp, bigNumberMode, keyNotDisplayed, player, shortNumber, t]);
 
   if (isLimitBreakData(player)) {
     return null;
