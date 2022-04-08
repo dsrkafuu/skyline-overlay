@@ -6,11 +6,7 @@ import themes from '../themes';
 function SettingsAbout() {
   const t = useTranslation();
 
-  /**
-   * @param {Date} date
-   * @param {string} lang
-   */
-  const toDate = useCallback((date, lang) => {
+  const toDate = useCallback((date: Date, lang: string) => {
     try {
       return date.toLocaleString(lang);
     } catch {
