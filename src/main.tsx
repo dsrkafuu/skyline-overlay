@@ -8,7 +8,6 @@ const sentryDsn = import.meta.env.VITE_SENTRY_DSN;
 if (import.meta.env.PROD && sentryDsn) {
   Promise.all([import('@sentry/react'), import('@sentry/tracing')]).then(
     ([Sentry, { Integrations }]) => {
-      console.log(Sentry, Integrations);
       Sentry.init({
         dsn: `${sentryDsn}`,
         integrations: [new Integrations.BrowserTracing()],
