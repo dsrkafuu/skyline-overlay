@@ -104,12 +104,6 @@ function CombatantDetail({ player, lockDetail }: CombatantDetailProps) {
         key: player.maxHit,
         value: fmtNumber(player.maxHitDamage, shortNumber, bigNumberMode),
       });
-    bottomDisp !== 'maxhit' &&
-      player.maxHeal &&
-      items[items.length - 1].push({
-        key: player.maxHeal,
-        value: fmtNumber(player.maxHealDamage, shortNumber, bigNumberMode),
-      });
 
     // remove unused spliter
     !items[items.length - 1].length && items.pop();
