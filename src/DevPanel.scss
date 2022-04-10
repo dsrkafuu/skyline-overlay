@@ -9,6 +9,7 @@ $devp-width: 3rem;
   background-repeat: no-repeat;
 
   &-settings {
+    backdrop-filter: $filter;
     font-size: $font-size-sm;
     position: absolute;
     width: $devp-width;
