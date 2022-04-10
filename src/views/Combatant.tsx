@@ -42,7 +42,7 @@ function Combatant({ player }: CombatantProps) {
   }
 
   // detail controls data
-  const needDetail = name !== 'Limit Break' && bottomDisp !== 'none';
+  const needDetail = name !== 'Limit Break';
   const [showDetail, setShowDetail] = useState(false);
   const [lockDetail, setLockDetail] = useState(false);
   if (!needDetail) {
@@ -131,7 +131,7 @@ function Combatant({ player }: CombatantProps) {
         />
       )}
 
-      {needDetail && (
+      {bottomDisp !== 'none' && (
         <CombatantBottom
           player={player}
           mode={lockDetail || showDetail ? 'none' : bottomDisp}
