@@ -83,12 +83,13 @@ export const { updateCombat, showHistory, pushHistory } = apiSlice.actions;
 
 export const listener = createListenerMiddleware();
 
-// show combatants whenever new data is pushed
+// show combatants whenever new data is pushed,
+// and combatants is not locked
 listener.startListening({
   actionCreator: updateCombat,
   effect: (_, api) => {
     const state = api.getState() as RootState;
-    if (!state.settings.showCombatants) {
+    if (!state.settings.showCombatants && !state.settings.lockCombatants) {
       api.dispatch(toggleShowCombatants(true));
     }
   },

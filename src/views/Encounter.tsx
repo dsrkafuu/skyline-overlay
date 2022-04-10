@@ -6,10 +6,16 @@ import {
   IChevronUpCircle,
   IChevronDownCircle,
   ISettings,
+  ILockClosed,
+  ILockOpen,
 } from '../assets/icons';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { fmtDuration, fmtNumber, fmtZoneName } from '../utils/formatters';
-import { toggleSettings, toggleShowCombatants } from '../store/slices/settings';
+import {
+  toggleSettings,
+  toggleShowCombatants,
+  toggleLockCombatants,
+} from '../store/slices/settings';
 
 function Encounter() {
   const dispatch = useAppDispatch();
@@ -17,6 +23,9 @@ function Encounter() {
   const encounter = useAppSelector((state) => state.api.data.encounter);
   const showCombatants = useAppSelector(
     (state) => state.settings.showCombatants
+  );
+  const lockCombatants = useAppSelector(
+    (state) => state.settings.lockCombatants
   );
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
   const bigNumberMode = useAppSelector((state) => state.settings.bigNumberMode);
@@ -32,11 +41,14 @@ function Encounter() {
     await overlay.endEncounter();
   }, []);
 
-  /**
-   * hide or show combatants
-   */
   const handleToggleShowCombatants = useCallback(() => {
     dispatch(toggleShowCombatants());
+  }, [dispatch]);
+  const handleToggleLockCombatants = useCallback(() => {
+    dispatch(toggleLockCombatants());
+  }, [dispatch]);
+  const handleToggleSettings = useCallback(() => {
+    dispatch(toggleSettings());
   }, [dispatch]);
 
   // overflow zonename related
@@ -97,13 +109,15 @@ function Encounter() {
         </div>
       </div>
       <div className='encounter-btns'>
+        {!showCombatants && (
+          <div className='encounter-btn' onClick={handleToggleLockCombatants}>
+            {lockCombatants ? <ILockClosed /> : <ILockOpen />}
+          </div>
+        )}
         <div className='encounter-btn' onClick={handleToggleShowCombatants}>
           {showCombatants ? <IChevronUpCircle /> : <IChevronDownCircle />}
         </div>
-        <div
-          className='encounter-btn'
-          onClick={() => dispatch(toggleSettings())}
-        >
+        <div className='encounter-btn' onClick={handleToggleSettings}>
           <ISettings />
         </div>
       </div>

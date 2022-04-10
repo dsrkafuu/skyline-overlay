@@ -3,6 +3,7 @@ import {
   createSlice,
   PayloadAction as PA,
 } from '@reduxjs/toolkit';
+import { RootState } from '..';
 import {
   LangMapKey,
   ShortNameMapKey,
@@ -73,6 +74,7 @@ export interface Settings {
 
 interface SettingsState extends Settings {
   showCombatants: boolean;
+  lockCombatants: boolean;
   showSettings: boolean;
   blurName: boolean;
 }
@@ -104,6 +106,7 @@ export const defaultSettings: Settings = {
 };
 let initialState: SettingsState = {
   showCombatants: true,
+  lockCombatants: false,
   showSettings: false,
   blurName: false,
   ...cloneDeep(defaultSettings),
@@ -175,6 +178,13 @@ export const settingsSlice = createSlice({
         state.showCombatants = payload;
       } else {
         state.showCombatants = !state.showCombatants;
+      }
+    },
+    toggleLockCombatants(state, { payload }: PA<boolean | undefined>) {
+      if (payload !== undefined) {
+        state.lockCombatants = payload;
+      } else {
+        state.lockCombatants = !state.lockCombatants;
       }
     },
     toggleSettings(state) {
@@ -271,6 +281,7 @@ export const settingsSlice = createSlice({
 
 export const {
   toggleShowCombatants,
+  toggleLockCombatants,
   toggleSettings,
   toggleBlurName,
   updateSort,
@@ -298,6 +309,17 @@ export const {
 /** @redux effects */
 
 export const listener = createListenerMiddleware();
+
+// ensure unlock combatants when toggling combatants
+listener.startListening({
+  actionCreator: toggleShowCombatants,
+  effect: (_, api) => {
+    const state = api.getState() as RootState;
+    if (state.settings.lockCombatants) {
+      api.dispatch(toggleLockCombatants(false));
+    }
+  },
+});
 
 // apply dom when settings changed
 listener.startListening({
