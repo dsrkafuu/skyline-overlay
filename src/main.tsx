@@ -20,7 +20,6 @@ if (import.meta.env.PROD && sentryDsn) {
 
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { isCEFSharp } from 'ffxiv-overlay-api';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import App from './App';
@@ -28,7 +27,7 @@ import DevPanel from './DevPanel';
 
 let app = <App />;
 // [tree-shakable] development panel
-if (import.meta.env.DEV && !isCEFSharp()) {
+if (import.meta.env.DEV) {
   app = <DevPanel>{app}</DevPanel>;
 }
 // mount the app
