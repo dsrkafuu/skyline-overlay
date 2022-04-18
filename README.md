@@ -86,6 +86,7 @@ If you'd like to add colors to your theme that users can customize, add a "color
 ```
 myTheme: { 
   text: 'My Theme', 
+  author: authors.MyName,
   colors: { 
     'background': {r: 0, g: 0, b: 0, a: 0.3},
     'text-color': {r: 255, g: 255, b: 255, a: 1},
