@@ -261,12 +261,10 @@ export const settingsSlice = createSlice({
       saveSettings({ theme: state.theme });
     },
     updateColor(state, { payload } : PA<{key: string, value: RGBAColor}>) {
-      console.log(payload)
       state.colors[state.theme][payload.key] = payload.value;
       saveSettings({ colors: state.colors });
     },
     updateOpacity(state, { payload }: PA<number>) {
-      console.log(payload)
       state.opacity = payload;
       saveSettings({ opacity: state.opacity });
     },
