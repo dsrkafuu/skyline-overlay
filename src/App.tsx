@@ -38,9 +38,6 @@ function App() {
     }
   }, [JSON.stringify(colors), theme]);
 
-  // debug mock data
-  useMock(overlay, true);
-
   // merge pet if enabled
   if (petMergeID) {
     players = fmtMergePet(players, petMergeID);
