@@ -1,6 +1,8 @@
-import { EXPORT_PREFIX } from '../utils/constants';
+import { EXPORT_PREFIX, ThemeMapKey } from '../utils/constants';
 import { getLS, removeLS, setLS } from '../utils/storage';
 import { defaultSettings, Settings } from '../store/slices/settings';
+import themes from "../themes"
+import { ThemeColors, RGBAColor } from '../types/configuration';
 
 export function exportSettings() {
   const settings = getLS('settings') as Partial<Settings>;
@@ -35,6 +37,34 @@ export function importSettings(payload: string) {
   } catch {
     return false;
   }
+}
+
+export function getDefaultThemeColors() {
+  const colors: {[key: ThemeMapKey]: ThemeColors} = {}
+
+  Object.keys(themes).forEach(theme => {
+    if (themes[theme].colors) {
+      if (colors[theme]) {
+        // merge old set colors with theme colors
+        // this covers the case where themes add/subtract colors,
+        // we keep backwards compatibility
+        const themeColors: ThemeColors = {};
+        Object.keys(themes[theme].colors!).forEach(colorKey => {
+          themeColors[colorKey] = colors[theme][colorKey] || themes[theme].colors![colorKey]
+        })
+        colors[theme] = themeColors
+      } else {
+        // no colors have been set for this theme, so just default them
+        colors[theme] = themes[theme].colors!;
+      }
+    } else {
+      // no colors for this theme are available
+      colors[theme] = {};
+    }
+  });
+
+  console.log(colors)
+  return colors
 }
 
 export function clearSettings() {

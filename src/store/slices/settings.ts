@@ -23,6 +23,7 @@ import lang from '../../lang';
 import { cloneDeep, xssEscape } from '../../utils/lodash';
 import { getLS, setLS } from '../../utils/storage';
 import { RGBAColor, ThemeColors } from '../../types/configuration';
+import { getDefaultThemeColors } from '../../utils/settings';
 
 type P<T> = Partial<T>;
 
@@ -100,7 +101,7 @@ export const defaultSettings: Settings = {
   bottomDisp: 'maxhit',
   shortName: 'fstlst',
   theme: 'default',
-  colors: {},
+  colors: getDefaultThemeColors(),
   lang: 'en',
   zoom: 1,
   opacity: 1,
