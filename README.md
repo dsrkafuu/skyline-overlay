@@ -19,14 +19,14 @@ Features: Basic overlay, extended details, customizable display/data settings, b
 ## Overlay Links
 
 - CloudFlare (Global): `https://skyline.dsrkafuu.net`
-- Mirror (CN FFCafe): `https://act.diemoe.net/overlays/skyline/`
-- Mirror (CN DieMoe): `https://act.diemoe.net/overlays/skyline/`
+- Mirror (CN FFCafe): `https://overlays.ffcafe.cn/skyline/`
+- Mirror (CN DieMoe): `https://overlay.diemoe.net/skyline/`
 
 ## Usage
 
 Check [ngld/OverlayPlugin](https://github.com/ngld/OverlayPlugin). For WebSocket mode, note that `backdrop-filter` support needs to be enabled manually on Firefox, check [Can I use](https://caniuse.com/css-backdrop-filter) for more details.
 
-2K+ (WQHD+) screen with 1.1x scale is recommended for better experience in FFXIV.
+2K+ (WQHD+) screen with 1.2+x scale is recommended for better experience in FFXIV.
 
 Click the encounter can ends current battle and start a new one; zone name will be fully displayed when hover; click the DPS meter on encounter bar can switch to show HPS.
 
@@ -46,15 +46,22 @@ VITE_GA_ID=""         # google analytics id
 VITE_SENTRY_DSN=""    # sentry dsn for error tracking & perfromance measuring (optional)
 ```
 
-## Contribute
-
-Clone this repo, install packages and run the development server:
+## Local Build
 
 ```bash
 git clone https://github.com/dsrkafuu/skyline-overlay.git
 cd skyline-overlay
 pnpm install
-pnpm run dev
+pnpm run build
+```
+
+## Contribute
+
+```bash
+git clone https://github.com/dsrkafuu/skyline-overlay.git
+cd skyline-overlay
+npx pnpm install
+npx pnpm run dev
 ```
 
 ### Add Translations
@@ -77,6 +84,7 @@ Please use [ISO 639-1:2002](https://en.wikipedia.org/wiki/List_of_ISO_639-1_code
 [@DieMoe233](https://github.com/DieMoe233)
 [@j0sh77](https://github.com/j0sh77)
 [@Slightlyxz](https://github.com/Slightlyxz)
+[@thewakingsands](https://github.com/thewakingsands)
 
 ## Credits
 
