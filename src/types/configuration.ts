@@ -11,9 +11,13 @@ export type Author = {
   link: string;
 }
 
+export type ThemeColors = {
+  [k: string]: RGBAColor
+}
+
 export type Theme = {
   text: string,
-  colors?: {[k: string]: RGBAColor},
+  colors?: ThemeColors,
   data?: {
     author: Author
   }

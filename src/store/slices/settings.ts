@@ -22,6 +22,7 @@ import {
 import lang from '../../lang';
 import { cloneDeep, xssEscape } from '../../utils/lodash';
 import { getLS, setLS } from '../../utils/storage';
+import { RGBAColor, ThemeColors } from '../../types/configuration';
 
 type P<T> = Partial<T>;
 
@@ -65,6 +66,7 @@ export interface Settings {
   shortName: ShortNameMapKey;
   // general
   theme: ThemeMapKey;
+  colors: {[k: ThemeMapKey]: ThemeColors};
   lang: LangMapKey;
   zoom: number;
   opacity: number;
@@ -98,6 +100,7 @@ export const defaultSettings: Settings = {
   bottomDisp: 'maxhit',
   shortName: 'fstlst',
   theme: 'default',
+  colors: {},
   lang: 'en',
   zoom: 1,
   opacity: 1,
@@ -256,7 +259,13 @@ export const settingsSlice = createSlice({
       state.theme = payload;
       saveSettings({ theme: state.theme });
     },
+    updateColor(state, { payload } : PA<{key: string, value: RGBAColor}>) {
+      console.log(payload)
+      state.colors[state.theme][payload.key] = payload.value;
+      saveSettings({ colors: state.colors });
+    },
     updateOpacity(state, { payload }: PA<number>) {
+      console.log(payload)
       state.opacity = payload;
       saveSettings({ opacity: state.opacity });
     },
@@ -299,6 +308,7 @@ export const {
   updateBottomDisp,
   updateShortName,
   updateTheme,
+  updateColor,
   updateOpacity,
   updateLang,
   updateZoom,

@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import { Store } from '..';
 import { setLS, getLS } from '../../utils/storage';
 import { xssEscape } from '../../utils/lodash';
-import { RGBAColor } from '../../types/configuration';
+import { RGBAColor, ThemeColors } from '../../types/configuration';
 import {
   LangMapKey,
   ShortNameMapKey,
@@ -97,7 +97,7 @@ class Settings {
 
   // general
   theme: ThemeMapKey = 'default';
-  colors: {[k: ThemeMapKey]: {[k: string]: RGBAColor}} = {};
+  colors: {[k: ThemeMapKey]: ThemeColors} = {};
   lang: LangMapKey = 'en';
   zoom = 1;
   opacity = 1;
