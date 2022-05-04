@@ -79,6 +79,20 @@ interface SettingsState extends Settings {
   blurName: boolean;
 }
 
+/**
+ * delay save settings
+ */
+const saveSettings = (data: P<Settings>) => {
+  setTimeout(() => {
+    try {
+      const pre = (getLS('settings') || {}) as P<Settings>;
+      setLS('settings', { ...pre, ...data });
+    } catch {
+      return;
+    }
+  }, 0);
+};
+
 /** @redux initialize */
 
 // initial settings
@@ -133,10 +147,12 @@ document.body.setAttribute('data-theme', initialState.theme);
 const family = initialState.fonts.family;
 document.documentElement.setAttribute('data-font', family);
 // apply initial lang
-if (!savedSettings.lang) {
+const availableLangs = Object.keys(lang);
+if (!savedSettings.lang || !availableLangs.includes(savedSettings.lang)) {
   const detectedLang = navigator.language.substring(0, 2);
-  if (Object.keys(lang).includes(detectedLang)) {
+  if (availableLangs.includes(detectedLang)) {
     initialState.lang = detectedLang as LangMapKey;
+    saveSettings({ lang: detectedLang as LangMapKey });
   }
 }
 document.documentElement.setAttribute('lang', initialState.lang);
@@ -151,20 +167,6 @@ const customStyles = document.createElement('style');
 customStyles.setAttribute('id', CUSTOM_CSS_DOM_ID);
 customStyles.innerHTML = xssEscape(initialState.customCSS);
 document.head.appendChild(customStyles);
-
-/**
- * delay save settings
- */
-const saveSettings = (data: P<Settings>) => {
-  setTimeout(() => {
-    try {
-      const pre = (getLS('settings') || {}) as P<Settings>;
-      setLS('settings', { ...pre, ...data });
-    } catch {
-      return;
-    }
-  }, 0);
-};
 
 /** @redux slice */
 
