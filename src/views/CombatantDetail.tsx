@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { SList, SListRow } from '../components';
 import { useAppSelector, useTranslation } from '../hooks';
 import { isLimitBreakData } from '../utils/type';
-import { DisplayContentMapKey } from '../utils/constants';
+import { DisplayContentMapKey } from '../utils/maps';
 import { useCallback, useMemo } from 'react';
 import { fmtNumber } from '../utils/formatters';
 

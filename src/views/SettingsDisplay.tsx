@@ -17,7 +17,7 @@ import {
   MAP_TICKER_ALIGN,
   MAP_BOTTOM_DISP,
   MAP_SHORT_NAME,
-} from '../utils/constants';
+} from '../utils/maps';
 
 function SettingsDisplay() {
   const t = useTranslation();

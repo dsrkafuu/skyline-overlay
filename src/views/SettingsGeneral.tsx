@@ -1,8 +1,7 @@
 import { useMemo } from 'react';
-import { SInput, SInputNumber, SSelect, SInputColors } from '../components';
+import { SInput, SInputNumber, SSelect } from '../components';
 import { useAppDispatch, useAppSelector, useTranslation } from '../hooks';
 import {
-  updateColor,
   updateCustomCSS,
   updateFonts,
   updateLang,
@@ -15,15 +14,13 @@ import {
   MAP_LANG,
   MAP_FONT_FAMILY,
   MAP_FONT_WEIGHT,
-} from '../utils/constants';
+} from '../utils/maps';
 import SettingsTransfer from './SettingsTransfer';
-import themes from "../themes"
 
 function SettingsGeneral() {
   const t = useTranslation();
   const dispatch = useAppDispatch();
   const theme = useAppSelector((state) => state.settings.theme);
-  const colors = useAppSelector((state) => state.settings.colors);
   const lang = useAppSelector((state) => state.settings.lang);
   const zoom = useAppSelector((state) => state.settings.zoom);
   const opacity = useAppSelector((state) => state.settings.opacity);
@@ -42,18 +39,6 @@ function SettingsGeneral() {
             map={MAP_THEMES}
           />
         ),
-      },
-      {
-        title: t('Colors'),
-        render: () => (
-          <SInputColors 
-            onChange={(key, value) => {
-              dispatch(updateColor({key, value}))
-            }} 
-            values={JSON.parse(JSON.stringify(colors[theme])) || []}
-          />
-        ),
-        hidden: !themes[theme].colors
       },
       {
         title: t('Language'),
@@ -133,8 +118,8 @@ function SettingsGeneral() {
 
   return (
     <div className='settings-general'>
-      {items.map(({ title, render, hidden }) => (
-        !hidden && <div className='settings-row' key={title}>
+      {items.map(({ title, render }) => (
+        <div className='settings-row' key={title}>
           <span className='settings-title'>{title}</span>
           {render()}
         </div>

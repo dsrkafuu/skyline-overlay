@@ -4,7 +4,7 @@ import * as jobIcons from '../assets/jobs';
 import { useAppSelector } from '../hooks';
 import { isLimitBreakData } from '../utils/type';
 import { fmtNumber } from '../utils/formatters';
-import { MAP_DISPLAY_CONTENT } from '../utils/constants';
+import { MAP_DISPLAY_CONTENT } from '../utils/maps';
 
 interface CombatantContentProps {
   player: CombatantData | LimitBreakData;

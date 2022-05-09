@@ -17,8 +17,6 @@ function App() {
   const showLB = useAppSelector((state) => state.settings.showLB);
   const petMergeID = useAppSelector((state) => state.settings.petMergeID);
   const opacity = useAppSelector((state) => state.settings.opacity);
-  const colors = useAppSelector((state) => state.settings.colors);
-  const theme = useAppSelector((state) => state.settings.theme);
 
   // get data from store
   const data = useAppSelector((state) => state.api.data);
@@ -26,17 +24,6 @@ function App() {
   const { combatant, limitBreak } = cloneDeep(history.data || data);
 
   let players = combatant;
-
-  useEffect(() => {
-    const themeColors = colors[theme];
-
-    if (themeColors) {
-      for (const key of Object.keys(themeColors)) {
-        const color = themeColors[key];
-        document.documentElement.style.setProperty(`--color-theme-${key}`, `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`);
-      }
-    }
-  }, [JSON.stringify(colors), theme]);
 
   // merge pet if enabled
   if (petMergeID) {

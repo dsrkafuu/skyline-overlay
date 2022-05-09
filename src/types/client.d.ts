@@ -1,10 +1,8 @@
-// Vite
+// vite
 /// <reference types="vite/client" />
 
-// SVGR
-declare module '*.svg' {
-  import * as React from 'react';
-  export const ReactComponent: React.FC<
-    React.SVGProps<SVGSVGElement> & { title?: string }
-  >;
-}
+// svgr
+/// <reference types="vite-plugin-svgr/client" />
+
+// common types
+declare type RGBAColor = [number, number, number, number];
