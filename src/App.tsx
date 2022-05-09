@@ -1,5 +1,5 @@
 import './App.scss';
-import { CSSProperties, useEffect } from 'react';
+import { CSSProperties } from 'react';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import Combatant from './views/Combatant';
 import Encounter from './views/Encounter';
@@ -31,7 +31,7 @@ function App() {
   }
 
   // sort combatant
-  players.sort((a: any, b: any) => sort.rule * (a[sort.key] - b[sort.key]));
+  players.sort((a, b) => sort.rule * (a[sort.key] - b[sort.key]));
 
   // limit combatants
   const temp = players;
