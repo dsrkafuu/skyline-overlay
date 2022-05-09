@@ -1,4 +1,5 @@
 export { default as SInput } from './SInput';
+export { default as SInputColor } from './SInputColor';
 export { default as SInputNumber } from './SInputNumber';
 export { default as SList } from './SList';
 export type { SListRow } from './SList';

@@ -7,6 +7,7 @@ import { useAppSelector, useTranslation } from '../hooks';
 import SettingsData from './SettingsData';
 import SettingsDisplay from './SettingsDisplay';
 import SettingsGeneral from './SettingsGeneral';
+import SettingsColors from './SettingsColors';
 
 function Settings() {
   const t = useTranslation();
@@ -19,6 +20,7 @@ function Settings() {
       { type: 'data', title: t('Data') },
       { type: 'display', title: t('Display') },
       { type: 'general', title: t('General') },
+      { type: 'colors', title: t('Colors') },
     ],
     [t]
   );
@@ -38,6 +40,9 @@ function Settings() {
       break;
     case 'general':
       ActivePanel = SettingsGeneral;
+      break;
+    case 'colors':
+      ActivePanel = SettingsColors;
       break;
     default:
       ActivePanel = SettingsAbout;

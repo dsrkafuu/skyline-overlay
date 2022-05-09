@@ -1,0 +1,21 @@
+.s-input-color {
+  display: inline-block;
+  height: $size-form;
+  width: $size-form;
+  position: relative;
+  cursor: pointer;
+
+  &-swatch {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &-popover {
+    position: absolute;
+    top: calc(100% + $padding-sm);
+    right: 0;
+  }
+}

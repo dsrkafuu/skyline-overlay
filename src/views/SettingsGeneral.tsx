@@ -14,7 +14,7 @@ import {
   MAP_LANG,
   MAP_FONT_FAMILY,
   MAP_FONT_WEIGHT,
-} from '../utils/constants';
+} from '../utils/maps';
 import SettingsTransfer from './SettingsTransfer';
 
 function SettingsGeneral() {

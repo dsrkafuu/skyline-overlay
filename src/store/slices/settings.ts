@@ -4,6 +4,7 @@ import {
   PayloadAction as PA,
 } from '@reduxjs/toolkit';
 import { RootState } from '..';
+import { CUSTOM_CSS_DOM_ID } from '../../utils/constants';
 import {
   LangMapKey,
   ShortNameMapKey,
@@ -17,13 +18,17 @@ import {
   FontFamilyMapKey,
   FontWeightMapKey,
   MAP_FONT_WEIGHT,
-  CUSTOM_CSS_DOM_ID,
-} from '../../utils/constants';
+} from '../../utils/maps';
 import lang from '../../lang';
-import { cloneDeep, xssEscape } from '../../utils/lodash';
+import { cloneDeep, mergeDeep, xssEscape } from '../../utils/lodash';
 import { getLS, setLS } from '../../utils/storage';
+import { ColorsData } from '../../themes';
 
-type P<T> = Partial<T>;
+type DeepPartial<T> = T extends object
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>;
+    }
+  : T;
 
 interface SortSettings {
   key: SortRuleMapKey;
@@ -70,6 +75,9 @@ export interface Settings {
   opacity: number;
   fonts: FontSettings;
   customCSS: string;
+  // colors
+  preset: string; // preset key
+  colors: Partial<ColorsData>; // custom colors
 }
 
 interface SettingsState extends Settings {
@@ -80,12 +88,12 @@ interface SettingsState extends Settings {
 }
 
 /**
- * delay save settings
+ * delay save settings (event loop)
  */
-const saveSettings = (data: P<Settings>) => {
+const saveSettings = (data: Partial<Settings>) => {
   setTimeout(() => {
     try {
-      const pre = (getLS('settings') || {}) as P<Settings>;
+      const pre = (getLS('settings') || {}) as Partial<Settings>;
       setLS('settings', { ...pre, ...data });
     } catch {
       return;
@@ -117,6 +125,8 @@ export const defaultSettings: Settings = {
   opacity: 1,
   fonts: { family: 'default', weight: 'regular' },
   customCSS: '#root {}',
+  preset: 'default',
+  colors: {},
 };
 let initialState: SettingsState = {
   showCombatants: true,
@@ -127,7 +137,7 @@ let initialState: SettingsState = {
 };
 
 // merge saved settings into default settings
-const savedSettings = (getLS('settings') || {}) as P<SettingsState>;
+const savedSettings = (getLS('settings') || {}) as Partial<SettingsState>;
 try {
   for (const key of Object.keys(savedSettings)) {
     // @ts-expect-error merge PartialSettings into Settings
@@ -196,7 +206,7 @@ export const settingsSlice = createSlice({
       state.blurName = !state.blurName;
     },
     // data
-    updateSort(state, { payload }: PA<P<SortSettings>>) {
+    updateSort(state, { payload }: PA<Partial<SortSettings>>) {
       state.sort = { ...state.sort, ...payload };
       saveSettings({ sort: state.sort });
     },
@@ -229,7 +239,7 @@ export const settingsSlice = createSlice({
       state.dispMode = payload;
       saveSettings({ dispMode: state.dispMode });
     },
-    updateDispContent(state, { payload }: PA<P<DispContentSettings>>) {
+    updateDispContent(state, { payload }: PA<Partial<DispContentSettings>>) {
       state.dispContent = { ...state.dispContent, ...payload };
       saveSettings({ dispContent: state.dispContent });
     },
@@ -237,11 +247,11 @@ export const settingsSlice = createSlice({
       state.hlYou = payload;
       saveSettings({ hlYou: state.hlYou });
     },
-    updateTicker(state, { payload }: PA<P<TickerSettings>>) {
+    updateTicker(state, { payload }: PA<Partial<TickerSettings>>) {
       state.ticker = { ...state.ticker, ...payload };
       saveSettings({ ticker: state.ticker });
     },
-    updateTickerAlign(state, { payload }: PA<P<TickerAlignSettings>>) {
+    updateTickerAlign(state, { payload }: PA<Partial<TickerAlignSettings>>) {
       state.tickerAlign = { ...state.tickerAlign, ...payload };
       saveSettings({ tickerAlign: state.tickerAlign });
     },
@@ -270,13 +280,26 @@ export const settingsSlice = createSlice({
       state.zoom = payload;
       saveSettings({ zoom: state.zoom });
     },
-    updateFonts(state, { payload }: PA<P<FontSettings>>) {
+    updateFonts(state, { payload }: PA<Partial<FontSettings>>) {
       state.fonts = { ...state.fonts, ...payload };
       saveSettings({ fonts: state.fonts });
     },
     updateCustomCSS(state, { payload }: PA<string>) {
       state.customCSS = payload;
       saveSettings({ customCSS: state.customCSS });
+    },
+    // colors
+    updatePreset(state, { payload }: PA<string>) {
+      state.preset = payload;
+      saveSettings({ preset: state.preset });
+    },
+    updateColors(state, { payload }: PA<DeepPartial<ColorsData> | null>) {
+      if (!payload) {
+        state.colors = {};
+      } else {
+        state.colors = mergeDeep(state.colors, payload);
+      }
+      saveSettings({ colors: state.colors });
     },
   },
 });
@@ -306,6 +329,8 @@ export const {
   updateZoom,
   updateFonts,
   updateCustomCSS,
+  updatePreset,
+  updateColors,
 } = settingsSlice.actions;
 
 /** @redux effects */
@@ -363,6 +388,20 @@ listener.startListening({
     if (customStyles) {
       customStyles.innerHTML = xssEscape(payload);
     }
+  },
+});
+
+// clear custom color when theme changes & preset changes
+listener.startListening({
+  actionCreator: updateTheme,
+  effect: (_, api) => {
+    api.dispatch(updateColors(null));
+  },
+});
+listener.startListening({
+  actionCreator: updatePreset,
+  effect: (_, api) => {
+    api.dispatch(updateColors(null));
   },
 });
 

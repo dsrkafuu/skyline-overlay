@@ -9,7 +9,7 @@ import CombatantContent from './CombatantContent';
 import { useAppSelector } from '../hooks';
 import { STicker, STickerProps, STickerClass } from '../components';
 import { isLimitBreakData, isCombatantData } from '../utils/type';
-import { TickerMapKey } from '../utils/constants';
+import { TickerMapKey } from '../utils/maps';
 
 interface CombatantProps {
   player: CombatantData | LimitBreakData;
