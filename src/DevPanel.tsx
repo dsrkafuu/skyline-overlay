@@ -34,11 +34,11 @@ function getSettings() {
     bgImage: 'none',
     bgSize: 'native',
     bgColor: 'transparent',
-    ...((getLS('settings-dev') as DevPanelSettings) || {}),
+    ...((getLS('dev') as DevPanelSettings) || {}),
   };
 }
 function setSettings(settings: DevPanelSettings) {
-  setLS('settings-dev', {
+  setLS('dev', {
     ...getSettings(),
     ...settings,
   });
