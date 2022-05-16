@@ -28,7 +28,7 @@ function SettingsColors() {
     dispatch(updateColors(null));
   }, [dispatch]);
 
-  const unknownCl = useColor((c) => c.unknown);
+  const commonCl = useColor((c) => c.common);
   const selfCl = useColor((c) => c.self);
   const tickerCls = useColor((c) => c.ticker);
   const jobtypeCls = useColor((c) => c.jobtype);
@@ -57,8 +57,8 @@ function SettingsColors() {
         title: t('Unknown Fallback'),
         render: () => (
           <SInputColor
-            value={unknownCl}
-            onChange={(v) => dispatch(updateColors({ unknown: v }))}
+            value={commonCl}
+            onChange={(v) => dispatch(updateColors({ common: v }))}
           />
         ),
       },
@@ -148,7 +148,7 @@ function SettingsColors() {
     preset,
     presetsMap,
     selfCl,
-    unknownCl,
+    commonCl,
     tickerCls,
     jobtypeCls,
     jobCls,

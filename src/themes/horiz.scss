@@ -7,20 +7,20 @@ body[data-theme='horiz'] {
   --icon-shadow: 0 0 0.04rem rgba(0, 0, 0, 0.6);
 
   // s-ticker
-  --color-s-ticker-cd: rgba(255, 111, 0, 0.7); // crit direct
-  --color-s-ticker-c: rgba(255, 202, 40, 0.7); // crit
-  --color-s-ticker-d: rgba(29, 233, 182, 0.7); // direct
-  --color-s-ticker-oh: rgba(255, 102, 0, 0.7); // over healed
-  --color-s-ticker-h: rgba(127, 243, 82, 0.8); // healed
-  --color-s-ticker-s: rgba(82, 205, 243, 0.8); // shield
+  // --color-ticker-cd: rgba(255, 111, 0, 0.7); // crit direct
+  // --color-ticker-c: rgba(255, 202, 40, 0.7); // crit
+  // --color-s-ticker-d: rgba(29, 233, 182, 0.7); // direct
+  // --color-s-ticker-oh: rgba(255, 102, 0, 0.7); // over healed
+  // --color-s-ticker-h: rgba(127, 243, 82, 0.8); // healed
+  // --color-s-ticker-s: rgba(82, 205, 243, 0.8); // shield
 
   // combatant
   --color-combatant-fg: var(--color-fg);
-  --color-combatant-bg-dps: rgba(244, 67, 54, 0.5);
-  --color-combatant-bg-tank: rgba(32, 149, 243, 0.5);
-  --color-combatant-bg-heal: rgba(139, 195, 74, 0.5);
-  --color-combatant-bg-others: var(--color-bg);
-  --color-combatant-bg-self: rgba(255, 255, 255, 0.8);
+  // --color-jobtype-dps: rgba(244, 67, 54, 0.5);
+  // --color-jobtype-tank: rgba(32, 149, 243, 0.5);
+  // --color-jobtype-heal: rgba(139, 195, 74, 0.5);
+  // --color-common: var(--color-bg);
+  // --color-self: rgba(255, 255, 255, 0.8);
   --shadow-combatant: var(--shadow);
 
   // encounter

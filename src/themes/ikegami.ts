@@ -3,7 +3,7 @@ import { DSRKafuU } from './authors';
 
 // same colors in all presets
 const commonColors: ColorsData = {
-  unknown: [64, 64, 64],
+  common: [64, 64, 64],
   self: [118, 118, 118],
   ticker: {
     cd: [255, 111, 0], // crit direct

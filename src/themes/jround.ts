@@ -3,7 +3,7 @@ import { j0sh77 } from './authors';
 
 // same colors in all presets
 const commonColors: ColorsData = {
-  unknown: [0, 0, 0, 0.3],
+  common: [0, 0, 0, 0.3],
   self: [118, 118, 118, 1],
   ticker: {
     cd: [255, 111, 0, 0.7], // crit direct

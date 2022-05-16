@@ -55,7 +55,11 @@ try {
 
 // apply initial dom variables
 function toCSSRGBA(color: RGBAColor): string {
-  return `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`;
+  if (typeof color[3] === 'number') {
+    return `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`;
+  } else {
+    return `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+  }
 }
 function applyColors(
   theme: ThemeMapKey,
@@ -64,7 +68,7 @@ function applyColors(
 ) {
   let fc = matchPreset(theme, preset);
   fc = mergeDeep(fc, colors);
-  let css = `--color-unknown: ${toCSSRGBA(fc.unknown)};\n`;
+  let css = `--color-common: ${toCSSRGBA(fc.common)};\n`;
   css += `--color-self: ${toCSSRGBA(fc.self)};\n`;
   const objKeys = ['ticker', 'jobtype', 'job', 'theme'];
   for (const objKey of objKeys) {
