@@ -124,11 +124,12 @@ export const { updatePreset, updateColors } = colorsSlice.actions;
 
 export const listener = createListenerMiddleware();
 
-// clear custom color when theme changes & preset changes
+// reset preset & color when theme changes & preset changes
 listener.startListening({
   actionCreator: updateTheme,
   effect: (_, api) => {
     api.dispatch(updateColors(null));
+    api.dispatch(updatePreset('default'));
   },
 });
 listener.startListening({
