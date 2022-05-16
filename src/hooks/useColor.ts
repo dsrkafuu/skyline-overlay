@@ -9,7 +9,7 @@ const matchMap = new Map<string, ColorsData>();
  */
 function useColor<T>(getter: (colors: ColorsData) => T) {
   const theme = useAppSelector((state) => state.settings.theme);
-  const preset = useAppSelector((state) => state.settings.preset);
+  const preset = useAppSelector((state) => state.colors.preset);
 
   // colors in theme preset
   const matchKey = `${theme}|${preset}`;
@@ -24,7 +24,7 @@ function useColor<T>(getter: (colors: ColorsData) => T) {
     matchMap.set(matchKey, presetColors);
   }
   // colors custom selected by user
-  const customColors = useAppSelector((state) => state.settings.colors);
+  const customColors = useAppSelector((state) => state.colors.colors);
   // merge to full colors map
   const fullColors: ColorsData = mergeDeep(presetColors, customColors);
   // get color use selector

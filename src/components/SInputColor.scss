@@ -11,11 +11,23 @@
     top: 0;
     right: 0;
     bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-shadow: var(--s);
+
+    .g-icon {
+      font-size: 0.2rem;
+      filter: drop-shadow(var(--icon-shadow));
+      color: var(--icon-color);
+    }
   }
 
   &-popover {
     position: absolute;
     top: calc(100% + $padding-sm);
     right: 0;
+    z-index: 999;
   }
 }

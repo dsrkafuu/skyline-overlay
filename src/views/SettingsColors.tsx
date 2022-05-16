@@ -6,14 +6,15 @@ import {
   useColor,
   useTranslation,
 } from '../hooks';
-import { updateColors, updatePreset } from '../store/slices/settings';
+import { updateColors, updatePreset } from '../store/slices/colors';
 import themes from '../themes';
+import * as jobIcons from '../assets/jobs';
 
 function SettingsColors() {
   const t = useTranslation();
   const dispatch = useAppDispatch();
   const theme = useAppSelector((state) => state.settings.theme);
-  const preset = useAppSelector((state) => state.settings.preset);
+  const preset = useAppSelector((state) => state.colors.preset);
   const presetsMap = useMemo(() => {
     const map = {} as SSelectMap;
     for (const item of themes[theme].data.presets) {
@@ -38,6 +39,7 @@ function SettingsColors() {
             value={preset}
             onChange={(key) => dispatch(updatePreset(key as string))}
             map={presetsMap}
+            disabled={Object.keys(presetsMap).length < 2}
           />
         ),
       },
@@ -91,16 +93,28 @@ function SettingsColors() {
     if (jobCls && jobKeys.length > 0) {
       ret.push({
         title: t('Jobs'),
-        render: () =>
-          Object.keys(jobCls).map((key) => (
-            <SInputColor
-              key={key}
-              value={jobCls[key as keyof typeof jobCls]}
-              onChange={(v) =>
-                dispatch(updateColors({ jobtype: { [key]: v } }))
-              }
-            />
-          )),
+        render: () => (
+          <div className='settings-colors-grid'>
+            {Object.keys(jobCls).map((key) => {
+              const Icon =
+                jobIcons[
+                  String.prototype.toUpperCase.apply(
+                    key
+                  ) as keyof typeof jobIcons
+                ] || jobIcons.FFXIV;
+              return (
+                <SInputColor
+                  key={key}
+                  value={jobCls[key as keyof typeof jobCls]}
+                  icon={<Icon />}
+                  onChange={(v) =>
+                    dispatch(updateColors({ job: { [key]: v } }))
+                  }
+                />
+              );
+            })}
+          </div>
+        ),
       });
     }
     const themeKeys = Object.keys(themeCls || {});

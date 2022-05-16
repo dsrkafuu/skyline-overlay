@@ -20,15 +20,8 @@ import {
   MAP_FONT_WEIGHT,
 } from '../../utils/maps';
 import lang from '../../lang';
-import { cloneDeep, mergeDeep, xssEscape } from '../../utils/lodash';
-import { getLS, setLS } from '../../utils/storage';
-import { ColorsData } from '../../themes';
-
-type DeepPartial<T> = T extends object
-  ? {
-      [P in keyof T]?: DeepPartial<T[P]>;
-    }
-  : T;
+import { cloneDeep, xssEscape } from '../../utils/lodash';
+import { getAsyncLSSetter, getLS } from '../../utils/storage';
 
 interface SortSettings {
   key: SortRuleMapKey;
@@ -75,9 +68,6 @@ export interface Settings {
   opacity: number;
   fonts: FontSettings;
   customCSS: string;
-  // colors
-  preset: string; // preset key
-  colors: Partial<ColorsData>; // custom colors
 }
 
 interface SettingsState extends Settings {
@@ -87,19 +77,7 @@ interface SettingsState extends Settings {
   blurName: boolean;
 }
 
-/**
- * delay save settings (event loop)
- */
-const saveSettings = (data: Partial<Settings>) => {
-  setTimeout(() => {
-    try {
-      const pre = (getLS('settings') || {}) as Partial<Settings>;
-      setLS('settings', { ...pre, ...data });
-    } catch {
-      return;
-    }
-  }, 0);
-};
+const saveSettings = getAsyncLSSetter<Partial<Settings>>('settings');
 
 /** @redux initialize */
 
@@ -125,8 +103,6 @@ export const defaultSettings: Settings = {
   opacity: 1,
   fonts: { family: 'default', weight: 'regular' },
   customCSS: '#root {}',
-  preset: 'default',
-  colors: {},
 };
 let initialState: SettingsState = {
   showCombatants: true,
@@ -288,19 +264,6 @@ export const settingsSlice = createSlice({
       state.customCSS = payload;
       saveSettings({ customCSS: state.customCSS });
     },
-    // colors
-    updatePreset(state, { payload }: PA<string>) {
-      state.preset = payload;
-      saveSettings({ preset: state.preset });
-    },
-    updateColors(state, { payload }: PA<DeepPartial<ColorsData> | null>) {
-      if (!payload) {
-        state.colors = {};
-      } else {
-        state.colors = mergeDeep(state.colors, payload);
-      }
-      saveSettings({ colors: state.colors });
-    },
   },
 });
 
@@ -329,8 +292,6 @@ export const {
   updateZoom,
   updateFonts,
   updateCustomCSS,
-  updatePreset,
-  updateColors,
 } = settingsSlice.actions;
 
 /** @redux effects */
@@ -388,20 +349,6 @@ listener.startListening({
     if (customStyles) {
       customStyles.innerHTML = xssEscape(payload);
     }
-  },
-});
-
-// clear custom color when theme changes & preset changes
-listener.startListening({
-  actionCreator: updateTheme,
-  effect: (_, api) => {
-    api.dispatch(updateColors(null));
-  },
-});
-listener.startListening({
-  actionCreator: updatePreset,
-  effect: (_, api) => {
-    api.dispatch(updateColors(null));
   },
 });
 

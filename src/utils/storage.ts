@@ -1,7 +1,7 @@
 import { logError } from './loggers';
 import { STORAGE_PREFIX } from './constants';
 
-export type StorageKey = 'settings' | 'settings-dev';
+export type StorageKey = 'settings' | 'colors' | 'dev';
 
 /**
  * set local storage
@@ -15,6 +15,22 @@ export function setLS(key: StorageKey, value: unknown) {
   } catch (e) {
     logError(e);
   }
+}
+
+/**
+ * delay save local storage (event loop)
+ */
+export function getAsyncLSSetter<T>(key: StorageKey) {
+  return (data: T) => {
+    setTimeout(() => {
+      try {
+        const pre = (getLS(key) || {}) as T;
+        setLS(key, { ...pre, ...data });
+      } catch {
+        return;
+      }
+    }, 0);
+  };
 }
 
 /**

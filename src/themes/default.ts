@@ -29,17 +29,6 @@ export const presets: ColorsPreset[] = [
       },
     },
   },
-  {
-    key: 'colorful',
-    name: 'Colorful',
-    data: {
-      ...commonColors,
-      job: {
-        smn: [0, 0, 0, 1],
-        mnk: [0, 0, 0, 1],
-      },
-    },
-  },
 ];
 
 export default {
