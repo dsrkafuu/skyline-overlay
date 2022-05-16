@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { SInputColor, SSelect, SSelectMap } from '../components';
 import {
   useAppDispatch,
@@ -9,6 +9,7 @@ import {
 import { updateColors, updatePreset } from '../store/slices/colors';
 import themes from '../themes';
 import * as jobIcons from '../assets/jobs';
+import { IRefresh } from '../assets/icons';
 
 function SettingsColors() {
   const t = useTranslation();
@@ -23,6 +24,10 @@ function SettingsColors() {
     return map;
   }, [theme]);
 
+  const handleResetColors = useCallback(() => {
+    dispatch(updateColors(null));
+  }, [dispatch]);
+
   const unknownCl = useColor((c) => c.unknown);
   const selfCl = useColor((c) => c.self);
   const tickerCls = useColor((c) => c.ticker);
@@ -35,12 +40,17 @@ function SettingsColors() {
       {
         title: t('Preset'),
         render: () => (
-          <SSelect
-            value={preset}
-            onChange={(key) => dispatch(updatePreset(key as string))}
-            map={presetsMap}
-            disabled={Object.keys(presetsMap).length < 2}
-          />
+          <>
+            <SSelect
+              value={preset}
+              onChange={(key) => dispatch(updatePreset(key as string))}
+              map={presetsMap}
+              disabled={Object.keys(presetsMap).length < 2}
+            />
+            <div className='settings-btn' onClick={handleResetColors}>
+              <IRefresh />
+            </div>
+          </>
         ),
       },
       {
@@ -143,6 +153,7 @@ function SettingsColors() {
     jobtypeCls,
     jobCls,
     themeCls,
+    handleResetColors,
   ]);
 
   return (

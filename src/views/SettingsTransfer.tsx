@@ -69,15 +69,15 @@ function SettingsTransfer() {
 
   return (
     <div className='settings-transfer'>
-      <div className='settings-transfer-btn' onClick={handleExport}>
+      <div className='settings-btn' onClick={handleExport}>
         <IDownload />
       </div>
-      <div className='settings-transfer-btn' onClick={handleImport}>
+      <div className='settings-btn' onClick={handleImport}>
         <IUpload />
       </div>
       <div
-        className={clsx('settings-transfer-btn', {
-          'settings-transfer-btn-rotate': rotate,
+        className={clsx('settings-btn', {
+          'settings-btn-rotate': rotate,
         })}
         onMouseDown={onMouseDownRotate}
         onTouchStart={onTouchStartRotate}

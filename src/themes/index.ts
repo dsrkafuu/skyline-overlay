@@ -8,6 +8,8 @@ import horiz from './horiz';
 import ikegami from './ikegami';
 import jround from './jround';
 import { CSS_VARS_DOM_ID } from '../utils/constants';
+import { ThemeMapKey } from '../utils/maps';
+import { cloneDeep } from '../utils/lodash';
 
 /**
  * `jobtype` and `job` must be defined at least once,
@@ -43,12 +45,14 @@ export interface ColorsPreset {
   data: ColorsData;
 }
 
-export default {
+const themes = {
   default: { text: _default.name, data: _default },
   horiz: { text: horiz.name, data: horiz },
   ikegami: { text: ikegami.name, data: ikegami },
   jround: { text: jround.name, data: jround },
 };
+
+export default themes;
 
 function toCSSRGBA(color: RGBAColor): string {
   return `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`;
@@ -58,8 +62,6 @@ function toCSSRGBA(color: RGBAColor): string {
  * apply colors to dom css variables
  */
 export function applyColors(colors: ColorsData) {
-  const el = document.createElement('style');
-  el.id = CSS_VARS_DOM_ID;
   let css = `--color-unknown: ${toCSSRGBA(colors.unknown)};\n`;
   css += `--color-self: ${toCSSRGBA(colors.self)};\n`;
   for (const key of Object.keys(colors.ticker)) {
@@ -89,11 +91,32 @@ export function applyColors(colors: ColorsData) {
     }
   }
   css = `body {\n${css}}`;
-  el.innerHTML = css;
-  const preEl = document.getElementById(CSS_VARS_DOM_ID);
-  if (preEl) {
-    preEl.remove();
+  const el = document.getElementById(CSS_VARS_DOM_ID);
+  if (el) {
+    el.innerHTML = css;
   } else {
-    document.head.appendChild(el);
+    const newEl = document.createElement('style');
+    newEl.id = CSS_VARS_DOM_ID;
+    newEl.innerHTML = css;
+    document.body.appendChild(newEl);
   }
+}
+
+const matchMap = new Map<string, ColorsData>();
+/**
+ *
+ */
+export function matchPreset(theme: ThemeMapKey, preset: string) {
+  const key = `${theme}|${preset}`;
+  let ret = matchMap.get(key);
+  if (!ret) {
+    const presets = themes[theme].data.presets;
+    let matched = presets.find((item) => item.key === preset);
+    if (!matched) {
+      matched = presets[0];
+    }
+    ret = matched.data;
+    matchMap.set(key, ret);
+  }
+  return cloneDeep(ret);
 }

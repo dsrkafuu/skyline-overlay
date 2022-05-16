@@ -73,43 +73,43 @@
     line-height: $size-form;
   }
 
+  &-btn {
+    width: $size-form;
+    min-width: 0;
+    cursor: pointer;
+    flex: 0 0 auto;
+    height: $size-form;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--color-form-fg);
+    background-color: var(--color-form-bg);
+    text-shadow: var(--shadow-form);
+
+    &:hover {
+      color: var(--color-form-fg-active);
+      background-color: var(--color-form-bg-active);
+      text-shadow: var(--shadow-form-active);
+    }
+
+    &-rotate .g-icon {
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      animation: spin 1s linear infinite;
+    }
+  }
+
   // transfer module
   &-transfer {
     display: flex;
     gap: $padding-md;
-
-    &-btn {
-      width: $size-form;
-      min-width: 0;
-      cursor: pointer;
-      flex: 0 0 auto;
-      height: $size-form;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: var(--color-form-fg);
-      background-color: var(--color-form-bg);
-      text-shadow: var(--shadow-form);
-
-      &:hover {
-        color: var(--color-form-fg-active);
-        background-color: var(--color-form-bg-active);
-        text-shadow: var(--shadow-form-active);
-      }
-
-      &-rotate .g-icon {
-        @keyframes spin {
-          0% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(360deg);
-          }
-        }
-        animation: spin 1s linear infinite;
-      }
-    }
   }
 }
 

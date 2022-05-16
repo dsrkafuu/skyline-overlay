@@ -13,6 +13,9 @@ const commonColors: ColorsData = {
     h: [127, 243, 82, 0.8], // healed
     s: [82, 205, 243, 0.8], // shield
   },
+  theme: {
+    jbg: [255, 255, 255, 1],
+  },
 };
 
 // different color presets
