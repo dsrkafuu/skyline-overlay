@@ -18,7 +18,7 @@
     text-shadow: var(--s);
 
     .g-icon {
-      font-size: 0.2rem;
+      font-size: 0.18rem;
       filter: drop-shadow(var(--icon-shadow));
       color: var(--icon-color);
     }
@@ -26,8 +26,35 @@
 
   &-popover {
     position: absolute;
-    top: calc(100% + $padding-sm);
     right: 0;
     z-index: 999;
+
+    &-bottom {
+      top: $size-form + $padding-md;
+    }
+    &-top {
+      bottom: $size-form + $padding-md;
+    }
+  }
+
+  .react-colorful {
+    width: 1.2rem;
+    height: 1.2rem;
+
+    &__saturation,
+    &__last-control {
+      border-radius: 0;
+    }
+
+    &__hue,
+    &__alpha {
+      height: 0.14rem;
+    }
+
+    &__pointer {
+      width: 0.18rem;
+      height: 0.18rem;
+      cursor: pointer;
+    }
   }
 }

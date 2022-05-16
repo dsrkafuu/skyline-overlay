@@ -6,12 +6,19 @@ import { useOutsideClick } from '../hooks';
 
 interface SInputColorProps {
   value: RGBAColor;
+  position?: 'top' | 'bottom';
   icon?: React.ReactNode;
   onChange: (value: RGBAColor) => void;
   className?: string;
 }
 
-function SInputColor({ value, onChange, icon, className }: SInputColorProps) {
+function SInputColor({
+  value,
+  onChange,
+  position = 'top',
+  icon,
+  className,
+}: SInputColorProps) {
   const [opened, setOpened] = useState(false);
   const toggleOpened = useCallback(() => setOpened(!opened), [opened]);
 
@@ -33,7 +40,12 @@ function SInputColor({ value, onChange, icon, className }: SInputColorProps) {
         {icon}
       </div>
       {opened && (
-        <div className='s-input-color-popover'>
+        <div
+          className={clsx(
+            's-input-color-popover',
+            `s-input-color-popover-${position}`
+          )}
+        >
           <RgbaColorPicker
             color={{
               r: value[0],

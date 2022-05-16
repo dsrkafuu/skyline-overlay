@@ -87,7 +87,7 @@ body[data-theme='ikegami'] {
 
   .s-input-number,
   .s-switch {
-    gap: 0.02rem;
+    gap: $padding-md;
 
     & > div {
       border: 0.01rem solid #ffffff;
@@ -107,5 +107,17 @@ body[data-theme='ikegami'] {
     &-options {
       border: 0.01rem solid #ffffff;
     }
+  }
+
+  .s-input-color {
+    border: 0.01rem solid #ffffff;
+  }
+
+  .settings-transfer-btn {
+    border: 0.01rem solid #ffffff;
+  }
+
+  .settings-sort-rule {
+    width: 0.68rem;
   }
 }

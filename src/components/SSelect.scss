@@ -11,6 +11,8 @@
     color: var(--color-form-fg);
     background-color: var(--color-form-bg);
     display: flex;
+    height: $size-form;
+    line-height: $size-form;
 
     .disp {
       flex: 1 1 auto;

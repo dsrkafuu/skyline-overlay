@@ -76,6 +76,7 @@
   // transfer module
   &-transfer {
     display: flex;
+    gap: $padding-md;
 
     &-btn {
       width: $size-form;
@@ -90,10 +91,6 @@
       color: var(--color-form-fg);
       background-color: var(--color-form-bg);
       text-shadow: var(--shadow-form);
-
-      &:not(:last-child) {
-        margin-right: $padding-md;
-      }
 
       &:hover {
         color: var(--color-form-fg-active);
