@@ -2,7 +2,7 @@
   margin-top: $padding-md;
   font-size: $font-size-sm;
   flex: 0 0 auto;
-  width: 3.8rem;
+  width: 3.84rem;
   color: var(--color-settings-fg);
   background-color: var(--color-settings-bg);
   text-shadow: var(--shadow-settings);
@@ -12,14 +12,12 @@
     color: var(--color-settings-tab-fg);
     background-color: var(--color-settings-tab-bg);
     text-shadow: var(--shadow-settings-tab);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: $size-form;
   }
 
   &-tabitem {
-    flex: 1 1 25%;
+    display: inline-block;
+    width: calc(3.84rem / 6);
     padding: 0 $padding-lg;
     height: $size-form;
     line-height: $size-form;
