@@ -7,20 +7,20 @@ body {
   --icon-shadow: 0 0 0.03rem rgba(0, 0, 0, 0.6);
 
   // s-ticker
-  // --color-ticker-cd: rgba(255, 165, 0, 0.9); // crit direct
-  // --color-ticker-c: rgba(255, 252, 103, 0.8); // crit
-  // --color-s-ticker-d: rgba(127, 243, 82, 0.8); // direct
-  // --color-s-ticker-oh: rgba(255, 102, 0, 0.7); // over healed
-  // --color-s-ticker-h: rgba(127, 243, 82, 0.8); // healed
-  // --color-s-ticker-s: rgba(82, 205, 243, 0.8); // shield
+  // --color-ticker-cd  // crit direct
+  // --color-ticker-c  // crit
+  // --color-ticker-d  // direct
+  // --color-ticker-oh  // over healed
+  // --color-ticker-h  // healed
+  // --color-ticker-s  // shield
 
   // combatant
+  // --color-common
+  // --color-self
+  // --color-jobtype-dps
+  // --color-jobtype-tank
+  // --color-jobtype-heal
   --color-combatant-fg: var(--color-fg);
-  // --color-jobtype-dps: rgba(232, 107, 121, 0.5);
-  // --color-jobtype-tank: rgba(138, 162, 211, 0.6);
-  // --color-jobtype-heal: rgba(123, 170, 23, 0.5);
-  // --color-common: var(--color-bg);
-  // --color-self: rgba(238, 238, 238, 0.65);
   --shadow-combatant: var(--shadow);
 
   // encounter

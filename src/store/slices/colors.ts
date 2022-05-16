@@ -68,15 +68,15 @@ function applyColors(
 ) {
   let fc = matchPreset(theme, preset);
   fc = mergeDeep(fc, colors);
-  let css = `--color-common: ${toCSSRGBA(fc.common)};\n`;
-  css += `--color-self: ${toCSSRGBA(fc.self)};\n`;
+  let css = `  --color-common: ${toCSSRGBA(fc.common)};\n`;
+  css += `  --color-self: ${toCSSRGBA(fc.self)};\n`;
   const objKeys = ['ticker', 'jobtype', 'job', 'theme'];
   for (const objKey of objKeys) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const obj = fc[objKey as keyof ColorsData] as any;
     if (obj) {
       for (const varKey of Object.keys(obj)) {
-        css += `--color-${objKey}-${varKey}: ${toCSSRGBA(obj[varKey])};\n`;
+        css += `  --color-${objKey}-${varKey}: ${toCSSRGBA(obj[varKey])};\n`;
       }
     }
   }
