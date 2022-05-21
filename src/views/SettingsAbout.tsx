@@ -15,7 +15,7 @@ function SettingsAbout() {
   }, []);
 
   const lang = useAppSelector((state) => state.settings.lang);
-  const theme = useAppSelector((state) => state.settings.theme);
+  const theme = useAppSelector((state) => state.theme.theme);
   const parsedDate = toDate(new Date(date), lang);
   const themeAuthor = themes[theme].data.author;
 
