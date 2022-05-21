@@ -14,7 +14,9 @@ const commonColors: ColorsData = {
     s: [82, 205, 243, 0.8], // shield
   },
   theme: {
-    jbg: [255, 255, 255, 1],
+    fg: [255, 255, 255],
+    bg: [0, 0, 0, 0.3],
+    bga: [85, 85, 85],
   },
 };
 

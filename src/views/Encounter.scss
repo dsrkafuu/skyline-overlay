@@ -8,7 +8,7 @@
 
   &-duration {
     cursor: pointer;
-    flex: 0 0 $size-form * 2 + 0.01rem;
+    flex: 0 0 auto;
     height: $size-form;
     width: $size-form * 2 + 0.01rem;
     line-height: $size-form;
@@ -83,12 +83,12 @@
 
   &-btns {
     display: flex;
+    color: var(--color-cover-fg);
+    background-color: var(--color-cover-bg);
   }
 
   &-btn {
     cursor: pointer;
-    color: var(--color-cover-fg);
-    background-color: var(--color-cover-bg);
     position: relative;
     flex: 0 0 auto;
     height: $size-form;

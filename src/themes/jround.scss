@@ -1,27 +1,14 @@
 body[data-theme='jround'] {
   // global
-  --color-fg: #ffffff;
-  --color-bg: rgba(0, 0, 0, 0.3);
+  --color-fg: var(--color-theme-fg);
+  --color-bg: var(--color-theme-bg);
   --shadow: 0 0 0.04rem #000000;
   --icon-color: var(--color-fg);
   --icon-shadow: 0 0 0.04rem rgba(0, 0, 0, 0.6);
-  --border-radius: 0.1rem;
-  --border-radius-inner: 0.085rem;
-
-  // s-ticker
-  // --color-ticker-cd  // crit direct
-  // --color-ticker-c  // crit
-  // --color-ticker-d  // direct
-  // --color-ticker-oh  // over healed
-  // --color-ticker-h  // healed
-  // --color-ticker-s  // shield
+  --border-radius: 0.11rem;
+  --border-radius-inner: 0.07rem;
 
   // combatant
-  // --color-common
-  // --color-self
-  // --color-jobtype-dps
-  // --color-jobtype-tank
-  // --color-jobtype-heal
   --color-combatant-fg: var(--color-fg);
   --shadow-combatant: var(--shadow);
 
@@ -37,21 +24,21 @@ body[data-theme='jround'] {
 
   // settings
   --color-settings-fg: var(--color-fg);
-  --color-settings-bg: #555555;
+  --color-settings-bg: var(--color-theme-bg);
   --color-settings-tab-fg: var(--color-fg);
   --color-settings-tab-bg: var(--color-bg);
   --color-settings-tab-fg-active: #ffffff;
-  --color-settings-tab-bg-active: #555555;
+  --color-settings-tab-bg-active: var(--color-theme-bga);
   --shadow-settings: var(--shadow);
   --shadow-settings-tab: var(--shadow);
   --shadow-settings-tab-active: var(--shadow);
 
   // components
   --color-form-fg: var(--color-fg);
-  --color-form-fg-active: #333333;
+  --color-form-fg-active: var(--color-theme-bga);
   --color-form-fg-disabled: rgba(255, 255, 255, 0.7);
   --color-form-fg-selection: var(--color-fg);
-  --color-form-bg: #333333;
+  --color-form-bg: var(--color-theme-bga);
   --color-form-bg-active: #eeeeee;
   --color-form-bg-disabled: var(--color-form-bg);
   --color-form-bg-selection: rgba(32, 149, 243, 0.5);
@@ -120,10 +107,25 @@ body[data-theme='jround'] {
 
   .encounter {
     padding-top: 0.08rem;
+
     & > div {
       border-radius: var(--border-radius);
-      margin: 0 0.04rem;
       overflow: hidden;
+    }
+
+    &-duration {
+      flex: 0 0 $size-form * 2 + 0.03rem;
+      width: $size-form * 2 + 0.03rem;
+      margin-right: 0.08rem;
+    }
+    &-btns {
+      margin-left: 0.08rem;
+    }
+    &-btn:first-child {
+      padding-left: 0.02rem;
+    }
+    &-btn:last-child {
+      padding-right: 0.02rem;
     }
   }
 
@@ -133,7 +135,6 @@ body[data-theme='jround'] {
     background-color: transparent;
 
     &-tab {
-      margin: 0 0.04rem;
       border-radius: var(--border-radius);
 
       &item:first-child {
@@ -147,10 +148,13 @@ body[data-theme='jround'] {
     }
 
     &-content {
-      margin: 0 0.04rem;
       margin-top: 0.06rem;
       background-color: var(--color-settings-bg);
       border-radius: var(--border-radius);
+    }
+
+    &-btn {
+      border-radius: var(--border-radius-inner);
     }
   }
 
@@ -159,24 +163,25 @@ body[data-theme='jround'] {
   .s-switch,
   .s-input-number,
   .s-input,
-  .s-select-options {
-    border-radius: var(--border-radius);
+  .s-select-options,
+  .s-input-color-swatch {
+    border-radius: var(--border-radius-inner);
   }
   .s-switch-btn:first-child {
-    border-top-left-radius: var(--border-radius);
-    border-bottom-left-radius: var(--border-radius);
+    border-top-left-radius: var(--border-radius-inner);
+    border-bottom-left-radius: var(--border-radius-inner);
   }
   .s-input-inner,
   .s-switch-btn:last-child {
-    border-top-right-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius-inner);
+    border-bottom-right-radius: var(--border-radius-inner);
   }
   .s-select-option:first-child {
-    border-top-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
+    border-top-left-radius: var(--border-radius-inner);
+    border-top-right-radius: var(--border-radius-inner);
   }
   .s-select-option:last-child {
-    border-bottom-left-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius-inner);
+    border-bottom-right-radius: var(--border-radius-inner);
   }
 }
