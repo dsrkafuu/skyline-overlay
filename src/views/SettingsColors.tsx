@@ -54,7 +54,7 @@ function SettingsColors() {
         ),
       },
       {
-        title: t('Unknown Fallback'),
+        title: t('Common'),
         render: () => (
           <SInputColor
             value={commonCl}
@@ -130,15 +130,20 @@ function SettingsColors() {
     const themeKeys = Object.keys(themeCls || {});
     if (themeCls && themeKeys.length > 0) {
       ret.push({
-        title: t('Theme'),
-        render: () =>
-          Object.keys(themeCls).map((key) => (
-            <SInputColor
-              key={key}
-              value={themeCls[key as keyof typeof themeCls]}
-              onChange={(v) => dispatch(updateColors({ theme: { [key]: v } }))}
-            />
-          )),
+        title: t('Theme Customization'),
+        render: () => (
+          <div className='settings-colors-grid'>
+            {Object.keys(themeCls).map((key) => (
+              <SInputColor
+                key={key}
+                value={themeCls[key as keyof typeof themeCls]}
+                onChange={(v) =>
+                  dispatch(updateColors({ theme: { [key]: v } }))
+                }
+              />
+            ))}
+          </div>
+        ),
       });
     }
     return ret;

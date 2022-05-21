@@ -6,20 +6,7 @@ body {
   --icon-color: var(--color-fg);
   --icon-shadow: 0 0 0.03rem rgba(0, 0, 0, 0.6);
 
-  // s-ticker
-  // --color-ticker-cd  // crit direct
-  // --color-ticker-c  // crit
-  // --color-ticker-d  // direct
-  // --color-ticker-oh  // over healed
-  // --color-ticker-h  // healed
-  // --color-ticker-s  // shield
-
   // combatant
-  // --color-common
-  // --color-self
-  // --color-jobtype-dps
-  // --color-jobtype-tank
-  // --color-jobtype-heal
   --color-combatant-fg: var(--color-fg);
   --shadow-combatant: var(--shadow);
 

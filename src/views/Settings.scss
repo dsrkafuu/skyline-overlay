@@ -205,7 +205,7 @@
 }
 
 .settings-colors-grid {
-  width: $size-form * 10 + $padding-md * 9;
+  max-width: $size-form * 10 + $padding-md * 9;
   display: flex;
   flex-wrap: wrap;
   gap: $padding-md;

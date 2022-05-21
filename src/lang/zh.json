@@ -45,6 +45,15 @@
   "Custom CSS": "自定义 CSS",
   "Transfer Settings": "转移设置",
 
+  "Colors": "颜色",
+  "Preset": "预设",
+  "Common": "通常",
+  "Self Highlighting": "自身高亮",
+  "Tickers": "数据条",
+  "Job Types": "职业类别",
+  "Jobs": "职业",
+  "Theme Customization": "主题自定义",
+
   "Please enter the new value": "请输入新值",
   "Copy to clipboard using Ctrl+C": "Ctrl+C 复制到剪贴板",
   "Please enter settings data": "请输入设置数据",
