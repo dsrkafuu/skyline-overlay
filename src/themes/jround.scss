@@ -156,6 +156,12 @@ body[data-theme='jround'] {
     &-btn {
       border-radius: var(--border-radius-inner);
     }
+
+    &-history-row {
+      border-radius: var(--border-radius-inner);
+      margin-left: $padding-lg;
+      margin-right: $padding-lg;
+    }
   }
 
   .s-select,

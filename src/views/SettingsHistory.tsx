@@ -78,7 +78,6 @@ function SettingsHistory() {
 
   return (
     <div className='settings-history'>
-      <div className='settings-history-space'></div>
       <SettingsHistoryRow
         current={history.idx === -1}
         duration={data.encounter.duration}
@@ -103,7 +102,6 @@ function SettingsHistory() {
           />
         );
       })}
-      <div className='settings-history-space'></div>
     </div>
   );
 }

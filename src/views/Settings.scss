@@ -142,8 +142,9 @@
 }
 
 .settings-history {
-  height: 6 * $size-form + 7 * $padding-md;
+  height: 6 * $size-form + 2 * $padding-lg + 5 * $padding-md;
   overflow: hidden;
+  padding: $padding-lg 0;
 
   &-row {
     height: $size-form;
@@ -161,10 +162,6 @@
     &:not(:first-child) {
       margin-top: $padding-md;
     }
-  }
-
-  &-space:last-child {
-    height: $padding-md;
   }
 
   &-item {
