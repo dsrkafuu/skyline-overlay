@@ -27,13 +27,19 @@ function Combatant({ player }: CombatantProps) {
   const tickerAlign = useAppSelector((state) => state.settings.tickerAlign);
   const dispMode = useAppSelector((state) => state.settings.dispMode);
 
-  // class names related to job
-  if (isLimitBreakData(player)) {
-    classes.push('job-unknown');
-  } else {
-    classes.push({ 'job-self': hlYou && (name === youName || name === 'YOU') }); // highlight
-    classes.push(`job-${player.job || 'unknown'}`); // job
-    classes.push(`jobtype-${player.jobType || 'unknown'}`); // jobtype
+  // player colors
+  let color = 'var(--color-common)'; // fallback common color
+  if (!isLimitBreakData(player)) {
+    const { job, jobType, name } = player;
+    if (jobType && jobType !== 'unknown') {
+      color = `var(--color-jobtype-${jobType}, ${color})`; // job type colors
+    }
+    if (job && job !== 'unknown') {
+      color = `var(--color-job-${job}, ${color})`; // per job colors
+    }
+    if (hlYou && (name === youName || name === 'YOU')) {
+      color = `var(--color-self)`; // self highlight
+    }
   }
 
   // if dual display mode
@@ -119,6 +125,7 @@ function Combatant({ player }: CombatantProps) {
 
       <CombatantContent
         player={player}
+        color={color}
         setShowDetail={setShowDetail}
         lockDetail={lockDetail}
         setLockDetail={setLockDetail}
@@ -139,7 +146,11 @@ function Combatant({ player }: CombatantProps) {
       )}
 
       {needDetail && (lockDetail || showDetail) && (
-        <CombatantDetail player={player} lockDetail={lockDetail} />
+        <CombatantDetail
+          player={player}
+          color={color}
+          lockDetail={lockDetail}
+        />
       )}
     </div>
   );

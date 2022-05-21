@@ -66,7 +66,7 @@ function applyColors(
   preset: string,
   colors: DeepPartial<ColorsData>
 ) {
-  let fc = matchPreset(theme, preset);
+  let fc = matchPreset(theme, preset).data;
   fc = mergeDeep(fc, colors);
   let css = `  --color-common: ${toCSSRGBA(fc.common)};\n`;
   css += `  --color-self: ${toCSSRGBA(fc.self)};\n`;

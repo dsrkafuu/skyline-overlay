@@ -50,26 +50,6 @@
     }
   }
 
-  // job type colors
-  .jobtype-dps &-content {
-    background-color: var(--color-jobtype-dps);
-  }
-  .jobtype-tank &-content {
-    background-color: var(--color-jobtype-tank);
-  }
-  .jobtype-healer &-content {
-    background-color: var(--color-jobtype-heal);
-  }
-  .jobtype-hand &-content,
-  .jobtype-land &-content,
-  .jobtype-unknown &-content {
-    background-color: var(--color-common);
-  }
-  // self highlight color
-  .job-self &-content {
-    background-color: var(--color-self);
-  }
-
   &-content {
     height: 0.24rem;
     position: relative;
@@ -120,25 +100,6 @@
     z-index: 999;
     backdrop-filter: $filter;
     background-color: var(--color-common);
-  }
-
-  .jobtype-dps &-detail--locked {
-    background-color: var(--color-jobtype-dps);
-  }
-  .jobtype-tank &-detail--locked {
-    background-color: var(--color-jobtype-tank);
-  }
-  .jobtype-healer &-detail--locked {
-    background-color: var(--color-jobtype-heal);
-  }
-  .jobtype-hand &-detail--locked,
-  .jobtype-land &-detail--locked,
-  .jobtype-unknown &-detail--locked {
-    background-color: var(--color-common);
-  }
-  // self highlight color
-  .job-self &-detail--locked {
-    background-color: var(--color-self);
   }
 
   &-no-detail &-content {

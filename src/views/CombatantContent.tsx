@@ -8,6 +8,7 @@ import { MAP_DISPLAY_CONTENT } from '../utils/maps';
 
 interface CombatantContentProps {
   player: CombatantData | LimitBreakData;
+  color: string;
   setShowDetail: React.Dispatch<React.SetStateAction<boolean>>;
   lockDetail: boolean;
   setLockDetail: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,6 +16,7 @@ interface CombatantContentProps {
 
 function CombatantContent({
   player,
+  color,
   setShowDetail,
   lockDetail,
   setLockDetail,
@@ -54,6 +56,7 @@ function CombatantContent({
       onMouseOver={onDetailEnter}
       onMouseOut={onDetailLeave}
       onClick={onSwitchDetailLock}
+      style={{ backgroundColor: color }}
     >
       {dispMode === 'dual' && (
         <div className='combatant-content-data'>

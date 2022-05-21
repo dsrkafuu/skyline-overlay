@@ -9,10 +9,11 @@ import { fmtNumber } from '../utils/formatters';
 
 interface CombatantDetailProps {
   player: CombatantData | LimitBreakData;
+  color: string;
   lockDetail: boolean;
 }
 
-function CombatantDetail({ player, lockDetail }: CombatantDetailProps) {
+function CombatantDetail({ player, color, lockDetail }: CombatantDetailProps) {
   const t = useTranslation();
   const dispMode = useAppSelector((state) => state.settings.dispMode);
   const dispContent = useAppSelector((state) => state.settings.dispContent);
@@ -118,7 +119,10 @@ function CombatantDetail({ player, lockDetail }: CombatantDetailProps) {
         className={clsx('combatant-detail', {
           'combatant-detail--locked': lockDetail,
         })}
-        style={{ top: topWithTick }}
+        style={{
+          top: topWithTick,
+          backgroundColor: lockDetail ? color : 'var(--color-common)',
+        }}
       >
         <SList items={rowItems} />
       </div>
