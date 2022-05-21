@@ -33,7 +33,6 @@
   "Shorten Name": "名前をイニシャルで表示",
 
   "General": "一般",
-  "Theme": "テーマ",
   "Language": "言語",
   "UI Scale": "UI サイズ",
   "Opacity": "透明度",
@@ -41,12 +40,12 @@
   "Custom CSS": "カスタム CSS",
   "Transfer Settings": "設定を転送",
 
-  "Colors": "色",
-  "Preset": "プリセット",
+  "Theme": "テーマ",
+  "Theme Mode": "テーマモード",
   "Common": "一般",
   "Self Highlighting": "自分を強調表示",
   "Tickers": "ティッカー",
-  "Job Types": "ロール",
+  "Roles": "ロール",
   "Jobs": "ジョブ",
   "Theme Customization": "テーマのカスタマイズ",
 

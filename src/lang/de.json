@@ -24,11 +24,12 @@
   "Shorten Name": "Namen abkürzen",
 
   "General": "Allgemein",
-  "Theme": "Theme",
   "Language": "Sprache",
   "UI Scale": "UI Skalierung",
   "Opacity": "Opazität",
   "Font Family": "Schriftart",
   "Custom CSS": "Custom CSS",
-  "Transfer Settings": "Einstellungen übernehmen"
+  "Transfer Settings": "Einstellungen übernehmen",
+
+  "Theme": "Theme"
 }

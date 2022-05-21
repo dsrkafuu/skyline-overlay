@@ -26,19 +26,18 @@ function Combatant({ player }: CombatantProps) {
   const ticker = useAppSelector((state) => state.settings.ticker);
   const tickerAlign = useAppSelector((state) => state.settings.tickerAlign);
   const dispMode = useAppSelector((state) => state.settings.dispMode);
+  const themeMode = useAppSelector((state) => state.theme.themeMode);
 
   // player colors
   let color = 'var(--color-common)'; // fallback common color
   if (!isLimitBreakData(player)) {
     const { job, jobType, name } = player;
-    if (jobType && jobType !== 'unknown') {
-      color = `var(--color-jobtype-${jobType}, ${color})`; // job type colors
-    }
-    if (job && job !== 'unknown') {
-      color = `var(--color-job-${job}, ${color})`; // per job colors
-    }
     if (hlYou && (name === youName || name === 'YOU')) {
       color = `var(--color-self)`; // self highlight
+    } else if (themeMode === 'role' && jobType && jobType !== 'unknown') {
+      color = `var(--color-role-${jobType})`; // role colors
+    } else if (themeMode === 'job' && job && job !== 'unknown') {
+      color = `var(--color-job-${job})`; // per job colors
     }
   }
 

@@ -76,11 +76,6 @@ import rawLang from '../lang';
 export type LangMapKey = keyof typeof rawLang & string;
 export const MAP_LANG = rawLang;
 
-// themes map
-import themes from '../themes';
-export type ThemeMapKey = keyof typeof themes & string;
-export const MAP_THEMES = themes;
-
 // font family map
 const fontFamilyMap = {
   default: { text: 'Default' },
@@ -97,3 +92,16 @@ const fontWeightMap = {
 };
 export type FontWeightMapKey = keyof typeof fontWeightMap & string;
 export const MAP_FONT_WEIGHT = fontWeightMap;
+
+// themes map
+import themes from '../themes';
+export type ThemeMapKey = keyof typeof themes & string;
+export const MAP_THEMES = themes;
+
+// theme mode map
+const themeModeMap = {
+  role: { text: 'Role' },
+  job: { text: 'Job' },
+};
+export type ThemeModeMapKey = keyof typeof themeModeMap & string;
+export const MAP_THEME_MODE = themeModeMap;

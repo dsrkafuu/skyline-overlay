@@ -36,7 +36,7 @@
   &-data,
   &-display,
   &-general,
-  &-colors {
+  &-theme {
     padding: $padding-lg;
   }
 
@@ -125,7 +125,6 @@
     min-width: 0;
   }
 
-  &-theme,
   &-custom-css {
     width: 1.6rem;
     min-width: 0;
@@ -137,6 +136,11 @@
   }
   &-font-weight {
     width: 0.66rem;
+    min-width: 0;
+  }
+
+  &-theme-input {
+    width: 1.46rem;
     min-width: 0;
   }
 }

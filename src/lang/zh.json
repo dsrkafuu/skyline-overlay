@@ -37,7 +37,6 @@
   "Shorten Name": "缩写玩家名 (国服无效)",
 
   "General": "通常",
-  "Theme": "主题",
   "Language": "语言",
   "UI Scale": "界面缩放",
   "Opacity": "透明度",
@@ -45,12 +44,12 @@
   "Custom CSS": "自定义 CSS",
   "Transfer Settings": "转移设置",
 
-  "Colors": "颜色",
-  "Preset": "预设",
+  "Theme": "主题",
+  "Theme Mode": "主题模式",
   "Common": "通常",
   "Self Highlighting": "自身高亮",
   "Tickers": "数据条",
-  "Job Types": "职业类别",
+  "Roles": "职业类别",
   "Jobs": "职业",
   "Theme Customization": "主题自定义",
 

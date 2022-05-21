@@ -6,21 +6,14 @@ import {
   updateFonts,
   updateLang,
   updateOpacity,
-  updateTheme,
   updateZoom,
 } from '../store/slices/settings';
-import {
-  MAP_THEMES,
-  MAP_LANG,
-  MAP_FONT_FAMILY,
-  MAP_FONT_WEIGHT,
-} from '../utils/maps';
+import { MAP_LANG, MAP_FONT_FAMILY, MAP_FONT_WEIGHT } from '../utils/maps';
 import SettingsTransfer from './SettingsTransfer';
 
 function SettingsGeneral() {
   const t = useTranslation();
   const dispatch = useAppDispatch();
-  const theme = useAppSelector((state) => state.settings.theme);
   const lang = useAppSelector((state) => state.settings.lang);
   const zoom = useAppSelector((state) => state.settings.zoom);
   const opacity = useAppSelector((state) => state.settings.opacity);
@@ -29,17 +22,6 @@ function SettingsGeneral() {
 
   const items = useMemo(
     () => [
-      {
-        title: t('Theme'),
-        render: () => (
-          <SSelect
-            className='settings-theme'
-            value={theme}
-            onChange={(v) => dispatch(updateTheme(v))}
-            map={MAP_THEMES}
-          />
-        ),
-      },
       {
         title: t('Language'),
         render: () => (
@@ -113,7 +95,7 @@ function SettingsGeneral() {
         observe: false,
       },
     ],
-    [t, dispatch, theme, lang, zoom, opacity, fonts, customCSS]
+    [t, dispatch, lang, zoom, opacity, fonts, customCSS]
   );
 
   return (

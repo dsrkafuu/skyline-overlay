@@ -6,20 +6,27 @@ import {
   useColor,
   useTranslation,
 } from '../hooks';
-import { updateColors, updatePreset } from '../store/slices/colors';
-import themes from '../themes';
 import * as jobIcons from '../assets/jobs';
 import { IRefresh } from '../assets/icons';
+import {
+  updateColors,
+  updateTheme,
+  updateThemeMode,
+} from '../store/slices/theme';
+import { MAP_THEMES, MAP_THEME_MODE, ThemeModeMapKey } from '../utils/maps';
+import themes from '../themes';
 
-function SettingsColors() {
+function SettingsTheme() {
   const t = useTranslation();
   const dispatch = useAppDispatch();
-  const theme = useAppSelector((state) => state.settings.theme);
-  const preset = useAppSelector((state) => state.colors.preset);
-  const presetsMap = useMemo(() => {
+  const theme = useAppSelector((state) => state.theme.theme);
+  const themeMode = useAppSelector((state) => state.theme.themeMode);
+
+  const themeModeMap = useMemo(() => {
     const map = {} as SSelectMap;
-    for (const item of themes[theme].data.presets) {
-      map[item.key] = { text: item.name };
+    map.role = MAP_THEME_MODE.role;
+    if (themes[theme].data.colors.job) {
+      map.job = MAP_THEME_MODE.job;
     }
     return map;
   }, [theme]);
@@ -31,21 +38,32 @@ function SettingsColors() {
   const commonCl = useColor((c) => c.common);
   const selfCl = useColor((c) => c.self);
   const tickerCls = useColor((c) => c.ticker);
-  const jobtypeCls = useColor((c) => c.jobtype);
+  const roleCls = useColor((c) => c.role);
   const jobCls = useColor((c) => c.job);
   const themeCls = useColor((c) => c.theme);
 
   const items = useMemo(() => {
     const ret = [
       {
-        title: t('Preset'),
+        title: t('Theme'),
+        render: () => (
+          <SSelect
+            className='settings-theme-input'
+            value={theme}
+            onChange={(v) => dispatch(updateTheme(v))}
+            map={MAP_THEMES}
+          />
+        ),
+      },
+      {
+        title: t('Theme Mode'),
         render: () => (
           <>
             <SSelect
-              value={preset}
-              onChange={(key) => dispatch(updatePreset(key as string))}
-              map={presetsMap}
-              disabled={Object.keys(presetsMap).length < 2}
+              value={themeMode}
+              onChange={(v) => dispatch(updateThemeMode(v as ThemeModeMapKey))}
+              map={themeModeMap}
+              disabled={Object.keys(themeModeMap).length < 2}
             />
             <div className='settings-btn' onClick={handleResetColors}>
               <IRefresh />
@@ -83,18 +101,16 @@ function SettingsColors() {
           )),
       },
     ];
-    const jobtypeKeys = Object.keys(jobtypeCls || {});
-    if (jobtypeCls && jobtypeKeys.length > 0) {
+    const roleKeys = Object.keys(roleCls || {});
+    if (roleCls && roleKeys.length > 0) {
       ret.push({
-        title: t('Job Types'),
+        title: t('Roles'),
         render: () =>
-          Object.keys(jobtypeCls).map((key) => (
+          Object.keys(roleCls).map((key) => (
             <SInputColor
               key={key}
-              value={jobtypeCls[key as keyof typeof jobtypeCls]}
-              onChange={(v) =>
-                dispatch(updateColors({ jobtype: { [key]: v } }))
-              }
+              value={roleCls[key as keyof typeof roleCls]}
+              onChange={(v) => dispatch(updateColors({ role: { [key]: v } }))}
             />
           )),
       });
@@ -149,20 +165,21 @@ function SettingsColors() {
     return ret;
   }, [
     t,
-    dispatch,
-    preset,
-    presetsMap,
-    selfCl,
-    commonCl,
-    tickerCls,
-    jobtypeCls,
+    roleCls,
     jobCls,
     themeCls,
+    theme,
+    dispatch,
+    themeMode,
+    themeModeMap,
     handleResetColors,
+    commonCl,
+    selfCl,
+    tickerCls,
   ]);
 
   return (
-    <div className='settings-colors'>
+    <div className='settings-theme'>
       {items.map(({ title, render }) => (
         <div className='settings-row' key={title}>
           <span className='settings-title'>{title}</span>
@@ -173,4 +190,4 @@ function SettingsColors() {
   );
 }
 
-export default SettingsColors;
+export default SettingsTheme;

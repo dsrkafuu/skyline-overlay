@@ -1,7 +1,9 @@
-import type { ColorsDataBasics, ColorsPreset } from '.';
-import { j0sh77 } from './authors';
+import './jround.scss';
+import { Colors } from './support/colors';
+import { j0sh77 } from './support/authors';
+import { ThemeItem } from './support/theme';
 
-const commonColors: ColorsDataBasics = {
+const roleColors: Colors = {
   common: [0, 0, 0, 0.3],
   self: [118, 118, 118, 1],
   ticker: {
@@ -12,6 +14,11 @@ const commonColors: ColorsDataBasics = {
     h: [127, 243, 82, 0.8],
     s: [82, 205, 243, 0.8],
   },
+  role: {
+    dps: [244, 67, 54, 0.5],
+    tank: [32, 149, 243, 0.5],
+    healer: [139, 195, 74, 0.5],
+  },
   theme: {
     fg: [255, 255, 255],
     bg: [0, 0, 0, 0.3],
@@ -19,23 +26,12 @@ const commonColors: ColorsDataBasics = {
   },
 };
 
-export const presets: ColorsPreset[] = [
-  {
-    key: 'default',
-    name: 'Default',
-    data: {
-      ...commonColors,
-      jobtype: {
-        dps: [244, 67, 54, 0.5],
-        tank: [32, 149, 243, 0.5],
-        healer: [139, 195, 74, 0.5],
-      },
+export default {
+  text: 'JRound',
+  data: {
+    author: j0sh77,
+    colors: {
+      role: roleColors,
     },
   },
-];
-
-export default {
-  name: 'JRound',
-  author: j0sh77,
-  presets,
-};
+} as ThemeItem;

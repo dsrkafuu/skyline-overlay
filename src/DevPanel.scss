@@ -8,7 +8,12 @@ $devp-width: 3rem;
   background-position: top center;
   background-repeat: no-repeat;
 
+  &-app {
+    z-index: 2;
+  }
+
   &-settings {
+    z-index: 1;
     backdrop-filter: $filter;
     font-size: $font-size-sm;
     position: absolute;

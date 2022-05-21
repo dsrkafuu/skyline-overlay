@@ -9,7 +9,6 @@ import {
   LangMapKey,
   ShortNameMapKey,
   SortRuleMapKey,
-  ThemeMapKey,
   DisplayModeMapKey,
   DisplayContentMapKey,
   TickerAlignMapKey,
@@ -19,7 +18,7 @@ import {
   FontWeightMapKey,
   MAP_FONT_WEIGHT,
 } from '../../utils/maps';
-import { cloneDeep, xssEscape } from '../../utils/lodash';
+import { cloneDeep, mergeDeep, xssEscape } from '../../utils/lodash';
 import { getAsyncLSSetter, getLS } from '../../utils/storage';
 
 interface SortSettings {
@@ -61,7 +60,6 @@ export interface Settings {
   bottomDisp: BottomDispMapKey;
   shortName: ShortNameMapKey;
   // general
-  theme: ThemeMapKey;
   lang: LangMapKey;
   zoom: number;
   opacity: number;
@@ -95,7 +93,6 @@ export const defaultSettings: Settings = {
   tickerAlign: { top: 'right', bottom: 'left' },
   bottomDisp: 'maxhit',
   shortName: 'fstlst',
-  theme: 'default',
   lang: 'en',
   zoom: 1,
   opacity: 1,
@@ -110,18 +107,12 @@ let initialState: SettingsState = {
 };
 
 // merge saved settings into default settings
-const savedSettings = (getLS('settings') || {}) as Partial<SettingsState>;
+const savedSettings = (getLS('settings') || {}) as DeepPartial<SettingsState>;
 try {
-  for (const key of Object.keys(savedSettings)) {
-    // @ts-expect-error merge PartialSettings into Settings
-    initialState[key] = savedSettings[key];
-  }
+  initialState = mergeDeep(initialState, savedSettings);
 } catch {
   // use default setting if saved settings is invalid
-  initialState = {
-    ...initialState,
-    ...cloneDeep(defaultSettings),
-  };
+  initialState = { ...initialState, ...defaultSettings };
 }
 
 // apply initial lang
@@ -137,11 +128,6 @@ if (!savedSettings.lang || !availableLangs.includes(savedSettings.lang)) {
   }
 }
 applyLang(initialState.lang);
-// apply initial theme
-function applyTheme(value: ThemeMapKey) {
-  document.body.setAttribute('data-theme', value);
-}
-applyTheme(initialState.theme);
 // apply initial fonts
 function applyFonts(value: FontFamilyMapKey) {
   document.documentElement.setAttribute('data-font', value);
@@ -252,10 +238,6 @@ export const settingsSlice = createSlice({
       save({ shortName: state.shortName });
     },
     // general
-    updateTheme(state, { payload }: PA<ThemeMapKey>) {
-      state.theme = payload;
-      save({ theme: state.theme });
-    },
     updateOpacity(state, { payload }: PA<number>) {
       state.opacity = payload;
       save({ opacity: state.opacity });
@@ -297,7 +279,6 @@ export const {
   updateTickerAlign,
   updateBottomDisp,
   updateShortName,
-  updateTheme,
   updateOpacity,
   updateLang,
   updateZoom,
@@ -313,10 +294,6 @@ export const listener = createListenerMiddleware();
 listener.startListening({
   actionCreator: updateLang,
   effect: ({ payload }) => applyLang(payload),
-});
-listener.startListening({
-  actionCreator: updateTheme,
-  effect: ({ payload }) => applyTheme(payload),
 });
 listener.startListening({
   actionCreator: updateFonts,

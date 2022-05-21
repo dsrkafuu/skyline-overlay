@@ -1,7 +1,7 @@
 import { logError } from './loggers';
 import { STORAGE_PREFIX } from './constants';
 
-export type StorageKey = 'settings' | 'colors' | 'dev';
+export type StorageKey = 'settings' | 'theme' | 'dev';
 
 /**
  * set local storage

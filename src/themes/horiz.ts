@@ -1,7 +1,9 @@
-import type { ColorsDataBasics, ColorsPreset } from '.';
-import { DSRKafuU } from './authors';
+import './horiz.scss';
+import { Colors } from './support/colors';
+import { DSRKafuU } from './support/authors';
+import { ThemeItem } from './support/theme';
 
-const commonColors: ColorsDataBasics = {
+const roleColors: Colors = {
   common: [0, 0, 0, 0.3],
   self: [255, 255, 255, 0.8],
   ticker: {
@@ -12,25 +14,19 @@ const commonColors: ColorsDataBasics = {
     h: [127, 243, 82, 0.8],
     s: [82, 205, 243, 0.8],
   },
-};
-
-export const presets: ColorsPreset[] = [
-  {
-    key: 'default',
-    name: 'Default',
-    data: {
-      ...commonColors,
-      jobtype: {
-        dps: [244, 67, 54, 0.5],
-        tank: [32, 149, 243, 0.5],
-        healer: [139, 195, 74, 0.5],
-      },
-    },
+  role: {
+    dps: [244, 67, 54, 0.5],
+    tank: [32, 149, 243, 0.5],
+    healer: [139, 195, 74, 0.5],
   },
-];
+};
 
 export default {
-  name: 'HORIZOVERLAY',
-  author: DSRKafuU,
-  presets,
-};
+  text: 'HORIZOVERLAY',
+  data: {
+    author: DSRKafuU,
+    colors: {
+      role: roleColors,
+    },
+  },
+} as ThemeItem;
