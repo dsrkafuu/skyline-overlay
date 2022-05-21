@@ -53,8 +53,8 @@ function CombatantContent({
   return (
     <div
       className='combatant-content'
-      onMouseOver={onDetailEnter}
-      onMouseOut={onDetailLeave}
+      onMouseEnter={onDetailEnter}
+      onMouseLeave={onDetailLeave}
       onClick={onSwitchDetailLock}
       style={{ backgroundColor: color }}
     >
