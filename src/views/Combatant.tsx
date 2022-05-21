@@ -141,7 +141,7 @@ function Combatant({ player }: CombatantProps) {
       {bottomDisp !== 'none' && (
         <CombatantBottom
           player={player}
-          mode={lockDetail || showDetail ? 'none' : bottomDisp}
+          mode={needDetail && (lockDetail || showDetail) ? 'none' : bottomDisp}
         />
       )}
 
