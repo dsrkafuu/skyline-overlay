@@ -9,7 +9,7 @@ import { mergeDeep } from '../../utils/lodash';
 import { getAsyncLSSetter, getLS } from '../../utils/storage';
 import { applyColors, Colors } from '../../themes/support/colors';
 
-interface ThemeState {
+export interface ThemeState {
   theme: ThemeMapKey;
   themeMode: ThemeModeMapKey;
   colors: DeepPartial<Colors>;

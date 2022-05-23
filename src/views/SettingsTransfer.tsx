@@ -23,12 +23,8 @@ function SettingsTransfer() {
     if (!data) {
       return;
     }
-    const res = importSettings(data);
-    if (res) {
-      window.location.reload();
-    } else {
-      alert(t('Invalid settings data'));
-    }
+    importSettings(data);
+    window.location.reload();
   }, [t]);
 
   const handleClear = useCallback(() => {

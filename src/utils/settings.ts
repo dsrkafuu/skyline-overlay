@@ -1,42 +1,76 @@
 import { EXPORT_PREFIX } from '../utils/constants';
 import { getLS, removeLS, setLS } from '../utils/storage';
 import { defaultSettings, Settings } from '../store/slices/settings';
+import { defaultTheme, ThemeState } from '../store/slices/theme';
 
 export function exportSettings() {
-  const settings = getLS('settings') as Partial<Settings>;
+  const settings = getLS('settings') as DeepPartial<Settings>;
+  let settingsEncoded = '';
   if (settings && typeof settings === 'object') {
     try {
-      return EXPORT_PREFIX + window.btoa(JSON.stringify(settings));
+      settingsEncoded = window.btoa(JSON.stringify(settings));
     } catch {
-      return '';
+      settingsEncoded = '';
     }
   }
-  return '';
+  const theme = getLS('theme') as DeepPartial<ThemeState>;
+  let themeEncoded = '';
+  if (theme && typeof theme === 'object') {
+    try {
+      themeEncoded = window.btoa(JSON.stringify(theme));
+    } catch {
+      themeEncoded = '';
+    }
+  }
+  return EXPORT_PREFIX + settingsEncoded + '_' + themeEncoded;
 }
 
 export function importSettings(payload: string) {
   if (!payload.startsWith(EXPORT_PREFIX)) {
-    return false;
+    return;
   }
-  payload = payload.slice(EXPORT_PREFIX.length);
-  const validKeys = Object.keys(defaultSettings);
-  try {
-    const settings = JSON.parse(window.atob(payload));
-    if (!settings || typeof settings !== 'object') {
-      return false;
-    }
-    for (const key of Object.keys(settings)) {
-      if (!validKeys.includes(key)) {
-        return false;
+  const payloadArr = payload.slice(EXPORT_PREFIX.length).split('_');
+  const settingsEncoded = payloadArr[0];
+  const themeEncoded = payloadArr[1];
+
+  if (settingsEncoded) {
+    const validSettingsKeys = Object.keys(defaultSettings);
+    try {
+      const settings = JSON.parse(window.atob(settingsEncoded));
+      if (settings && typeof settings === 'object') {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const filteredSettings = {} as any;
+        for (const key of Object.keys(settings)) {
+          if (validSettingsKeys.includes(key)) {
+            filteredSettings[key] = settings[key];
+          }
+        }
+        setLS('settings', settings);
       }
-    }
-    setLS('settings', settings);
-    return true;
-  } catch {
-    return false;
+      // eslint-disable-next-line no-empty
+    } catch {}
+  }
+
+  if (themeEncoded) {
+    const validThemeKeys = Object.keys(defaultTheme);
+    try {
+      const theme = JSON.parse(window.atob(themeEncoded));
+      if (theme && typeof theme === 'object') {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const filteredTheme = {} as any;
+        for (const key of Object.keys(theme)) {
+          if (validThemeKeys.includes(key)) {
+            filteredTheme[key] = theme[key];
+          }
+        }
+        setLS('theme', theme);
+      }
+      // eslint-disable-next-line no-empty
+    } catch {}
   }
 }
 
 export function clearSettings() {
   removeLS('settings');
+  removeLS('theme');
 }
