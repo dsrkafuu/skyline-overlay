@@ -4,4 +4,4 @@
   Permissions-Policy: interest-cohort=()
 
 /fonts/*
-  Cache-Control: public, max-age=2592000
+  Cache-Control: public, max-age=31536000
