@@ -28,7 +28,7 @@ export const defaultTheme: ThemeState = {
 let initialState = defaultTheme;
 
 // merge saved theme
-const savedTheme = (getLS('theme') || {}) as DeepPartial<ThemeState>;
+const savedTheme = getLS<DeepPartial<ThemeState>>('theme') || {};
 try {
   initialState = mergeDeep(initialState, savedTheme);
 } catch {

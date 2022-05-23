@@ -34,7 +34,7 @@ function getSettings() {
     bgImage: 'none',
     bgSize: 'native',
     bgColor: 'transparent',
-    ...((getLS('dev') as DevPanelSettings) || {}),
+    ...(getLS<DevPanelSettings>('dev') || {}),
   };
 }
 function setSettings(settings: DevPanelSettings) {

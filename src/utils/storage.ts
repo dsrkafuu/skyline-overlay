@@ -24,7 +24,7 @@ export function getAsyncLSSetter<T>(key: StorageKey) {
   return (data: T) => {
     setTimeout(() => {
       try {
-        const pre = (getLS(key) || {}) as T;
+        const pre = getLS<T>(key) || {};
         setLS(key, { ...pre, ...data });
       } catch {
         return;
@@ -36,7 +36,7 @@ export function getAsyncLSSetter<T>(key: StorageKey) {
 /**
  * get local storage
  */
-export function getLS(key: StorageKey): unknown {
+export function getLS<T>(key: StorageKey): T | null {
   try {
     const realKey = STORAGE_PREFIX + key.toUpperCase();
     const data = JSON.parse(localStorage.getItem(realKey) || 'null');

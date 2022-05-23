@@ -73,7 +73,7 @@ interface SettingsState extends Settings {
   blurName: boolean;
 }
 
-const save = getAsyncLSSetter<Partial<Settings>>('settings');
+const save = getAsyncLSSetter<DeepPartial<Settings>>('settings');
 
 /** @redux initialize */
 
@@ -107,7 +107,7 @@ let initialState: SettingsState = {
 };
 
 // merge saved settings into default settings
-const savedSettings = (getLS('settings') || {}) as DeepPartial<SettingsState>;
+const savedSettings = getLS<DeepPartial<Settings>>('settings') || {};
 try {
   initialState = mergeDeep(initialState, savedSettings);
 } catch {

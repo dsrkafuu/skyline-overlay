@@ -4,7 +4,7 @@ import { defaultSettings, Settings } from '../store/slices/settings';
 import { defaultTheme, ThemeState } from '../store/slices/theme';
 
 export function exportSettings() {
-  const settings = getLS('settings') as DeepPartial<Settings>;
+  const settings = getLS<DeepPartial<Settings>>('settings');
   let settingsEncoded = '';
   if (settings && typeof settings === 'object') {
     try {
@@ -13,7 +13,7 @@ export function exportSettings() {
       settingsEncoded = '';
     }
   }
-  const theme = getLS('theme') as DeepPartial<ThemeState>;
+  const theme = getLS<DeepPartial<ThemeState>>('theme');
   let themeEncoded = '';
   if (theme && typeof theme === 'object') {
     try {
