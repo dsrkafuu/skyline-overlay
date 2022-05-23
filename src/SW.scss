@@ -1,0 +1,42 @@
+.sw {
+  margin-top: $padding-md;
+  font-size: $font-size-sm;
+  flex: 0 0 auto;
+  width: 3.84rem;
+  display: flex;
+  backdrop-filter: $filter;
+
+  &-text {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: $size-form;
+    line-height: $size-form;
+    color: var(--color-encounter-fg);
+    background-color: var(--color-encounter-bg);
+    text-shadow: var(--shadow-encounter);
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0 $padding-xl;
+    text-align: center;
+  }
+
+  &-btn {
+    color: var(--color-cover-fg);
+    background-color: var(--color-cover-bg);
+    cursor: pointer;
+    position: relative;
+    flex: 0 0 auto;
+    height: $size-form;
+    width: $size-form;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+
+    &:hover {
+      color: var(--color-form-fg-active);
+      background-color: var(--color-form-bg-active);
+    }
+  }
+}

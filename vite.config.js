@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import htmlEnv from 'vite-plugin-html-env';
+import { VitePWA as pwa } from 'vite-plugin-pwa';
 import { visualizer } from 'rollup-plugin-visualizer';
 
 /**
@@ -25,6 +26,23 @@ export default defineConfig({
     }),
     react(),
     htmlEnv(process.env),
+    pwa({
+      includeAssets: [
+        'fonts/*.woff2',
+        'apple-touch-icon.png',
+        'favicon.ico',
+        'favicon.svg',
+      ],
+      manifest: {
+        name: 'Skyline Overlay',
+        short_name: 'Skyline',
+        description: 'A modern customizable horizon FFXIV miniparse overlay.',
+        icons: [
+          { src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'pwa-512x512.png', sizes: '512x512', type: 'image/png' },
+        ],
+      },
+    }),
   ],
   css: {
     preprocessorOptions: {

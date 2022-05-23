@@ -1,7 +1,5 @@
-// vite
 /// <reference types="vite/client" />
-
-// svgr
+/// <reference types="vite-plugin-pwa/client" />
 /// <reference types="vite-plugin-svgr/client" />
 
 declare type RGBAColor = number[];

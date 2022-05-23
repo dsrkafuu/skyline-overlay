@@ -4,7 +4,6 @@ src/assets/meta.ts
 # vite
 *.local
 vite.config.ts.js
-vite.config.js
 
 # custom
 .env*

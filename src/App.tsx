@@ -4,6 +4,7 @@ import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import Combatant from './views/Combatant';
 import Encounter from './views/Encounter';
 import Settings from './views/Settings';
+import SW from './SW';
 import { useAppSelector } from './hooks';
 import { cloneDeep } from './utils/lodash';
 import { fmtMergePet } from './utils/formatters';
@@ -63,6 +64,9 @@ function App() {
       </div>
       <div className='container' style={opacityStyle}>
         <Encounter />
+      </div>
+      <div className='container'>
+        <SW />
       </div>
       <div className='container'>
         <Settings />

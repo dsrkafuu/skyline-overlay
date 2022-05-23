@@ -3,6 +3,13 @@ import './themes';
 import './scss/fonts.scss';
 import './scss/utils.scss';
 
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import App from './App';
+import DevPanel from './DevPanel';
+
 // [tree-shakable] dynamic import sentry
 const sentryDsn = import.meta.env.VITE_SENTRY_DSN;
 if (import.meta.env.PROD && sentryDsn) {
@@ -17,13 +24,6 @@ if (import.meta.env.PROD && sentryDsn) {
     }
   );
 }
-
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './store';
-import App from './App';
-import DevPanel from './DevPanel';
 
 let app = <App />;
 // [tree-shakable] development panel
