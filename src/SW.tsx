@@ -1,10 +1,13 @@
 import './SW.scss';
 import { useCallback } from 'react';
 import { useRegisterSW } from 'virtual:pwa-register/react';
+import { useTranslation } from './hooks';
 import { logError, logInfo } from './utils/loggers';
 import { IClose, IRefresh } from './assets/icons';
 
 function SW() {
+  const t = useTranslation();
+
   const {
     offlineReady: [offlineReady, setOfflineReady],
     needRefresh: [needRefresh, setNeedRefresh],
@@ -27,8 +30,8 @@ function SW() {
     <div className='sw'>
       <div className='sw-text'>
         {offlineReady
-          ? 'App Ready to Work Offline'
-          : 'Refresh to New Version Available'}
+          ? t('App Ready to Work Offline')
+          : t('Refresh to New Version Available')}
       </div>
       {offlineReady ? (
         <div className='sw-btn' onClick={handleClose}>

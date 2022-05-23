@@ -1,18 +1,16 @@
 {
   "LANG": "日本語",
 
-  "Deaths": "死亡回数",
-  "Damage": "ダメージ",
-  "Overheal": "オーバーヒール",
-  "Shielded": "シールド",
+  "App Ready to Work Offline": "アプリはオフラインで動作する準備ができています",
+  "Refresh to New Version Available": "利用可能な新しいバージョンに更新",
+
+  "History": "履歴",
 
   "About": "情報",
   "Need Help": "コミュニティの翻訳者にもっと|協力|してもらいたい！",
   "Request Issue": "質問や提案があれば、|issue にお尋ね|ください。",
   "Build Date": "コンパイル",
   "Theme Credits": "テーマの作者",
-
-  "History": "履歴",
 
   "Data": "データ",
   "Sort Rule": "ソートルール",

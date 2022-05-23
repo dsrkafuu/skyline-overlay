@@ -1,6 +1,9 @@
 {
   "LANG": "简体中文",
 
+  "App Ready to Work Offline": "应用程序已准备好离线工作",
+  "Refresh to New Version Available": "刷新到可用的新版本",
+
   "Swings": "次数",
   "Deaths": "死亡",
   "Damage": "伤害",
