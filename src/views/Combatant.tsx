@@ -1,7 +1,7 @@
 import './Combatant.scss';
 import { useCallback, useState } from 'react';
 import clsx, { ClassArray } from 'clsx';
-import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
+import { CombatantData, LimitBreakData, class2job } from 'ffxiv-overlay-api';
 import CombatantName from './CombatantName';
 import CombatantDetail from './CombatantDetail';
 import CombatantBottom from './CombatantBottom';
@@ -37,7 +37,12 @@ function Combatant({ player }: CombatantProps) {
     } else if (themeMode === 'role' && jobType && jobType !== 'unknown') {
       color = `var(--color-role-${jobType})`; // role colors
     } else if (themeMode === 'job' && job && job !== 'unknown') {
-      color = `var(--color-job-${job})`; // per job colors
+      const transedJob = class2job(job);
+      if (transedJob !== job) {
+        color = `var(--color-job-${transedJob})`; // per job colors (base class)
+      } else {
+        color = `var(--color-job-${job})`; // per job colors (transd job)
+      }
     }
   }
 

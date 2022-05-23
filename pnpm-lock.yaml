@@ -21,7 +21,7 @@ specifiers:
   eslint: ~8.16.0
   eslint-plugin-react: ~7.30.0
   eslint-plugin-react-hooks: ~4.5.0
-  ffxiv-overlay-api: ~4.3.0
+  ffxiv-overlay-api: ~4.4.0
   glob: ~8.0.3
   normalize.css: ~8.0.1
   npm-run-all: ~4.1.5
@@ -29,7 +29,7 @@ specifiers:
   react: ~18.1.0
   react-colorful: ~5.5.1
   react-dom: ~18.1.0
-  react-redux: ~8.0.1
+  react-redux: ~8.0.2
   rollup-plugin-visualizer: ~5.6.0
   sass: ~1.52.1
   typescript: ~4.6.4
@@ -38,16 +38,16 @@ specifiers:
   vite-plugin-svgr: ~2.1.0
 
 dependencies:
-  '@reduxjs/toolkit': 1.8.1_j24pcqpkbsj43woxscsovlj4au
+  '@reduxjs/toolkit': 1.8.1_ctm756ikdwcjcvyfxxwskzbr6q
   '@sentry/react': 6.19.7_react@18.1.0
   '@sentry/tracing': 6.19.7
   clsx: 1.1.1
-  ffxiv-overlay-api: 4.3.0
+  ffxiv-overlay-api: 4.4.0
   normalize.css: 8.0.1
   react: 18.1.0
   react-colorful: 5.5.1_ef5jwxihqo6n7gxfmzogljlgcm
   react-dom: 18.1.0_react@18.1.0
-  react-redux: 8.0.1_e6senhi6gkhdouiqizr2s56gsi
+  react-redux: 8.0.2_e6senhi6gkhdouiqizr2s56gsi
 
 devDependencies:
   '@babel/core': 7.18.0
@@ -517,7 +517,7 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@reduxjs/toolkit/1.8.1_j24pcqpkbsj43woxscsovlj4au:
+  /@reduxjs/toolkit/1.8.1_ctm756ikdwcjcvyfxxwskzbr6q:
     resolution: {integrity: sha512-Q6mzbTpO9nOYRnkwpDlFOAbQnd3g7zj7CtHAZWz5SzE5lcV97Tf8f3SzOO8BoPOMYBFgfZaqTUZqgGu+a0+Fng==}
     peerDependencies:
       react: ^16.9.0 || ^17.0.0 || ^18
@@ -530,7 +530,7 @@ packages:
     dependencies:
       immer: 9.0.12
       react: 18.1.0
-      react-redux: 8.0.1_e6senhi6gkhdouiqizr2s56gsi
+      react-redux: 8.0.2_e6senhi6gkhdouiqizr2s56gsi
       redux: 4.1.2
       redux-thunk: 2.4.1_redux@4.1.2
       reselect: 4.1.5
@@ -1758,8 +1758,8 @@ packages:
       reusify: 1.0.4
     dev: true
 
-  /ffxiv-overlay-api/4.3.0:
-    resolution: {integrity: sha512-qM+aLWN1c+Thf5GR01D6wwvYUYWiv1OOLFhC18rVo8NUzHZiYjUSwcc20yKcCtuOJBM8FJdpZIlPimPAdanORQ==}
+  /ffxiv-overlay-api/4.4.0:
+    resolution: {integrity: sha512-5yTVotTbsVynqBpJgtXdXH/WaKRYQn+drAIiZaw/eRXFmbSYAJaZOwSk8nnszyHtoRalKqyl9qNkVZRCPHq0hg==}
     dev: false
 
   /file-entry-cache/6.0.1:
@@ -2561,8 +2561,8 @@ packages:
     resolution: {integrity: sha512-yUcBYdBBbo3QiPsgYDcfQcIkGZHfxOaoE6HLSnr1sPzMhdyxusbfKOSUbSd/ocGi32dxcj366PsTj+5oggeKKw==}
     dev: false
 
-  /react-redux/8.0.1_e6senhi6gkhdouiqizr2s56gsi:
-    resolution: {integrity: sha512-LMZMsPY4DYdZfLJgd7i79n5Kps5N9XVLCJJeWAaPYTV+Eah2zTuBjTxKtNEbjiyitbq80/eIkm55CYSLqAub3w==}
+  /react-redux/8.0.2_e6senhi6gkhdouiqizr2s56gsi:
+    resolution: {integrity: sha512-nBwiscMw3NoP59NFCXFf02f8xdo+vSHT/uZ1ldDwF7XaTpzm+Phk97VT4urYBl5TYAPNVaFm12UHAEyzkpNzRA==}
     peerDependencies:
       '@types/react': ^16.8 || ^17.0 || ^18.0
       '@types/react-dom': ^16.8 || ^17.0 || ^18.0
