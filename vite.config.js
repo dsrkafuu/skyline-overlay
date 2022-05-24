@@ -70,6 +70,7 @@ export default defineConfig({
     }),
   ],
   css: {
+    devSourcemap: true,
     preprocessorOptions: {
       scss: {
         additionalData: `@import './src/scss/variables.scss';`,
