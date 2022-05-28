@@ -16,7 +16,7 @@ Features: Basic overlay, extended details, customizable display/data settings, b
 
 <img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-en-v37.jpg" alt="Skyline Preview" />
 
-<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-cn-v37.jpg" alt="Skyline Preview CN" />
+<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-zh-v37.jpg" alt="Skyline Preview CN" />
 
 ## Overlay Links
 
