@@ -50,12 +50,12 @@ body[data-theme='jround'] {
   .combatants {
     .combatant {
       background-color: var(--color-bg);
-      padding: 0.02rem;
+      padding: 0 0.04rem;
       margin: 0 0.06rem;
       border-radius: var(--border-radius);
 
       &-content {
-        background-color: transparent !important;
+        border-radius: var(--border-radius-inner);
       }
 
       &-name {
@@ -99,7 +99,7 @@ body[data-theme='jround'] {
       }
 
       &-detail {
-        margin-top: 0.08rem;
+        margin: 0.08rem 0.04rem 0 0.04rem;
         border-radius: var(--border-radius);
       }
     }
@@ -162,6 +162,11 @@ body[data-theme='jround'] {
       margin-left: $padding-lg;
       margin-right: $padding-lg;
     }
+  }
+
+  .s-ticker {
+    border-radius: 0.02rem;
+    overflow: hidden;
   }
 
   .s-select,
