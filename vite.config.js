@@ -14,14 +14,9 @@ export default defineConfig({
     svgr({
       svgrOptions: {
         icon: true,
-        typescript: true,
         svgProps: {
           className: 'g-icon',
         },
-      },
-      // https://github.com/pd4d10/vite-plugin-svgr/issues/17
-      esbuildOptions: {
-        loader: 'tsx',
       },
     }),
     react(),
