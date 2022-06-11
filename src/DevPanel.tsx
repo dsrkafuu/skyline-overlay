@@ -76,7 +76,7 @@ function DevPanel({ children }: DevPanelProps) {
         let data = cloneDeep(mockData);
         if (!data) {
           const res = await fetch(
-            'https://unpkg.com/ffxiv-overlay-api@4.4.0/test/fake_cn.json'
+            'https://cdnjs.cloudflare.com/ajax/libs/ffxiv-overlay-api/4.4.0/fake_cn.json'
           );
           const json = await res.json();
           data = cloneDeep(json);

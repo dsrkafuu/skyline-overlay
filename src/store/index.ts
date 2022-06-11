@@ -11,6 +11,7 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
+      .prepend(api.middleware)
       .prepend(settings.middleware)
       .prepend(theme.middleware),
 });

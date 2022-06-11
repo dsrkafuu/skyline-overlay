@@ -1,5 +1,11 @@
-import { createSlice, PayloadAction as PA } from '@reduxjs/toolkit';
+import {
+  createListenerMiddleware,
+  createSlice,
+  PayloadAction as PA,
+} from '@reduxjs/toolkit';
 import { ExtendData } from 'ffxiv-overlay-api';
+import { RootState } from '..';
+import { toggleShowCombatants } from './settings';
 
 interface HistoryData extends ExtendData {
   time: number;
@@ -75,6 +81,21 @@ export const { updateCombat, showHistory, pushHistory } = apiSlice.actions;
 
 /** @redux effects */
 
+export const listener = createListenerMiddleware();
+
+// add a new history means a new battle,
+// so we need to show the temporarily hided combatants
+listener.startListening({
+  actionCreator: pushHistory,
+  effect: (_, api) => {
+    const state = api.getState() as RootState;
+    if (!state.settings.combatantsLocked) {
+      api.dispatch(toggleShowCombatants(true));
+    }
+  },
+});
+
 export default {
   reducer: apiSlice.reducer,
+  middleware: listener.middleware,
 };

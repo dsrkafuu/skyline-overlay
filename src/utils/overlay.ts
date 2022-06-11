@@ -17,6 +17,7 @@ function tryPushHistory(newData: ExtendData) {
       lastData.encounter.durationSeconds !== 0 &&
       lastData.encounter.dps !== 0
     ) {
+      // this will also trigger a toggleCombatant(true) if not locked
       store.dispatch(pushHistory(lastData));
     }
   }
