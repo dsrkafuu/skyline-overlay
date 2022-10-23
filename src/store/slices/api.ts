@@ -5,6 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 import { ExtendData } from 'ffxiv-overlay-api';
 import { RootState } from '..';
+import { logDebug } from '../../utils/loggers';
 import { toggleShowCombatants } from './settings';
 
 interface HistoryData extends ExtendData {
@@ -47,9 +48,11 @@ export const apiSlice = createSlice({
      * update a new combat data
      */
     updateCombat(state, { payload }: PA<ExtendData>) {
+      logDebug('Store::API::updateCombat', payload);
       state.data = payload;
       // clear current history display if new data appears
       if (state.history.idx !== -1 || state.history.data) {
+        logDebug('Store::API::updateCombat::newData');
         state.history.idx = -1;
         state.history.data = null;
       }
@@ -58,8 +61,10 @@ export const apiSlice = createSlice({
      * show a history data (-1 to disable)
      */
     showHistory: (state, { payload }: PA<number>) => {
+      logDebug('Store::API::showHistory', payload);
       const idx = payload;
       if (idx < 0 || idx >= 5 || !state.historys[idx]) {
+        logDebug('Store::API::showHistory::exitHistoryView');
         state.history.idx = -1;
         state.history.data = null;
         return;
@@ -71,6 +76,7 @@ export const apiSlice = createSlice({
      * push a history (5 max)
      */
     pushHistory(state, { payload }: PA<ExtendData>) {
+      logDebug('Store::API::pushHistory', payload);
       state.historys.length >= 5 && state.historys.pop();
       state.historys.unshift({ time: Date.now(), ...payload });
     },
@@ -90,6 +96,7 @@ listener.startListening({
   effect: (_, api) => {
     const state = api.getState() as RootState;
     if (!state.settings.combatantsLocked) {
+      logDebug('Listener::API::pushHistory::showHidedCombatants');
       api.dispatch(toggleShowCombatants(true));
     }
   },

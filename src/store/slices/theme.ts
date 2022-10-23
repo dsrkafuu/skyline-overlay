@@ -8,6 +8,7 @@ import { ThemeMapKey, ThemeModeMapKey } from '../../utils/maps';
 import { mergeDeep } from '../../utils/lodash';
 import { getAsyncLSSetter, getLS } from '../../utils/storage';
 import { applyColors, Colors } from '../../themes/support/colors';
+import { logDebug } from '../../utils/loggers';
 
 export interface ThemeState {
   theme: ThemeMapKey;
@@ -30,9 +31,11 @@ let initialState = defaultTheme;
 // merge saved theme
 const savedTheme = getLS<DeepPartial<ThemeState>>('theme') || {};
 try {
+  logDebug('Store::Theme::mergeSavedTheme', savedTheme);
   initialState = mergeDeep(initialState, savedTheme);
 } catch {
   // use default setting if saved settings is invalid
+  logDebug('Store::Theme::invalidSavedTheme', savedTheme);
   initialState = defaultTheme;
 }
 
@@ -42,6 +45,7 @@ function applyTheme(
   themeMode: ThemeModeMapKey,
   colors: DeepPartial<Colors>
 ) {
+  logDebug('Store::Theme::applyTheme', value, themeMode, colors);
   document.body.setAttribute('data-theme', value);
   applyColors(value, themeMode, colors);
 }
@@ -54,14 +58,17 @@ export const themeSlice = createSlice({
   initialState,
   reducers: {
     updateTheme(state, { payload }: PA<ThemeMapKey>) {
+      logDebug('Store::Theme::updateTheme', payload);
       state.theme = payload;
       save({ theme: state.theme });
     },
     updateThemeMode(state, { payload }: PA<ThemeModeMapKey>) {
+      logDebug('Store::Theme::updateThemeMode', payload);
       state.themeMode = payload;
       save({ themeMode: state.themeMode });
     },
     updateColors(state, { payload }: PA<DeepPartial<Colors> | null>) {
+      logDebug('Store::Theme::updateColors', payload);
       if (!payload) {
         state.colors = {};
       } else {
@@ -102,17 +109,18 @@ listener.startListening({
   },
 });
 
-// reset preset & color when theme changes & mode changes
+// reset mode & color when theme changes & mode changes
 listener.startListening({
   actionCreator: updateTheme,
   effect: (_, api) => {
+    logDebug('Listener::Theme::updateTheme::resetThemeMode');
     api.dispatch(updateThemeMode('role'));
-    api.dispatch(updateColors(null));
   },
 });
 listener.startListening({
   actionCreator: updateThemeMode,
   effect: (_, api) => {
+    logDebug('Listener::Theme::updateThemeMode::resetColors');
     api.dispatch(updateColors(null));
   },
 });
