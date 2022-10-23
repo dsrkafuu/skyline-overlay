@@ -51,7 +51,6 @@ When releasing a new version, you can wait for the pop-up notification to confir
 ```
 VITE_BASE_URL="/"     # dist base url (optional)
 VITE_GA_ID=""         # google analytics id
-VITE_SENTRY_DSN=""    # sentry dsn for error tracking & perfromance measuring (optional)
 ```
 
 ## Local Build

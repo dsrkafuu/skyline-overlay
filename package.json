@@ -26,8 +26,6 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "~1.8.6",
-    "@sentry/react": "~7.15.0",
-    "@sentry/tracing": "~7.15.0",
     "clsx": "~1.2.1",
     "ffxiv-overlay-api": "~4.5.0",
     "normalize.css": "~8.0.1",
