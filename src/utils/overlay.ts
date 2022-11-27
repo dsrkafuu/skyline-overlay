@@ -1,4 +1,4 @@
-import OverlayAPI, { ExtendData } from 'ffxiv-overlay-api';
+import { OverlayAPI, ExtendData } from 'ffxiv-overlay-api';
 import { store } from '../store';
 import { pushHistory, updateCombat } from '../store/slices/api';
 

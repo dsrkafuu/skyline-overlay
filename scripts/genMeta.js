@@ -2,18 +2,12 @@
  * update build metadata
  */
 
-import fs from 'fs';
-import path from 'path';
-import url from 'url';
-import chalk from 'chalk';
-import prettier from 'prettier';
-const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
+const fs = require('fs');
+const path = require('path');
+const chalk = require('chalk');
+const prettier = require('prettier');
 
-const prettierOptions = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, '../.prettierrc'), {
-    encoding: 'utf-8',
-  })
-);
+const prettierOptions = require('../.prettierrc');
 
 console.log(chalk.blue('generating build metadata in `meta.ts`...'));
 
