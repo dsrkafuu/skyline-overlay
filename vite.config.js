@@ -78,6 +78,6 @@ export default defineConfig({
     rollupOptions: {
       plugins: [visualizer()],
     },
-    target: ['chrome90', 'firefox90', 'safari14'],
+    target: ['chrome87', 'firefox78', 'safari14'],
   },
 });
