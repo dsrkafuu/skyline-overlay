@@ -13,7 +13,7 @@
   "Critical !": "극대 !",
   "DC !!!": "극직 !!!",
 
-  "History": "이력",
+  "History": "히스토리",
 
   "About": "정보",
   "Need Help": "커뮤니티 번역가들의 |도움|이 필요합니다!",
@@ -30,14 +30,14 @@
   "Auto Short Number": "자동으로 긴 숫자 단축",
   "Big Number Mode": "큰 숫자 표기법 사용",
 
-  "Display": "표시",
-  "Display Mode": "표시 방법",
-  "Display Content": "표시 내용",
+  "Display": "출력",
+  "Display Mode": "출력 모드",
+  "Display Content": "출력 내용",
   "Highlight Self": "나 자신 강조",
   "Tickers Display": "막대 표시 내용",
   "Tickers Align": "막대 정렬",
-  "Bottom Display": "하단 표시 내용",
-  "Shorten Name": "캐릭터 이름 표시법",
+  "Bottom Display": "하단 출력",
+  "Shorten Name": "캐릭터 이름 표기법 (글로벌 서버)",
 
   "General": "일반",
   "Language": "언어",
