@@ -1,0 +1,63 @@
+{
+  "LANG": "한국어",
+
+  "App Ready to Work Offline": "앱이 오프라인으로 작동할 준비가 되었습니다.",
+  "Refresh to New Version Available": "사용 가능한 새 버전으로 업데이트",
+
+  "Swings": "타격횟수",
+  "Deaths": "죽음",
+  "Damage": "피해량",
+  "Overheal": "오버힐",
+  "Shielded": "보호막",
+  "Direct": "직격",
+  "Critical !": "극대 !",
+  "DC !!!": "극직 !!!",
+
+  "History": "이력",
+
+  "About": "정보",
+  "Need Help": "커뮤니티 번역가들의 |도움|이 필요합니다!",
+  "Request Issue": "질문이나 아이디어가 있다면 |글을 작성해주세요|.",
+  "Build Date": "빌드 날짜",
+  "Theme Credits": "테마 저자",
+
+  "Data": "데이터",
+  "Sort Rule": "정렬 기준",
+  "Max Combatants": "최대 표시인원 수",
+  "Show Limit Break": "리미트 브레이크 표시",
+  "Custom ID": "내 이름",
+  "Pet-Merging ID": "소환수 합산 이름",
+  "Auto Short Number": "자동으로 긴 숫자 단축",
+  "Big Number Mode": "큰 숫자 표기법 사용",
+
+  "Display": "표시",
+  "Display Mode": "표시 방법",
+  "Display Content": "표시 내용",
+  "Highlight Self": "나 자신 강조",
+  "Tickers Display": "막대 표시 내용",
+  "Tickers Align": "막대 정렬",
+  "Bottom Display": "하단 표시 내용",
+  "Shorten Name": "캐릭터 이름 표시법",
+
+  "General": "일반",
+  "Language": "언어",
+  "UI Scale": "UI 크기",
+  "Opacity": "투명도",
+  "Font Family": "글꼴",
+  "Custom CSS": "사용자 지정 CSS",
+  "Transfer Settings": "설정 전송",
+
+  "Theme": "테마",
+  "Theme Mode": "테마 모드",
+  "Common": "일반",
+  "Self Highlighting": "나 자신 강조",
+  "Tickers": "막대",
+  "Roles": "역할군",
+  "Jobs": "직업",
+  "Theme Customization": "테마 사용자 정의",
+
+  "Please enter the new value": "새 값을 입력해주세요.",
+  "Copy to clipboard using Ctrl+C": "Ctrl+C를 눌러 클립보드에 복사",
+  "Please enter settings data": "설정 데이터를 입력해주세요.",
+  "Invalid settings data": "유효한 설정 데이터가 아닙니다."
+}
