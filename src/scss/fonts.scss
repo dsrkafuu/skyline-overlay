@@ -11,6 +11,10 @@ html[data-font='default'] {
   &[lang='zh'] {
     font-family: 'Inter', 'Noto Sans SC', sans-serif;
   }
+
+  &[lang='ko'] {
+    font-family: 'Inter', 'Noto Sans KR', sans-serif;
+  }
 }
 
 // misans
