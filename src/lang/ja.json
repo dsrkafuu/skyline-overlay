@@ -14,7 +14,8 @@
 
   "Data": "データ",
   "Sort Rule": "ソートルール",
-  "Max Combatants": "最大戦闘員数",
+  "Max Combatants": "最大表示人数",
+  "Max Players Per Row": "一行あたりの最大表示人数",
   "Show Limit Break": "Limit Break 表示",
   "Custom ID": "カスタム ID",
   "Pet-Merging ID": "ペット合算 ID",

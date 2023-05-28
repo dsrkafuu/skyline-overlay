@@ -61,7 +61,7 @@ function SettingsData() {
         ),
       },
       {
-        title: t('Max Player Per Row'),
+        title: t('Max Players Per Row'),
         render: () => (
           <SInputNumber
             value={playerPerRow}
