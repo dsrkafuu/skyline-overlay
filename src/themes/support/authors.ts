@@ -1,5 +1,5 @@
 export const DSRKafuU = {
-  name: 'Roxy | 宇宙和音',
+  name: '一之濑肥波 | 宇宙和音',
   link: 'https://github.com/dsrkafuu',
 };
 

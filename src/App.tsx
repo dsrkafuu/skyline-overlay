@@ -18,6 +18,7 @@ function App() {
   const showLB = useAppSelector((state) => state.settings.showLB);
   const petMergeID = useAppSelector((state) => state.settings.petMergeID);
   const opacity = useAppSelector((state) => state.settings.opacity);
+  const playerPerRow = useAppSelector((state) => state.settings.playerPerRow);
 
   // get data from store
   const data = useAppSelector((state) => state.api.data);
@@ -55,7 +56,10 @@ function App() {
     <div className='app'>
       <div className='container' style={opacityStyle}>
         {showCombatants && Boolean(combatant) && combatant.length > 0 && (
-          <div className='combatants'>
+          <div
+            className='combatants'
+            style={{ maxWidth: `${playerPerRow * 1.26 + 0.01}rem` }}
+          >
             {playersWithLB.map((player, index) => (
               <Combatant player={player} index={index} key={player.name} />
             ))}

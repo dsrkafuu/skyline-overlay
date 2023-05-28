@@ -48,6 +48,7 @@ export interface Settings {
   // data
   sort: SortSettings;
   playerLimit: number; // combatant limit
+  playerPerRow: number;
   showLB: boolean;
   youName: string; // which to represent as 'YOU'
   petMergeID: string; // merge pet data when using global client with cn language patch
@@ -84,6 +85,7 @@ const save = getAsyncLSSetter<DeepPartial<Settings>>('settings');
 export const defaultSettings: Settings = {
   sort: { key: 'dps', rule: -1 },
   playerLimit: 8,
+  playerPerRow: 24,
   showLB: true,
   youName: 'YOU',
   petMergeID: '',
@@ -217,6 +219,11 @@ export const settingsSlice = createSlice({
       state.playerLimit = payload;
       save({ playerLimit: state.playerLimit });
     },
+    updatePlayerPerRow(state, { payload }: PA<number>) {
+      logDebug('Store::Settings::updatePlayerPerRow', payload);
+      state.playerPerRow = payload;
+      save({ playerPerRow: state.playerPerRow });
+    },
     updateShowLB(state, { payload }: PA<boolean>) {
       logDebug('Store::Settings::updateShowLB', payload);
       state.showLB = payload;
@@ -314,6 +321,7 @@ export const {
   toggleBlurName,
   updateSort,
   updatePlayerLimit,
+  updatePlayerPerRow,
   updateShowLB,
   updateYouName,
   updatePetMergeID,

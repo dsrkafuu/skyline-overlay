@@ -6,6 +6,7 @@ import {
   updateBigNumberMode,
   updatePetMergeID,
   updatePlayerLimit,
+  updatePlayerPerRow,
   updateShortNumber,
   updateShowLB,
   updateSort,
@@ -18,6 +19,7 @@ function SettingsData() {
   const dispatch = useAppDispatch();
   const sort = useAppSelector((state) => state.settings.sort);
   const playerLimit = useAppSelector((state) => state.settings.playerLimit);
+  const playerPerRow = useAppSelector((state) => state.settings.playerPerRow);
   const showLB = useAppSelector((state) => state.settings.showLB);
   const youName = useAppSelector((state) => state.settings.youName);
   const petMergeID = useAppSelector((state) => state.settings.petMergeID);
@@ -53,6 +55,19 @@ function SettingsData() {
             onChange={(v) => dispatch(updatePlayerLimit(v))}
             min={1}
             max={24}
+            step={1}
+            accuracy={0}
+          />
+        ),
+      },
+      {
+        title: t('Max Player Per Row'),
+        render: () => (
+          <SInputNumber
+            value={playerPerRow}
+            onChange={(v) => dispatch(updatePlayerPerRow(v))}
+            min={1}
+            max={48}
             step={1}
             accuracy={0}
           />
@@ -103,9 +118,11 @@ function SettingsData() {
     ],
     [
       t,
+      sort.key,
+      sort.rule,
       dispatch,
-      sort,
       playerLimit,
+      playerPerRow,
       showLB,
       youName,
       petMergeID,
