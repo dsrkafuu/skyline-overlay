@@ -1,4 +1,5 @@
 import { OverlayAPI, ExtendData } from 'ffxiv-overlay-api';
+import stablehash from 'stable-hash';
 import { store } from '../store';
 import { pushHistory, updateCombat } from '../store/slices/api';
 
@@ -8,6 +9,7 @@ const overlay = new OverlayAPI();
 let lastData: ExtendData | null = null;
 
 function tryPushHistory(newData: ExtendData) {
+  let historyAdded = false;
   // if last data (false) this data (true) which indicates
   // a new battle, push last data (false) into a new history
   if (lastData && !lastData.active && newData.active) {
@@ -19,10 +21,28 @@ function tryPushHistory(newData: ExtendData) {
     ) {
       // this will also trigger a toggleCombatant(true) if not locked
       store.dispatch(pushHistory(lastData));
+      historyAdded = true;
     }
   }
   // record data for future use
   lastData = newData;
+  return historyAdded;
+}
+
+let lastDataHash = '';
+
+function tryUpdateCombat(newData: ExtendData) {
+  try {
+    // prevent hash constantly changing leads to unnecessary re-render/history reset
+    const newDataHash = stablehash(newData);
+    if (lastDataHash !== newDataHash) {
+      store.dispatch(updateCombat(newData));
+      lastDataHash = newDataHash;
+    }
+  } catch (e) {
+    console.error(e);
+    store.dispatch(updateCombat(newData));
+  }
 }
 
 // add overlay callback
@@ -30,7 +50,7 @@ overlay.addListener('CombatData', (rawData) => {
   const data = rawData.extendData;
   if (data) {
     tryPushHistory(data);
-    store.dispatch(updateCombat(data));
+    tryUpdateCombat(data);
   }
 });
 
