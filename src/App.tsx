@@ -58,7 +58,7 @@ function App() {
         {showCombatants && Boolean(combatant) && combatant.length > 0 && (
           <div
             className='combatants'
-            style={{ maxWidth: `${playerPerRow * 1.26 + 0.01}rem` }}
+            style={{ width: `${playerPerRow * 1.26 + 0.01}rem` }}
           >
             {playersWithLB.map((player, index) => (
               <Combatant player={player} index={index} key={player.name} />
