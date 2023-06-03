@@ -1,0 +1,63 @@
+{
+  "LANG": "Français",
+
+  "App Ready to Work Offline": "App est prêt à utiliser hors ligne",
+  "Refresh to New Version Available": "Rafraîchir pour nouvelle version",
+
+  "Swings": "Coups",
+  "Deaths": "Morts",
+  "Damage": "Dommages",
+  "Overheal": "Excès de soins",
+  "Shielded": "Bloqué",
+  "Direct": "Direct",
+  "Critical !": "Critique!",
+  "DC !!!": "DC !!!",
+
+  "History": "Histoire",
+
+  "About": "Infos",
+  "Need Help": "Nous avons besoin |d'aide| de plusieurs traducteurs!",
+  "Request Issue": "SVP |créer un issue| si vous avez des questions ou idées.",
+  "Build Date": "Date de compilation",
+  "Theme Credits": "Crédits de Thème",
+
+  "Data": "Données",
+  "Sort Rule": "Règle de triage",
+  "Max Combatants": "Combatants maximales",
+  "Show Limit Break": "Afficher Limit Break",
+  "Custom ID": "Nom personnalisé",
+  "Pet-Merging ID": "Nom pour combinaison du compagnon",
+  "Auto Short Number": "Numéros courts automatiques",
+  "Big Number Mode": "Mode numéros larges",
+
+  "Display": "Affichage",
+  "Display Mode": "Mode d'affichage",
+  "Display Content": "Contenu d'affichage",
+  "Highlight Self": "Souligner soi-même",
+  "Tickers Display": "Affichage des tickers",
+  "Tickers Align": "Alligner les tickers",
+  "Bottom Display": "Affichage du bas",
+  "Shorten Name": "Noms courts",
+
+  "General": "Général",
+  "Language": "Langue",
+  "UI Scale": "Gamme d'interface",
+  "Opacity": "Opacité",
+  "Font Family": "Famille de polices",
+  "Custom CSS": "CSS personnalisé",
+  "Transfer Settings": "Transferer réglages",
+
+  "Theme": "Thème",
+  "Theme Mode": "Mode de thème",
+  "Common": "Commun",
+  "Self Highlighting": "Soulignage de soi-même",
+  "Tickers": "Tickers",
+  "Roles": "Rôles",
+  "Jobs": "Métiers",
+  "Theme Customization": "Personalisation de thème",
+
+  "Please enter the new value": "Entrer la nouvelle valeur",
+  "Copy to clipboard using Ctrl+C": "Copier au presse-papiers avec Ctrl+C",
+  "Please enter settings data": "Entrer paramètres",
+  "Invalid settings data": "Paramètres invalides"
+}
