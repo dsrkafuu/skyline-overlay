@@ -2,6 +2,7 @@ import { OverlayAPI, ExtendData } from 'ffxiv-overlay-api';
 import stablehash from 'stable-hash';
 import { store } from '../store';
 import { pushHistory, updateCombat } from '../store/slices/api';
+import { cloneDeep, sha1 } from './lodash';
 
 const overlay = new OverlayAPI();
 
@@ -31,10 +32,16 @@ function tryPushHistory(newData: ExtendData) {
 
 let lastDataHash = '';
 
-function tryUpdateCombat(newData: ExtendData) {
+async function tryUpdateCombat(newData: ExtendData) {
   try {
     // prevent hash constantly changing leads to unnecessary re-render/history reset
-    const newDataHash = stablehash(newData);
+    const newDataHash = await sha1(
+      stablehash(
+        cloneDeep(newData).combatant.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        )
+      )
+    );
     if (lastDataHash !== newDataHash) {
       store.dispatch(updateCombat(newData));
       lastDataHash = newDataHash;
