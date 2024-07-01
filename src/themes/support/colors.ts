@@ -50,6 +50,7 @@ interface ColorsWithJob extends ColorsBasics {
     nin: RGBAColor;
     sam: RGBAColor;
     rpr: RGBAColor;
+    vpr: RGBAColor;
     // ranged
     brd: RGBAColor;
     mch: RGBAColor;
@@ -58,6 +59,7 @@ interface ColorsWithJob extends ColorsBasics {
     blm: RGBAColor;
     smn: RGBAColor;
     rdm: RGBAColor;
+    pct: RGBAColor;
     blu: RGBAColor;
   };
   role?: never;

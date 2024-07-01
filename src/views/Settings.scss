@@ -13,11 +13,14 @@
     background-color: var(--color-settings-tab-bg);
     text-shadow: var(--shadow-settings-tab);
     height: $size-form;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
   }
 
   &-tabitem {
     display: inline-block;
-    width: calc(3.84rem / 6);
+    flex: 1 1 auto;
     padding: 0 $padding-lg;
     height: $size-form;
     line-height: $size-form;
@@ -207,7 +210,7 @@
 }
 
 .settings-colors-grid {
-  max-width: $size-form * 10 + $padding-md * 9;
+  max-width: $size-form * 11 + $padding-md * 10;
   display: flex;
   flex-wrap: wrap;
   gap: $padding-md;

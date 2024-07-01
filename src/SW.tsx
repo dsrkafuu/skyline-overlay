@@ -1,3 +1,4 @@
+// @ts-nocheck Cannot find module virtual:pwa-register/react when `tsc`
 import './SW.scss';
 import { useCallback } from 'react';
 import { useRegisterSW } from 'virtual:pwa-register/react';
