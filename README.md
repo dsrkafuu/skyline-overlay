@@ -8,7 +8,7 @@
 <br />
 
 ![](https://img.shields.io/github/package-json/v/dsrkafuu/skyline-overlay)
-![](https://img.shields.io/badge/ffxiv-endwalker-orange)
+![](https://img.shields.io/badge/ffxiv-dawntrail-orange)
 [![](https://img.shields.io/github/license/dsrkafuu/skyline-overlay)](https://github.com/dsrkafuu/skyline-overlay/blob/main/LICENSE)
 [![](https://img.shields.io/lgtm/grade/javascript/github/dsrkafuu/skyline-overlay)](https://lgtm.com/projects/g/dsrkafuu/skyline-overlay/context:javascript)
 
