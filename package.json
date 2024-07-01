@@ -53,7 +53,7 @@
     "vite": "^4.5.3",
     "vite-plugin-html-env": "^1.2.8",
     "vite-plugin-pwa": "^0.15.2",
-    "vite-plugin-svgr": "^3.3.0",
+    "vite-plugin-svgr": "^4.2.0",
     "workbox-window": "^6.6.1"
   },
   "pnpm": {

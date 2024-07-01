@@ -28,7 +28,7 @@ function genCodeLines(filePaths, transformer) {
       const realname = basename.replace(/\.svg$/, '');
       const exportname = transformer(realname);
       lines.push(
-        `export { ReactComponent as ${exportname} } from './${basename}';`
+        `export { default as ${exportname} } from './${basename}?react';`
       );
       const code = await prettier.format(lines.join('\n') + '\n', {
         parser: 'typescript',
