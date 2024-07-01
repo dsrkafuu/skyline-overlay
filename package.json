@@ -20,7 +20,7 @@
     "script:modSource": "node \"./scripts/modSource.js\"",
     "script:removeTrash": "node \"./scripts/removeTrash.js\"",
     "build": "cross-env NODE_ENV=production run-s script:genIconIdx script:genMeta eslint typecheck bundle script:removeTrash",
-    "dev": "cross-env NODE_ENV=development run-s script:genIconIdx script:genMeta serve"
+    "dev": "cross-env NODE_ENV=development VITE_GA_ID=TEST run-s script:genIconIdx script:genMeta serve"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",
