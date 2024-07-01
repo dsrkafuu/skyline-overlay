@@ -2,6 +2,7 @@
 export { default as WVR } from './wvr.svg?react';
 export { default as WHM } from './whm.svg?react';
 export { default as WAR } from './war.svg?react';
+export { default as VPR } from './vpr.svg?react';
 export { default as THM } from './thm.svg?react';
 export { default as SMN } from './smn.svg?react';
 export { default as SGE } from './sge.svg?react';
@@ -12,6 +13,7 @@ export { default as ROG } from './rog.svg?react';
 export { default as RDM } from './rdm.svg?react';
 export { default as PLD } from './pld.svg?react';
 export { default as PGL } from './pgl.svg?react';
+export { default as PCT } from './pct.svg?react';
 export { default as NIN } from './nin.svg?react';
 export { default as MRD } from './mrd.svg?react';
 export { default as MNK } from './mnk.svg?react';
