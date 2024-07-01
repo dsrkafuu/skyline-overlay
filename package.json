@@ -32,7 +32,8 @@
     "react-colorful": "^5.6.1",
     "react-dom": "^18.3.1",
     "react-redux": "^9.1.2",
-    "stable-hash": "^0.0.4"
+    "stable-hash": "^0.0.4",
+    "workbox-window": "^7.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",
