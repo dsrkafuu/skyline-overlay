@@ -1,5 +1,5 @@
 import { mergeCombatant, CombatantData } from 'ffxiv-overlay-api';
-import { version } from '../assets/meta';
+import { version, versionCode } from '../assets/meta';
 
 /**
  * format number
@@ -116,5 +116,5 @@ export function fmtDuration(duration: string) {
 }
 
 export function fmtZoneName(zoneName: string) {
-  return zoneName || `Skyline Overlay ${version}`;
+  return zoneName || `Skyline Overlay ${version} (${versionCode})`;
 }

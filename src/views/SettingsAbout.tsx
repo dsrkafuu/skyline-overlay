@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { date } from '../assets/meta';
+import { date, versionCode } from '../assets/meta';
 import { useAppSelector, useTranslation } from '../hooks';
 import themes from '../themes';
 
@@ -50,8 +50,8 @@ function SettingsAbout() {
         </span>
       </div>
       <div className='settings-row'>
-        <span className='settings-title'>{t('Build Date')}</span>
-        <span className='settings-title'>{parsedDate}</span>
+        <span className='settings-title'>{t('Compile Version')}</span>
+        <span className='settings-title'>{`${parsedDate} (${versionCode})`}</span>
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Theme Credits')}</span>

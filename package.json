@@ -6,6 +6,7 @@
   "private": true,
   "name": "skyline-overlay",
   "version": "4.0.0",
+  "versionCode": "Iseri Nina",
   "description": "A modern customizable horizon FFXIV miniparse overlay.",
   "license": "Apache-2.0",
   "author": "DSRKafuU <dsrkafuu@outlook.com> (https://dsrkafuu.net)",
