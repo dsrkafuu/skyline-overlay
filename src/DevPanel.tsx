@@ -92,8 +92,6 @@ function DevPanel({ children }: DevPanelProps) {
             data.Encounter.encdps += Number(dps);
           });
           data.Encounter.encdps = `${data.Encounter.encdps}`;
-          data.Combatant['光之战士一号'].Job = 'Pct';
-          data.Combatant['光之战士二号'].Job = 'Vpr';
           overlay.simulateData(data);
           time++;
         }, 1000);
