@@ -2,7 +2,7 @@
   "LANG": "한국어",
 
   "App Ready to Work Offline": "앱이 오프라인으로 작동할 준비가 되었습니다.",
-  "Refresh to New Version Available": "사용 가능한 새 버전으로 업데이트",
+  "Refresh to New Version Available": "최신 버전으로 업데이트",
 
   "Swings": "타격횟수",
   "Deaths": "죽음",
@@ -23,8 +23,8 @@
 
   "Data": "데이터",
   "Sort Rule": "정렬 기준",
-  "Max Combatants": "최대 표시인원 수",
-  "Max Players Per Row": "",
+  "Max Combatants": "최대 표시 인원수",
+  "Max Players Per Row": "한 줄에 표시할 최대 인원수",
   "Show Limit Break": "리미트 브레이크 표시",
   "Custom ID": "내 이름",
   "Pet-Merging ID": "소환수 합산 이름",
@@ -57,8 +57,8 @@
   "Jobs": "직업",
   "Theme Customization": "테마 사용자 정의",
 
-  "Please enter the new value": "새 값을 입력해주세요.",
+  "Please enter the new value": "새 값을 입력해 주세요.",
   "Copy to clipboard using Ctrl+C": "Ctrl+C를 눌러 클립보드에 복사",
-  "Please enter settings data": "설정 데이터를 입력해주세요.",
+  "Please enter settings data": "설정 데이터를 입력해 주세요.",
   "Invalid settings data": "유효한 설정 데이터가 아닙니다."
 }
