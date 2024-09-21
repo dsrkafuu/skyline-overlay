@@ -2,15 +2,24 @@
   "LANG": "日本語",
 
   "App Ready to Work Offline": "アプリはオフラインで動作する準備ができています",
-  "Refresh to New Version Available": "利用可能な新しいバージョンに更新",
+  "Refresh to New Version Available": "新しいバージョンが利用可能",
+
+  "Swings": "打撃回数",
+  "Deaths": "死亡回数",
+  "Damage": "ダメージ値",
+  "Overheal": "オーバーヒール",
+  "Shielded": "シールド",
+  "Direct": "",
+  "Critical !": "",
+  "DC !!!": "",
 
   "History": "履歴",
 
   "About": "情報",
-  "Need Help": "コミュニティの翻訳者にもっと|協力|してもらいたい！",
-  "Request Issue": "質問や提案があれば、|issue にお尋ね|ください。",
+  "Need Help": "もっと多くのコミュニティ翻訳者の|助けが|必要です！",
+  "Request Issue": "質問や提案があれば、|issue を立てて|ください。",
   "Compile Version": "コンパイルバージョン",
-  "Theme Credits": "テーマの作者",
+  "Theme Credits": "テーマクレジット",
 
   "Data": "データ",
   "Sort Rule": "ソートルール",
