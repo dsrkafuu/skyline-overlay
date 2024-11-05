@@ -1,5 +1,6 @@
 import './App.scss';
 import { CSSProperties } from 'react';
+import clsx from 'clsx';
 import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
 import Combatant from './views/Combatant';
 import Encounter from './views/Encounter';
@@ -19,6 +20,7 @@ function App() {
   const petMergeID = useAppSelector((state) => state.settings.petMergeID);
   const opacity = useAppSelector((state) => state.settings.opacity);
   const playerPerRow = useAppSelector((state) => state.settings.playerPerRow);
+  const layoutMode = useAppSelector((state) => state.settings.layoutMode);
 
   // get data from store
   const data = useAppSelector((state) => state.api.data);
@@ -53,7 +55,12 @@ function App() {
   };
 
   return (
-    <div className='app'>
+    <div
+      className={clsx({
+        app: true,
+        'app-reverse': layoutMode === 'reverse',
+      })}
+    >
       <div className='container' style={opacityStyle}>
         {showCombatants && Boolean(combatant) && combatant.length > 0 && (
           <div

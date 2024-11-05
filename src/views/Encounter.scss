@@ -6,6 +6,10 @@
   display: flex;
   backdrop-filter: $filter;
 
+  &-reverse {
+    margin-bottom: $padding-md;
+  }
+
   &-duration {
     cursor: pointer;
     flex: 0 0 auto;

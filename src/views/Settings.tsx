@@ -12,6 +12,7 @@ import SettingsTheme from './SettingsTheme';
 function Settings() {
   const t = useTranslation();
   const showSettings = useAppSelector((state) => state.settings.showSettings);
+  const layoutMode = useAppSelector((state) => state.settings.layoutMode);
 
   const panels = useMemo(
     () => [
@@ -49,7 +50,12 @@ function Settings() {
   }
 
   return !showSettings ? null : (
-    <div className='settings'>
+    <div
+      className={clsx({
+        settings: true,
+        'settings-reverse': layoutMode === 'reverse',
+      })}
+    >
       <div className='settings-tab'>
         {panels.map(({ type, title }) => (
           <div

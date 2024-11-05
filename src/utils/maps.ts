@@ -105,3 +105,11 @@ const themeModeMap = {
 };
 export type ThemeModeMapKey = keyof typeof themeModeMap & string;
 export const MAP_THEME_MODE = themeModeMap;
+
+// layout mode map
+const layoutModeMap = {
+  common: { text: 'Common' },
+  reverse: { text: 'Reverse' },
+};
+export type LayoutModeMapKey = keyof typeof layoutModeMap & string;
+export const MAP_LAYOUT_MODE = layoutModeMap;

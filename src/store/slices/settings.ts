@@ -18,6 +18,7 @@ import {
   FontFamilyMapKey,
   FontWeightMapKey,
   MAP_FONT_WEIGHT,
+  LayoutModeMapKey,
 } from '../../utils/maps';
 import { cloneDeep, mergeDeep, xssEscape } from '../../utils/lodash';
 import { getAsyncLSSetter, getLS } from '../../utils/storage';
@@ -66,6 +67,7 @@ export interface Settings {
   lang: LangMapKey;
   zoom: number;
   opacity: number;
+  layoutMode: LayoutModeMapKey;
   fonts: FontSettings;
   customCSS: string;
 }
@@ -101,6 +103,7 @@ export const defaultSettings: Settings = {
   lang: 'en',
   zoom: 1,
   opacity: 1,
+  layoutMode: 'common',
   fonts: { family: 'default', weight: 'regular' },
   customCSS: '#root {}',
 };
@@ -291,6 +294,11 @@ export const settingsSlice = createSlice({
       state.opacity = payload;
       save({ opacity: state.opacity });
     },
+    updateLayoutMode(state, { payload }: PA<LayoutModeMapKey>) {
+      logDebug('Store::Settings::updateLayoutMode', payload);
+      state.layoutMode = payload;
+      save({ layoutMode: state.layoutMode });
+    },
     updateLang(state, { payload }: PA<LangMapKey>) {
       logDebug('Store::Settings::updateLang', payload);
       state.lang = payload;
@@ -335,6 +343,7 @@ export const {
   updateBottomDisp,
   updateShortName,
   updateOpacity,
+  updateLayoutMode,
   updateLang,
   updateZoom,
   updateFonts,

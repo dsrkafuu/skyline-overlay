@@ -5,10 +5,16 @@ import {
   updateCustomCSS,
   updateFonts,
   updateLang,
+  updateLayoutMode,
   updateOpacity,
   updateZoom,
 } from '../store/slices/settings';
-import { MAP_LANG, MAP_FONT_FAMILY, MAP_FONT_WEIGHT } from '../utils/maps';
+import {
+  MAP_LANG,
+  MAP_FONT_FAMILY,
+  MAP_FONT_WEIGHT,
+  MAP_LAYOUT_MODE,
+} from '../utils/maps';
 import SettingsTransfer from './SettingsTransfer';
 
 function SettingsGeneral() {
@@ -17,6 +23,7 @@ function SettingsGeneral() {
   const lang = useAppSelector((state) => state.settings.lang);
   const zoom = useAppSelector((state) => state.settings.zoom);
   const opacity = useAppSelector((state) => state.settings.opacity);
+  const layoutMode = useAppSelector((state) => state.settings.layoutMode);
   const fonts = useAppSelector((state) => state.settings.fonts);
   const customCSS = useAppSelector((state) => state.settings.customCSS);
 
@@ -59,6 +66,16 @@ function SettingsGeneral() {
         ),
       },
       {
+        title: t('Layout Mode'),
+        render: () => (
+          <SSelect
+            value={layoutMode}
+            onChange={(v) => dispatch(updateLayoutMode(v))}
+            map={MAP_LAYOUT_MODE}
+          />
+        ),
+      },
+      {
         title: t('Font Family'),
         render: () => (
           <>
@@ -95,7 +112,7 @@ function SettingsGeneral() {
         observe: false,
       },
     ],
-    [t, dispatch, lang, zoom, opacity, fonts, customCSS]
+    [t, dispatch, lang, zoom, opacity, fonts, customCSS, layoutMode]
   );
 
   return (

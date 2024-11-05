@@ -29,6 +29,7 @@ function Encounter() {
   );
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
   const bigNumberMode = useAppSelector((state) => state.settings.bigNumberMode);
+  const layoutMode = useAppSelector((state) => state.settings.layoutMode);
 
   // encounter data
   const duration = fmtDuration(encounter.duration);
@@ -79,7 +80,12 @@ function Encounter() {
   const totalDPS = encounter[showDHPS] || 0;
 
   return (
-    <div className='encounter'>
+    <div
+      className={clsx({
+        encounter: true,
+        'encounter-reverse': layoutMode === 'reverse',
+      })}
+    >
       <div
         className={clsx('encounter-duration', {
           'encounter-duration--active': active,

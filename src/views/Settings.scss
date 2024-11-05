@@ -8,6 +8,11 @@
   text-shadow: var(--shadow-settings);
   backdrop-filter: $filter;
 
+  &-reverse {
+    position: absolute;
+    top: calc(0.22rem + $padding-md);
+  }
+
   &-tab {
     color: var(--color-settings-tab-fg);
     background-color: var(--color-settings-tab-bg);

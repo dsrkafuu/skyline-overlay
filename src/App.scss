@@ -21,22 +21,6 @@ body,
   display: flex;
   justify-content: center;
   align-items: center;
-
-  &:first-child,
-  .combatants {
-    z-index: 100;
-  }
-
-  &:last-child {
-    z-index: 10;
-
-    .encounter {
-      z-index: 10;
-    }
-    .settings {
-      z-index: 1;
-    }
-  }
 }
 
 .combatants {
@@ -45,4 +29,33 @@ body,
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
+}
+
+.app {
+  .combatants {
+    position: relative;
+    z-index: 30;
+  }
+  .encounter,
+  .settings,
+  .sw {
+    z-index: 20;
+  }
+}
+
+.app-reverse {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+
+  .combatants {
+    position: relative;
+    z-index: 30;
+  }
+  .encounter,
+  .settings,
+  .sw {
+    z-index: 40;
+  }
 }
