@@ -3,7 +3,7 @@
  * Latest commit a27f09f on 29 Jan 2021 (Unlicense License)
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
 import { useCallback, useRef } from 'react';
 
 function on<T extends Window | Document | HTMLElement | EventTarget>(

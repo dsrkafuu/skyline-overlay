@@ -7,8 +7,6 @@ const path = require('path');
 const chalk = require('chalk');
 const prettier = require('prettier');
 
-const prettierOptions = require('../.prettierrc');
-
 const main = async () => {
   try {
     console.log(chalk.blue('generating build metadata in `meta.ts`...'));
@@ -22,6 +20,7 @@ const main = async () => {
     lines.push(`export const version = 'v${pkg.version}';`);
     lines.push(`export const versionCode = '${pkg.versionCode}';`);
     lines.push(`export const date = ${Date.now()};`);
+    const prettierOptions = await import('../prettier.config.mjs');
     const code = await prettier.format(lines.join('\n') + '\n', {
       parser: 'typescript',
       ...prettierOptions,

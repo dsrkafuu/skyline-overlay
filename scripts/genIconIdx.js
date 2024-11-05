@@ -8,8 +8,6 @@ const glob = require('glob');
 const chalk = require('chalk');
 const prettier = require('prettier');
 
-const prettierOptions = require('../.prettierrc');
-
 console.log(chalk.blue('generating `index.ts` for icons...'));
 
 /**
@@ -30,6 +28,7 @@ function genCodeLines(filePaths, transformer) {
       lines.push(
         `export { default as ${exportname} } from './${basename}?react';`
       );
+      const prettierOptions = await import('../prettier.config.mjs');
       const code = await prettier.format(lines.join('\n') + '\n', {
         parser: 'typescript',
         ...prettierOptions,
