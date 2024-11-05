@@ -73,12 +73,19 @@ function App() {
           </div>
         )}
       </div>
+      {layoutMode === 'reverse' && (
+        <div className='container'>
+          <SW />
+        </div>
+      )}
       <div className='container' style={opacityStyle}>
         <Encounter />
       </div>
-      <div className='container'>
-        <SW />
-      </div>
+      {layoutMode !== 'reverse' && (
+        <div className='container'>
+          <SW />
+        </div>
+      )}
       <div className='container'>
         <Settings />
       </div>
