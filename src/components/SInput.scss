@@ -1,15 +1,15 @@
 .s-input {
   display: flex;
-  width: $size-form-minwidth;
-  height: $size-form;
-  line-height: $size-form;
+  width: var.$size-form-minwidth;
+  height: var.$size-form;
+  line-height: var.$size-form;
   color: var(--color-form-fg);
   background-color: var(--color-form-bg);
 
   &-btn {
     flex: 0 0 auto;
-    height: $size-form;
-    width: $size-form;
+    height: var.$size-form;
+    width: var.$size-form;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,9 +34,9 @@
     outline: none;
     color: var(--color-form-fg);
     background-color: var(--color-form-bg);
-    height: $size-form;
-    line-height: $size-form;
-    padding: 0 $padding-md;
+    height: var.$size-form;
+    line-height: var.$size-form;
+    padding: 0 var.$padding-md;
     user-select: auto;
     text-align: center;
     text-shadow: var(--shadow-form);

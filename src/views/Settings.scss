@@ -1,23 +1,32 @@
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .settings {
-  margin-top: $padding-md;
-  font-size: $font-size-sm;
+  margin-top: var.$padding-md;
+  font-size: var.$font-size-sm;
   flex: 0 0 auto;
   width: 3.84rem;
   color: var(--color-settings-fg);
   background-color: var(--color-settings-bg);
   text-shadow: var(--shadow-settings);
-  backdrop-filter: $filter;
+  backdrop-filter: var.$filter;
 
   &-reverse {
     position: absolute;
-    top: calc(0.22rem + $padding-md);
+    top: calc(0.22rem + var.$padding-md);
   }
 
   &-tab {
     color: var(--color-settings-tab-fg);
     background-color: var(--color-settings-tab-bg);
     text-shadow: var(--shadow-settings-tab);
-    height: $size-form;
+    height: var.$size-form;
     display: flex;
     justify-content: center;
     align-items: stretch;
@@ -26,9 +35,9 @@
   &-tabitem {
     display: inline-block;
     flex: 1 1 auto;
-    padding: 0 $padding-lg;
-    height: $size-form;
-    line-height: $size-form;
+    padding: 0 var.$padding-lg;
+    height: var.$size-form;
+    line-height: var.$size-form;
     text-align: center;
     cursor: pointer;
 
@@ -45,7 +54,7 @@
   &-display,
   &-general,
   &-theme {
-    padding: $padding-lg;
+    padding: var.$padding-lg;
   }
 
   &-row {
@@ -55,7 +64,7 @@
 
     // first settings line has top padding
     &:not(:first-child) {
-      margin-top: $padding-md;
+      margin-top: var.$padding-md;
     }
 
     // child form items styles
@@ -63,28 +72,28 @@
       flex: 1 1 auto;
     }
     & > *:not(:last-child) {
-      margin-right: $padding-md;
+      margin-right: var.$padding-md;
     }
 
     .g-link {
       display: inline-block;
-      height: $size-form;
-      line-height: $size-form;
+      height: var.$size-form;
+      line-height: var.$size-form;
     }
   }
 
   &-title {
     display: inline-block;
-    height: $size-form;
-    line-height: $size-form;
+    height: var.$size-form;
+    line-height: var.$size-form;
   }
 
   &-btn {
-    width: $size-form;
+    width: var.$size-form;
     min-width: 0;
     cursor: pointer;
     flex: 0 0 auto;
-    height: $size-form;
+    height: var.$size-form;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,14 +109,6 @@
     }
 
     &-rotate .g-icon {
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
       animation: spin 1s linear infinite;
     }
   }
@@ -115,7 +116,7 @@
   // transfer module
   &-transfer {
     display: flex;
-    gap: $padding-md;
+    gap: var.$padding-md;
   }
 }
 
@@ -154,13 +155,13 @@
 }
 
 .settings-history {
-  height: 6 * $size-form + 2 * $padding-lg + 5 * $padding-md;
+  height: 6 * var.$size-form + 2 * var.$padding-lg + 5 * var.$padding-md;
   overflow: hidden;
-  padding: $padding-lg 0;
+  padding: var.$padding-lg 0;
 
   &-row {
-    height: $size-form;
-    line-height: $size-form;
+    height: var.$size-form;
+    line-height: var.$size-form;
     display: flex;
     cursor: pointer;
 
@@ -172,7 +173,7 @@
     }
 
     &:not(:first-child) {
-      margin-top: $padding-md;
+      margin-top: var.$padding-md;
     }
   }
 
@@ -181,9 +182,9 @@
     overflow: hidden;
     flex: 0 0 auto;
 
-    margin-left: $padding-md;
+    margin-left: var.$padding-md;
     &:last-child {
-      margin-right: $padding-md;
+      margin-right: var.$padding-md;
     }
   }
 
@@ -203,22 +204,22 @@
     flex: 1 1 auto;
     text-overflow: ellipsis;
     min-width: 0;
-    padding: 0 $padding-sm;
+    padding: 0 var.$padding-sm;
   }
 
   &-dps {
     display: flex;
     justify-content: flex-end;
     align-items: baseline;
-    padding-right: $padding-lg;
+    padding-right: var.$padding-lg;
   }
 }
 
 .settings-colors-grid {
-  max-width: $size-form * 11 + $padding-md * 10;
+  max-width: var.$size-form * 11 + var.$padding-md * 10;
   display: flex;
   flex-wrap: wrap;
-  gap: $padding-md;
+  gap: var.$padding-md;
   justify-content: flex-end;
   align-items: center;
 }

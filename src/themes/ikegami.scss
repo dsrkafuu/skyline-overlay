@@ -78,7 +78,7 @@ body[data-theme='ikegami'] {
 
   .s-input-number,
   .s-switch {
-    gap: $padding-md;
+    gap: var.$padding-md;
 
     & > div {
       border: 0.01rem solid #ffffff;

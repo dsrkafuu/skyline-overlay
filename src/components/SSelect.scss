@@ -1,8 +1,8 @@
 .s-select {
   position: relative;
-  height: $size-form;
-  line-height: $size-form;
-  min-width: $size-form-minwidth;
+  height: var.$size-form;
+  line-height: var.$size-form;
+  min-width: var.$size-form-minwidth;
   text-align: center;
   cursor: pointer;
   text-shadow: var(--shadow-form);
@@ -11,8 +11,8 @@
     color: var(--color-form-fg);
     background-color: var(--color-form-bg);
     display: flex;
-    height: $size-form;
-    line-height: $size-form;
+    height: var.$size-form;
+    line-height: var.$size-form;
 
     .disp {
       flex: 1 1 auto;
@@ -21,8 +21,8 @@
 
     .btn {
       flex: 0 0 auto;
-      height: $size-form;
-      width: $size-form;
+      height: var.$size-form;
+      width: var.$size-form;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -45,10 +45,10 @@
     width: 100%;
 
     &-bottom {
-      top: $size-form;
+      top: var.$size-form;
     }
     &-top {
-      bottom: $size-form;
+      bottom: var.$size-form;
     }
   }
 

@@ -2,7 +2,7 @@
   position: relative;
   flex: 0 0 auto;
   width: 1.2rem;
-  margin: 0 $padding-sm;
+  margin: 0 var.$padding-sm;
   display: flex;
   flex-direction: column;
   color: var(--color-combatant-fg);
@@ -10,9 +10,9 @@
 
   &-name,
   &-bottom {
-    line-height: $size-form;
-    height: $size-form;
-    font-size: $font-size-sm;
+    line-height: var.$size-form;
+    height: var.$size-form;
+    font-size: var.$font-size-sm;
     text-align: center;
     white-space: nowrap;
     display: flex;
@@ -25,7 +25,7 @@
     cursor: pointer;
 
     &--blured {
-      filter: $filter;
+      filter: var.$filter;
     }
   }
 
@@ -55,7 +55,7 @@
     position: relative;
     padding: 0.04rem 0.08rem;
     background-color: var(--color-common);
-    backdrop-filter: $filter;
+    backdrop-filter: var.$filter;
     cursor: pointer;
 
     &-data {
@@ -98,7 +98,7 @@
     right: 0;
     // top: 0.50rem; // each ticker 0.04rem
     z-index: 999;
-    backdrop-filter: $filter;
+    backdrop-filter: var.$filter;
     background-color: var(--color-common);
   }
 

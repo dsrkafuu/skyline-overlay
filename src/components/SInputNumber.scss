@@ -1,7 +1,7 @@
 .s-input-number {
   display: inline-flex;
-  height: $size-form;
-  min-width: $size-form-minwidth;
+  height: var.$size-form;
+  min-width: var.$size-form-minwidth;
   color: var(--color-form-fg);
   background-color: var(--color-form-bg);
   text-shadow: var(--shadow-form);
@@ -13,15 +13,15 @@
   div.value {
     flex: 1 1 auto;
     text-align: center;
-    height: $size-form;
-    line-height: $size-form;
+    height: var.$size-form;
+    line-height: var.$size-form;
     padding-left: 0.04rem;
   }
 
   .btn {
     flex: 0 0 auto;
-    height: $size-form;
-    width: $size-form;
+    height: var.$size-form;
+    width: var.$size-form;
     display: flex;
     justify-content: center;
     align-items: center;

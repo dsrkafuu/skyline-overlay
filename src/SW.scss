@@ -1,22 +1,22 @@
 .sw {
-  margin-top: $padding-md;
-  font-size: $font-size-sm;
+  margin-top: var.$padding-md;
+  font-size: var.$font-size-sm;
   flex: 0 0 auto;
   width: 3.84rem;
   display: flex;
-  backdrop-filter: $filter;
+  backdrop-filter: var.$filter;
 
   &-text {
     flex: 1 1 auto;
     min-width: 0;
-    height: $size-form;
-    line-height: $size-form;
+    height: var.$size-form;
+    line-height: var.$size-form;
     color: var(--color-encounter-fg);
     background-color: var(--color-encounter-bg);
     text-shadow: var(--shadow-encounter);
     white-space: nowrap;
     overflow: hidden;
-    padding: 0 $padding-xl;
+    padding: 0 var.$padding-xl;
     text-align: center;
   }
 
@@ -26,8 +26,8 @@
     cursor: pointer;
     position: relative;
     flex: 0 0 auto;
-    height: $size-form;
-    width: $size-form;
+    height: var.$size-form;
+    width: var.$size-form;
     display: flex;
     justify-content: center;
     align-items: center;

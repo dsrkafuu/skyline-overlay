@@ -24,13 +24,14 @@ export default defineConfig({
     }),
     react(),
     htmlEnv({ ...NODE_ENVS }),
-    visualizer(),
+    visualizer() as any,
     pwa({
       manifest: {
         name: 'Skyline Overlay',
         short_name: 'Skyline',
         description: 'A modern customizable horizon FFXIV miniparse overlay.',
         icons: [{ src: 'favicon.svg', sizes: 'any' }],
+        theme_color: '#8aa2d3',
       },
       workbox: {
         runtimeCaching: [
@@ -72,7 +73,7 @@ export default defineConfig({
     devSourcemap: true,
     preprocessorOptions: {
       scss: {
-        additionalData: `@import './src/scss/variables.scss';`,
+        additionalData: `@use './src/scss/variables' as var;`,
       },
     },
   },

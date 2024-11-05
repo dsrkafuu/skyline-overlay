@@ -1,16 +1,16 @@
 .s-switch {
   display: flex;
   cursor: pointer;
-  height: $size-form;
-  min-width: $size-form * 2;
+  height: var.$size-form;
+  min-width: var.$size-form * 2;
   display: flex;
   color: var(--color-form-fg);
   background-color: var(--color-form-bg);
 
   .s-switch-btn {
     flex: 0 0 auto;
-    height: $size-form;
-    width: $size-form;
+    height: var.$size-form;
+    width: var.$size-form;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -6,7 +6,7 @@
 html,
 body,
 #root {
-  font-size: $font-size-base;
+  font-size: var.$font-size-base;
   height: 100%;
   width: 100%;
   overflow: hidden;

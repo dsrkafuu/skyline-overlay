@@ -9,8 +9,8 @@
   color: var(--color-fg);
   text-shadow: var(--shadow);
   text-decoration: underline;
-  padding-left: $padding-sm;
-  padding-right: $padding-sm;
+  padding-left: var.$padding-sm;
+  padding-right: var.$padding-sm;
 
   &:hover {
     color: var(--color-form-fg-active);
@@ -24,6 +24,6 @@
 }
 .g-counter {
   display: inline-block;
-  font-size: $font-size-xs;
+  font-size: var.$font-size-xs;
   margin-left: 0.02rem;
 }

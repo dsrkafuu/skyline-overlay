@@ -1,7 +1,7 @@
 .s-input-color {
   display: inline-block;
-  height: $size-form;
-  width: $size-form;
+  height: var.$size-form;
+  width: var.$size-form;
   position: relative;
   cursor: pointer;
 
@@ -30,10 +30,10 @@
     z-index: 999;
 
     &-bottom {
-      top: $size-form + $padding-md;
+      top: var.$size-form + var.$padding-md;
     }
     &-top {
-      bottom: $size-form + $padding-md;
+      bottom: var.$size-form + var.$padding-md;
     }
   }
 

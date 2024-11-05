@@ -114,8 +114,8 @@ body[data-theme='jround'] {
     }
 
     &-duration {
-      flex: 0 0 $size-form * 2 + 0.03rem;
-      width: $size-form * 2 + 0.03rem;
+      flex: 0 0 var.$size-form * 2 + 0.03rem;
+      width: var.$size-form * 2 + 0.03rem;
       margin-right: 0.08rem;
     }
     &-btns {
@@ -159,8 +159,8 @@ body[data-theme='jround'] {
 
     &-history-row {
       border-radius: var(--border-radius-inner);
-      margin-left: $padding-lg;
-      margin-right: $padding-lg;
+      margin-left: var.$padding-lg;
+      margin-right: var.$padding-lg;
     }
   }
 

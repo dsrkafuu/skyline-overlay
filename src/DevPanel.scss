@@ -14,8 +14,8 @@ $devp-width: 3rem;
 
   &-settings {
     z-index: 1;
-    backdrop-filter: $filter;
-    font-size: $font-size-sm;
+    backdrop-filter: var.$filter;
+    font-size: var.$font-size-sm;
     position: absolute;
     width: $devp-width;
     margin: 0 auto;
@@ -33,7 +33,7 @@ $devp-width: 3rem;
 
   &-toggle {
     width: $devp-width;
-    line-height: $size-form;
+    line-height: var.$size-form;
     text-align: center;
     cursor: pointer;
     color: var(--color-settings-tab-fg);
@@ -49,7 +49,7 @@ $devp-width: 3rem;
 
   &-content {
     width: $devp-width;
-    padding: $padding-lg;
+    padding: var.$padding-lg;
 
     &-row {
       display: flex;
@@ -62,7 +62,7 @@ $devp-width: 3rem;
     }
 
     &-ctrl {
-      width: $size-form-minwidth;
+      width: var.$size-form-minwidth;
     }
   }
 }
