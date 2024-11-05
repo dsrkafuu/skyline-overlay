@@ -6,11 +6,6 @@
   display: flex;
   backdrop-filter: var.$filter;
 
-  &-reverse {
-    margin-top: 0;
-    margin-bottom: var.$padding-md;
-  }
-
   &-text {
     flex: 1 1 auto;
     min-width: 0;
