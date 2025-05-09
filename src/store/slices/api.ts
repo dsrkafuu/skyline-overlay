@@ -12,7 +12,7 @@ interface HistoryData extends ExtendData {
   time: number;
 }
 
-interface APIState {
+export interface APIState {
   data: ExtendData;
   historys: HistoryData[];
   history: {

@@ -2,7 +2,7 @@ import { useEffect, useCallback } from 'react';
 
 type CommonClickEvent = MouseEvent | TouchEvent;
 
-function useOutsideClick<T extends HTMLElement>(
+function useOutsideClick<T extends HTMLElement | null>(
   ref: React.RefObject<T>,
   handler: (e: CommonClickEvent) => void
 ) {

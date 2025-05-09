@@ -50,8 +50,8 @@ const useLongPress = (
   callback: (e: TouchEvent | MouseEvent) => void,
   { isPreventDefault = true, delay = 300 }: LongPressOptions = {}
 ) => {
-  const timeout = useRef<ReturnType<typeof setTimeout>>();
-  const target = useRef<EventTarget>();
+  const timeout = useRef<number>(-1);
+  const target = useRef<EventTarget>(null);
 
   const start = useCallback(
     (event: TouchEvent | MouseEvent) => {
@@ -60,7 +60,7 @@ const useLongPress = (
         on(event.target, 'touchend', preventDefault, { passive: false });
         target.current = event.target;
       }
-      timeout.current = setTimeout(() => callback(event), delay);
+      timeout.current = window.setTimeout(() => callback(event), delay);
     },
     [callback, delay, isPreventDefault]
   );

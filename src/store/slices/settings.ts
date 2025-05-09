@@ -74,7 +74,7 @@ export interface Settings {
   customCSS: string;
 }
 
-interface SettingsState extends Settings {
+export interface SettingsState extends Settings {
   showCombatants: boolean;
   combatantsLocked: boolean;
   showSettings: boolean;
