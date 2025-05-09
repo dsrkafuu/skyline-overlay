@@ -1,3 +1,5 @@
+@use '../scss/variables' as var;
+
 body[data-theme='horiz'] {
   // global
   --color-fg: #ffffff;

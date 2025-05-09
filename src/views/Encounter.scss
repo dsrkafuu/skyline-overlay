@@ -1,3 +1,5 @@
+@use '../scss/variables' as var;
+
 .encounter {
   margin-top: var.$padding-md;
   font-size: var.$font-size-sm;

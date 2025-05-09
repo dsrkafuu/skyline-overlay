@@ -1,3 +1,5 @@
+@use '../scss/variables' as var;
+
 .s-input-color {
   display: inline-block;
   height: var.$size-form;

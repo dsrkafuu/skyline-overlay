@@ -1,3 +1,5 @@
+@use '../scss/variables' as var;
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);

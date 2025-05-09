@@ -1,3 +1,5 @@
+@use '../scss/variables' as var;
+
 .s-list {
   width: 100%;
   font-size: var.$font-size-sm;

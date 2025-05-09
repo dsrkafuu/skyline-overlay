@@ -24,7 +24,7 @@ export default defineConfig({
     }),
     react(),
     htmlEnv({ ...NODE_ENVS }),
-    visualizer() as any,
+    visualizer(),
     pwa({
       manifest: {
         name: 'Skyline Overlay',
@@ -71,11 +71,6 @@ export default defineConfig({
   ],
   css: {
     devSourcemap: true,
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@use './src/scss/variables' as var;`,
-      },
-    },
   },
   build: {
     sourcemap: true,

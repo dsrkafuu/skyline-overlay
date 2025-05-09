@@ -1,3 +1,5 @@
+@use '../scss/variables' as var;
+
 body[data-theme='jround'] {
   // global
   --color-fg: var(--color-theme-fg);

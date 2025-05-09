@@ -1,3 +1,5 @@
+@use '../scss/variables' as var;
+
 .s-select {
   position: relative;
   height: var.$size-form;

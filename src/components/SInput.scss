@@ -1,3 +1,5 @@
+@use '../scss/variables' as var;
+
 .s-input {
   display: flex;
   width: var.$size-form-minwidth;

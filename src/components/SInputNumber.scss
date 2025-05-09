@@ -1,3 +1,5 @@
+@use '../scss/variables' as var;
+
 .s-input-number {
   display: inline-flex;
   height: var.$size-form;
