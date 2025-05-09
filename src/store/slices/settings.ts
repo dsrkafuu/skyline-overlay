@@ -23,6 +23,7 @@ import {
 import { cloneDeep, mergeDeep, xssEscape } from '../../utils/lodash';
 import { getAsyncLSSetter, getLS } from '../../utils/storage';
 import { logDebug } from '../../utils/loggers';
+import { startMock, stopMock } from '../../utils/mocker';
 
 interface SortSettings {
   key: SortRuleMapKey;
@@ -64,6 +65,7 @@ export interface Settings {
   bottomDisp: BottomDispMapKey;
   shortName: ShortNameMapKey;
   // general
+  mock: boolean;
   lang: LangMapKey;
   zoom: number;
   opacity: number;
@@ -100,6 +102,7 @@ export const defaultSettings: Settings = {
   tickerAlign: { top: 'right', bottom: 'left' },
   bottomDisp: 'maxhit',
   shortName: 'fstlst',
+  mock: false,
   lang: 'en',
   zoom: 1,
   opacity: 1,
@@ -125,6 +128,8 @@ try {
   logDebug('Store::Settings::invalidSavedSettings', savedSettings);
   initialState = { ...initialState, ...defaultSettings };
 }
+// reset mock every time
+initialState.mock = false;
 
 // apply initial lang
 function applyLang(value: LangMapKey) {
@@ -299,6 +304,13 @@ export const settingsSlice = createSlice({
       state.layoutMode = payload;
       save({ layoutMode: state.layoutMode });
     },
+    updateMock(state, { payload }: PA<boolean>) {
+      logDebug('Store::Settings::updateMock', payload);
+      state.mock = payload;
+      if (payload === true) startMock();
+      else stopMock();
+      save({ mock: state.mock });
+    },
     updateLang(state, { payload }: PA<LangMapKey>) {
       logDebug('Store::Settings::updateLang', payload);
       state.lang = payload;
@@ -344,6 +356,7 @@ export const {
   updateShortName,
   updateOpacity,
   updateLayoutMode,
+  updateMock,
   updateLang,
   updateZoom,
   updateFonts,

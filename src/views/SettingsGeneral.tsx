@@ -1,11 +1,12 @@
 import { useMemo } from 'react';
-import { SInput, SInputNumber, SSelect } from '../components';
+import { SInput, SInputNumber, SSelect, SSwitch } from '../components';
 import { useAppDispatch, useAppSelector, useTranslation } from '../hooks';
 import {
   updateCustomCSS,
   updateFonts,
   updateLang,
   updateLayoutMode,
+  updateMock,
   updateOpacity,
   updateZoom,
 } from '../store/slices/settings';
@@ -20,6 +21,7 @@ import SettingsTransfer from './SettingsTransfer';
 function SettingsGeneral() {
   const t = useTranslation();
   const dispatch = useAppDispatch();
+  const mock = useAppSelector((state) => state.settings.mock);
   const lang = useAppSelector((state) => state.settings.lang);
   const zoom = useAppSelector((state) => state.settings.zoom);
   const opacity = useAppSelector((state) => state.settings.opacity);
@@ -29,6 +31,12 @@ function SettingsGeneral() {
 
   const items = useMemo(
     () => [
+      {
+        title: t('Mock Data'),
+        render: () => (
+          <SSwitch value={mock} onChange={(v) => dispatch(updateMock(v))} />
+        ),
+      },
       {
         title: t('Language'),
         render: () => (
@@ -112,7 +120,7 @@ function SettingsGeneral() {
         observe: false,
       },
     ],
-    [t, dispatch, lang, zoom, opacity, fonts, customCSS, layoutMode]
+    [t, dispatch, mock, lang, zoom, opacity, fonts, customCSS, layoutMode]
   );
 
   return (
