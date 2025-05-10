@@ -26,6 +26,9 @@ export default defineConfig({
     htmlEnv({ ...NODE_ENVS }),
     visualizer(),
     pwa({
+      devOptions: {
+        enabled: true,
+      },
       manifest: {
         name: 'Skyline Overlay',
         short_name: 'Skyline',

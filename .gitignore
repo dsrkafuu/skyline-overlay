@@ -10,6 +10,7 @@ vite.config.ts.js
 
 # output
 dist/
+dev-dist/
 dist-ssr/
 stats.html
 

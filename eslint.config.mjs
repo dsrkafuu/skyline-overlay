@@ -12,6 +12,7 @@ export default [
       'node_modules/**/*',
       'assets/**/*',
       'dist/**/*',
+      'dev-dist/**',
       'public/**/*',
       'scripts/**/*',
     ],
