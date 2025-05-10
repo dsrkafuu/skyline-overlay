@@ -37,8 +37,8 @@ export default defineConfig({
         runtimeCaching: [
           // google fonts css
           {
-            urlPattern: /^https?:\/\/fonts\.googleapis\.com\/.*/i,
-            handler: 'StaleWhileRevalidate',
+            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+            handler: 'CacheFirst',
             options: {
               cacheName: 'googleapis-fonts-cache',
               expiration: { maxEntries: 10, maxAgeSeconds: 604800 }, // only one css loaded
