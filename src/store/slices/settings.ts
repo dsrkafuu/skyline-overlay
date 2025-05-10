@@ -24,6 +24,7 @@ import { cloneDeep, mergeDeep, xssEscape } from '../../utils/lodash';
 import { getAsyncLSSetter, getLS } from '../../utils/storage';
 import { logDebug } from '../../utils/loggers';
 import { startMock, stopMock } from '../../utils/mocker';
+import { injectFont } from '../../scss/fonts';
 
 interface SortSettings {
   key: SortRuleMapKey;
@@ -151,6 +152,7 @@ applyLang(initialState.lang);
 function applyFonts(value: FontFamilyMapKey) {
   logDebug('Store::Settings::applyFonts', value);
   document.documentElement.setAttribute('data-font', value);
+  injectFont(value);
 }
 applyFonts(initialState.fonts.family);
 

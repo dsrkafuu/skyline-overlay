@@ -44,7 +44,7 @@ export default defineConfig({
             handler: 'CacheFirst',
             options: {
               cacheName: 'googleapis-fonts-cache',
-              expiration: { maxEntries: 10, maxAgeSeconds: 604800 }, // only one css loaded
+              expiration: { maxEntries: 10, maxAgeSeconds: 86400 }, // only one css loaded
               cacheableResponse: { statuses: [0, 200] },
             },
           },

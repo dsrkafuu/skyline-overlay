@@ -1,6 +1,5 @@
 import 'normalize.css';
 import './themes';
-import './scss/fonts.scss';
 import './scss/utils.scss';
 
 import { StrictMode } from 'react';
