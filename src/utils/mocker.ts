@@ -8,7 +8,8 @@ let mockData: any = null;
 export const startMock = async () => {
   let data = cloneDeep(mockData);
   if (!data) {
-    const res = await fetch('/mock.json');
+    const base = import.meta.env.BASE_URL ?? '';
+    const res = await fetch(`${base.endsWith('/') ? base : base + '/'}mock.json`);
     const json = await res.json();
     data = cloneDeep(json);
     mockData = cloneDeep(json);
