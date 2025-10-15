@@ -1,12 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
-import htmlEnv from 'vite-plugin-html-env';
 import { VitePWA as pwa } from 'vite-plugin-pwa';
 import { visualizer } from 'rollup-plugin-visualizer';
-
-const NODE_ENVS: any = process.env || {};
 
 /**
  * https://vitejs.dev/config/
@@ -23,7 +19,6 @@ export default defineConfig({
       },
     }),
     react(),
-    htmlEnv({ ...NODE_ENVS }),
     visualizer(),
     pwa({
       devOptions: {
@@ -54,7 +49,7 @@ export default defineConfig({
             handler: 'CacheFirst',
             options: {
               cacheName: 'gstatic-fonts-cache',
-              expiration: { maxEntries: 1000, maxAgeSeconds: 31536000 }, // google's css has 600+ files
+              expiration: { maxEntries: 1000, maxAgeSeconds: 31556952 }, // google's css has 600+ files
               cacheableResponse: { statuses: [0, 200] },
             },
           },
@@ -64,7 +59,7 @@ export default defineConfig({
             handler: 'CacheFirst',
             options: {
               cacheName: 'misans-fonts-cache',
-              expiration: { maxEntries: 10, maxAgeSeconds: 31536000 }, // misans only has 3 files
+              expiration: { maxEntries: 10, maxAgeSeconds: 31556952 }, // misans only has 3 files
               cacheableResponse: { statuses: [0, 200] },
             },
           },
