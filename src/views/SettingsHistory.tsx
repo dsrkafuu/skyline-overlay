@@ -36,7 +36,7 @@ function SettingsHistoryRow({
   shortNumber,
   bigNumberMode,
 }: SettingsHistoryRowProps) {
-  const [now, setNow] = useState(Date.now());
+  const [now, setNow] = useState(() => Date.now());
   useEffect(() => {
     const timer = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(timer);

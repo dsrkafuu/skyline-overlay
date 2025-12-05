@@ -1,15 +1,14 @@
 import './DevPanel.scss';
 import { useCallback, useState } from 'react';
 import { getLS, setLS } from './utils/storage';
-import * as images from './assets/devbg';
 import { SInput, SSelect, SSwitch } from './components';
 import { startMock, stopMock } from './utils/mocker';
 
 const bgImageMap = {
-  combat: { text: 'Combat', data: { url: images.combat } },
-  housing: { text: 'Housing', data: { url: images.housing } },
-  night: { text: 'Night', data: { url: images.night } },
-  treasure: { text: 'Treasure', data: { url: images.treasure } },
+  combat: { text: 'Combat', data: { url: '/devbg/combat.jpg' } },
+  housing: { text: 'Housing', data: { url: '/devbg/housing.jpg' } },
+  night: { text: 'Night', data: { url: '/devbg/night.jpg' } },
+  treasure: { text: 'Treasure', data: { url: '/devbg/treasure.jpg' } },
   none: { text: 'None', data: { url: '' } },
 };
 export type BGImageMapKey = keyof typeof bgImageMap & string;

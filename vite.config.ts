@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import { VitePWA as pwa } from 'vite-plugin-pwa';
-import { visualizer } from 'rollup-plugin-visualizer';
+import { analyzer } from 'vite-bundle-analyzer';
 
 /**
  * https://vitejs.dev/config/
@@ -19,7 +19,9 @@ export default defineConfig({
       },
     }),
     react(),
-    visualizer(),
+    analyzer({
+      enabled: process.env.ENABLE_ANALYZER === '1',
+    }),
     pwa({
       devOptions: {
         enabled: true,

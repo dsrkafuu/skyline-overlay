@@ -16,8 +16,14 @@ console.log(chalk.blue('removing redundant svg/image files...'));
 function deleteFile(path) {
   return new Promise((resolve, reject) => {
     try {
-      fs.unlinkSync(path);
-      resolve();
+      if (!fs.existsSync(path)) return resolve();
+      if (fs.statSync(path).isDirectory()) {
+        fs.rmdirSync(path, { recursive: true });
+        return resolve();
+      } else {
+        fs.unlinkSync(path);
+        return resolve();
+      }
     } catch (e) {
       reject(e);
     }
@@ -28,11 +34,22 @@ const workers = [];
 const svgs = [
   ...glob.sync('dist/assets/*.svg'),
   ...glob.sync('dist/assets/*.jpg'),
+  'dist/devbg/',
 ];
 svgs.forEach((val) => {
   const p = path.resolve(__dirname, '../', val);
   workers.push(deleteFile(p));
 });
+
+const minifyJson = glob.sync('dist/*.json');
+minifyJson.forEach((val) => {
+  const p = path.resolve(__dirname, '../', val);
+  const old = fs.readFileSync(p, { encoding: 'utf-8' });
+  const json = JSON.parse(old);
+  const newJson = JSON.stringify(json);
+  fs.writeFileSync(p, newJson, { encoding: 'utf-8' });
+});
+console.log(chalk.green(`minified ${minifyJson.length} json files`));
 
 Promise.all(workers)
   .then(() => {
