@@ -35,7 +35,7 @@ function genCodeLines(filePaths, transformer) {
       const prettierOptions = await import('../prettier.config.mjs');
       const code = await prettier.format(lines.join('\n') + '\n', {
         parser: 'typescript',
-        ...prettierOptions,
+        ...prettierOptions.default,
       });
       const idxPath = path.join(path.dirname(fullPath), 'index.ts');
       fs.writeFileSync(idxPath, code, { encoding: 'utf-8' });

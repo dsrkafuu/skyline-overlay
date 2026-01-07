@@ -1,6 +1,6 @@
 import './jround.scss';
-import { Colors } from './support/colors';
 import { j0sh77 } from './support/authors';
+import { Colors } from './support/colors';
 import { ThemeItem } from './support/theme';
 
 const roleColors: Colors = {

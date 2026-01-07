@@ -1,3 +1,8 @@
+// languages
+import rawLang from '../lang';
+// themes map
+import themes from '../themes';
+
 /**
  * value maps for selection component
  */
@@ -71,8 +76,6 @@ const bottomDispMap = {
 export type BottomDispMapKey = keyof typeof bottomDispMap & string;
 export const MAP_BOTTOM_DISP = bottomDispMap;
 
-// languages
-import rawLang from '../lang';
 export type LangMapKey = keyof typeof rawLang & string;
 export const MAP_LANG = rawLang;
 
@@ -93,8 +96,6 @@ const fontWeightMap = {
 export type FontWeightMapKey = keyof typeof fontWeightMap & string;
 export const MAP_FONT_WEIGHT = fontWeightMap;
 
-// themes map
-import themes from '../themes';
 export type ThemeMapKey = keyof typeof themes & string;
 export const MAP_THEMES = themes;
 

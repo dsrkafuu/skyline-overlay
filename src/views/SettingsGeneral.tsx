@@ -1,6 +1,6 @@
-import { useMemo } from 'react';
-import { SInput, SInputNumber, SSelect, SSwitch } from '../components';
-import { useAppDispatch, useAppSelector, useTranslation } from '../hooks';
+import SettingsTransfer from './SettingsTransfer';
+import { SInput, SInputNumber, SSelect, SSwitch } from '@/components';
+import { useAppDispatch, useAppSelector, useTranslation } from '@/hooks';
 import {
   updateCustomCSS,
   updateFonts,
@@ -9,14 +9,14 @@ import {
   updateMock,
   updateOpacity,
   updateZoom,
-} from '../store/slices/settings';
+} from '@/store/slices/settings';
 import {
   MAP_LANG,
   MAP_FONT_FAMILY,
   MAP_FONT_WEIGHT,
   MAP_LAYOUT_MODE,
-} from '../utils/maps';
-import SettingsTransfer from './SettingsTransfer';
+} from '@/utils/maps';
+import { useMemo } from 'react';
 
 function SettingsGeneral() {
   const t = useTranslation();

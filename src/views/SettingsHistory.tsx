@@ -1,8 +1,8 @@
-import { useAppDispatch, useAppSelector } from '../hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks';
+import { showHistory } from '@/store/slices/api';
+import { fmtDuration, fmtNumber, fmtZoneName } from '@/utils/formatters';
 import clsx from 'clsx';
-import { fmtDuration, fmtNumber, fmtZoneName } from '../utils/formatters';
 import { useEffect, useState } from 'react';
-import { showHistory } from '../store/slices/api';
 
 function parseTime(time: number) {
   const d = new Date(time);

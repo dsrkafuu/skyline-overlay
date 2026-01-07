@@ -1,6 +1,6 @@
 import './horiz.scss';
-import { Colors } from './support/colors';
 import { DSRKafuU } from './support/authors';
+import { Colors } from './support/colors';
 import { ThemeItem } from './support/theme';
 
 const roleColors: Colors = {

@@ -1,8 +1,8 @@
-import { CombatantData, LimitBreakData } from '../api';
-import { useAppSelector } from '../hooks';
-import { BottomDispMapKey } from '../utils/maps';
-import { fmtNumber } from '../utils/formatters';
-import { isCombatantData } from '../utils/type';
+import { CombatantData, LimitBreakData } from '@/api';
+import { useAppSelector } from '@/hooks';
+import { fmtNumber } from '@/utils/formatters';
+import { BottomDispMapKey } from '@/utils/maps';
+import { isCombatantData } from '@/utils/type';
 
 interface CombatantBottomProps {
   player: CombatantData | LimitBreakData;

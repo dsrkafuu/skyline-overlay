@@ -1,13 +1,13 @@
 import './Settings.scss';
-import { useMemo, useState } from 'react';
-import clsx from 'clsx';
 import SettingsAbout from './SettingsAbout';
-import SettingsHistory from './SettingsHistory';
-import { useAppSelector, useTranslation } from '../hooks';
 import SettingsData from './SettingsData';
 import SettingsDisplay from './SettingsDisplay';
 import SettingsGeneral from './SettingsGeneral';
+import SettingsHistory from './SettingsHistory';
 import SettingsTheme from './SettingsTheme';
+import { useAppSelector, useTranslation } from '@/hooks';
+import clsx from 'clsx';
+import { useMemo, useState } from 'react';
 
 function Settings() {
   const t = useTranslation();

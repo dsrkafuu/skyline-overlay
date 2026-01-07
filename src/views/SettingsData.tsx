@@ -1,7 +1,6 @@
-import { useMemo } from 'react';
-import { IChevronDown, IChevronUp } from '../assets/icons';
-import { SInput, SInputNumber, SSelect, SSwitch } from '../components';
-import { useAppDispatch, useAppSelector, useTranslation } from '../hooks';
+import { IChevronDown, IChevronUp } from '@/assets/icons';
+import { SInput, SInputNumber, SSelect, SSwitch } from '@/components';
+import { useAppDispatch, useAppSelector, useTranslation } from '@/hooks';
 import {
   updateBigNumberMode,
   updatePetMergeID,
@@ -11,8 +10,9 @@ import {
   updateShowLB,
   updateSort,
   updateYouName,
-} from '../store/slices/settings';
-import { MAP_SORT_RULE } from '../utils/maps';
+} from '@/store/slices/settings';
+import { MAP_SORT_RULE } from '@/utils/maps';
+import { useMemo } from 'react';
 
 function SettingsData() {
   const t = useTranslation();

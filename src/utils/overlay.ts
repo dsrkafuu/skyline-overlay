@@ -1,8 +1,8 @@
-import { OverlayAPI, ExtendData } from '../api';
-import stablehash from 'stable-hash';
-import { store } from '../store';
-import { pushHistory, updateCombat } from '../store/slices/api';
 import { cloneDeep, sha1 } from './lodash';
+import { OverlayAPI, ExtendData } from '@/api';
+import { store } from '@/store';
+import { pushHistory, updateCombat } from '@/store/slices/api';
+import stablehash from 'stable-hash';
 
 const overlay = new OverlayAPI();
 

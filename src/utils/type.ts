@@ -1,4 +1,4 @@
-import { CombatantData, LimitBreakData } from '../api';
+import { CombatantData, LimitBreakData } from '@/api';
 
 export function isCombatantData(
   player: CombatantData | LimitBreakData

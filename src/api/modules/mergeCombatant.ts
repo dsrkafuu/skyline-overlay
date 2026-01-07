@@ -1,3 +1,4 @@
+import { CombatantData } from '../types';
 import {
   addNumber,
   addPct,
@@ -7,7 +8,6 @@ import {
   HitData,
   MaxHitData,
 } from '../utils/adder';
-import { CombatantData } from '../types';
 
 function mergeCombatant(...args: CombatantData[]) {
   if (!args.length) {

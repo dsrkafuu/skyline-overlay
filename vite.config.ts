@@ -9,6 +9,11 @@ import { analyzer } from 'vite-bundle-analyzer';
  */
 export default defineConfig({
   base: process.env.VITE_BASE_URL || '/',
+  resolve: {
+    alias: {
+      '@': './src',
+    },
+  },
   plugins: [
     svgr({
       svgrOptions: {

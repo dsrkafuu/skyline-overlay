@@ -1,12 +1,12 @@
+import { toggleShowCombatants } from './settings';
+import { ExtendData } from '@/api';
+import { RootState } from '@/store';
+import { logDebug } from '@/utils/loggers';
 import {
   createListenerMiddleware,
   createSlice,
   PayloadAction as PA,
 } from '@reduxjs/toolkit';
-import { ExtendData } from '../../api';
-import { RootState } from '..';
-import { logDebug } from '../../utils/loggers';
-import { toggleShowCombatants } from './settings';
 
 interface HistoryData extends ExtendData {
   time: number;

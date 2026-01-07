@@ -1,3 +1,6 @@
-import config from "@dsrca/config/prettier.config.js";
+import config from '@dsrca/config/prettier.config.js';
 
-export default { ...config };
+export default {
+  ...config,
+  plugins: ['@trivago/prettier-plugin-sort-imports'],
+};

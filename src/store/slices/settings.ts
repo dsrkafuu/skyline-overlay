@@ -1,11 +1,9 @@
-import {
-  createListenerMiddleware,
-  createSlice,
-  PayloadAction as PA,
-} from '@reduxjs/toolkit';
-import { RootState } from '..';
-import lang from '../../lang';
-import { CUSTOM_CSS_DOM_ID } from '../../utils/constants';
+import lang from '@/lang';
+import { injectFont } from '@/scss/fonts';
+import { RootState } from '@/store';
+import { CUSTOM_CSS_DOM_ID } from '@/utils/constants';
+import { cloneDeep, mergeDeep, xssEscape } from '@/utils/lodash';
+import { logDebug } from '@/utils/loggers';
 import {
   LangMapKey,
   ShortNameMapKey,
@@ -19,12 +17,14 @@ import {
   FontWeightMapKey,
   MAP_FONT_WEIGHT,
   LayoutModeMapKey,
-} from '../../utils/maps';
-import { cloneDeep, mergeDeep, xssEscape } from '../../utils/lodash';
-import { getAsyncLSSetter, getLS } from '../../utils/storage';
-import { logDebug } from '../../utils/loggers';
-import { startMock, stopMock } from '../../utils/mocker';
-import { injectFont } from '../../scss/fonts';
+} from '@/utils/maps';
+import { startMock, stopMock } from '@/utils/mocker';
+import { getAsyncLSSetter, getLS } from '@/utils/storage';
+import {
+  createListenerMiddleware,
+  createSlice,
+  PayloadAction as PA,
+} from '@reduxjs/toolkit';
 
 interface SortSettings {
   key: SortRuleMapKey;

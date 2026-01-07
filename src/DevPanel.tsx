@@ -1,8 +1,8 @@
 import './DevPanel.scss';
-import { useCallback, useState } from 'react';
-import { getLS, setLS } from './utils/storage';
 import { SInput, SSelect, SSwitch } from './components';
 import { startMock, stopMock } from './utils/mocker';
+import { getLS, setLS } from './utils/storage';
+import { useCallback, useState } from 'react';
 
 const bgImageMap = {
   combat: { text: 'Combat', data: { url: '/devbg/combat.jpg' } },

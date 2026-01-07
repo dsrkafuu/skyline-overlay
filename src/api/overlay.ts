@@ -1,8 +1,8 @@
-import { logInfo, logError, logWarn } from './utils/logger';
 import injectExtendData from './modules/injectExtendData';
 import isCEFSharp from './modules/isCEFSharp';
 import mergeCombatant from './modules/mergeCombatant';
 import { EventType, EventData, EventCallback } from './types';
+import { logInfo, logError, logWarn } from './utils/logger';
 
 // messages callbacks in callback mode
 type MsgCallback = (msg: any) => void;

@@ -1,7 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit';
 import api from './slices/api';
 import settings from './slices/settings';
 import theme from './slices/theme';
+import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
   reducer: {
