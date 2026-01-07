@@ -23,9 +23,9 @@ export default defineConfig({
       enabled: process.env.ENABLE_ANALYZER === '1',
     }),
     pwa({
-      devOptions: {
-        enabled: true,
-      },
+      // devOptions: {
+      //   enabled: true,
+      // },
       manifest: {
         name: 'Skyline Overlay',
         short_name: 'Skyline',
@@ -55,16 +55,6 @@ export default defineConfig({
               cacheableResponse: { statuses: [0, 200] },
             },
           },
-          // misans webfonts
-          // {
-          //   urlPattern: /^https?:\/\/.*\/fonts\/misans-.*.woff2.*/i,
-          //   handler: 'CacheFirst',
-          //   options: {
-          //     cacheName: 'misans-fonts-cache',
-          //     expiration: { maxEntries: 10, maxAgeSeconds: 31556952 }, // misans only has 3 files
-          //     cacheableResponse: { statuses: [0, 200] },
-          //   },
-          // },
         ],
       },
     }),
