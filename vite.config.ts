@@ -56,15 +56,15 @@ export default defineConfig({
             },
           },
           // misans webfonts
-          {
-            urlPattern: /^https?:\/\/.*\/fonts\/misans-.*.woff2.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'misans-fonts-cache',
-              expiration: { maxEntries: 10, maxAgeSeconds: 31556952 }, // misans only has 3 files
-              cacheableResponse: { statuses: [0, 200] },
-            },
-          },
+          // {
+          //   urlPattern: /^https?:\/\/.*\/fonts\/misans-.*.woff2.*/i,
+          //   handler: 'CacheFirst',
+          //   options: {
+          //     cacheName: 'misans-fonts-cache',
+          //     expiration: { maxEntries: 10, maxAgeSeconds: 31556952 }, // misans only has 3 files
+          //     cacheableResponse: { statuses: [0, 200] },
+          //   },
+          // },
         ],
       },
     }),

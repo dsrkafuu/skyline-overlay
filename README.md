@@ -10,7 +10,6 @@
 ![](https://img.shields.io/github/package-json/v/dsrkafuu/skyline-overlay)
 ![](https://img.shields.io/badge/ffxiv-dawntrail-orange)
 [![](https://img.shields.io/github/license/dsrkafuu/skyline-overlay)](https://github.com/dsrkafuu/skyline-overlay/blob/main/LICENSE)
-[![](https://img.shields.io/lgtm/grade/javascript/github/dsrkafuu/skyline-overlay)](https://lgtm.com/projects/g/dsrkafuu/skyline-overlay/context:javascript)
 
 Features: Basic overlay, extended details, customizable display/data settings, battle history, custom colors, sw cache and more. The project is based on React 18, and the dedicated [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
 
@@ -135,10 +134,15 @@ These variables will now be accessible within your `.scss` file as `var(--color-
 - ffxiv-overlay-api: <https://github.com/dsrkafuu/ffxiv-overlay-api>
 - Job Icons: <https://github.com/xivapi/classjob-icons/tree/master/svg>
 - jsDelivr: <https://www.jsdelivr.com>
-- MiSans: <https://home.miui.com>
 
 ## LICENSE
 
 Released under `Apache License 2.0`, for more information read the [LICENSE](https://github.com/dsrkafuu/skyline-overlay/blob/main/LICENSE).
 
 **Copyright © 2020-present DSRKafuU (<https://dsrkafuu.net>)**
+
+## CHANGELOG
+
+Only latest changes listed here.
+
+- MiSans font is no longer supported due to excessive bandwidth usage
