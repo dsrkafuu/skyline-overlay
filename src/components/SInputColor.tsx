@@ -1,8 +1,8 @@
 import './SInputColor.scss';
-import { useCallback, useRef, useState } from 'react';
+import { useOutsideClick } from '@/hooks';
 import clsx from 'clsx';
+import { useCallback, useRef, useState } from 'react';
 import { RgbaColorPicker } from 'react-colorful';
-import { useOutsideClick } from '../hooks';
 
 interface SInputColorProps {
   value: RGBAColor;

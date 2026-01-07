@@ -1,4 +1,4 @@
-import { OverlayAPI } from '../api';
+import { OverlayAPI } from '@/api';
 
 declare global {
   interface Window {

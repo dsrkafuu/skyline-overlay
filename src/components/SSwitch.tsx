@@ -1,6 +1,6 @@
 import './SSwitch.scss';
+import { ICheckmark, IClose } from '@/assets/icons';
 import clsx from 'clsx';
-import { ICheckmark, IClose } from '../assets/icons';
 
 interface SSwitchProps {
   value: boolean;
@@ -20,7 +20,9 @@ function SSwitch({
   return (
     <div className={clsx('s-switch', className)}>
       <div
-        className={clsx('btn', 's-switch-btn', { 's-switch-btn--active': value })}
+        className={clsx('btn', 's-switch-btn', {
+          's-switch-btn--active': value,
+        })}
         onClick={() => onChange(true)}
       >
         <ITrue />

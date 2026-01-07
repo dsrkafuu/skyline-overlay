@@ -1,8 +1,8 @@
 import './SSelect.scss';
-import { useState, useRef, useCallback } from 'react';
+import { IChevronDown, IChevronUp } from '@/assets/icons';
+import { useOutsideClick } from '@/hooks';
 import clsx from 'clsx';
-import { IChevronDown, IChevronUp } from '../assets/icons';
-import { useOutsideClick } from '../hooks';
+import { useState, useRef, useCallback } from 'react';
 
 export interface SSelectMap {
   [key: string]: {

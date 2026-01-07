@@ -1,7 +1,7 @@
 // languages
-import rawLang from '../lang';
+import rawLang from '@/lang';
 // themes map
-import themes from '../themes';
+import themes from '@/themes';
 
 /**
  * value maps for selection component
