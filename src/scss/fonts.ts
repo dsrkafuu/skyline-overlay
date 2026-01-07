@@ -1,8 +1,8 @@
-// default
-// files by Google Fonts in `index.html`
-const google = `
+// default (inter + noto)
+const inter = `
   html,
   html[data-font='default'] {
+    font-optical-sizing: auto;
     font-family: Inter, sans-serif;
   }
   html[lang='ja'],
@@ -19,39 +19,29 @@ const google = `
   }
 `;
 
-// misans
-// const base = import.meta.env.BASE_URL ?? '';
-// const prefix = base.endsWith('/') ? base : base + '/';
-// const misans = `
-//   @font-face {
-//     font-family: 'MiSans';
-//     font-style: normal;
-//     font-weight: 300;
-//     font-display: swap;
-//     src: url('${prefix}fonts/misans-light-85af4bde.woff2') format('woff2');
-//   }
-//   @font-face {
-//     font-family: 'MiSans';
-//     font-style: normal;
-//     font-weight: 400;
-//     font-display: swap;
-//     src: url('${prefix}fonts/misans-regular-dd4485f3.woff2') format('woff2');
-//   }
-//   @font-face {
-//     font-family: 'MiSans';
-//     font-style: normal;
-//     font-weight: 500;
-//     font-display: swap;
-//     src: url('${prefix}fonts/misans-medium-7f4338c1.woff2') format('woff2');
-//   }
-//   html[data-font='misans'] {
-//     font-family: MiSans, sans-serif;
-//   }
-// `;
+// google (flex + noto)
+const google = `
+  html,
+  html[data-font='google'] {
+    font-optical-sizing: auto;
+    font-family: Google Sans Flex, sans-serif;
+  }
+  html[lang='ja'],
+  html[data-font='google'][lang='ja'] {
+    font-family: Google Sans Flex, Noto Sans JP, sans-serif;
+  }
+  html[lang='zh'],
+  html[data-font='google'][lang='zh'] {
+    font-family: Google Sans Flex, Noto Sans SC, sans-serif;
+  }
+  html[lang='ko'],
+  html[data-font='google'][lang='ko'] {
+    font-family: Google Sans Flex, Noto Sans KR, sans-serif;
+  }
+`;
 
-export const injectFont = (font: 'default' | 'misans') => {
-  // const css = font === 'misans' ? misans : google;
-  const css = font === 'default' ? google : google;
+export const injectFont = (font: 'default' | 'google') => {
+  const css = font === 'google' ? google : inter;
   let el: HTMLStyleElement | null = document.querySelector('#skyline-fonts');
   if (el) {
     el.innerHTML = css;
