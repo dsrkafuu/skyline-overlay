@@ -146,7 +146,7 @@ Released under `Apache License 2.0`, for more information read the [LICENSE](htt
 Only latest changes listed here.
 
 - New font Google Sans Flex added
-- MiSans font is no longer supported due to excessive bandwidth usage
-- Embedded XIV API into project source
-- Build target updated to 2026/1/1 baseline
+- MiSans font only supports `400` weight due to excessive bandwidth usage
+- Embedded XIV API (ngld) from `ffxiv-overlay-api` into project source
+- Build target updated to `2026/1/1` baseline
 - Dev scripts migrated to ESM format

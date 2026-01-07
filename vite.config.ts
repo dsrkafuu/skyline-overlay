@@ -1,8 +1,8 @@
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import svgr from 'vite-plugin-svgr';
-import { VitePWA as pwa } from 'vite-plugin-pwa';
+import { defineConfig } from 'vite';
 import { analyzer } from 'vite-bundle-analyzer';
+import { VitePWA as pwa } from 'vite-plugin-pwa';
+import svgr from 'vite-plugin-svgr';
 
 /**
  * https://vitejs.dev/config/
@@ -56,7 +56,17 @@ export default defineConfig({
             handler: 'CacheFirst',
             options: {
               cacheName: 'gstatic-fonts-cache',
-              expiration: { maxEntries: 1000, maxAgeSeconds: 31556952 }, // google's css has 600+ files
+              expiration: { maxEntries: 500, maxAgeSeconds: 31556952 }, // google's css has (14+10+349) files
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          // misans webfonts
+          {
+            urlPattern: /^https?:\/\/.*\/fonts\/misans-.*.woff2.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'misans-fonts-cache',
+              expiration: { maxEntries: 2, maxAgeSeconds: 31556952 }, // misans only has 1 files
               cacheableResponse: { statuses: [0, 200] },
             },
           },

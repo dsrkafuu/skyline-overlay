@@ -40,8 +40,26 @@ const google = `
   }
 `;
 
-export const injectFont = (font: 'default' | 'google') => {
-  const css = font === 'google' ? google : inter;
+// misans
+const base = import.meta.env.BASE_URL ?? '';
+const prefix = base.endsWith('/') ? base : base + '/';
+const misans = `
+  @font-face {
+    font-family: 'MiSans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('${prefix}fonts/misans-regular-4d009.woff2') format('woff2');
+  }
+  html[data-font='misans'] {
+    font-family: MiSans, sans-serif;
+  }
+`;
+
+export const injectFont = (font: 'default' | 'google' | 'misans') => {
+  let css = inter;
+  if (font === 'google') css = google;
+  if (font === 'misans') css = misans;
   let el: HTMLStyleElement | null = document.querySelector('#skyline-fonts');
   if (el) {
     el.innerHTML = css;
