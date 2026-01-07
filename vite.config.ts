@@ -75,6 +75,6 @@ export default defineConfig({
   build: {
     sourcemap: true,
     emptyOutDir: true,
-    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
+    target: ['chrome111', 'edge111', 'firefox114', 'safari16.4'],
   },
 });

@@ -145,4 +145,5 @@ Released under `Apache License 2.0`, for more information read the [LICENSE](htt
 
 Only latest changes listed here.
 
+- Build target updated to 2026/1/1 baseline
 - MiSans font is no longer supported due to excessive bandwidth usage
