@@ -1,7 +1,7 @@
 import './App.scss';
 import { CSSProperties } from 'react';
 import clsx from 'clsx';
-import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
+import { CombatantData, LimitBreakData } from './api';
 import Combatant from './views/Combatant';
 import Encounter from './views/Encounter';
 import Settings from './views/Settings';

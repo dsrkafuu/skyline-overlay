@@ -1,4 +1,4 @@
-import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
+import { CombatantData, LimitBreakData } from '../api';
 import clsx from 'clsx';
 import { SList, SListRow } from '../components';
 import { useAppSelector, useTranslation } from '../hooks';

@@ -1,4 +1,4 @@
-import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
+import { CombatantData, LimitBreakData } from '../api';
 
 export function isCombatantData(
   player: CombatantData | LimitBreakData

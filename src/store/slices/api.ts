@@ -3,7 +3,7 @@ import {
   createSlice,
   PayloadAction as PA,
 } from '@reduxjs/toolkit';
-import { ExtendData } from 'ffxiv-overlay-api';
+import { ExtendData } from '../../api';
 import { RootState } from '..';
 import { logDebug } from '../../utils/loggers';
 import { toggleShowCombatants } from './settings';

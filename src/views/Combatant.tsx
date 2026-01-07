@@ -1,7 +1,7 @@
 import './Combatant.scss';
 import { useCallback, useState } from 'react';
 import clsx, { ClassArray } from 'clsx';
-import { CombatantData, LimitBreakData, class2job } from 'ffxiv-overlay-api';
+import { CombatantData, LimitBreakData, class2job } from '../api';
 import CombatantName from './CombatantName';
 import CombatantDetail from './CombatantDetail';
 import CombatantBottom from './CombatantBottom';

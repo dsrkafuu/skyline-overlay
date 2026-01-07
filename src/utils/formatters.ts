@@ -1,4 +1,4 @@
-import { mergeCombatant, CombatantData } from 'ffxiv-overlay-api';
+import { mergeCombatant, CombatantData } from '../api';
 import { version, versionCode } from '../assets/meta';
 
 /**

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import clsx from 'clsx';
-import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
+import { CombatantData, LimitBreakData } from '../api';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { MAP_SHORT_NAME } from '../utils/maps';
 import { toggleBlurName } from '../store/slices/settings';

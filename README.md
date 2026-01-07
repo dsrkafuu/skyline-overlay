@@ -147,5 +147,6 @@ Only latest changes listed here.
 
 - New font Google Sans Flex added
 - MiSans font is no longer supported due to excessive bandwidth usage
+- Embedded XIV API into project source
 - Build target updated to 2026/1/1 baseline
 - Dev scripts migrated to ESM format

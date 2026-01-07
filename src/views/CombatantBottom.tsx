@@ -1,4 +1,4 @@
-import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
+import { CombatantData, LimitBreakData } from '../api';
 import { useAppSelector } from '../hooks';
 import { BottomDispMapKey } from '../utils/maps';
 import { fmtNumber } from '../utils/formatters';

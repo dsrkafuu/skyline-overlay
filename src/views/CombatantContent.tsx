@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
+import { CombatantData, LimitBreakData } from '../api';
 import * as jobIcons from '../assets/jobs';
 import { useAppSelector } from '../hooks';
 import { isLimitBreakData } from '../utils/type';

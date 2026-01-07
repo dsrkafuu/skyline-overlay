@@ -21,7 +21,6 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
     "clsx": "^2.1.1",
-    "ffxiv-overlay-api": "^4.8.0",
     "immer": "^11.1.3",
     "normalize.css": "^8.0.1",
     "react": "^19.2.3",
