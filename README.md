@@ -145,6 +145,7 @@ Released under `Apache License 2.0`, for more information read the [LICENSE](htt
 
 Only latest changes listed here.
 
+- Support last 60s DPS display in main/bottom bars
 - New font Google Sans Flex added
 - Fonts from Google Fonts (remote) now have all available weights
 - MiSans font only supports `400` weight due to excessive bandwidth usage

@@ -45,6 +45,15 @@ function CombatantBottom({ player, mode = 'none' }: CombatantBottomProps) {
         </div>
       );
     }
+  } else if (mode === 'last60DPS' && isCombatantData(player)) {
+    const { last60DPS } = player;
+
+    return (
+      <div className='combatant-bottom combatant-bottom-dps'>
+        &nbsp;<span className='g-number'>{last60DPS}</span>
+        &nbsp;<span className='g-counter'>DPS60</span>&nbsp;
+      </div>
+    );
   } else if (mode === 'cdpcts' && isCombatantData(player)) {
     const { directHitPct, critHitPct, directCritHitPct } = player;
 
