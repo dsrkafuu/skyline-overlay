@@ -17,6 +17,7 @@ interface SSelectProps<TMap extends SSelectMap> {
   onChange: (value: keyof TMap, data?: unknown) => void;
   map: TMap;
   position?: 'top' | 'bottom';
+  r3mode?: boolean;
   disabled?: boolean;
   className?: string;
 }
@@ -26,6 +27,7 @@ function SSelect<TMap extends SSelectMap>({
   onChange,
   map,
   position = 'bottom',
+  r3mode = false,
   disabled,
   className,
 }: SSelectProps<TMap>) {
@@ -62,7 +64,9 @@ function SSelect<TMap extends SSelectMap>({
       </div>
       {active && (
         <div
-          className={clsx('s-select-options', `s-select-options-${position}`)}
+          className={clsx('s-select-options', `s-select-options-${position}`, {
+            's-select-options-r3mode': r3mode,
+          })}
         >
           {Object.keys(map).map((key) => (
             <div

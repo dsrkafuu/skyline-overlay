@@ -1,3 +1,4 @@
+import { logWarn } from '@/api/utils/logger';
 import lang from '@/lang';
 import { injectFont } from '@/scss/fonts';
 import { RootState } from '@/store';
@@ -14,9 +15,8 @@ import {
   TickerMapKey,
   BottomDispMapKey,
   FontFamilyMapKey,
-  FontWeightMapKey,
-  MAP_FONT_WEIGHT,
   LayoutModeMapKey,
+  MAP_FONT_FAMILY,
 } from '@/utils/maps';
 import { startMock, stopMock } from '@/utils/mocker';
 import { getAsyncLSSetter, getLS } from '@/utils/storage';
@@ -44,7 +44,7 @@ interface TickerAlignSettings {
 }
 interface FontSettings {
   family: FontFamilyMapKey;
-  weight: FontWeightMapKey;
+  weight: number;
 }
 
 export interface Settings {
@@ -108,7 +108,7 @@ export const defaultSettings: Settings = {
   zoom: 1,
   opacity: 1,
   layoutMode: 'common',
-  fonts: { family: 'default', weight: 'regular' },
+  fonts: { family: 'default', weight: 400 },
   customCSS: '#root {}',
 };
 let initialState: SettingsState = {
@@ -157,10 +157,14 @@ function applyFonts(value: FontFamilyMapKey) {
 applyFonts(initialState.fonts.family);
 
 // apply initial font weight
-function applyFontWeight(value: FontWeightMapKey) {
-  const weight = MAP_FONT_WEIGHT[value].text;
+function applyFontWeight(value: number) {
+  let weight = value;
+  if (typeof weight !== 'number' || weight < 100 || weight > 900) {
+    logWarn('Store::Settings::applyFontWeight::invalidWeight', weight);
+    weight = 400;
+  }
   logDebug('Store::Settings::applyFontWeight', weight);
-  document.documentElement.style.fontWeight = weight;
+  document.documentElement.style.fontWeight = `${weight}`;
 }
 applyFontWeight(initialState.fonts.weight);
 
@@ -381,6 +385,27 @@ listener.startListening({
     ) {
       logDebug('Listener::Settings::toggleShowCombatants::unlockCombatants');
       api.dispatch(toggleCombatantsLocked(false));
+    }
+  },
+});
+
+// reset font weight if font family changed to incompatible one
+listener.startListening({
+  actionCreator: updateFonts,
+  effect: ({ payload }, api) => {
+    const nextFamily = payload.family;
+    if (nextFamily) {
+      const state = api.getState() as RootState;
+      const nextFamilyData = MAP_FONT_FAMILY[nextFamily];
+      const currentWeight = state.settings?.fonts?.weight;
+      if (
+        nextFamilyData &&
+        (currentWeight < nextFamilyData.weights[0] ||
+          currentWeight > nextFamilyData.weights[1])
+      ) {
+        logDebug('Listener::Settings::updateFonts::resetFontWeight');
+        api.dispatch(updateFonts({ weight: 400 }));
+      }
     }
   },
 });

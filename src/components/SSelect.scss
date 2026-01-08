@@ -62,6 +62,17 @@
     }
   }
 
+  &-options-r3mode {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+    .s-select-option {
+      flex: 1 0 33.33%;
+      overflow: hidden;
+    }
+  }
+
   &--disabled {
     .s-select-value {
       color: var(--color-form-fg-disabled);

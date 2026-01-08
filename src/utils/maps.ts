@@ -79,23 +79,14 @@ export const MAP_BOTTOM_DISP = bottomDispMap;
 export type LangMapKey = keyof typeof rawLang & string;
 export const MAP_LANG = rawLang;
 
-// font family map
+// font family/weight map
 const fontFamilyMap = {
-  default: { text: 'Default' },
-  google: { text: 'Google' },
-  misans: { text: 'MiSans' },
+  default: { text: 'Default', weights: [100, 900] },
+  google: { text: 'Google', weights: [100, 900] },
+  misans: { text: 'MiSans', weights: [400, 400] },
 };
 export type FontFamilyMapKey = keyof typeof fontFamilyMap & string;
 export const MAP_FONT_FAMILY = fontFamilyMap;
-
-// font weight map
-const fontWeightMap = {
-  light: { text: '300' },
-  regular: { text: '400' },
-  medium: { text: '500' },
-};
-export type FontWeightMapKey = keyof typeof fontWeightMap & string;
-export const MAP_FONT_WEIGHT = fontWeightMap;
 
 export type ThemeMapKey = keyof typeof themes & string;
 export const MAP_THEMES = themes;
