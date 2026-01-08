@@ -77,6 +77,8 @@ pnpm run build
 
 ![Debug Log Save](https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/debug-2.png)
 
+Theses also a `rawdata=1` query to get the raw data from ngld.
+
 ## Contribute
 
 ```bash
