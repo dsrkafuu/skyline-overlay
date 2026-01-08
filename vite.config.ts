@@ -1,7 +1,7 @@
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { analyzer } from 'vite-bundle-analyzer';
-import { VitePWA as pwa } from 'vite-plugin-pwa';
+import { VitePWA } from 'vite-plugin-pwa';
 import svgr from 'vite-plugin-svgr';
 
 /**
@@ -27,7 +27,7 @@ export default defineConfig({
     analyzer({
       enabled: process.env.ENABLE_ANALYZER === '1',
     }),
-    pwa({
+    VitePWA({
       // devOptions: {
       //   enabled: true,
       // },
@@ -36,7 +36,7 @@ export default defineConfig({
         short_name: 'Skyline',
         description: 'A modern customizable horizon FFXIV miniparse overlay.',
         icons: [{ src: 'favicon.svg', sizes: 'any' }],
-        theme_color: '#8aa2d3',
+        theme_color: '#ffffff',
       },
       workbox: {
         runtimeCaching: [

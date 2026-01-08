@@ -1,12 +1,11 @@
 /**
  * remove redundant files in vite's output folder
  */
-
-import url from 'url';
-import fs from 'fs';
-import path from 'path';
-import * as glob from 'glob';
 import chalk from 'chalk';
+import fs from 'fs';
+import * as glob from 'glob';
+import path from 'path';
+import url from 'url';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,13 +20,8 @@ function deleteFile(path) {
   return new Promise((resolve, reject) => {
     try {
       if (!fs.existsSync(path)) return resolve();
-      if (fs.statSync(path).isDirectory()) {
-        fs.rmdirSync(path, { recursive: true });
-        return resolve();
-      } else {
-        fs.unlinkSync(path);
-        return resolve();
-      }
+      fs.rmSync(path, { recursive: true });
+      return resolve();
     } catch (e) {
       reject(e);
     }
