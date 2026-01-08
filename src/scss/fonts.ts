@@ -47,9 +47,23 @@ const misans = `
   @font-face {
     font-family: 'MiSans';
     font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('${prefix}fonts/misans-4d009-normal-305.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'MiSans';
+    font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('${prefix}fonts/misans-regular-4d009.woff2') format('woff2');
+    src: url('${prefix}fonts/misans-4d009-medium-380.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'MiSans';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('${prefix}fonts/misans-4d009-semibold-520.woff2') format('woff2');
   }
   html[data-font='misans'] {
     font-family: MiSans, sans-serif;

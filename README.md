@@ -150,7 +150,7 @@ Only latest changes listed here.
 - Support last 60s DPS display in main/bottom bars
 - New font Google Sans Flex added
 - Fonts from Google Fonts (remote) now have all available weights
-- MiSans font only supports `400` weight due to excessive bandwidth usage
+- Updated MiSans font version to 4.009
 - Embedded XIV API (ngld) from `ffxiv-overlay-api` into project source
 - Build target updated to `2026/1/1` baseline
 - Dev scripts migrated to ESM format

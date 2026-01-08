@@ -85,7 +85,7 @@ export const MAP_LANG = rawLang;
 const fontFamilyMap = {
   default: { text: 'Default', weights: [100, 900] },
   google: { text: 'Google', weights: [100, 900] },
-  misans: { text: 'MiSans', weights: [400, 400] },
+  misans: { text: 'MiSans', weights: [300, 500] },
 };
 export type FontFamilyMapKey = keyof typeof fontFamilyMap & string;
 export const MAP_FONT_FAMILY = fontFamilyMap;
