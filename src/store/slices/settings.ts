@@ -1,3 +1,4 @@
+import { cleanMockData } from './api';
 import { logWarn } from '@/api/utils/logger';
 import lang from '@/lang';
 import { injectFont } from '@/scss/fonts';
@@ -430,6 +431,16 @@ listener.startListening({
 listener.startListening({
   actionCreator: updateCustomCSS,
   effect: ({ payload }) => applyCustomCSS(payload),
+});
+
+// clean all data if closing mock
+listener.startListening({
+  actionCreator: updateMock,
+  effect: ({ payload }, api) => {
+    if (payload === false) {
+      api.dispatch(cleanMockData());
+    }
+  },
 });
 
 export default {

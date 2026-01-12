@@ -80,10 +80,18 @@ export const apiSlice = createSlice({
       state.historys.length >= 5 && state.historys.pop();
       state.historys.unshift({ time: Date.now(), ...payload });
     },
+    /**
+     * clean mock data
+     */
+    cleanMockData(state) {
+      logDebug('Store::API::cleanMockData');
+      state.data = cleanData;
+    },
   },
 });
 
-export const { updateCombat, showHistory, pushHistory } = apiSlice.actions;
+export const { updateCombat, showHistory, pushHistory, cleanMockData } =
+  apiSlice.actions;
 
 /** @redux effects */
 
