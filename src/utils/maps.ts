@@ -36,7 +36,7 @@ export const MAP_DISPLAY_MODE = displayModeMap;
 // display content map
 const displayContentMap = {
   dps: { text: 'DPS', data: { unit: 'DPS' } },
-  last60DPS: { text: 'DPS (60s)', data: { unit: 'DPS' } },
+  last60DPS: { text: 'DPS (60s)', data: { unit: 'mDPS' } },
   hps: { text: 'HPS', data: { unit: 'HPS' } },
   swings: { text: 'Swings', data: { unit: 'SWS' } },
   deaths: { text: 'Deaths', data: { unit: 'DT' } },

@@ -51,7 +51,7 @@ function CombatantBottom({ player, mode = 'none' }: CombatantBottomProps) {
     return (
       <div className='combatant-bottom combatant-bottom-dps'>
         &nbsp;<span className='g-number'>{last60DPS}</span>
-        &nbsp;<span className='g-counter'>DPS60</span>&nbsp;
+        &nbsp;<span className='g-counter'>mDPS</span>&nbsp;
       </div>
     );
   } else if (mode === 'cdpcts' && isCombatantData(player)) {
