@@ -162,7 +162,6 @@ function parseEncounter(data: any): EncounterData {
 
     damage: getInt(data.damage),
     healed: getInt(data.healed),
-    shield: getInt(data.damageShield),
   };
 }
 
@@ -189,7 +188,6 @@ function parseLimitBreak(data: any): LimitBreakData {
 
     damage: getInt(data.damage),
     healed: getInt(data.healed),
-    shield: getInt(data.damageShield),
 
     maxHit,
     maxHeal,
