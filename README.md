@@ -15,6 +15,8 @@ Features: Basic overlay, extended details, customizable display/data settings, b
 
 <img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-zh-v4.jpg" alt="Skyline Preview" />
 
+<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview2-zh-v4.jpg" alt="Skyline Preview Duo" />
+
 ## Overlay Links
 
 - CloudFlare (Global): `https://skyline.dsrkafuu.net/`
