@@ -2,11 +2,15 @@
  * generate `index.ts` for icons
  */
 
-const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
-const chalk = require('chalk');
-const prettier = require('prettier');
+import url from 'url';
+import fs from 'fs';
+import path from 'path';
+import * as glob from 'glob';
+import chalk from 'chalk';
+import prettier from 'prettier';
+
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 console.log(chalk.blue('generating `index.ts` for icons...'));
 
@@ -31,7 +35,7 @@ function genCodeLines(filePaths, transformer) {
       const prettierOptions = await import('../prettier.config.mjs');
       const code = await prettier.format(lines.join('\n') + '\n', {
         parser: 'typescript',
-        ...prettierOptions,
+        ...prettierOptions.default,
       });
       const idxPath = path.join(path.dirname(fullPath), 'index.ts');
       fs.writeFileSync(idxPath, code, { encoding: 'utf-8' });

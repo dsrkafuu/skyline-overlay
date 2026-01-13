@@ -1,8 +1,8 @@
-import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
-import { useAppSelector } from '../hooks';
-import { BottomDispMapKey } from '../utils/maps';
-import { fmtNumber } from '../utils/formatters';
-import { isCombatantData } from '../utils/type';
+import { CombatantData, LimitBreakData } from '@/api';
+import { useAppSelector } from '@/hooks';
+import { fmtNumber } from '@/utils/formatters';
+import { BottomDispMapKey } from '@/utils/maps';
+import { isCombatantData } from '@/utils/type';
 
 interface CombatantBottomProps {
   player: CombatantData | LimitBreakData;
@@ -45,6 +45,15 @@ function CombatantBottom({ player, mode = 'none' }: CombatantBottomProps) {
         </div>
       );
     }
+  } else if (mode === 'last60DPS' && isCombatantData(player)) {
+    const { last60DPS } = player;
+
+    return (
+      <div className='combatant-bottom combatant-bottom-dps'>
+        &nbsp;<span className='g-number'>{last60DPS}</span>
+        &nbsp;<span className='g-counter'>mDPS</span>&nbsp;
+      </div>
+    );
   } else if (mode === 'cdpcts' && isCombatantData(player)) {
     const { directHitPct, critHitPct, directCritHitPct } = player;
 

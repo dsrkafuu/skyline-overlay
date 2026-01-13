@@ -1,7 +1,7 @@
-import { EXPORT_PREFIX } from '../utils/constants';
-import { getLS, removeLS, setLS } from '../utils/storage';
-import { defaultSettings, Settings } from '../store/slices/settings';
-import { defaultTheme, ThemeState } from '../store/slices/theme';
+import { defaultSettings, Settings } from '@/store/slices/settings';
+import { defaultTheme, ThemeState } from '@/store/slices/theme';
+import { EXPORT_PREFIX } from '@/utils/constants';
+import { getLS, removeLS, setLS } from '@/utils/storage';
 
 export function exportSettings() {
   const settings = getLS<DeepPartial<Settings>>('settings');
@@ -38,7 +38,6 @@ export function importSettings(payload: string) {
     try {
       const settings = JSON.parse(window.atob(settingsEncoded));
       if (settings && typeof settings === 'object') {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const filteredSettings = {} as any;
         for (const key of Object.keys(settings)) {
           if (validSettingsKeys.includes(key)) {
@@ -56,7 +55,6 @@ export function importSettings(payload: string) {
     try {
       const theme = JSON.parse(window.atob(themeEncoded));
       if (theme && typeof theme === 'object') {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const filteredTheme = {} as any;
         for (const key of Object.keys(theme)) {
           if (validThemeKeys.includes(key)) {

@@ -1,9 +1,18 @@
-// NGLD's FFXIV Overly
+import { OverlayAPI } from '@/api';
+
 declare global {
   interface Window {
-    OverlayPluginApi: unknown;
-    // https://developer.mozilla.org/en-US/docs/Web/API/structuredClone
-    structuredClone<T>(src: T): T;
+    OverlayPluginApi: {
+      callHandler(
+        msg: string,
+        cb?: (...args: unknown[]) => void
+      ): Promise<void>;
+      endEncounter(...args: unknown[]): Promise<void>;
+      ready: boolean;
+    };
+    __OverlayCallback(...args: unknown[]): void;
+    dispatchOverlayEvent(...args: unknown[]): void;
+    OverlayAPI: typeof OverlayAPI;
   }
 }
 

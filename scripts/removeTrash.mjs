@@ -1,11 +1,14 @@
 /**
  * remove redundant files in vite's output folder
  */
+import chalk from 'chalk';
+import fs from 'fs';
+import * as glob from 'glob';
+import path from 'path';
+import url from 'url';
 
-const fs = require('fs');
-const path = require('path');
-const glob = require('glob');
-const chalk = require('chalk');
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 console.log(chalk.blue('removing redundant svg/image files...'));
 
@@ -17,13 +20,8 @@ function deleteFile(path) {
   return new Promise((resolve, reject) => {
     try {
       if (!fs.existsSync(path)) return resolve();
-      if (fs.statSync(path).isDirectory()) {
-        fs.rmdirSync(path, { recursive: true });
-        return resolve();
-      } else {
-        fs.unlinkSync(path);
-        return resolve();
-      }
+      fs.rmSync(path, { recursive: true });
+      return resolve();
     } catch (e) {
       reject(e);
     }
@@ -32,8 +30,8 @@ function deleteFile(path) {
 
 const workers = [];
 const svgs = [
-  ...glob.sync('dist/assets/*.svg'),
-  ...glob.sync('dist/assets/*.jpg'),
+  // ...glob.sync('dist/assets/*.svg'),
+  // ...glob.sync('dist/assets/*.jpg'),
   'dist/devbg/',
 ];
 svgs.forEach((val) => {

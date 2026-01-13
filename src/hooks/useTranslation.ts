@@ -1,5 +1,5 @@
-import lang from '../lang';
 import useAppSelector from './useAppSelector';
+import lang from '@/lang';
 
 /**
  * hook for use of translation

@@ -1,6 +1,5 @@
-import { useMemo } from 'react';
-import { SSelect, SSwitch } from '../components';
-import { useAppDispatch, useAppSelector, useTranslation } from '../hooks';
+import { SSelect, SSwitch } from '@/components';
+import { useAppDispatch, useAppSelector, useTranslation } from '@/hooks';
 import {
   updateBottomDisp,
   updateDispContent,
@@ -9,7 +8,7 @@ import {
   updateShortName,
   updateTicker,
   updateTickerAlign,
-} from '../store/slices/settings';
+} from '@/store/slices/settings';
 import {
   MAP_DISPLAY_MODE,
   MAP_DISPLAY_CONTENT,
@@ -17,7 +16,8 @@ import {
   MAP_TICKER_ALIGN,
   MAP_BOTTOM_DISP,
   MAP_SHORT_NAME,
-} from '../utils/maps';
+} from '@/utils/maps';
+import { useMemo } from 'react';
 
 function SettingsDisplay() {
   const t = useTranslation();

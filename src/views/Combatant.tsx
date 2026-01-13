@@ -1,15 +1,15 @@
 import './Combatant.scss';
-import { useCallback, useState } from 'react';
-import clsx, { ClassArray } from 'clsx';
-import { CombatantData, LimitBreakData, class2job } from 'ffxiv-overlay-api';
-import CombatantName from './CombatantName';
-import CombatantDetail from './CombatantDetail';
 import CombatantBottom from './CombatantBottom';
 import CombatantContent from './CombatantContent';
-import { useAppSelector } from '../hooks';
-import { STicker, STickerProps, STickerClass } from '../components';
-import { isLimitBreakData, isCombatantData } from '../utils/type';
-import { TickerMapKey } from '../utils/maps';
+import CombatantDetail from './CombatantDetail';
+import CombatantName from './CombatantName';
+import { CombatantData, LimitBreakData, class2job } from '@/api';
+import { STicker, STickerProps, STickerClass } from '@/components';
+import { useAppSelector } from '@/hooks';
+import { TickerMapKey } from '@/utils/maps';
+import { isLimitBreakData, isCombatantData } from '@/utils/type';
+import clsx, { ClassArray } from 'clsx';
+import { useCallback, useState } from 'react';
 
 interface CombatantProps {
   player: CombatantData | LimitBreakData;

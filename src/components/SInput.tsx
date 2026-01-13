@@ -1,8 +1,8 @@
 import './SInput.scss';
-import { useCallback, useState } from 'react';
+import { ICreate } from '@/assets/icons';
+import { useTranslation } from '@/hooks';
 import clsx from 'clsx';
-import { useTranslation } from '../hooks';
-import { ICreate } from '../assets/icons';
+import { useCallback, useState } from 'react';
 
 interface SInputProps {
   value: string;

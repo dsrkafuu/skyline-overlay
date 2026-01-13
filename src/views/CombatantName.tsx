@@ -1,9 +1,9 @@
-import { useMemo } from 'react';
+import { CombatantData, LimitBreakData } from '@/api';
+import { useAppDispatch, useAppSelector } from '@/hooks';
+import { toggleBlurName } from '@/store/slices/settings';
+import { MAP_SHORT_NAME } from '@/utils/maps';
 import clsx from 'clsx';
-import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
-import { useAppDispatch, useAppSelector } from '../hooks';
-import { MAP_SHORT_NAME } from '../utils/maps';
-import { toggleBlurName } from '../store/slices/settings';
+import { useMemo } from 'react';
 
 interface CombatantNameProps {
   player: CombatantData | LimitBreakData;

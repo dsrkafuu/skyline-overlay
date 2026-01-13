@@ -1,3 +1,8 @@
+// languages
+import rawLang from '@/lang';
+// themes map
+import themes from '@/themes';
+
 /**
  * value maps for selection component
  */
@@ -31,6 +36,7 @@ export const MAP_DISPLAY_MODE = displayModeMap;
 // display content map
 const displayContentMap = {
   dps: { text: 'DPS', data: { unit: 'DPS' } },
+  last60DPS: { text: 'DPS (60s)', data: { unit: 'mDPS' } },
   hps: { text: 'HPS', data: { unit: 'HPS' } },
   swings: { text: 'Swings', data: { unit: 'SWS' } },
   deaths: { text: 'Deaths', data: { unit: 'DT' } },
@@ -64,6 +70,7 @@ export const MAP_TICKER_ALIGN = tickerAlignMap;
 // bottom display map
 const bottomDispMap = {
   maxhit: { text: 'Max Hit' },
+  last60DPS: { text: 'DPS (60s)' },
   cdpcts: { text: 'CD/C/D' },
   'cdpcts-reverse': { text: 'D/C/CD' },
   none: { text: 'None' },
@@ -71,30 +78,18 @@ const bottomDispMap = {
 export type BottomDispMapKey = keyof typeof bottomDispMap & string;
 export const MAP_BOTTOM_DISP = bottomDispMap;
 
-// languages
-import rawLang from '../lang';
 export type LangMapKey = keyof typeof rawLang & string;
 export const MAP_LANG = rawLang;
 
-// font family map
+// font family/weight map
 const fontFamilyMap = {
-  default: { text: 'Default' },
-  misans: { text: 'MiSans' },
+  default: { text: 'Default', weights: [100, 900] },
+  google: { text: 'Google', weights: [100, 900] },
+  misans: { text: 'MiSans', weights: [300, 500] },
 };
 export type FontFamilyMapKey = keyof typeof fontFamilyMap & string;
 export const MAP_FONT_FAMILY = fontFamilyMap;
 
-// font weight map
-const fontWeightMap = {
-  light: { text: '300' },
-  regular: { text: '400' },
-  medium: { text: '500' },
-};
-export type FontWeightMapKey = keyof typeof fontWeightMap & string;
-export const MAP_FONT_WEIGHT = fontWeightMap;
-
-// themes map
-import themes from '../themes';
 export type ThemeMapKey = keyof typeof themes & string;
 export const MAP_THEMES = themes;
 

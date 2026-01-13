@@ -1,7 +1,7 @@
-import themes from '../themes';
-import { Colors } from '../themes/support/colors';
-import { mergeDeep } from '../utils/lodash';
 import useAppSelector from './useAppSelector';
+import themes from '@/themes';
+import { Colors } from '@/themes/support/colors';
+import { mergeDeep } from '@/utils/lodash';
 
 /**
  * hook for use of color

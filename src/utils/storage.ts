@@ -1,5 +1,5 @@
-import { logError } from './loggers';
 import { STORAGE_PREFIX } from './constants';
+import { logError } from './loggers';
 
 export type StorageKey = 'settings' | 'theme' | 'dev';
 

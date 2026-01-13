@@ -1,14 +1,14 @@
 import './App.scss';
-import { CSSProperties } from 'react';
-import clsx from 'clsx';
-import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
+import SW from './SW';
+import { CombatantData, LimitBreakData } from './api';
+import { useAppSelector } from './hooks';
+import { fmtMergePet } from './utils/formatters';
+import { cloneDeep } from './utils/lodash';
 import Combatant from './views/Combatant';
 import Encounter from './views/Encounter';
 import Settings from './views/Settings';
-import SW from './SW';
-import { useAppSelector } from './hooks';
-import { cloneDeep } from './utils/lodash';
-import { fmtMergePet } from './utils/formatters';
+import clsx from 'clsx';
+import { CSSProperties } from 'react';
 
 function App() {
   const showCombatants = useAppSelector(

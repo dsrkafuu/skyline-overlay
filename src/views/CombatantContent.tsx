@@ -1,10 +1,10 @@
+import { CombatantData, LimitBreakData } from '@/api';
+import * as jobIcons from '@/assets/jobs';
+import { useAppSelector } from '@/hooks';
+import { fmtNumber } from '@/utils/formatters';
+import { MAP_DISPLAY_CONTENT } from '@/utils/maps';
+import { isLimitBreakData } from '@/utils/type';
 import { useCallback } from 'react';
-import { CombatantData, LimitBreakData } from 'ffxiv-overlay-api';
-import * as jobIcons from '../assets/jobs';
-import { useAppSelector } from '../hooks';
-import { isLimitBreakData } from '../utils/type';
-import { fmtNumber } from '../utils/formatters';
-import { MAP_DISPLAY_CONTENT } from '../utils/maps';
 
 interface CombatantContentProps {
   player: CombatantData | LimitBreakData;

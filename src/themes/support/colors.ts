@@ -1,7 +1,7 @@
-import themes from '..';
-import { CSS_VARS_DOM_ID } from '../../utils/constants';
-import { mergeDeep } from '../../utils/lodash';
-import { ThemeMapKey, ThemeModeMapKey } from '../../utils/maps';
+import themes from '@/themes';
+import { CSS_VARS_DOM_ID } from '@/utils/constants';
+import { mergeDeep } from '@/utils/lodash';
+import { ThemeMapKey, ThemeModeMapKey } from '@/utils/maps';
 
 interface ColorsBasics {
   // common color
@@ -93,7 +93,6 @@ export function applyColors(
   css += `  --color-self: ${rgba2css(self)};\n`;
   const objKeys = ['ticker', 'role', 'job', 'theme'];
   for (const objKey of objKeys) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const obj = fullColors[objKey as keyof Colors] as any;
     if (obj) {
       for (const varKey of Object.keys(obj)) {

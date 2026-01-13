@@ -1,20 +1,20 @@
-import { useCallback, useMemo } from 'react';
-import { SInputColor, SSelect, SSelectMap } from '../components';
+import { IRefresh } from '@/assets/icons';
+import * as jobIcons from '@/assets/jobs';
+import { SInputColor, SSelect, SSelectMap } from '@/components';
 import {
   useAppDispatch,
   useAppSelector,
   useColor,
   useTranslation,
-} from '../hooks';
-import * as jobIcons from '../assets/jobs';
-import { IRefresh } from '../assets/icons';
+} from '@/hooks';
 import {
   updateColors,
   updateTheme,
   updateThemeMode,
-} from '../store/slices/theme';
-import { MAP_THEMES, MAP_THEME_MODE, ThemeModeMapKey } from '../utils/maps';
-import themes from '../themes';
+} from '@/store/slices/theme';
+import themes from '@/themes';
+import { MAP_THEMES, MAP_THEME_MODE, ThemeModeMapKey } from '@/utils/maps';
+import { useCallback, useMemo } from 'react';
 
 function SettingsTheme() {
   const t = useTranslation();

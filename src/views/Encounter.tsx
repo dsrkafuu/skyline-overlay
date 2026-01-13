@@ -1,21 +1,21 @@
 import './Encounter.scss';
-import { useCallback, useRef, useState } from 'react';
-import clsx from 'clsx';
-import overlay from '../utils/overlay';
 import {
   IChevronUpCircle,
   IChevronDownCircle,
   ISettings,
   ILockClosed,
   ILockOpen,
-} from '../assets/icons';
-import { useAppDispatch, useAppSelector } from '../hooks';
-import { fmtDuration, fmtNumber, fmtZoneName } from '../utils/formatters';
+} from '@/assets/icons';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import {
   toggleCombatantsLocked,
   toggleSettings,
   toggleShowCombatants,
-} from '../store/slices/settings';
+} from '@/store/slices/settings';
+import { fmtDuration, fmtNumber, fmtZoneName } from '@/utils/formatters';
+import overlay from '@/utils/overlay';
+import clsx from 'clsx';
+import { useCallback, useRef, useState } from 'react';
 
 function Encounter() {
   const dispatch = useAppDispatch();

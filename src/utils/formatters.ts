@@ -1,5 +1,5 @@
-import { mergeCombatant, CombatantData } from 'ffxiv-overlay-api';
-import { version, versionCode } from '../assets/meta';
+import { mergeCombatant, CombatantData } from '@/api';
+import { version, versionCode } from '@/assets/meta';
 
 /**
  * format number

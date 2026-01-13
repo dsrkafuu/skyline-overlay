@@ -1,12 +1,12 @@
+import { toggleShowCombatants } from './settings';
+import { ExtendData } from '@/api';
+import { RootState } from '@/store';
+import { logDebug } from '@/utils/loggers';
 import {
   createListenerMiddleware,
   createSlice,
   PayloadAction as PA,
 } from '@reduxjs/toolkit';
-import { ExtendData } from 'ffxiv-overlay-api';
-import { RootState } from '..';
-import { logDebug } from '../../utils/loggers';
-import { toggleShowCombatants } from './settings';
 
 interface HistoryData extends ExtendData {
   time: number;
@@ -80,10 +80,18 @@ export const apiSlice = createSlice({
       state.historys.length >= 5 && state.historys.pop();
       state.historys.unshift({ time: Date.now(), ...payload });
     },
+    /**
+     * clean mock data
+     */
+    cleanMockData(state) {
+      logDebug('Store::API::cleanMockData');
+      state.data = cleanData;
+    },
   },
 });
 
-export const { updateCombat, showHistory, pushHistory } = apiSlice.actions;
+export const { updateCombat, showHistory, pushHistory, cleanMockData } =
+  apiSlice.actions;
 
 /** @redux effects */
 

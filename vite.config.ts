@@ -1,14 +1,19 @@
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import svgr from 'vite-plugin-svgr';
-import { VitePWA as pwa } from 'vite-plugin-pwa';
+import { defineConfig } from 'vite';
 import { analyzer } from 'vite-bundle-analyzer';
+import { VitePWA } from 'vite-plugin-pwa';
+import svgr from 'vite-plugin-svgr';
 
 /**
  * https://vitejs.dev/config/
  */
 export default defineConfig({
   base: process.env.VITE_BASE_URL || '/',
+  resolve: {
+    alias: {
+      '@/': '/src/',
+    },
+  },
   plugins: [
     svgr({
       svgrOptions: {
@@ -22,16 +27,16 @@ export default defineConfig({
     analyzer({
       enabled: process.env.ENABLE_ANALYZER === '1',
     }),
-    pwa({
-      devOptions: {
-        enabled: true,
-      },
+    VitePWA({
+      // devOptions: {
+      //   enabled: true,
+      // },
       manifest: {
         name: 'Skyline Overlay',
         short_name: 'Skyline',
         description: 'A modern customizable horizon FFXIV miniparse overlay.',
         icons: [{ src: 'favicon.svg', sizes: 'any' }],
-        theme_color: '#8aa2d3',
+        theme_color: '#ffffff',
       },
       workbox: {
         runtimeCaching: [
@@ -51,7 +56,7 @@ export default defineConfig({
             handler: 'CacheFirst',
             options: {
               cacheName: 'gstatic-fonts-cache',
-              expiration: { maxEntries: 1000, maxAgeSeconds: 31556952 }, // google's css has 600+ files
+              expiration: { maxEntries: 500, maxAgeSeconds: 31556952 }, // google's css has (14+10+349) files
               cacheableResponse: { statuses: [0, 200] },
             },
           },
@@ -61,7 +66,7 @@ export default defineConfig({
             handler: 'CacheFirst',
             options: {
               cacheName: 'misans-fonts-cache',
-              expiration: { maxEntries: 10, maxAgeSeconds: 31556952 }, // misans only has 3 files
+              expiration: { maxEntries: 2, maxAgeSeconds: 31556952 }, // misans only has 1 files
               cacheableResponse: { statuses: [0, 200] },
             },
           },
@@ -75,6 +80,6 @@ export default defineConfig({
   build: {
     sourcemap: true,
     emptyOutDir: true,
-    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
+    target: ['chrome111', 'edge111', 'firefox114', 'safari16.4'],
   },
 });

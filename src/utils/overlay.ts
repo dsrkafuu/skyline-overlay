@@ -1,10 +1,13 @@
-import { OverlayAPI, ExtendData } from 'ffxiv-overlay-api';
-import stablehash from 'stable-hash';
-import { store } from '../store';
-import { pushHistory, updateCombat } from '../store/slices/api';
 import { cloneDeep, sha1 } from './lodash';
+import { logInfo } from './loggers';
+import { OverlayAPI, ExtendData } from '@/api';
+import { store } from '@/store';
+import { pushHistory, updateCombat } from '@/store/slices/api';
+import stablehash from 'stable-hash';
 
 const overlay = new OverlayAPI();
+const url = new URL(window.location.href);
+const raw = /rawdata=[^0&]/gi.test(url.search);
 
 // to record last data for history to avoid duplication
 let lastData: ExtendData | null = null;
@@ -55,6 +58,9 @@ async function tryUpdateCombat(newData: ExtendData) {
 // add overlay callback
 overlay.addListener('CombatData', (rawData) => {
   const data = rawData.extendData;
+  if (raw) {
+    logInfo('raw combat data get', rawData);
+  }
   if (data) {
     tryPushHistory(data);
     tryUpdateCombat(data);

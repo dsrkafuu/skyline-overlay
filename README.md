@@ -10,13 +10,12 @@
 ![](https://img.shields.io/github/package-json/v/dsrkafuu/skyline-overlay)
 ![](https://img.shields.io/badge/ffxiv-dawntrail-orange)
 [![](https://img.shields.io/github/license/dsrkafuu/skyline-overlay)](https://github.com/dsrkafuu/skyline-overlay/blob/main/LICENSE)
-[![](https://img.shields.io/lgtm/grade/javascript/github/dsrkafuu/skyline-overlay)](https://lgtm.com/projects/g/dsrkafuu/skyline-overlay/context:javascript)
 
 Features: Basic overlay, extended details, customizable display/data settings, battle history, custom colors, sw cache and more. The project is based on React 18, and the dedicated [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
 
-<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-en-v37.jpg" alt="Skyline Preview" />
+<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-zh-v4.jpg" alt="Skyline Preview" />
 
-<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-zh-v37.jpg" alt="Skyline Preview CN" />
+<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview2-zh-v4.jpg" alt="Skyline Preview Duo" />
 
 ## Overlay Links
 
@@ -78,6 +77,8 @@ pnpm run build
 
 ![Debug Log Save](https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/debug-2.png)
 
+Theses also a `rawdata=1` query to get the raw data from ngld.
+
 ## Contribute
 
 ```bash
@@ -135,10 +136,22 @@ These variables will now be accessible within your `.scss` file as `var(--color-
 - ffxiv-overlay-api: <https://github.com/dsrkafuu/ffxiv-overlay-api>
 - Job Icons: <https://github.com/xivapi/classjob-icons/tree/master/svg>
 - jsDelivr: <https://www.jsdelivr.com>
-- MiSans: <https://home.miui.com>
 
 ## LICENSE
 
 Released under `Apache License 2.0`, for more information read the [LICENSE](https://github.com/dsrkafuu/skyline-overlay/blob/main/LICENSE).
 
 **Copyright © 2020-present DSRKafuU (<https://dsrkafuu.net>)**
+
+## CHANGELOG
+
+Only latest changes listed here.
+
+- Support last 60s DPS display in main/bottom bars
+- Clean Encounter after closing data mock
+- New font Google Sans Flex added
+- Fonts from Google Fonts (remote) now have all available weights
+- Updated MiSans font version to 4.009
+- Embedded XIV API (ngld) from `ffxiv-overlay-api` into project source
+- Build target updated to `2026/1/1` baseline
+- Dev scripts migrated to ESM format
