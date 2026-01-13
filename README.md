@@ -13,9 +13,9 @@
 
 Features: Basic overlay, extended details, customizable display/data settings, battle history, custom colors, sw cache and more. The project is based on React 18, and the dedicated [ffxiv-overlay-api](https://github.com/dsrkafuu/ffxiv-overlay-api).
 
-<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview-zh-v4.jpg" alt="Skyline Preview" />
+<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/refs/heads/main/assets/preview-zh-v4.png" alt="Skyline Preview" />
 
-<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/preview2-zh-v4.jpg" alt="Skyline Preview Duo" />
+<img align="center" src="https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/refs/heads/main/assets/preview2-zh-v4.png" alt="Skyline Preview Duo" />
 
 ## Overlay Links
 
