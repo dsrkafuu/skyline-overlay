@@ -1,12 +1,11 @@
 /**
  * update build metadata
  */
-
-import url from 'url';
+import chalk from 'chalk';
 import fs from 'fs';
 import path from 'path';
-import chalk from 'chalk';
 import prettier from 'prettier';
+import url from 'url';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,7 +23,7 @@ const main = async () => {
     lines.push(`export const version = 'v${pkg.version}';`);
     lines.push(`export const versionCode = '${pkg.versionCode}';`);
     lines.push(`export const date = ${Date.now()};`);
-    const prettierOptions = await import('../prettier.config.mjs');
+    const prettierOptions = await import('../prettier.config.ts');
     const code = await prettier.format(lines.join('\n') + '\n', {
       parser: 'typescript',
       ...prettierOptions,

@@ -37,11 +37,11 @@ You can use [CSSNANO](https://cssnano.co/playground/) to minify your CSS into si
 
 ## Browsers Support
 
-Supports major browser versions released at 2020 or `ES2020`.
+Supports major browser versions released at `baseline-widely-available`.
 
-- Chrome: >=87
-- Firefox: >=78
-- Safari: >=14
+- Chrome: >=111
+- Firefox: >=114
+- Safari: >=16.4
 
 ## Cache Rules
 
@@ -58,11 +58,13 @@ VITE_GA_ID=""         # google analytics id
 
 ## Local Build
 
+Install [Bun](https://bun.sh/) before running the following commands:
+
 ```bash
 git clone https://github.com/dsrkafuu/skyline-overlay.git
 cd skyline-overlay
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 ## Online Debug
@@ -78,15 +80,6 @@ pnpm run build
 ![Debug Log Save](https://raw.githubusercontent.com/dsrkafuu/skyline-overlay/main/assets/debug-2.png)
 
 Theses also a `rawdata=1` query to get the raw data from ngld.
-
-## Contribute
-
-```bash
-git clone https://github.com/dsrkafuu/skyline-overlay.git
-cd skyline-overlay
-pnpm install
-pnpm run dev
-```
 
 ### Add Translations
 

@@ -12,11 +12,7 @@ const __dirname = path.dirname(__filename);
 
 console.log(chalk.blue('removing redundant svg/image files...'));
 
-/**
- * @param {string} path
- * @returns {Promise<void>}
- */
-function deleteFile(path) {
+function deleteFile(path: string): Promise<void> {
   return new Promise((resolve, reject) => {
     try {
       if (!fs.existsSync(path)) return resolve();
@@ -28,7 +24,7 @@ function deleteFile(path) {
   });
 }
 
-const workers = [];
+const workers: Promise<void>[] = [];
 const svgs = [
   // ...glob.sync('dist/assets/*.svg'),
   // ...glob.sync('dist/assets/*.jpg'),

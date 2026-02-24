@@ -15,10 +15,10 @@ function SInput({ value, onChange, className }: SInputProps) {
   const [focused, setFocused] = useState(false);
 
   const handleInput = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      onChange(e.target.value);
+    (e: React.InputEvent<HTMLInputElement>) => {
+      onChange((e.target as HTMLInputElement).value);
     },
-    [onChange]
+    [onChange],
   );
 
   const handleClick = useCallback(() => {
@@ -31,7 +31,7 @@ function SInput({ value, onChange, className }: SInputProps) {
 
   return (
     <div className={clsx('s-input', className)}>
-      <div className='s-input-btn' onClick={handleClick}>
+      <div className="s-input-btn" onClick={handleClick}>
         <ICreate />
       </div>
       <input
@@ -40,8 +40,8 @@ function SInput({ value, onChange, className }: SInputProps) {
         onInput={handleInput}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        type='text'
-        autoComplete='off'
+        type="text"
+        autoComplete="off"
       />
     </div>
   );
