@@ -8,7 +8,7 @@ import Combatant from './views/Combatant';
 import Encounter from './views/Encounter';
 import Settings from './views/Settings';
 import clsx from 'clsx';
-import { CSSProperties } from 'react';
+import { CSSProperties, useMemo } from 'react';
 
 function App() {
   const showCombatants = useAppSelector(
@@ -25,30 +25,31 @@ function App() {
   // get data from store
   const data = useAppSelector((state) => state.api.data);
   const history = useAppSelector((state) => state.api.history);
-  const { combatant, limitBreak } = cloneDeep(history.data || data);
 
-  let players = combatant;
-
-  // merge pet if enabled
-  if (petMergeID) {
-    players = fmtMergePet(players, petMergeID);
-  }
-
-  // sort combatant
-  players.sort((a, b) => sort.rule * (a[sort.key] - b[sort.key]));
-
-  // limit combatants
-  const temp = players;
-  players = [];
-  for (let i = 0; i < playerLimit; i++) {
-    temp[i] && temp[i].name && players.push(temp[i]);
-  }
-
-  // add lb if enabled
-  const playersWithLB: Array<CombatantData | LimitBreakData> = players;
-  if (showLB && limitBreak) {
-    playersWithLB.push(limitBreak);
-  }
+  const combatant = (history.data || data).combatant;
+  const playersWithLB = useMemo<Array<CombatantData | LimitBreakData>>(() => {
+    const { combatant, limitBreak } = cloneDeep(history.data || data);
+    let players = combatant;
+    // merge pet if enabled
+    if (petMergeID) {
+      players = fmtMergePet(players, petMergeID);
+    }
+    // sort combatant
+    players.sort((a, b) => sort.rule * (a[sort.key] - b[sort.key]));
+    // limit combatants
+    const limited: CombatantData[] = [];
+    for (let i = 0; i < playerLimit; i++) {
+      if (players[i] && players[i].name) {
+        limited.push(players[i]);
+      }
+    }
+    // add LB if enabled
+    const result: Array<CombatantData | LimitBreakData> = limited;
+    if (showLB && limitBreak) {
+      result.push(limitBreak);
+    }
+    return result;
+  }, [data, history, petMergeID, sort, playerLimit, showLB]);
 
   const opacityStyle: CSSProperties = {
     opacity: opacity >= 0.1 && opacity <= 1 ? opacity : 1,
