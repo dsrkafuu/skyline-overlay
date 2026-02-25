@@ -9,7 +9,7 @@ import { useAppSelector } from '@/hooks';
 import { TickerMapKey } from '@/utils/maps';
 import { isLimitBreakData, isCombatantData } from '@/utils/type';
 import clsx, { ClassArray } from 'clsx';
-import { useCallback, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 
 interface CombatantProps {
   player: CombatantData | LimitBreakData;
@@ -160,4 +160,4 @@ function Combatant({ player }: CombatantProps) {
   );
 }
 
-export default Combatant;
+export default memo(Combatant);

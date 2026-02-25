@@ -95,6 +95,23 @@ export function xssEscape(str: string) {
   });
 }
 
+/**
+ * debounce: only execute after `wait` ms of no calls
+ */
+export function debounce<T extends (...args: any[]) => void>(
+  fn: T,
+  wait: number
+): (...args: Parameters<T>) => void {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  return (...args: Parameters<T>) => {
+    if (timer !== null) clearTimeout(timer);
+    timer = setTimeout(() => {
+      timer = null;
+      fn(...args);
+    }, wait);
+  };
+}
+
 export async function sha1(message: string) {
   const stable = message;
   const msgUint8 = new TextEncoder().encode(stable);
