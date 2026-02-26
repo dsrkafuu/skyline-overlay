@@ -37,10 +37,12 @@ function SettingsHistoryRow({
   bigNumberMode,
 }: SettingsHistoryRowProps) {
   const [now, setNow] = useState(() => Date.now());
+  // only tick for the current live row (no fixed timestamp)
   useEffect(() => {
+    if (time !== undefined) return;
     const timer = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [time]);
 
   return (
     <div
