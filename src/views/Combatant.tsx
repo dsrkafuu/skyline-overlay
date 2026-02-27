@@ -9,7 +9,7 @@ import { useAppSelector } from '@/hooks';
 import { TickerMapKey } from '@/utils/maps';
 import { isLimitBreakData, isCombatantData } from '@/utils/type';
 import clsx, { ClassArray } from 'clsx';
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 
 interface CombatantProps {
   player: CombatantData | LimitBreakData;
@@ -60,8 +60,8 @@ function Combatant({ player }: CombatantProps) {
   }
 
   // tickers
-  const getTickerProps = useCallback(
-    (mapKey: TickerMapKey) => {
+  const computeTickerProps = useCallback(
+    (mapKey: TickerMapKey): STickerProps => {
       let healerPcts: number[] = [];
       let healerClasses: STickerClass[] = [];
       let dpsPcts: number[] = [];
@@ -89,34 +89,36 @@ function Combatant({ player }: CombatantProps) {
         ];
         healerClasses = ['oh', 'h', 's'];
       }
-      let ret: STickerProps;
       switch (mapKey) {
         case 'healer':
-          ret = { pcts: healerPcts, classes: healerClasses, space: 0 };
-          break;
+          return { pcts: healerPcts, classes: healerClasses, space: 0 };
         case 'healer-reverse':
-          ret = {
+          return {
             pcts: [...healerPcts].reverse(),
             classes: [...healerClasses].reverse(),
             space: 0,
           };
-          break;
         case 'dps':
-          ret = { pcts: dpsPcts, classes: dpsClasses, space: dpsSpace };
-          break;
+          return { pcts: dpsPcts, classes: dpsClasses, space: dpsSpace };
         case 'dps-reverse':
-          ret = {
+          return {
             pcts: [...dpsPcts].reverse(),
             classes: [...dpsClasses].reverse(),
             space: dpsSpace,
           };
-          break;
         default:
-          ret = { pcts: [], classes: new Array(3).fill('space'), space: 0 };
+          return { pcts: [], classes: new Array(3).fill('space'), space: 0 };
       }
-      return ret;
     },
     [player]
+  );
+  const topTickerProps = useMemo(
+    () => computeTickerProps(ticker.top),
+    [computeTickerProps, ticker.top]
+  );
+  const bottomTickerProps = useMemo(
+    () => computeTickerProps(ticker.bottom),
+    [computeTickerProps, ticker.bottom]
   );
 
   return (
@@ -124,7 +126,7 @@ function Combatant({ player }: CombatantProps) {
       <CombatantName player={player} />
 
       {ticker.top && ticker.top !== 'none' && (
-        <STicker {...getTickerProps(ticker.top)} align={tickerAlign.top} />
+        <STicker {...topTickerProps} align={tickerAlign.top} />
       )}
 
       <CombatantContent
@@ -136,10 +138,7 @@ function Combatant({ player }: CombatantProps) {
       />
 
       {ticker.bottom && ticker.bottom !== 'none' && (
-        <STicker
-          {...getTickerProps(ticker.bottom)}
-          align={tickerAlign.bottom}
-        />
+        <STicker {...bottomTickerProps} align={tickerAlign.bottom} />
       )}
 
       {bottomDisp !== 'none' && (

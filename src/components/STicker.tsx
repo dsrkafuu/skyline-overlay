@@ -1,5 +1,6 @@
 import './STicker.scss';
 import clsx from 'clsx';
+import { memo } from 'react';
 
 export type STickerClass = 'oh' | 'h' | 's' | 'cd' | 'c' | 'd' | 'space';
 
@@ -47,4 +48,4 @@ function STicker({
   );
 }
 
-export default STicker;
+export default memo(STicker);
