@@ -4,7 +4,7 @@ import { useAppSelector } from '@/hooks';
 import { fmtNumber } from '@/utils/formatters';
 import { MAP_DISPLAY_CONTENT } from '@/utils/maps';
 import { isLimitBreakData } from '@/utils/type';
-import { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 
 interface CombatantContentProps {
   player: CombatantData | LimitBreakData;
@@ -83,4 +83,4 @@ function CombatantContent({
   );
 }
 
-export default CombatantContent;
+export default memo(CombatantContent);
