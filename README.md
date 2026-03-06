@@ -140,11 +140,8 @@ Released under `Apache License 2.0`, for more information read the [LICENSE](htt
 
 Only latest changes listed here.
 
-- Support last 60s DPS display in main/bottom bars
-- Clean Encounter after closing data mock
-- New font Google Sans Flex added
-- Fonts from Google Fonts (remote) now have all available weights
-- Updated MiSans font version to 4.009
-- Embedded XIV API (ngld) from `ffxiv-overlay-api` into project source
-- Build target updated to `2026/1/1` baseline
-- Dev scripts migrated to ESM format
+- Reworked data lock behavior: lock now freezes displayed encounter/combatant data while real-time data keeps syncing in background
+- Unified history preview with lock flow: selecting history auto-locks snapshot; unlocking returns highlight to current row
+- Improved encounter-end behavior: ending a battle no longer immediately inserts history; finished data stays on screen until next battle starts
+- Removed `Big Number Mode` entirely (settings state/action, formatting path, UI toggle, and i18n entries)
+- Performance and render optimizations from recent refactors (memoized heavy paths and reduced redundant re-renders)
