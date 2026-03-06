@@ -2,7 +2,6 @@ import { IChevronDown, IChevronUp } from '@/assets/icons';
 import { SInput, SInputNumber, SSelect, SSwitch } from '@/components';
 import { useAppDispatch, useAppSelector, useTranslation } from '@/hooks';
 import {
-  updateBigNumberMode,
   updatePetMergeID,
   updatePlayerLimit,
   updatePlayerPerRow,
@@ -24,7 +23,6 @@ function SettingsData() {
   const youName = useAppSelector((state) => state.settings.youName);
   const petMergeID = useAppSelector((state) => state.settings.petMergeID);
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
-  const bigNumberMode = useAppSelector((state) => state.settings.bigNumberMode);
 
   const items = useMemo(
     () => [
@@ -106,15 +104,6 @@ function SettingsData() {
           />
         ),
       },
-      {
-        title: t('Big Number Mode'),
-        render: () => (
-          <SSwitch
-            value={bigNumberMode}
-            onChange={(v) => dispatch(updateBigNumberMode(v))}
-          />
-        ),
-      },
     ],
     [
       t,
@@ -127,7 +116,6 @@ function SettingsData() {
       youName,
       petMergeID,
       shortNumber,
-      bigNumberMode,
     ]
   );
 

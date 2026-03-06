@@ -53,6 +53,10 @@ export const apiSlice = createSlice({
     setLockedData(state, { payload }: PA<ExtendData | null>) {
       logDebug('Store::API::setLockedData', payload);
       state.lockedData = payload;
+      // unlocking from lock button should also reset history highlight
+      if (payload === null) {
+        state.historyIdx = -1;
+      }
     },
     /**
      * show a history data (-1 to disable)

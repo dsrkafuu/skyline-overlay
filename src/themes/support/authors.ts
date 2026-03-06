@@ -1,5 +1,5 @@
 export const DSRKafuU = {
-  name: '仁菜 | 神意之地',
+  name: '虾仁芹菜 | 神意之地',
   link: 'https://github.com/dsrkafuu',
 };
 

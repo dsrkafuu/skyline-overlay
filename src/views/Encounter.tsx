@@ -25,7 +25,6 @@ function Encounter() {
     (state) => state.settings.showCombatants
   );
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
-  const bigNumberMode = useAppSelector((state) => state.settings.bigNumberMode);
   const layoutMode = useAppSelector((state) => state.settings.layoutMode);
 
   // encounter data
@@ -106,7 +105,7 @@ function Encounter() {
         </div>
         <div className='encounter-content-numbers' onClick={handleSwitchDHPS}>
           <span className='g-number'>
-            {fmtNumber(totalDPS, shortNumber, bigNumberMode)}
+            {fmtNumber(totalDPS, shortNumber)}
           </span>
           <span className='g-counter'>{showDHPS.toUpperCase()}</span>
         </div>

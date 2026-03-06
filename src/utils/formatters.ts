@@ -6,8 +6,7 @@ import { version, versionCode } from '@/assets/meta';
  */
 export function fmtNumber(
   number: number,
-  shortNumber = false,
-  bigNumberMode = false
+  shortNumber = false
 ) {
   const decimal = 1;
 
@@ -15,9 +14,6 @@ export function fmtNumber(
     number = Number(number);
   }
 
-  if (bigNumberMode) {
-    number = number * 10;
-  }
   if (!shortNumber) {
     return number ? `${number}` : '0';
   }

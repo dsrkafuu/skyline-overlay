@@ -23,7 +23,6 @@ interface SettingsHistoryRowProps {
   time?: number;
   onClick?: () => void;
   shortNumber?: boolean;
-  bigNumberMode?: boolean;
 }
 
 function SettingsHistoryRow({
@@ -34,7 +33,6 @@ function SettingsHistoryRow({
   time,
   onClick,
   shortNumber,
-  bigNumberMode,
 }: SettingsHistoryRowProps) {
   const [now, setNow] = useState(() => Date.now());
   // only tick for the current live row (no fixed timestamp)
@@ -62,7 +60,7 @@ function SettingsHistoryRow({
       </div>
       <div className='settings-history-item settings-history-dps'>
         <span className='g-number'>
-          {fmtNumber(dps, shortNumber, bigNumberMode)}
+          {fmtNumber(dps, shortNumber)}
         </span>
         <span className='g-counter'>DPS</span>
       </div>
@@ -76,7 +74,6 @@ function SettingsHistory() {
   const historys = useAppSelector((state) => state.api.historys);
   const historyIdx = useAppSelector((state) => state.api.historyIdx);
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
-  const bigNumberMode = useAppSelector((state) => state.settings.bigNumberMode);
 
   return (
     <div className='settings-history'>
@@ -100,7 +97,6 @@ function SettingsHistory() {
             zoneName={zoneName}
             onClick={() => dispatch(showHistory(idx))}
             shortNumber={shortNumber}
-            bigNumberMode={bigNumberMode}
           />
         );
       })}

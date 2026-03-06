@@ -12,7 +12,6 @@ interface CombatantBottomProps {
 
 function CombatantBottom({ player, mode = 'none' }: CombatantBottomProps) {
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
-  const bigNumberMode = useAppSelector((state) => state.settings.bigNumberMode);
 
   if (mode === 'maxhit') {
     const maxHitDamage = isCombatantData(player)
@@ -28,7 +27,7 @@ function CombatantBottom({ player, mode = 'none' }: CombatantBottomProps) {
           <span>&nbsp;{player.maxHit}&nbsp;</span>
           {maxHitDamage > 0 && (
             <span>
-              -&nbsp;{fmtNumber(maxHitDamage, shortNumber, bigNumberMode)}&nbsp;
+              -&nbsp;{fmtNumber(maxHitDamage, shortNumber)}&nbsp;
             </span>
           )}
         </div>
@@ -39,7 +38,7 @@ function CombatantBottom({ player, mode = 'none' }: CombatantBottomProps) {
           <span>&nbsp;{player.maxHeal}&nbsp;</span>
           {maxHealDamage > 0 && (
             <span>
-              -&nbsp;{fmtNumber(maxHealDamage, shortNumber, bigNumberMode)}
+              -&nbsp;{fmtNumber(maxHealDamage, shortNumber)}
               &nbsp;
             </span>
           )}

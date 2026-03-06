@@ -16,10 +16,22 @@ let lastData: ExtendData | null = null;
 let pendingHistory: ExtendData | null = null;
 
 function canPushHistory(data: ExtendData) {
+  const { encounter } = data;
+  // robust check for quick end/start stress tests: do not rely on a single field.
+  return encounter.durationSeconds > 0 || encounter.duration !== '00:00';
+}
+
+function isLikelyNewBattleAfterMissingInactive(
+  prev: ExtendData,
+  next: ExtendData
+) {
+  // If both are active but timer jumps backward, previous battle likely ended
+  // and an inactive packet was missed under rapid end/start interactions.
   return (
-    data.encounter.duration !== '00:00' &&
-    data.encounter.durationSeconds !== 0 &&
-    data.encounter.dps !== 0
+    prev.active &&
+    next.active &&
+    next.encounter.durationSeconds > 0 &&
+    prev.encounter.durationSeconds > next.encounter.durationSeconds
   );
 }
 
@@ -36,6 +48,17 @@ function tryPushHistory(newData: ExtendData) {
     // this will also trigger a toggleCombatant(true) if not locked
     store.dispatch(pushHistory(pendingHistory));
     pendingHistory = null;
+    historyAdded = true;
+  }
+  // fallback: if inactive packet is missing, detect battle reset while active
+  if (
+    !historyAdded &&
+    !pendingHistory &&
+    lastData &&
+    isLikelyNewBattleAfterMissingInactive(lastData, newData) &&
+    canPushHistory(lastData)
+  ) {
+    store.dispatch(pushHistory(lastData));
     historyAdded = true;
   }
   // record data for future use

@@ -57,7 +57,6 @@ export interface Settings {
   youName: string; // which to represent as 'YOU'
   petMergeID: string; // merge pet data when using global client with cn language patch
   shortNumber: boolean;
-  bigNumberMode: boolean;
   // display
   dispMode: DisplayModeMapKey;
   dispContent: DispContentSettings;
@@ -95,7 +94,6 @@ export const defaultSettings: Settings = {
   youName: 'YOU',
   petMergeID: '',
   shortNumber: false,
-  bigNumberMode: false,
   dispMode: 'single',
   dispContent: { left: 'hps', right: 'dps' },
   hlYou: true,
@@ -249,11 +247,6 @@ export const settingsSlice = createSlice({
       state.shortNumber = payload;
       save({ shortNumber: state.shortNumber });
     },
-    updateBigNumberMode(state, { payload }: PA<boolean>) {
-      logDebug('Store::Settings::updateBigNumberMode', payload);
-      state.bigNumberMode = payload;
-      save({ bigNumberMode: state.bigNumberMode });
-    },
     // display
     updateDispMode(state, { payload }: PA<DisplayModeMapKey>) {
       logDebug('Store::Settings::updateDispMode', payload);
@@ -342,7 +335,6 @@ export const {
   updateYouName,
   updatePetMergeID,
   updateShortNumber,
-  updateBigNumberMode,
   updateDispMode,
   updateDispContent,
   updateHlYou,

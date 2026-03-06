@@ -24,7 +24,6 @@ function CombatantContent({
   const dispMode = useAppSelector((state) => state.settings.dispMode);
   const dispContent = useAppSelector((state) => state.settings.dispContent);
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
-  const bigNumberMode = useAppSelector((state) => state.settings.bigNumberMode);
 
   const leftDisp = (player as CombatantData)[dispContent.left] || 0;
   const leftDispUnit = MAP_DISPLAY_CONTENT[dispContent.left].data.unit;
@@ -62,7 +61,7 @@ function CombatantContent({
         <div className='combatant-content-data'>
           <span className='g-number'>
             {(typeof leftDisp === 'number' &&
-              fmtNumber(leftDisp, shortNumber, bigNumberMode)) ||
+              fmtNumber(leftDisp, shortNumber)) ||
               leftDisp}
           </span>
           <span className='g-counter'>{leftDispUnit}</span>
@@ -74,7 +73,7 @@ function CombatantContent({
       <div className='combatant-content-data'>
         <span className='g-number'>
           {(typeof rightDisp === 'number' &&
-            fmtNumber(rightDisp, shortNumber, bigNumberMode)) ||
+            fmtNumber(rightDisp, shortNumber)) ||
             rightDisp}
         </span>
         <span className='g-counter'>{rightDispUnit}</span>
