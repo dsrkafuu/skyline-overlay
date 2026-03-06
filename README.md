@@ -145,3 +145,4 @@ Only latest changes listed here.
 - Improved encounter-end behavior: ending a battle no longer immediately inserts history; finished data stays on screen until next battle starts
 - Removed `Big Number Mode` entirely (settings state/action, formatting path, UI toggle, and i18n entries)
 - Performance and render optimizations from recent refactors (memoized heavy paths and reduced redundant re-renders)
+- Updated callback-mode compatibility binding to upstream style (removed legacy `dispatchOverlayEvent` assignment)

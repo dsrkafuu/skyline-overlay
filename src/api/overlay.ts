@@ -88,8 +88,6 @@ export class OverlayAPI {
       logInfo('initializing api in callback mode...');
       this._initCB();
     }
-    // `common.js` _L97 binding
-    window.dispatchOverlayEvent = this._triggerEvents.bind(this);
 
     // singleton
     if (!OverlayAPI._instance) {
