@@ -15,10 +15,8 @@ interface HistoryData extends ExtendData {
 export interface APIState {
   data: ExtendData;
   historys: HistoryData[];
-  history: {
-    idx: number; // mark current showing history for active comparsion
-    data: HistoryData | null;
-  };
+  historyIdx: number; // idx of currently selected history for highlight; -1 = real-time
+  lockedData: ExtendData | null; // frozen snapshot for display; null = real-time
 }
 
 /** @redux initialize */
@@ -32,10 +30,8 @@ const cleanData: ExtendData = {
 const initialState: APIState = {
   data: cleanData,
   historys: [],
-  history: {
-    idx: -1,
-    data: null,
-  },
+  historyIdx: -1,
+  lockedData: null,
 };
 
 /** @redux slice */
@@ -50,12 +46,13 @@ export const apiSlice = createSlice({
     updateCombat(state, { payload }: PA<ExtendData>) {
       logDebug('Store::API::updateCombat', payload);
       state.data = payload;
-      // clear current history display if new data appears
-      if (state.history.idx !== -1 || state.history.data) {
-        logDebug('Store::API::updateCombat::newData');
-        state.history.idx = -1;
-        state.history.data = null;
-      }
+    },
+    /**
+     * lock/unlock display data; null = unlock (real-time)
+     */
+    setLockedData(state, { payload }: PA<ExtendData | null>) {
+      logDebug('Store::API::setLockedData', payload);
+      state.lockedData = payload;
     },
     /**
      * show a history data (-1 to disable)
@@ -65,12 +62,12 @@ export const apiSlice = createSlice({
       const idx = payload;
       if (idx < 0 || idx >= 5 || !state.historys[idx]) {
         logDebug('Store::API::showHistory::exitHistoryView');
-        state.history.idx = -1;
-        state.history.data = null;
+        state.historyIdx = -1;
+        state.lockedData = null;
         return;
       }
-      state.history.idx = idx;
-      state.history.data = state.historys[idx];
+      state.historyIdx = idx;
+      state.lockedData = state.historys[idx];
     },
     /**
      * push a history (5 max)
@@ -90,8 +87,13 @@ export const apiSlice = createSlice({
   },
 });
 
-export const { updateCombat, showHistory, pushHistory, cleanMockData } =
-  apiSlice.actions;
+export const {
+  updateCombat,
+  setLockedData,
+  showHistory,
+  pushHistory,
+  cleanMockData,
+} = apiSlice.actions;
 
 /** @redux effects */
 
@@ -103,7 +105,7 @@ listener.startListening({
   actionCreator: pushHistory,
   effect: (_, api) => {
     const state = api.getState() as RootState;
-    if (!state.settings.combatantsLocked) {
+    if (state.api.lockedData === null) {
       logDebug('Listener::API::pushHistory::showHidedCombatants');
       api.dispatch(toggleShowCombatants(true));
     }

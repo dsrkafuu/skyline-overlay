@@ -78,7 +78,6 @@ export interface Settings {
 
 export interface SettingsState extends Settings {
   showCombatants: boolean;
-  combatantsLocked: boolean;
   showSettings: boolean;
   blurName: boolean;
 }
@@ -114,7 +113,6 @@ export const defaultSettings: Settings = {
 };
 let initialState: SettingsState = {
   showCombatants: true,
-  combatantsLocked: false,
   showSettings: false,
   blurName: false,
   ...cloneDeep(defaultSettings),
@@ -205,14 +203,6 @@ export const settingsSlice = createSlice({
         state.showCombatants = payload;
       } else {
         state.showCombatants = !state.showCombatants;
-      }
-    },
-    toggleCombatantsLocked(state, { payload }: PA<boolean | undefined>) {
-      logDebug('Store::Settings::toggleCombatantsLocked', payload);
-      if (payload !== undefined) {
-        state.combatantsLocked = payload;
-      } else {
-        state.combatantsLocked = !state.combatantsLocked;
       }
     },
     toggleSettings(state) {
@@ -343,7 +333,6 @@ export const settingsSlice = createSlice({
 
 export const {
   toggleShowCombatants,
-  toggleCombatantsLocked,
   toggleSettings,
   toggleBlurName,
   updateSort,
@@ -373,22 +362,6 @@ export const {
 /** @redux effects */
 
 export const listener = createListenerMiddleware();
-
-// when click to show combatants,
-// unlock them if locked
-listener.startListening({
-  actionCreator: toggleShowCombatants,
-  effect: ({ payload }, api) => {
-    const state = api.getState() as RootState;
-    if (
-      payload === true ||
-      (payload === undefined && state.settings.showCombatants === false)
-    ) {
-      logDebug('Listener::Settings::toggleShowCombatants::unlockCombatants');
-      api.dispatch(toggleCombatantsLocked(false));
-    }
-  },
-});
 
 // reset font weight if font family changed to incompatible one
 listener.startListening({

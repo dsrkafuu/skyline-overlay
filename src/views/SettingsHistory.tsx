@@ -74,14 +74,14 @@ function SettingsHistory() {
   const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.api.data);
   const historys = useAppSelector((state) => state.api.historys);
-  const history = useAppSelector((state) => state.api.history);
+  const historyIdx = useAppSelector((state) => state.api.historyIdx);
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
   const bigNumberMode = useAppSelector((state) => state.settings.bigNumberMode);
 
   return (
     <div className='settings-history'>
       <SettingsHistoryRow
-        current={history.idx === -1}
+        current={historyIdx === -1}
         duration={data.encounter.duration}
         dps={data.encounter.dps}
         zoneName={data.encounter.zoneName}
@@ -93,7 +93,7 @@ function SettingsHistory() {
         return (
           <SettingsHistoryRow
             key={idx}
-            current={history.idx === idx}
+            current={historyIdx === idx}
             time={item.time}
             duration={duration}
             dps={dps}

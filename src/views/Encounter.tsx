@@ -7,11 +7,8 @@ import {
   ILockOpen,
 } from '@/assets/icons';
 import { useAppDispatch, useAppSelector } from '@/hooks';
-import {
-  toggleCombatantsLocked,
-  toggleSettings,
-  toggleShowCombatants,
-} from '@/store/slices/settings';
+import { setLockedData } from '@/store/slices/api';
+import { toggleSettings, toggleShowCombatants } from '@/store/slices/settings';
 import { fmtDuration, fmtNumber, fmtZoneName } from '@/utils/formatters';
 import overlay from '@/utils/overlay';
 import clsx from 'clsx';
@@ -19,13 +16,13 @@ import { useCallback, useRef, useState } from 'react';
 
 function Encounter() {
   const dispatch = useAppDispatch();
-  const active = useAppSelector((state) => state.api.data.active);
-  const encounter = useAppSelector((state) => state.api.data.encounter);
+  const data = useAppSelector((state) => state.api.data);
+  const lockedData = useAppSelector((state) => state.api.lockedData);
+  const isLocked = lockedData !== null;
+  const active = data.active;
+  const encounter = (lockedData || data).encounter;
   const showCombatants = useAppSelector(
     (state) => state.settings.showCombatants
-  );
-  const combatantsLocked = useAppSelector(
-    (state) => state.settings.combatantsLocked
   );
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
   const bigNumberMode = useAppSelector((state) => state.settings.bigNumberMode);
@@ -45,9 +42,9 @@ function Encounter() {
   const handleToggleShowCombatants = useCallback(() => {
     dispatch(toggleShowCombatants());
   }, [dispatch]);
-  const handleToggleLockCombatants = useCallback(() => {
-    dispatch(toggleCombatantsLocked());
-  }, [dispatch]);
+  const handleToggleLock = useCallback(() => {
+    dispatch(isLocked ? setLockedData(null) : setLockedData(data));
+  }, [dispatch, isLocked, data]);
   const handleToggleSettings = useCallback(() => {
     dispatch(toggleSettings());
   }, [dispatch]);
@@ -115,11 +112,14 @@ function Encounter() {
         </div>
       </div>
       <div className='encounter-btns'>
-        {!showCombatants && (
-          <div className='encounter-btn' onClick={handleToggleLockCombatants}>
-            {combatantsLocked ? <ILockClosed /> : <ILockOpen />}
-          </div>
-        )}
+        <div
+          className={clsx('encounter-btn', {
+            'encounter-btn--active': isLocked,
+          })}
+          onClick={handleToggleLock}
+        >
+          {isLocked ? <ILockClosed /> : <ILockOpen />}
+        </div>
         <div className='encounter-btn' onClick={handleToggleShowCombatants}>
           {showCombatants ? <IChevronUpCircle /> : <IChevronDownCircle />}
         </div>

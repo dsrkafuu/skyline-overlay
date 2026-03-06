@@ -1,6 +1,7 @@
 import { cloneDeep, sha1 } from './lodash';
 import { logInfo } from './loggers';
 import { OverlayAPI, ExtendData } from '@/api';
+import { RootState } from '@/store';
 import { store } from '@/store';
 import { pushHistory, updateCombat } from '@/store/slices/api';
 import stablehash from 'stable-hash';
@@ -11,22 +12,31 @@ const raw = /rawdata=[^0&]/gi.test(url.search);
 
 // to record last data for history to avoid duplication
 let lastData: ExtendData | null = null;
+// store a finished battle snapshot and push it when next battle starts
+let pendingHistory: ExtendData | null = null;
+
+function canPushHistory(data: ExtendData) {
+  return (
+    data.encounter.duration !== '00:00' &&
+    data.encounter.durationSeconds !== 0 &&
+    data.encounter.dps !== 0
+  );
+}
 
 function tryPushHistory(newData: ExtendData) {
   let historyAdded = false;
-  // if last data (false) this data (true) which indicates
-  // a new battle, push last data (false) into a new history
-  if (lastData && !lastData.active && newData.active) {
-    // do not push empty battle into history
-    if (
-      lastData.encounter.duration !== '00:00' &&
-      lastData.encounter.durationSeconds !== 0 &&
-      lastData.encounter.dps !== 0
-    ) {
-      // this will also trigger a toggleCombatant(true) if not locked
-      store.dispatch(pushHistory(lastData));
-      historyAdded = true;
+  // battle ended: cache last active snapshot, but do not push yet
+  if (lastData && lastData.active && !newData.active) {
+    if (canPushHistory(lastData)) {
+      pendingHistory = lastData;
     }
+  }
+  // new battle started: push cached previous battle into history
+  if (pendingHistory && lastData && !lastData.active && newData.active) {
+    // this will also trigger a toggleCombatant(true) if not locked
+    store.dispatch(pushHistory(pendingHistory));
+    pendingHistory = null;
+    historyAdded = true;
   }
   // record data for future use
   lastData = newData;
@@ -63,7 +73,13 @@ overlay.addListener('CombatData', (rawData) => {
   }
   if (data) {
     tryPushHistory(data);
-    tryUpdateCombat(data);
+    const state = store.getState() as RootState;
+    const isManuallyLocked = state.api.lockedData !== null;
+    // after encounter end, keep showing last finished battle until next battle starts
+    // when manually locked, always keep syncing real-time data in background
+    if (isManuallyLocked || !(pendingHistory && !data.active)) {
+      tryUpdateCombat(data);
+    }
   }
 });
 

@@ -24,11 +24,11 @@ function App() {
 
   // get data from store
   const data = useAppSelector((state) => state.api.data);
-  const history = useAppSelector((state) => state.api.history);
+  const lockedData = useAppSelector((state) => state.api.lockedData);
 
-  const combatant = (history.data || data).combatant;
+  const combatant = (lockedData || data).combatant;
   const playersWithLB = useMemo<Array<CombatantData | LimitBreakData>>(() => {
-    const { combatant, limitBreak } = cloneDeep(history.data || data);
+    const { combatant, limitBreak } = cloneDeep(lockedData || data);
     let players = combatant;
     // merge pet if enabled
     if (petMergeID) {
@@ -49,7 +49,7 @@ function App() {
       result.push(limitBreak);
     }
     return result;
-  }, [data, history, petMergeID, sort, playerLimit, showLB]);
+  }, [data, lockedData, petMergeID, sort, playerLimit, showLB]);
 
   const opacityStyle: CSSProperties = {
     opacity: opacity >= 0.1 && opacity <= 1 ? opacity : 1,

@@ -4,7 +4,7 @@
   margin-top: var.$padding-md;
   font-size: var.$font-size-sm;
   flex: 0 0 auto;
-  width: 3.84rem;
+  width: 4rem;
   display: flex;
   backdrop-filter: var.$filter;
 
@@ -106,6 +106,11 @@
     overflow: hidden;
 
     &:hover {
+      color: var(--color-form-fg-active);
+      background-color: var(--color-form-bg-active);
+    }
+
+    &--active {
       color: var(--color-form-fg-active);
       background-color: var(--color-form-bg-active);
     }
