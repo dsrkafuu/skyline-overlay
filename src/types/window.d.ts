@@ -11,7 +11,6 @@ declare global {
       ready: boolean;
     };
     __OverlayCallback(...args: unknown[]): void;
-    dispatchOverlayEvent(...args: unknown[]): void;
     OverlayAPI: typeof OverlayAPI;
   }
 }
