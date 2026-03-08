@@ -26,9 +26,7 @@ function CombatantBottom({ player, mode = 'none' }: CombatantBottomProps) {
         <div className='combatant-bottom combatant-bottom-maxhit'>
           <span>&nbsp;{player.maxHit}&nbsp;</span>
           {maxHitDamage > 0 && (
-            <span>
-              -&nbsp;{fmtNumber(maxHitDamage, shortNumber)}&nbsp;
-            </span>
+            <span>-&nbsp;{fmtNumber(maxHitDamage, shortNumber)}&nbsp;</span>
           )}
         </div>
       );
@@ -72,6 +70,15 @@ function CombatantBottom({ player, mode = 'none' }: CombatantBottomProps) {
         &nbsp;<span>{directHitPct}D</span>
         &nbsp;<span>{critHitPct}C</span>
         &nbsp;<span>{directCritHitPct}CD</span>&nbsp;
+      </div>
+    );
+  } else if (mode === 'damagePctDeaths' && isCombatantData(player)) {
+    const { damagePct, deaths } = player;
+
+    return (
+      <div className='combatant-bottom combatant-bottom-cdpcts'>
+        &nbsp;<span>{damagePct || '0%'}DMG</span>
+        &nbsp;<span>{deaths}DT</span>&nbsp;
       </div>
     );
   }

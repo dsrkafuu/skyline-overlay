@@ -66,6 +66,8 @@ function Combatant({ player }: CombatantProps) {
       let healerClasses: STickerClass[] = [];
       let dpsPcts: number[] = [];
       let dpsClasses: STickerClass[] = [];
+      let damagePct = 0;
+      let healsPct = 0;
       let dpsSpace = 0;
       if (isCombatantData(player)) {
         // CD/C/D
@@ -88,6 +90,8 @@ function Combatant({ player }: CombatantProps) {
           player.shield,
         ];
         healerClasses = ['oh', 'h', 's'];
+        damagePct = Number.parseFloat(player.damagePct) || 0;
+        healsPct = Number.parseFloat(player.healsPct) || 0;
       }
       switch (mapKey) {
         case 'healer':
@@ -105,6 +109,18 @@ function Combatant({ player }: CombatantProps) {
             pcts: [...dpsPcts].reverse(),
             classes: [...dpsClasses].reverse(),
             space: dpsSpace,
+          };
+        case 'damage-pct':
+          return {
+            pcts: [damagePct],
+            classes: ['d'],
+            space: Math.max(0, 100 - damagePct),
+          };
+        case 'heals-pct':
+          return {
+            pcts: [healsPct],
+            classes: ['h'],
+            space: Math.max(0, 100 - healsPct),
           };
         default:
           return { pcts: [], classes: new Array(3).fill('space'), space: 0 };
