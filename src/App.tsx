@@ -11,6 +11,11 @@ import clsx from 'clsx';
 import { CSSProperties, useMemo } from 'react';
 
 function App() {
+  const shouldCrash = /crash=[^0&]/i.test(window.location.search);
+  if (shouldCrash) {
+    throw new Error('ErrorBoundary Test Error');
+  }
+
   const showCombatants = useAppSelector(
     (state) => state.settings.showCombatants
   );

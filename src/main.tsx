@@ -8,6 +8,7 @@ import { isCEFSharp } from './api';
 import { store } from './store';
 import App from './App';
 import DevPanel from './DevPanel';
+import ErrorBoundary from './ErrorBoundary';
 
 let app = <App />;
 
@@ -21,7 +22,9 @@ const root = document.getElementById('root');
 if (root) {
   createRoot(root).render(
     <StrictMode>
-      <Provider store={store}>{app}</Provider>
+      <ErrorBoundary>
+        <Provider store={store}>{app}</Provider>
+      </ErrorBoundary>
     </StrictMode>
   );
 }
