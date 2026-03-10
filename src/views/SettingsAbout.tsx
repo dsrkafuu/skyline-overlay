@@ -77,7 +77,7 @@ function SettingsAbout() {
       </div>
       <div className='settings-row'>
         <span className='settings-title'>With the Help of</span>
-        <span className='settings-title'>GPT-5.3-Codex / Gemini 3.1 Pro</span>
+        <span className='settings-title'>GPT-5.3-Codex / GPT-5.4</span>
       </div>
       <div className='settings-row'>
         <span className='settings-title'>Copyright 2015 MIT License</span>
