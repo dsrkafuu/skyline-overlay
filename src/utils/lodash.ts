@@ -111,14 +111,3 @@ export function debounce<T extends (...args: any[]) => void>(
     }, wait);
   };
 }
-
-export async function sha1(message: string) {
-  const stable = message;
-  const msgUint8 = new TextEncoder().encode(stable);
-  const hashBuffer = await crypto.subtle.digest('SHA-1', msgUint8);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  const hashHex = hashArray
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
-  return hashHex;
-}

@@ -1,4 +1,4 @@
-import { cloneDeep, sha1 } from './lodash';
+import { cloneDeep } from './lodash';
 import { logInfo } from './loggers';
 import { OverlayAPI, ExtendData } from '@/api';
 import { RootState } from '@/store';
@@ -71,12 +71,8 @@ let lastDataHash = '';
 async function tryUpdateCombat(newData: ExtendData) {
   try {
     // prevent hash constantly changing leads to unnecessary re-render/history reset
-    const newDataHash = await sha1(
-      stablehash(
-        cloneDeep(newData).combatant.sort((a, b) =>
-          a.name.localeCompare(b.name)
-        )
-      )
+    const newDataHash = stablehash(
+      cloneDeep(newData).combatant.sort((a, b) => a.name.localeCompare(b.name))
     );
     if (lastDataHash !== newDataHash) {
       store.dispatch(updateCombat(newData));
