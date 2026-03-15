@@ -5,7 +5,6 @@ import { RootState } from '@/store';
 import { store } from '@/store';
 import { pushHistory, updateCombat } from '@/store/slices/api';
 
-import { cloneDeep } from './lodash';
 import { logInfo } from './loggers';
 
 const overlay = new OverlayAPI();
@@ -67,12 +66,30 @@ function tryPushHistory(newData: ExtendData) {
 
 let lastDataHash = '';
 
-async function tryUpdateCombat(newData: ExtendData) {
+function buildDedupeSnapshot(newData: ExtendData) {
+  const clonedCombatant = [...newData.combatant]
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((item) => ({ name: item.name, job: item.job, dps: item.dps, hps: item.hps }));
+  return {
+    active: newData.active,
+    encounter: {
+      duration: newData.encounter.duration,
+      durationSeconds: newData.encounter.durationSeconds,
+      zoneName: newData.encounter.zoneName,
+      dps: newData.encounter.dps,
+      hps: newData.encounter.hps,
+    },
+    combatant: clonedCombatant,
+    limitBreak: newData.limitBreak
+      ? { dps: newData.limitBreak.dps, hps: newData.limitBreak.hps }
+      : null,
+  };
+}
+
+function tryUpdateCombat(newData: ExtendData) {
   try {
-    // prevent hash constantly changing leads to unnecessary re-render/history reset
-    const newDataHash = stablehash(
-      cloneDeep(newData).combatant.sort((a, b) => a.name.localeCompare(b.name))
-    );
+    // stablehash dedupe avoids re-processing identical packets from upstream
+    const newDataHash = stablehash(buildDedupeSnapshot(newData));
     if (lastDataHash !== newDataHash) {
       store.dispatch(updateCombat(newData));
       lastDataHash = newDataHash;
