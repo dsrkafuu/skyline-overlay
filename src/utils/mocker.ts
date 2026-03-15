@@ -1,10 +1,14 @@
 import { cloneDeep } from './lodash';
-import overlay from './overlay';
 
 let int: number = -1;
 let mockData: any = null;
+let lazyOverlay: { simulateData: (data: any) => void } | null = null;
 
 export const startMock = async () => {
+  if (!lazyOverlay) {
+    lazyOverlay = (await import('./overlay')).default;
+  }
+
   let data = cloneDeep(mockData);
   if (!data) {
     const base = import.meta.env.BASE_URL ?? '';
@@ -27,7 +31,7 @@ export const startMock = async () => {
       data.Encounter.encdps += Number(newDPS);
     });
     data.Encounter.encdps = `${data.Encounter.encdps}`;
-    overlay.simulateData(data);
+    lazyOverlay?.simulateData(data);
     if (+ss >= 60) {
       mm = `${+mm + 1}`.padStart(2, '0');
       ss = '0'.padStart(2, '0');
