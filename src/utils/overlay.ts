@@ -1,10 +1,12 @@
-import { cloneDeep } from './lodash';
-import { logInfo } from './loggers';
+import stablehash from 'stable-hash';
+
 import { OverlayAPI, ExtendData } from '@/api';
 import { RootState } from '@/store';
 import { store } from '@/store';
 import { pushHistory, updateCombat } from '@/store/slices/api';
-import stablehash from 'stable-hash';
+
+import { cloneDeep } from './lodash';
+import { logInfo } from './loggers';
 
 const overlay = new OverlayAPI();
 const url = new URL(window.location.href);

@@ -1,11 +1,12 @@
+import clsx from 'clsx';
+import { useCallback, useMemo } from 'react';
+
 import { CombatantData, LimitBreakData } from '@/api';
 import { SList, SListRow } from '@/components';
 import { useAppSelector, useTranslation } from '@/hooks';
 import { fmtNumber } from '@/utils/formatters';
 import { DisplayContentMapKey } from '@/utils/maps';
 import { isLimitBreakData } from '@/utils/type';
-import clsx from 'clsx';
-import { useCallback, useMemo } from 'react';
 
 interface CombatantDetailProps {
   player: CombatantData | LimitBreakData;

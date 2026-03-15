@@ -1,4 +1,5 @@
-import SettingsTransfer from './SettingsTransfer';
+import { useMemo } from 'react';
+
 import { SInput, SInputNumber, SSelect, SSwitch } from '@/components';
 import { useAppDispatch, useAppSelector, useTranslation } from '@/hooks';
 import {
@@ -11,7 +12,8 @@ import {
   updateZoom,
 } from '@/store/slices/settings';
 import { MAP_LANG, MAP_FONT_FAMILY, MAP_LAYOUT_MODE } from '@/utils/maps';
-import { useMemo } from 'react';
+
+import SettingsTransfer from './SettingsTransfer';
 
 function SettingsGeneral() {
   const t = useTranslation();

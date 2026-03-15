@@ -1,6 +1,8 @@
-import useAppSelector from './useAppSelector';
-import lang from '@/lang';
 import { useCallback } from 'react';
+
+import lang from '@/lang';
+
+import useAppSelector from './useAppSelector';
 
 /**
  * hook for use of translation

@@ -1,8 +1,10 @@
-import useAppSelector from './useAppSelector';
+import { useMemo } from 'react';
+
 import themes from '@/themes';
 import { Colors } from '@/themes/support/colors';
 import { mergeDeep } from '@/utils/lodash';
-import { useMemo } from 'react';
+
+import useAppSelector from './useAppSelector';
 
 /**
  * hook for use of color

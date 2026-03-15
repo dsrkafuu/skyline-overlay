@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import { IChevronDown, IChevronUp } from '@/assets/icons';
 import { SInput, SInputNumber, SSelect, SSwitch } from '@/components';
 import { useAppDispatch, useAppSelector, useTranslation } from '@/hooks';
@@ -11,7 +13,6 @@ import {
   updateYouName,
 } from '@/store/slices/settings';
 import { MAP_SORT_RULE } from '@/utils/maps';
-import { useMemo } from 'react';
 
 function SettingsData() {
   const t = useTranslation();

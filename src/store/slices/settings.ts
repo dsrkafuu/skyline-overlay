@@ -1,4 +1,5 @@
-import { cleanMockData } from './api';
+import { createListenerMiddleware, createSlice, PayloadAction as PA } from '@reduxjs/toolkit';
+
 import { logWarn } from '@/api/utils/logger';
 import lang from '@/lang';
 import { injectFont } from '@/scss/fonts';
@@ -21,7 +22,8 @@ import {
 } from '@/utils/maps';
 import { startMock, stopMock } from '@/utils/mocker';
 import { getAsyncLSSetter, getLS } from '@/utils/storage';
-import { createListenerMiddleware, createSlice, PayloadAction as PA } from '@reduxjs/toolkit';
+
+import { cleanMockData } from './api';
 
 interface SortSettings {
   key: SortRuleMapKey;

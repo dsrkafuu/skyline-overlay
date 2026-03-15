@@ -1,7 +1,8 @@
 import './SInputNumber.scss';
-import { IAdd, IRemove } from '@/assets/icons';
 import clsx from 'clsx';
 import { useCallback } from 'react';
+
+import { IAdd, IRemove } from '@/assets/icons';
 
 interface SInputNumberProps {
   value: number;

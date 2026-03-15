@@ -1,8 +1,9 @@
+import clsx from 'clsx';
+import { useCallback, useState } from 'react';
+
 import { IDownload, IUpload, IRefresh } from '@/assets/icons';
 import { useLongPress, useTranslation } from '@/hooks';
 import { importSettings, exportSettings, clearSettings } from '@/utils/settings';
-import clsx from 'clsx';
-import { useCallback, useState } from 'react';
 
 function SettingsTransfer() {
   const t = useTranslation();

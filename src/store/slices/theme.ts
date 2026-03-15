@@ -1,10 +1,11 @@
+import { createListenerMiddleware, createSlice, PayloadAction as PA } from '@reduxjs/toolkit';
+
 import { RootState } from '@/store';
 import { applyColors, Colors } from '@/themes/support/colors';
 import { mergeDeep } from '@/utils/lodash';
 import { logDebug } from '@/utils/loggers';
 import { ThemeMapKey, ThemeModeMapKey } from '@/utils/maps';
 import { getAsyncLSSetter, getLS } from '@/utils/storage';
-import { createListenerMiddleware, createSlice, PayloadAction as PA } from '@reduxjs/toolkit';
 
 export interface ThemeState {
   theme: ThemeMapKey;

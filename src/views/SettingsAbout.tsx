@@ -1,7 +1,8 @@
+import { useCallback } from 'react';
+
 import { date, versionCode } from '@/assets/meta';
 import { useAppSelector, useTranslation } from '@/hooks';
 import themes from '@/themes';
-import { useCallback } from 'react';
 
 function SettingsAbout() {
   const t = useTranslation();

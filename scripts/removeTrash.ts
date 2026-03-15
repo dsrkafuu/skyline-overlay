@@ -1,11 +1,13 @@
 /**
  * remove redundant files in vite's output folder
  */
-import chalk from 'chalk';
+
 import fs from 'fs';
-import * as glob from 'glob';
 import path from 'path';
 import url from 'url';
+
+import chalk from 'chalk';
+import * as glob from 'glob';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

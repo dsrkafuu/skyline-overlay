@@ -1,15 +1,17 @@
 import './Combatant.scss';
-import CombatantBottom from './CombatantBottom';
-import CombatantContent from './CombatantContent';
-import CombatantDetail from './CombatantDetail';
-import CombatantName from './CombatantName';
+import clsx, { ClassArray } from 'clsx';
+import { memo, useCallback, useMemo, useState } from 'react';
+
 import { CombatantData, LimitBreakData, class2job } from '@/api';
 import { STicker, STickerProps, STickerClass } from '@/components';
 import { useAppSelector } from '@/hooks';
 import { TickerMapKey } from '@/utils/maps';
 import { isLimitBreakData, isCombatantData } from '@/utils/type';
-import clsx, { ClassArray } from 'clsx';
-import { memo, useCallback, useMemo, useState } from 'react';
+
+import CombatantBottom from './CombatantBottom';
+import CombatantContent from './CombatantContent';
+import CombatantDetail from './CombatantDetail';
+import CombatantName from './CombatantName';
 
 interface CombatantProps {
   player: CombatantData | LimitBreakData;

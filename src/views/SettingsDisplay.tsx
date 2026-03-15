@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import { SSelect, SSwitch } from '@/components';
 import { useAppDispatch, useAppSelector, useTranslation } from '@/hooks';
 import {
@@ -17,7 +19,6 @@ import {
   MAP_BOTTOM_DISP,
   MAP_SHORT_NAME,
 } from '@/utils/maps';
-import { useMemo } from 'react';
 
 function SettingsDisplay() {
   const t = useTranslation();

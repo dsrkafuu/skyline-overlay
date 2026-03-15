@@ -1,4 +1,7 @@
 import './Encounter.scss';
+import clsx from 'clsx';
+import { useCallback, useRef, useState } from 'react';
+
 import {
   IChevronUpCircle,
   IChevronDownCircle,
@@ -11,8 +14,6 @@ import { setLockedData } from '@/store/slices/api';
 import { toggleSettings, toggleShowCombatants } from '@/store/slices/settings';
 import { fmtDuration, fmtNumber, fmtZoneName } from '@/utils/formatters';
 import overlay from '@/utils/overlay';
-import clsx from 'clsx';
-import { useCallback, useRef, useState } from 'react';
 
 function Encounter() {
   const dispatch = useAppDispatch();

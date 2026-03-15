@@ -1,8 +1,9 @@
+import clsx from 'clsx';
+import { useEffect, useState } from 'react';
+
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { showHistory } from '@/store/slices/api';
 import { fmtDuration, fmtNumber, fmtZoneName } from '@/utils/formatters';
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
 
 function parseTime(time: number) {
   const d = new Date(time);

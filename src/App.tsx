@@ -1,14 +1,15 @@
 import './App.scss';
-import SW from './SW';
+import clsx from 'clsx';
+import { CSSProperties, useMemo } from 'react';
+
 import { CombatantData, LimitBreakData } from './api';
 import { useAppSelector } from './hooks';
+import SW from './SW';
 import { fmtMergePet } from './utils/formatters';
 import { cloneDeep } from './utils/lodash';
 import Combatant from './views/Combatant';
 import Encounter from './views/Encounter';
 import Settings from './views/Settings';
-import clsx from 'clsx';
-import { CSSProperties, useMemo } from 'react';
 
 function App() {
   const shouldCrash = /crash=[^0&]/i.test(window.location.search);

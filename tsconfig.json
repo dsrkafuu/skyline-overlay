@@ -14,10 +14,10 @@
     "jsx": "react-jsx",
     "incremental": true,
     "baseUrl": ".",
-   "paths": {
-      "@/*": ["./src/*"]
-    }
+    "paths": {
+      "@/*": ["./src/*"],
+    },
   },
-  "include": ["./src"],
-  "exclude": ["node_modules"]
+  "include": ["./src", "./scripts"],
+  "exclude": ["node_modules"],
 }

@@ -1,14 +1,14 @@
 import 'normalize.css';
 import './scss/utils.scss';
-
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
+
 import { isCEFSharp } from './api';
-import { store } from './store';
 import App from './App';
 import DevPanel from './DevPanel';
 import ErrorBoundary from './ErrorBoundary';
+import { store } from './store';
 
 let app = <App />;
 

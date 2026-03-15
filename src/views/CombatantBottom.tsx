@@ -1,9 +1,10 @@
+import { memo } from 'react';
+
 import { CombatantData, LimitBreakData } from '@/api';
 import { useAppSelector } from '@/hooks';
 import { fmtNumber } from '@/utils/formatters';
 import { BottomDispMapKey } from '@/utils/maps';
 import { isCombatantData } from '@/utils/type';
-import { memo } from 'react';
 
 interface CombatantBottomProps {
   player: CombatantData | LimitBreakData;
