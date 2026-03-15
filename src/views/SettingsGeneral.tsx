@@ -40,18 +40,12 @@ function SettingsGeneral() {
     () => [
       {
         title: t('Mock Data'),
-        render: () => (
-          <SSwitch value={mock} onChange={(v) => dispatch(updateMock(v))} />
-        ),
+        render: () => <SSwitch value={mock} onChange={(v) => dispatch(updateMock(v))} />,
       },
       {
         title: t('Language'),
         render: () => (
-          <SSelect
-            value={lang}
-            onChange={(v) => dispatch(updateLang(v))}
-            map={MAP_LANG}
-          />
+          <SSelect value={lang} onChange={(v) => dispatch(updateLang(v))} map={MAP_LANG} />
         ),
       },
       {

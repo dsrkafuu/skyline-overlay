@@ -35,9 +35,7 @@ function CombatantDetail({ player, color, lockDetail }: CombatantDetailProps) {
   const keyNotDisplayed = useCallback(
     (key: DisplayContentMapKey) =>
       (dispMode === 'single' && dispContent.right !== key) ||
-      (dispMode === 'dual' &&
-        dispContent.left !== key &&
-        dispContent.right !== key),
+      (dispMode === 'dual' && dispContent.left !== key && dispContent.right !== key),
     [dispContent.left, dispContent.right, dispMode]
   );
 

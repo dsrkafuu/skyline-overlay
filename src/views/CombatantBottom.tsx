@@ -14,20 +14,14 @@ function CombatantBottom({ player, mode = 'none' }: CombatantBottomProps) {
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
 
   if (mode === 'maxhit') {
-    const maxHitDamage = isCombatantData(player)
-      ? player.maxHitDamage
-      : player.damage;
-    const maxHealDamage = isCombatantData(player)
-      ? player.maxHealDamage
-      : player.healed;
+    const maxHitDamage = isCombatantData(player) ? player.maxHitDamage : player.damage;
+    const maxHealDamage = isCombatantData(player) ? player.maxHealDamage : player.healed;
 
     if (maxHitDamage) {
       return (
         <div className='combatant-bottom combatant-bottom-maxhit'>
           <span>&nbsp;{player.maxHit}&nbsp;</span>
-          {maxHitDamage > 0 && (
-            <span>-&nbsp;{fmtNumber(maxHitDamage, shortNumber)}&nbsp;</span>
-          )}
+          {maxHitDamage > 0 && <span>-&nbsp;{fmtNumber(maxHitDamage, shortNumber)}&nbsp;</span>}
         </div>
       );
     } else if (maxHealDamage) {

@@ -47,9 +47,7 @@ interface DevPanelProps {
 }
 
 function DevPanel({ children }: DevPanelProps) {
-  const [showPanel, setShowPanel] = useState(
-    () => getSettings().showPanel || false
-  );
+  const [showPanel, setShowPanel] = useState(() => getSettings().showPanel || false);
 
   const [bgImage, setBGImage] = useState(() => getSettings().bgImage);
   const [bgSize, setBGSize] = useState(() => getSettings().bgSize);

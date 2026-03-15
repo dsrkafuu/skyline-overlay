@@ -16,9 +16,7 @@ function App() {
     throw new Error('ErrorBoundary Test Error');
   }
 
-  const showCombatants = useAppSelector(
-    (state) => state.settings.showCombatants
-  );
+  const showCombatants = useAppSelector((state) => state.settings.showCombatants);
   const sort = useAppSelector((state) => state.settings.sort);
   const playerLimit = useAppSelector((state) => state.settings.playerLimit);
   const showLB = useAppSelector((state) => state.settings.showLB);
@@ -69,10 +67,7 @@ function App() {
     >
       <div className='container' style={opacityStyle}>
         {showCombatants && Boolean(combatant) && combatant.length > 0 && (
-          <div
-            className='combatants'
-            style={{ width: `${playerPerRow * 1.26 + 0.01}rem` }}
-          >
+          <div className='combatants' style={{ width: `${playerPerRow * 1.26 + 0.01}rem` }}>
             {playersWithLB.map((player, index) => (
               <Combatant player={player} index={index} key={player.name} />
             ))}

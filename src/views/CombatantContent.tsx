@@ -37,17 +37,13 @@ function CombatantContent({
   const onDetailLeave = useCallback(() => {
     !lockDetail && setShowDetail(false);
   }, [lockDetail, setShowDetail]);
-  const onSwitchDetailLock = useCallback(
-    () => setLockDetail((val) => !val),
-    [setLockDetail]
-  );
+  const onSwitchDetailLock = useCallback(() => setLockDetail((val) => !val), [setLockDetail]);
 
   // job icon component
   const Icon = isLimitBreakData(player)
     ? jobIcons.FFXIV
-    : jobIcons[
-        String.prototype.toUpperCase.apply(player.job) as keyof typeof jobIcons
-      ] || jobIcons.FFXIV;
+    : jobIcons[String.prototype.toUpperCase.apply(player.job) as keyof typeof jobIcons] ||
+      jobIcons.FFXIV;
 
   return (
     <div
@@ -60,9 +56,7 @@ function CombatantContent({
       {dispMode === 'dual' && (
         <div className='combatant-content-data'>
           <span className='g-number'>
-            {(typeof leftDisp === 'number' &&
-              fmtNumber(leftDisp, shortNumber)) ||
-              leftDisp}
+            {(typeof leftDisp === 'number' && fmtNumber(leftDisp, shortNumber)) || leftDisp}
           </span>
           <span className='g-counter'>{leftDispUnit}</span>
         </div>
@@ -72,9 +66,7 @@ function CombatantContent({
       </span>
       <div className='combatant-content-data'>
         <span className='g-number'>
-          {(typeof rightDisp === 'number' &&
-            fmtNumber(rightDisp, shortNumber)) ||
-            rightDisp}
+          {(typeof rightDisp === 'number' && fmtNumber(rightDisp, shortNumber)) || rightDisp}
         </span>
         <span className='g-counter'>{rightDispUnit}</span>
       </div>

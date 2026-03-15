@@ -12,13 +12,7 @@ export interface STickerProps {
   className?: string;
 }
 
-function STicker({
-  pcts,
-  classes,
-  space = 0,
-  align = 'left',
-  className,
-}: STickerProps) {
+function STicker({ pcts, classes, space = 0, align = 'left', className }: STickerProps) {
   const localPcts = pcts.map((pct) => Math.floor(pct) || 0);
   const localClasses = [...classes];
   if (localPcts.length > 3) {

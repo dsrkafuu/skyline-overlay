@@ -9,10 +9,7 @@ export type StorageKey = 'settings' | 'theme' | 'dev';
  */
 export function setLS(key: StorageKey, value: unknown) {
   try {
-    localStorage.setItem(
-      STORAGE_PREFIX + key.toUpperCase(),
-      JSON.stringify(value)
-    );
+    localStorage.setItem(STORAGE_PREFIX + key.toUpperCase(), JSON.stringify(value));
   } catch (e) {
     logError(e);
   }

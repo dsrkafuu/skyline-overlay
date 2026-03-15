@@ -79,9 +79,7 @@ function Combatant({ player }: CombatantProps) {
         ];
         dpsClasses = ['cd', 'c', 'd'];
         // all normal hits
-        dpsSpace =
-          player.hits -
-          (player.critHits + player.directHits - player.directCritHits);
+        dpsSpace = player.hits - (player.critHits + player.directHits - player.directCritHits);
         // OH/H/S
         healerPcts = [
           player.overHeal,
@@ -165,11 +163,7 @@ function Combatant({ player }: CombatantProps) {
       )}
 
       {needDetail && (lockDetail || showDetail) && (
-        <CombatantDetail
-          player={player}
-          color={color}
-          lockDetail={lockDetail}
-        />
+        <CombatantDetail player={player} color={color} lockDetail={lockDetail} />
       )}
     </div>
   );

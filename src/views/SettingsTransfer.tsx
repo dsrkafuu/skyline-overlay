@@ -1,10 +1,6 @@
 import { IDownload, IUpload, IRefresh } from '@/assets/icons';
 import { useLongPress, useTranslation } from '@/hooks';
-import {
-  importSettings,
-  exportSettings,
-  clearSettings,
-} from '@/utils/settings';
+import { importSettings, exportSettings, clearSettings } from '@/utils/settings';
 import clsx from 'clsx';
 import { useCallback, useState } from 'react';
 
@@ -32,8 +28,10 @@ function SettingsTransfer() {
     window.location.reload();
   }, []);
   // clear settings after 5s
-  const { onMouseDown, onTouchStart, onMouseUp, onTouchEnd, onMouseLeave } =
-    useLongPress(handleClear, { delay: 5000 });
+  const { onMouseDown, onTouchStart, onMouseUp, onTouchEnd, onMouseLeave } = useLongPress(
+    handleClear,
+    { delay: 5000 }
+  );
   // rotating icon
   const [rotate, setRotate] = useState(false);
   const onMouseDownRotate = useCallback(

@@ -2,11 +2,7 @@ import { toggleShowCombatants } from './settings';
 import { ExtendData } from '@/api';
 import { RootState } from '@/store';
 import { logDebug } from '@/utils/loggers';
-import {
-  createListenerMiddleware,
-  createSlice,
-  PayloadAction as PA,
-} from '@reduxjs/toolkit';
+import { createListenerMiddleware, createSlice, PayloadAction as PA } from '@reduxjs/toolkit';
 
 interface HistoryData extends ExtendData {
   time: number;
@@ -91,13 +87,8 @@ export const apiSlice = createSlice({
   },
 });
 
-export const {
-  updateCombat,
-  setLockedData,
-  showHistory,
-  pushHistory,
-  cleanMockData,
-} = apiSlice.actions;
+export const { updateCombat, setLockedData, showHistory, pushHistory, cleanMockData } =
+  apiSlice.actions;
 
 /** @redux effects */
 

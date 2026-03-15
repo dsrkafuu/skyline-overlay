@@ -169,9 +169,7 @@ function parsePlayer(input: unknown): CombatantData {
     overHeal: getIntField(data, 'overHeal'),
     overHealPct: getStringField(data, 'OverHealPct'),
     shield,
-    shieldPct: `${
-      Math.round((shield / healed || 0) * getPctNum(healedPct)) || 0
-    }%`,
+    shieldPct: `${Math.round((shield / healed || 0) * getPctNum(healedPct)) || 0}%`,
 
     maxHit,
     maxHitDamage,

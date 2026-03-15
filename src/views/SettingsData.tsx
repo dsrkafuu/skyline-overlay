@@ -73,35 +73,20 @@ function SettingsData() {
       },
       {
         title: t('Show Limit Break'),
-        render: () => (
-          <SSwitch value={showLB} onChange={(v) => dispatch(updateShowLB(v))} />
-        ),
+        render: () => <SSwitch value={showLB} onChange={(v) => dispatch(updateShowLB(v))} />,
       },
       {
         title: t('Custom ID'),
-        render: () => (
-          <SInput
-            value={youName}
-            onChange={(v) => dispatch(updateYouName(v))}
-          />
-        ),
+        render: () => <SInput value={youName} onChange={(v) => dispatch(updateYouName(v))} />,
       },
       {
         title: t('Pet-Merging ID'),
-        render: () => (
-          <SInput
-            value={petMergeID}
-            onChange={(v) => dispatch(updatePetMergeID(v))}
-          />
-        ),
+        render: () => <SInput value={petMergeID} onChange={(v) => dispatch(updatePetMergeID(v))} />,
       },
       {
         title: t('Auto Short Number'),
         render: () => (
-          <SSwitch
-            value={shortNumber}
-            onChange={(v) => dispatch(updateShortNumber(v))}
-          />
+          <SSwitch value={shortNumber} onChange={(v) => dispatch(updateShortNumber(v))} />
         ),
       },
     ],

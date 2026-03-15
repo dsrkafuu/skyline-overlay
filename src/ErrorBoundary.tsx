@@ -43,9 +43,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       <div className='container'>
         <div className='app-error'>
           <div className='app-error-title'>Skyline Overlay</div>
-          <div className='app-error-desc'>
-            Rendering failed due to unexpected data or UI state.
-          </div>
+          <div className='app-error-desc'>Rendering failed due to unexpected data or UI state.</div>
           <button className='app-error-btn' onClick={this.handleReload}>
             Reload Overlay
           </button>

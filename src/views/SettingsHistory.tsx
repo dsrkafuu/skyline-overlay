@@ -49,19 +49,11 @@ function SettingsHistoryRow({
       })}
       onClick={onClick}
     >
-      <div className='settings-history-item settings-history-time'>
-        {parseTime(time || now)}
-      </div>
-      <div className='settings-history-item settings-history-duration'>
-        {fmtDuration(duration)}
-      </div>
-      <div className='settings-history-item settings-history-zone'>
-        {fmtZoneName(zoneName)}
-      </div>
+      <div className='settings-history-item settings-history-time'>{parseTime(time || now)}</div>
+      <div className='settings-history-item settings-history-duration'>{fmtDuration(duration)}</div>
+      <div className='settings-history-item settings-history-zone'>{fmtZoneName(zoneName)}</div>
       <div className='settings-history-item settings-history-dps'>
-        <span className='g-number'>
-          {fmtNumber(dps, shortNumber)}
-        </span>
+        <span className='g-number'>{fmtNumber(dps, shortNumber)}</span>
         <span className='g-counter'>DPS</span>
       </div>
     </div>

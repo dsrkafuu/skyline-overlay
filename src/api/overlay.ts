@@ -221,9 +221,7 @@ export class OverlayAPI {
    */
   addListener(event: EventType, cb: EventCallback) {
     if (this._eventCenter[event].started) {
-      logWarn(
-        `listener for \`${event}\` added after event transmission already started`
-      );
+      logWarn(`listener for \`${event}\` added after event transmission already started`);
       logWarn(`some events might have been missed`);
       logWarn(`please register your listeners before calling \`startEvent()\``);
     }
@@ -268,18 +266,16 @@ export class OverlayAPI {
    * start listening event
    */
   startEvent() {
-    const eventTypesWithListeners = (
-      Object.keys(this._eventCenter) as Array<EventType>
-    ).filter((eventType) => {
-      return this._eventCenter[eventType].listeners.length > 0;
-    });
+    const eventTypesWithListeners = (Object.keys(this._eventCenter) as Array<EventType>).filter(
+      (eventType) => {
+        return this._eventCenter[eventType].listeners.length > 0;
+      }
+    );
     this._sendMessage({
       call: 'subscribe',
       events: eventTypesWithListeners,
     });
-    logInfo(
-      `${eventTypesWithListeners.length} types of event transmission started`
-    );
+    logInfo(`${eventTypesWithListeners.length} types of event transmission started`);
   }
 
   /**

@@ -21,11 +21,7 @@ import {
 } from '@/utils/maps';
 import { startMock, stopMock } from '@/utils/mocker';
 import { getAsyncLSSetter, getLS } from '@/utils/storage';
-import {
-  createListenerMiddleware,
-  createSlice,
-  PayloadAction as PA,
-} from '@reduxjs/toolkit';
+import { createListenerMiddleware, createSlice, PayloadAction as PA } from '@reduxjs/toolkit';
 
 interface SortSettings {
   key: SortRuleMapKey;
@@ -366,8 +362,7 @@ listener.startListening({
       const currentWeight = state.settings?.fonts?.weight;
       if (
         nextFamilyData &&
-        (currentWeight < nextFamilyData.weights[0] ||
-          currentWeight > nextFamilyData.weights[1])
+        (currentWeight < nextFamilyData.weights[0] || currentWeight > nextFamilyData.weights[1])
       ) {
         logDebug('Listener::Settings::updateFonts::resetFontWeight');
         api.dispatch(updateFonts({ weight: 400 }));

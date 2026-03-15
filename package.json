@@ -1,20 +1,20 @@
 {
-  "private": true,
+  "type": "module",
   "name": "skyline-overlay",
   "version": "4.5.0",
-  "versionCode": "Krile Baldesion",
+  "private": true,
   "description": "A modern customizable horizon FFXIV miniparse overlay.",
   "license": "Apache-2.0",
   "author": "DSRKafuU <dsrkafuu@outlook.com> (https://dsrkafuu.net)",
   "scripts": {
-    "eslint": "eslint ./src",
+    "oxlint": "oxlint",
     "typecheck": "tsc",
     "bundle": "vite build",
     "serve": "vite",
     "script:genIconIdx": "bun \"./scripts/genIconIdx.ts\"",
     "script:genMeta": "bun \"./scripts/genMeta.ts\"",
     "script:removeTrash": "bun \"./scripts/removeTrash.ts\"",
-    "build": "cross-env NODE_ENV=production run-s script:genIconIdx script:genMeta typecheck eslint bundle script:removeTrash",
+    "build": "cross-env NODE_ENV=production run-s script:genIconIdx script:genMeta typecheck oxlint bundle script:removeTrash",
     "analyze": "cross-env NODE_ENV=production ENABLE_ANALYZER=1 run-s script:genIconIdx script:genMeta bundle",
     "dev": "cross-env NODE_ENV=development VITE_GA_ID=TEST run-s script:genIconIdx script:genMeta serve"
   },
@@ -31,23 +31,16 @@
     "workbox-window": "^7.4.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.3",
-    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^25.3.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.4",
     "chalk": "^5.6.2",
     "cross-env": "^10.1.0",
-    "eslint": "^9.39.3",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.0.1",
     "glob": "^13.0.6",
-    "globals": "^17.3.0",
-    "jiti": "^2.6.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^3.8.1",
+    "oxfmt": "^0.40.0",
+    "oxlint": "^1.55.0",
     "sass": "^1.97.3",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.0",
@@ -55,5 +48,6 @@
     "vite-bundle-analyzer": "^1.3.6",
     "vite-plugin-pwa": "^1.2.0",
     "vite-plugin-svgr": "^4.5.0"
-  }
+  },
+  "versionCode": "Krile Baldesion"
 }

@@ -21,9 +21,7 @@ function Encounter() {
   const isLocked = lockedData !== null;
   const active = data.active;
   const encounter = (lockedData || data).encounter;
-  const showCombatants = useAppSelector(
-    (state) => state.settings.showCombatants
-  );
+  const showCombatants = useAppSelector((state) => state.settings.showCombatants);
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
   const layoutMode = useAppSelector((state) => state.settings.layoutMode);
 
@@ -104,9 +102,7 @@ function Encounter() {
           <span ref={zoneInnerRef}>{zoneName}</span>
         </div>
         <div className='encounter-content-numbers' onClick={handleSwitchDHPS}>
-          <span className='g-number'>
-            {fmtNumber(totalDPS, shortNumber)}
-          </span>
+          <span className='g-number'>{fmtNumber(totalDPS, shortNumber)}</span>
           <span className='g-counter'>{showDHPS.toUpperCase()}</span>
         </div>
       </div>

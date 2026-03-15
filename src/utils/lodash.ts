@@ -39,9 +39,7 @@ interface ObjectLike {
   [key: string]: any;
   length?: never;
 }
-type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
-  k: infer I
-) => void
+type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void
   ? I
   : never;
 function isObject(obj: any) {
@@ -57,18 +55,13 @@ function isObject(obj: any) {
 /**
  * custom deep merge
  */
-export function mergeDeep<T extends ObjectLike[]>(
-  ...objects: T
-): UnionToIntersection<T[number]> {
+export function mergeDeep<T extends ObjectLike[]>(...objects: T): UnionToIntersection<T[number]> {
   return objects.reduce((result, current) => {
     Object.keys(current).forEach((key) => {
       if (Array.isArray(result[key]) && Array.isArray(current[key])) {
         result[key] = current[key];
       } else if (isObject(result[key]) && isObject(current[key])) {
-        result[key] = mergeDeep(
-          result[key] as ObjectLike,
-          current[key] as ObjectLike
-        );
+        result[key] = mergeDeep(result[key] as ObjectLike, current[key] as ObjectLike);
       } else {
         result[key] = current[key];
       }

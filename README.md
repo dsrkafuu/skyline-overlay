@@ -145,4 +145,7 @@ Only latest changes listed here.
 - Improved encounter-end behavior: ending a battle no longer immediately inserts history; finished data stays on screen until next battle starts
 - Removed `Big Number Mode` entirely (settings state/action, formatting path, UI toggle, and i18n entries)
 - Performance and render optimizations from recent refactors (memoized heavy paths and reduced redundant re-renders)
+- Hardened external `CombatData` normalization with runtime-safe parsing and fallback defaults for unstable upstream payloads
+- Added top-level React Error Boundary with fallback UI and one-click overlay reload on render failures
+- Kept `stablehash` dedupe while simplifying update flow by removing async `sha1` path to reduce maintenance and timing risks
 - Updated callback-mode compatibility binding to upstream style (removed legacy `dispatchOverlayEvent` assignment)

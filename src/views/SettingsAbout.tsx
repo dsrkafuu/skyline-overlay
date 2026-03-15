@@ -55,23 +55,13 @@ function SettingsAbout() {
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{t('Theme Credits')}</span>
-        <a
-          className='g-link'
-          href={themeAuthor.link}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
+        <a className='g-link' href={themeAuthor.link} target='_blank' rel='noopener noreferrer'>
           {themeAuthor.name}
         </a>
       </div>
       <div className='settings-row'>
         <span className='settings-title'>{`Copyright ${new Date().getFullYear()} Apache-2.0 License`}</span>
-        <a
-          className='g-link'
-          href='https://dsrkafuu.net'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
+        <a className='g-link' href='https://dsrkafuu.net' target='_blank' rel='noopener noreferrer'>
           DSRKafuU
         </a>
       </div>
@@ -91,9 +81,7 @@ function SettingsAbout() {
         </a>
       </div>
       <div className='settings-row'>
-        <span className='settings-title'>
-          Copyright 2010 SQUARE ENIX CO., LTD.
-        </span>
+        <span className='settings-title'>Copyright 2010 SQUARE ENIX CO., LTD.</span>
         <a
           className='g-link'
           href='https://www.finalfantasyxiv.com'

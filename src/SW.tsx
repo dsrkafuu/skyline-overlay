@@ -36,9 +36,7 @@ function SW() {
       })}
     >
       <div className='sw-text'>
-        {offlineReady
-          ? t('App Ready to Work Offline')
-          : t('Refresh to New Version Available')}
+        {offlineReady ? t('App Ready to Work Offline') : t('Refresh to New Version Available')}
       </div>
       {offlineReady ? (
         <div className='sw-btn' onClick={handleClose}>

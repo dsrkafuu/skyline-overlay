@@ -4,11 +4,7 @@ import { mergeDeep } from '@/utils/lodash';
 import { logDebug } from '@/utils/loggers';
 import { ThemeMapKey, ThemeModeMapKey } from '@/utils/maps';
 import { getAsyncLSSetter, getLS } from '@/utils/storage';
-import {
-  createListenerMiddleware,
-  createSlice,
-  PayloadAction as PA,
-} from '@reduxjs/toolkit';
+import { createListenerMiddleware, createSlice, PayloadAction as PA } from '@reduxjs/toolkit';
 
 export interface ThemeState {
   theme: ThemeMapKey;
@@ -40,11 +36,7 @@ try {
 }
 
 // apply initial dom
-function applyTheme(
-  value: ThemeMapKey,
-  themeMode: ThemeModeMapKey,
-  colors: DeepPartial<Colors>
-) {
+function applyTheme(value: ThemeMapKey, themeMode: ThemeModeMapKey, colors: DeepPartial<Colors>) {
   logDebug('Store::Theme::applyTheme', value, themeMode, colors);
   document.body.setAttribute('data-theme', value);
   applyColors(value, themeMode, colors);
@@ -79,8 +71,7 @@ export const themeSlice = createSlice({
   },
 });
 
-export const { updateTheme, updateThemeMode, updateColors } =
-  themeSlice.actions;
+export const { updateTheme, updateThemeMode, updateColors } = themeSlice.actions;
 
 /** @redux effects */
 

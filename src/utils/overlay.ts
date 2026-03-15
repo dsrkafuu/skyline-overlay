@@ -21,10 +21,7 @@ function canPushHistory(data: ExtendData) {
   return encounter.durationSeconds > 0 || encounter.duration !== '00:00';
 }
 
-function isLikelyNewBattleAfterMissingInactive(
-  prev: ExtendData,
-  next: ExtendData
-) {
+function isLikelyNewBattleAfterMissingInactive(prev: ExtendData, next: ExtendData) {
   // If both are active but timer jumps backward, previous battle likely ended
   // and an inactive packet was missed under rapid end/start interactions.
   return (
