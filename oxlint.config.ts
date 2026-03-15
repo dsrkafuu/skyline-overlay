@@ -6,4 +6,5 @@ export default defineConfig({
   rules: {
     'no-unused-expressions': 'off',
   },
+  ignorePatterns: ['dist/**', 'dev-dist/**'],
 });

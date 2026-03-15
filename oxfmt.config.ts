@@ -5,4 +5,5 @@ export default defineConfig({
   jsxSingleQuote: true,
   trailingComma: 'es5',
   sortImports: {},
+  ignorePatterns: ['dist/**', 'dev-dist/**', '*.html'],
 });
