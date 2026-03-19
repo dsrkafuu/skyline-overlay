@@ -10,7 +10,7 @@ import {
   ILockOpen,
 } from '@/assets/icons';
 import { useAppDispatch, useAppSelector } from '@/hooks';
-import { setLockedData } from '@/store/slices/api';
+import { resetEncounter, setLockedData } from '@/store/slices/api';
 import { toggleSettings, toggleShowCombatants } from '@/store/slices/settings';
 import { fmtDuration, fmtNumber, fmtZoneName } from '@/utils/formatters';
 import overlay from '@/utils/overlay';
@@ -35,7 +35,8 @@ function Encounter() {
    */
   const handleEndEncounter = useCallback(async () => {
     await overlay.endEncounter();
-  }, []);
+    dispatch(resetEncounter());
+  }, [dispatch]);
 
   const handleToggleShowCombatants = useCallback(() => {
     dispatch(toggleShowCombatants());

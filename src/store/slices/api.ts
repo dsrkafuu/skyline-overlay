@@ -32,6 +32,15 @@ const initialState: APIState = {
   lockedData: null,
 };
 
+function hasCurrentBattleData(data: ExtendData) {
+  return (
+    data.active ||
+    data.combatant.length > 0 ||
+    data.encounter.durationSeconds > 0 ||
+    data.encounter.duration !== '00:00'
+  );
+}
+
 /** @redux slice */
 
 export const apiSlice = createSlice({
@@ -86,11 +95,31 @@ export const apiSlice = createSlice({
       logDebug('Store::API::cleanMockData');
       state.data = cleanData;
     },
+    /**
+     * split current battle and reset display state,
+     * while keeping existing history entries.
+     */
+    resetEncounter(state) {
+      logDebug('Store::API::resetEncounter');
+      if (hasCurrentBattleData(state.data)) {
+        state.historys.length >= 5 && state.historys.pop();
+        state.historys.unshift({ time: Date.now(), ...state.data });
+      }
+      state.data = cleanData;
+      state.lockedData = null;
+      state.historyIdx = -1;
+    },
   },
 });
 
-export const { updateCombat, setLockedData, showHistory, pushHistory, cleanMockData } =
-  apiSlice.actions;
+export const {
+  updateCombat,
+  setLockedData,
+  showHistory,
+  pushHistory,
+  cleanMockData,
+  resetEncounter,
+} = apiSlice.actions;
 
 /** @redux effects */
 
