@@ -33,11 +33,14 @@ const initialState: APIState = {
 };
 
 function hasCurrentBattleData(data: ExtendData) {
+  const durationSeconds = Number(data.encounter?.durationSeconds) || 0;
+  const duration =
+    typeof data.encounter?.duration === 'string' ? data.encounter.duration.trim() : '';
   return (
     data.active ||
     data.combatant.length > 0 ||
-    data.encounter.durationSeconds > 0 ||
-    data.encounter.duration !== '00:00'
+    durationSeconds > 0 ||
+    (duration !== '' && duration !== '00:00')
   );
 }
 
