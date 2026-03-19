@@ -12,7 +12,7 @@ import Encounter from './views/Encounter';
 import Settings from './views/Settings';
 
 function App() {
-  const shouldCrash = /crash=[^0&]/i.test(window.location.search);
+  const shouldCrash = import.meta.env.DEV && /crash=[^0&]/i.test(window.location.search);
   if (shouldCrash) {
     throw new Error('ErrorBoundary Test Error');
   }
