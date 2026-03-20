@@ -100,6 +100,20 @@ function tryUpdateCombat(newData: ExtendData) {
   }
 }
 
+/**
+ * Cancel the pending history and simulate an already-processed inactive transition,
+ * so that manual reset via resetEncounter() does not produce a duplicate history entry.
+ * Call this before dispatching resetEncounter() from the UI.
+ */
+export function clearPendingHistory() {
+  pendingHistory = null;
+  // Fake an inactive lastData so tryPushHistory won't re-arm pendingHistory
+  // when the natural inactive CombatData packet arrives from ACT.
+  if (lastData) {
+    lastData = { ...lastData, active: false };
+  }
+}
+
 // add overlay callback
 overlay.addListener('CombatData', (rawData) => {
   const data = rawData.extendData;
