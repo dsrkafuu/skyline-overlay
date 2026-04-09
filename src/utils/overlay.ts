@@ -15,6 +15,8 @@ const raw = /rawdata=[^0&]/gi.test(url.search);
 let lastData: ExtendData | null = null;
 // store a finished battle snapshot and push it when next battle starts
 let pendingHistory: ExtendData | null = null;
+// track manual reset timestamp to avoid re-displaying data after user clicks end encounter
+let lastManualResetTime = 0;
 
 function canPushHistory(data: ExtendData) {
   const { encounter } = data;
@@ -107,6 +109,7 @@ function tryUpdateCombat(newData: ExtendData) {
  */
 export function clearPendingHistory() {
   pendingHistory = null;
+  lastManualResetTime = Date.now();
   // Fake an inactive lastData so tryPushHistory won't re-arm pendingHistory
   // when the natural inactive CombatData packet arrives from ACT.
   if (lastData) {
@@ -124,9 +127,11 @@ overlay.addListener('CombatData', (rawData) => {
     tryPushHistory(data);
     const state = store.getState() as RootState;
     const isManuallyLocked = state.api.lockedData !== null;
+    const isJustAfterManualReset = !data.active && Date.now() - lastManualResetTime < 1000;
     // after encounter end, keep showing last finished battle until next battle starts
     // when manually locked, always keep syncing real-time data in background
-    if (isManuallyLocked || !(pendingHistory && !data.active)) {
+    // skip updating if this is the inactive packet that arrived right after manual reset
+    if (isManuallyLocked || (!(pendingHistory && !data.active) && !isJustAfterManualReset)) {
       tryUpdateCombat(data);
     }
   }
