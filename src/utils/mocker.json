@@ -4,7 +4,7 @@
   "Encounter": {
     "duration": "01:35",
     "DURATION": "95",
-    "CurrentZoneName": "阿卡狄亚零式登天斗技场 (重量级2)",
+    "CurrentZoneName": "AAC Heavyweight M2 (Savage)",
     "encdps": "220339.87",
     "Last10DPS": "220339",
     "Last30DPS": "220339",
@@ -40,7 +40,7 @@
       "overHeal": "0",
       "OverHealPct": "0%",
       "damageShield": "0",
-      "maxhit": "冰晶乱流之术-233984",
+      "maxhit": "Hyosho Ranryu-233984",
       "maxheal": ""
     },
     "YOU": {
@@ -69,7 +69,7 @@
       "overHeal": "0",
       "OverHealPct": "0%",
       "damageShield": "0",
-      "maxhit": "天道雪月花-209658",
+      "maxhit": "Tendo Setsugekka-209658",
       "maxheal": ""
     },
     "Player 3": {
@@ -98,7 +98,7 @@
       "overHeal": "0",
       "OverHealPct": "0%",
       "damageShield": "0",
-      "maxhit": "焦热-169317",
+      "maxhit": "Scorch-169317",
       "maxheal": ""
     },
     "Player 4": {
@@ -127,7 +127,7 @@
       "overHeal": "0",
       "OverHealPct": "0%",
       "damageShield": "0",
-      "maxhit": "绝峰箭-139982",
+      "maxhit": "Apex Arrow-139982",
       "maxheal": ""
     },
     "Player 5": {
@@ -156,8 +156,8 @@
       "overHeal": "1576",
       "OverHealPct": "0%",
       "damageShield": "0",
-      "maxhit": "戮山-97305",
-      "maxheal": "死而不僵-85868"
+      "maxhit": "Torcleaver-97305",
+      "maxheal": "Walking Dead-85868"
     },
     "Player 6": {
       "name": "Player 6",
@@ -185,8 +185,8 @@
       "overHeal": "36460",
       "OverHealPct": "14%",
       "damageShield": "0",
-      "maxhit": "英勇之剑-172985",
-      "maxheal": "圣灵-39603"
+      "maxhit": "Blade of Valor-172985",
+      "maxheal": "Holy Spirit-39603"
     },
     "Player 7": {
       "name": "Player 7",
@@ -214,8 +214,8 @@
       "overHeal": "1169523",
       "OverHealPct": "27%",
       "damageShield": "197142",
-      "maxhit": "苦难之心-155193",
-      "maxheal": "天赐祝福-186846"
+      "maxhit": "Afflatus Misery-155193",
+      "maxheal": "Benediction-186846"
     },
     "Player 8": {
       "name": "Player 8",
@@ -243,8 +243,8 @@
       "overHeal": "572392",
       "OverHealPct": "40%",
       "damageShield": "246904",
-      "maxhit": "发炎III-92821",
-      "maxheal": "血印-90946"
+      "maxhit": "Phlegma III-92821",
+      "maxheal": "Haimatinon-90946"
     }
   }
 }
