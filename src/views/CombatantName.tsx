@@ -1,9 +1,10 @@
+import clsx from 'clsx';
+import { memo, useMemo } from 'react';
+
 import { CombatantData, LimitBreakData } from '@/api';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { toggleBlurName } from '@/store/slices/settings';
 import { MAP_SHORT_NAME } from '@/utils/maps';
-import clsx from 'clsx';
-import { useMemo } from 'react';
 
 interface CombatantNameProps {
   player: CombatantData | LimitBreakData;
@@ -46,4 +47,4 @@ function CombatantName({ player }: CombatantNameProps) {
   );
 }
 
-export default CombatantName;
+export default memo(CombatantName);

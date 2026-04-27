@@ -7,6 +7,38 @@ import {
   ExtendData,
 } from '../types';
 import { getPctNum, getInt } from '../utils/getter';
+import { logWarn } from '../utils/logger';
+
+type AnyRecord = Record<string, unknown>;
+
+function asRecord(input: unknown): AnyRecord | null {
+  if (typeof input === 'object' && input !== null) {
+    return input as AnyRecord;
+  }
+  return null;
+}
+
+function getField(data: AnyRecord | null, ...keys: string[]) {
+  if (!data) return undefined;
+  for (const key of keys) {
+    if (Object.prototype.hasOwnProperty.call(data, key)) {
+      return data[key];
+    }
+  }
+  return undefined;
+}
+
+function getStringField(data: AnyRecord | null, ...keys: string[]) {
+  const value = getField(data, ...keys);
+  if (value === null || value === undefined) {
+    return '';
+  }
+  return `${value}`;
+}
+
+function getIntField(data: AnyRecord | null, ...keys: string[]) {
+  return getInt(getStringField(data, ...keys));
+}
 
 /**
  * parse job type
@@ -82,61 +114,62 @@ function parseJob(jobName: string): { name: string; type: JobType } {
 /**
  * parse single player
  */
-function parsePlayer(data: any): CombatantData {
+function parsePlayer(input: unknown): CombatantData {
+  const data = asRecord(input);
+
   let [maxHit, maxHitDamage] = ['', 0];
-  const maxHitData = (data.maxhit || '').split('-');
+  const maxHitData = getStringField(data, 'maxhit').split('-');
   if (maxHitData.length > 1) {
     maxHit = maxHitData[0];
     maxHitDamage = getInt(maxHitData[1]);
   }
+
   let [maxHeal, maxHealDamage] = ['', 0];
-  const maxHealData = (data.maxheal || '').split('-');
+  const maxHealData = getStringField(data, 'maxheal').split('-');
   if (maxHealData.length > 1) {
     maxHeal = maxHealData[0];
     maxHealDamage = getInt(maxHealData[1]);
   }
 
-  const jobParsed = parseJob(data.Job || '');
+  const jobParsed = parseJob(getStringField(data, 'Job', 'job'));
+  const healed = getIntField(data, 'healed');
+  const shield = getIntField(data, 'damageShield');
+  const healedPct = getStringField(data, 'healed%');
 
   return {
-    name: data.name,
+    name: getStringField(data, 'name'),
 
     job: jobParsed.name,
     jobType: jobParsed.type,
 
-    dps: getInt(data.encdps),
-    last10DPS: getInt(data.Last10DPS),
-    last30DPS: getInt(data.Last30DPS),
-    last60DPS: getInt(data.Last60DPS),
-    hps: getInt(data.enchps),
+    dps: getIntField(data, 'encdps'),
+    last10DPS: getIntField(data, 'Last10DPS'),
+    last30DPS: getIntField(data, 'Last30DPS'),
+    last60DPS: getIntField(data, 'Last60DPS'),
+    hps: getIntField(data, 'enchps'),
 
-    swings: getInt(data.swings),
-    hits: getInt(data.hits),
-    deaths: getInt(data.deaths),
+    swings: getIntField(data, 'swings'),
+    hits: getIntField(data, 'hits'),
+    deaths: getIntField(data, 'deaths'),
 
-    directHits: getInt(data.DirectHitCount),
-    directHitPct: data.DirectHitPct || '',
-    critHits: getInt(data.crithits),
-    critHitPct: data['crithit%'] || '',
-    directCritHits: getInt(data.CritDirectHitCount),
-    directCritHitPct: data.CritDirectHitPct || '',
+    directHits: getIntField(data, 'DirectHitCount'),
+    directHitPct: getStringField(data, 'DirectHitPct'),
+    critHits: getIntField(data, 'crithits'),
+    critHitPct: getStringField(data, 'crithit%'),
+    directCritHits: getIntField(data, 'CritDirectHitCount'),
+    directCritHitPct: getStringField(data, 'CritDirectHitPct'),
 
-    damage: getInt(data.damage),
-    damageTaken: getInt(data.damagetaken),
-    damagePct: data['damage%'] || '',
+    damage: getIntField(data, 'damage'),
+    damageTaken: getIntField(data, 'damagetaken'),
+    damagePct: getStringField(data, 'damage%'),
 
-    healed: getInt(data.healed),
-    healsTaken: getInt(data.healstaken),
-    healsPct: data['healed%'] || '', // this includes shield pct
-    overHeal: getInt(data.overHeal),
-    overHealPct: data.OverHealPct || '',
-    shield: getInt(data.damageShield),
-    shieldPct: `${
-      Math.round(
-        (getInt(data.damageShield) / getInt(data.healed) || 0) *
-          getPctNum(data['healed%'] || '')
-      ) || 0
-    }%`,
+    healed,
+    healsTaken: getIntField(data, 'healstaken'),
+    healsPct: healedPct, // this includes shield pct
+    overHeal: getIntField(data, 'overHeal'),
+    overHealPct: getStringField(data, 'OverHealPct'),
+    shield,
+    shieldPct: `${Math.round((shield / healed || 0) * getPctNum(healedPct)) || 0}%`,
 
     maxHit,
     maxHitDamage,
@@ -148,34 +181,39 @@ function parsePlayer(data: any): CombatantData {
 /**
  * parse encounter data
  */
-function parseEncounter(data: any): EncounterData {
+function parseEncounter(input: unknown): EncounterData {
+  const data = asRecord(input);
+
   return {
-    duration: data.duration || '',
-    durationSeconds: getInt(data.DURATION),
-    zoneName: data.CurrentZoneName || '',
+    duration: getStringField(data, 'duration'),
+    durationSeconds: getIntField(data, 'DURATION'),
+    zoneName: getStringField(data, 'CurrentZoneName'),
 
-    dps: getInt(data.encdps),
-    last10DPS: getInt(data.Last10DPS),
-    last30DPS: getInt(data.Last30DPS),
-    last60DPS: getInt(data.Last60DPS),
-    hps: getInt(data.enchps),
+    dps: getIntField(data, 'encdps'),
+    last10DPS: getIntField(data, 'Last10DPS'),
+    last30DPS: getIntField(data, 'Last30DPS'),
+    last60DPS: getIntField(data, 'Last60DPS'),
+    hps: getIntField(data, 'enchps'),
 
-    damage: getInt(data.damage),
-    healed: getInt(data.healed),
+    damage: getIntField(data, 'damage'),
+    healed: getIntField(data, 'healed'),
   };
 }
 
 /**
  * parse LB data
  */
-function parseLimitBreak(data: any): LimitBreakData {
+function parseLimitBreak(input: unknown): LimitBreakData {
+  const data = asRecord(input);
+
   let maxHit = '';
-  const maxHitData = (data.maxhit || '').split('-');
+  const maxHitData = getStringField(data, 'maxhit').split('-');
   if (maxHitData.length > 1) {
     maxHit = maxHitData[0];
   }
+
   let maxHeal = '';
-  const maxHealData = (data.maxheal || '').split('-');
+  const maxHealData = getStringField(data, 'maxheal').split('-');
   if (maxHealData.length > 1) {
     maxHeal = maxHealData[0];
   }
@@ -183,15 +221,36 @@ function parseLimitBreak(data: any): LimitBreakData {
   return {
     name: 'Limit Break',
 
-    dps: getInt(data.encdps),
-    hps: getInt(data.enchps),
+    dps: getIntField(data, 'encdps'),
+    hps: getIntField(data, 'enchps'),
 
-    damage: getInt(data.damage),
-    healed: getInt(data.healed),
+    damage: getIntField(data, 'damage'),
+    healed: getIntField(data, 'healed'),
 
     maxHit,
     maxHeal,
   };
+}
+
+function parseCombatants(input: unknown, parsedData: ExtendData) {
+  const data = asRecord(input);
+  if (!data) {
+    logWarn('injectExtendData::invalidCombatantPayload', input);
+    return;
+  }
+
+  const combatantKeys = Object.keys(data);
+  combatantKeys.forEach((key) => {
+    if (!Object.prototype.hasOwnProperty.call(data, key)) {
+      return;
+    }
+    const value = data[key];
+    if (key === 'Limit Break') {
+      parsedData.limitBreak = parseLimitBreak(value);
+      return;
+    }
+    parsedData.combatant.push(parsePlayer(value));
+  });
 }
 
 /**
@@ -199,25 +258,18 @@ function parseLimitBreak(data: any): LimitBreakData {
  */
 function injectExtendData(data: EventData): EventData {
   if (data.type === 'CombatData') {
+    const source = asRecord(data);
     // common data
     const parsedData: ExtendData = {
-      active: data.isActive === 'true' || data.isActive === true,
-      encounter: parseEncounter(data.Encounter),
+      active:
+        getStringField(source, 'isActive').toLowerCase() === 'true' ||
+        getField(source, 'isActive') === true,
+      encounter: parseEncounter(getField(source, 'Encounter')),
       combatant: [],
     };
 
     // combatant
-    const combatantKeys = Object.keys(data.Combatant);
-    const combatantValidKeys = combatantKeys.filter((key) =>
-      Object.prototype.hasOwnProperty.call(data.Combatant, key)
-    );
-    combatantValidKeys.forEach((key) => {
-      if (key === 'Limit Break') {
-        parsedData.limitBreak = parseLimitBreak(data.Combatant[key]);
-      } else {
-        parsedData.combatant.push(parsePlayer(data.Combatant[key]));
-      }
-    });
+    parseCombatants(getField(source, 'Combatant'), parsedData);
 
     data.extendData = parsedData;
   }

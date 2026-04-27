@@ -1,4 +1,7 @@
 import './Encounter.scss';
+import clsx from 'clsx';
+import { useCallback, useRef, useState } from 'react';
+
 import {
   IChevronUpCircle,
   IChevronDownCircle,
@@ -7,28 +10,20 @@ import {
   ILockOpen,
 } from '@/assets/icons';
 import { useAppDispatch, useAppSelector } from '@/hooks';
-import {
-  toggleCombatantsLocked,
-  toggleSettings,
-  toggleShowCombatants,
-} from '@/store/slices/settings';
+import { resetEncounter, setLockedData } from '@/store/slices/api';
+import { toggleSettings, toggleShowCombatants } from '@/store/slices/settings';
 import { fmtDuration, fmtNumber, fmtZoneName } from '@/utils/formatters';
-import overlay from '@/utils/overlay';
-import clsx from 'clsx';
-import { useCallback, useRef, useState } from 'react';
+import overlay, { clearPendingHistory } from '@/utils/overlay';
 
 function Encounter() {
   const dispatch = useAppDispatch();
-  const active = useAppSelector((state) => state.api.data.active);
-  const encounter = useAppSelector((state) => state.api.data.encounter);
-  const showCombatants = useAppSelector(
-    (state) => state.settings.showCombatants
-  );
-  const combatantsLocked = useAppSelector(
-    (state) => state.settings.combatantsLocked
-  );
+  const data = useAppSelector((state) => state.api.data);
+  const lockedData = useAppSelector((state) => state.api.lockedData);
+  const isLocked = lockedData !== null;
+  const active = data.active;
+  const encounter = (lockedData || data).encounter;
+  const showCombatants = useAppSelector((state) => state.settings.showCombatants);
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
-  const bigNumberMode = useAppSelector((state) => state.settings.bigNumberMode);
   const layoutMode = useAppSelector((state) => state.settings.layoutMode);
 
   // encounter data
@@ -40,14 +35,16 @@ function Encounter() {
    */
   const handleEndEncounter = useCallback(async () => {
     await overlay.endEncounter();
-  }, []);
+    clearPendingHistory();
+    dispatch(resetEncounter());
+  }, [dispatch]);
 
   const handleToggleShowCombatants = useCallback(() => {
     dispatch(toggleShowCombatants());
   }, [dispatch]);
-  const handleToggleLockCombatants = useCallback(() => {
-    dispatch(toggleCombatantsLocked());
-  }, [dispatch]);
+  const handleToggleLock = useCallback(() => {
+    dispatch(isLocked ? setLockedData(null) : setLockedData(data));
+  }, [dispatch, isLocked, data]);
   const handleToggleSettings = useCallback(() => {
     dispatch(toggleSettings());
   }, [dispatch]);
@@ -108,18 +105,19 @@ function Encounter() {
           <span ref={zoneInnerRef}>{zoneName}</span>
         </div>
         <div className='encounter-content-numbers' onClick={handleSwitchDHPS}>
-          <span className='g-number'>
-            {fmtNumber(totalDPS, shortNumber, bigNumberMode)}
-          </span>
+          <span className='g-number'>{fmtNumber(totalDPS, shortNumber)}</span>
           <span className='g-counter'>{showDHPS.toUpperCase()}</span>
         </div>
       </div>
       <div className='encounter-btns'>
-        {!showCombatants && (
-          <div className='encounter-btn' onClick={handleToggleLockCombatants}>
-            {combatantsLocked ? <ILockClosed /> : <ILockOpen />}
-          </div>
-        )}
+        <div
+          className={clsx('encounter-btn', {
+            'encounter-btn--active': isLocked,
+          })}
+          onClick={handleToggleLock}
+        >
+          {isLocked ? <ILockClosed /> : <ILockOpen />}
+        </div>
         <div className='encounter-btn' onClick={handleToggleShowCombatants}>
           {showCombatants ? <IChevronUpCircle /> : <IChevronDownCircle />}
         </div>

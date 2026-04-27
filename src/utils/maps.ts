@@ -54,6 +54,8 @@ const tickerMap = {
   'healer-reverse': { text: 'S/H/OH' },
   dps: { text: 'CD/C/D' },
   'dps-reverse': { text: 'D/C/CD' },
+  'damage-pct': { text: 'DMG%' },
+  'heals-pct': { text: 'HLS%' },
   none: { text: 'None' },
 };
 export type TickerMapKey = keyof typeof tickerMap & string;
@@ -73,6 +75,7 @@ const bottomDispMap = {
   last60DPS: { text: 'DPS (60s)' },
   cdpcts: { text: 'CD/C/D' },
   'cdpcts-reverse': { text: 'D/C/CD' },
+  damagePctDeaths: { text: 'DMG%/Deaths' },
   none: { text: 'None' },
 };
 export type BottomDispMapKey = keyof typeof bottomDispMap & string;

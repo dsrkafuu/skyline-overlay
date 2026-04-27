@@ -1,8 +1,9 @@
 import './SInputColor.scss';
-import { useOutsideClick } from '@/hooks';
 import clsx from 'clsx';
 import { useCallback, useRef, useState } from 'react';
 import { RgbaColorPicker } from 'react-colorful';
+
+import { useOutsideClick } from '@/hooks';
 
 interface SInputColorProps {
   value: RGBAColor;
@@ -12,13 +13,7 @@ interface SInputColorProps {
   className?: string;
 }
 
-function SInputColor({
-  value,
-  onChange,
-  position = 'top',
-  icon,
-  className,
-}: SInputColorProps) {
+function SInputColor({ value, onChange, position = 'top', icon, className }: SInputColorProps) {
   const [opened, setOpened] = useState(false);
   const toggleOpened = useCallback(() => setOpened(!opened), [opened]);
 
@@ -40,12 +35,7 @@ function SInputColor({
         {icon}
       </div>
       {opened && (
-        <div
-          className={clsx(
-            's-input-color-popover',
-            `s-input-color-popover-${position}`
-          )}
-        >
+        <div className={clsx('s-input-color-popover', `s-input-color-popover-${position}`)}>
           <RgbaColorPicker
             color={{
               r: value[0],

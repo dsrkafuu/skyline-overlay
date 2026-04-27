@@ -1,6 +1,7 @@
 import './SSwitch.scss';
-import { ICheckmark, IClose } from '@/assets/icons';
 import clsx from 'clsx';
+
+import { ICheckmark, IClose } from '@/assets/icons';
 
 interface SSwitchProps {
   value: boolean;

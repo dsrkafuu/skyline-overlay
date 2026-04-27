@@ -39,9 +39,7 @@ interface ObjectLike {
   [key: string]: any;
   length?: never;
 }
-type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
-  k: infer I
-) => void
+type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void
   ? I
   : never;
 function isObject(obj: any) {
@@ -57,18 +55,13 @@ function isObject(obj: any) {
 /**
  * custom deep merge
  */
-export function mergeDeep<T extends ObjectLike[]>(
-  ...objects: T
-): UnionToIntersection<T[number]> {
+export function mergeDeep<T extends ObjectLike[]>(...objects: T): UnionToIntersection<T[number]> {
   return objects.reduce((result, current) => {
     Object.keys(current).forEach((key) => {
       if (Array.isArray(result[key]) && Array.isArray(current[key])) {
         result[key] = current[key];
       } else if (isObject(result[key]) && isObject(current[key])) {
-        result[key] = mergeDeep(
-          result[key] as ObjectLike,
-          current[key] as ObjectLike
-        );
+        result[key] = mergeDeep(result[key] as ObjectLike, current[key] as ObjectLike);
       } else {
         result[key] = current[key];
       }
@@ -95,13 +88,19 @@ export function xssEscape(str: string) {
   });
 }
 
-export async function sha1(message: string) {
-  const stable = message;
-  const msgUint8 = new TextEncoder().encode(stable);
-  const hashBuffer = await crypto.subtle.digest('SHA-1', msgUint8);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  const hashHex = hashArray
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
-  return hashHex;
+/**
+ * debounce: only execute after `wait` ms of no calls
+ */
+export function debounce<T extends (...args: any[]) => void>(
+  fn: T,
+  wait: number
+): (...args: Parameters<T>) => void {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  return (...args: Parameters<T>) => {
+    if (timer !== null) clearTimeout(timer);
+    timer = setTimeout(() => {
+      timer = null;
+      fn(...args);
+    }, wait);
+  };
 }

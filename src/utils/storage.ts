@@ -1,4 +1,5 @@
 import { STORAGE_PREFIX } from './constants';
+import { debounce } from './lodash';
 import { logError } from './loggers';
 
 export type StorageKey = 'settings' | 'theme' | 'dev';
@@ -8,29 +9,24 @@ export type StorageKey = 'settings' | 'theme' | 'dev';
  */
 export function setLS(key: StorageKey, value: unknown) {
   try {
-    localStorage.setItem(
-      STORAGE_PREFIX + key.toUpperCase(),
-      JSON.stringify(value)
-    );
+    localStorage.setItem(STORAGE_PREFIX + key.toUpperCase(), JSON.stringify(value));
   } catch (e) {
     logError(e);
   }
 }
 
 /**
- * delay save local storage (event loop)
+ * debounced save to local storage (300ms, per key)
  */
 export function getAsyncLSSetter<T>(key: StorageKey) {
-  return (data: T) => {
-    setTimeout(() => {
-      try {
-        const pre = getLS<T>(key) || {};
-        setLS(key, { ...pre, ...data });
-      } catch {
-        return;
-      }
-    }, 0);
-  };
+  return debounce((data: T) => {
+    try {
+      const pre = getLS<T>(key) || {};
+      setLS(key, { ...pre, ...data });
+    } catch {
+      return;
+    }
+  }, 300);
 }
 
 /**

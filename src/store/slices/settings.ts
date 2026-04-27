@@ -1,4 +1,5 @@
-import { cleanMockData } from './api';
+import { createListenerMiddleware, createSlice, PayloadAction as PA } from '@reduxjs/toolkit';
+
 import { logWarn } from '@/api/utils/logger';
 import lang from '@/lang';
 import { injectFont } from '@/scss/fonts';
@@ -19,13 +20,11 @@ import {
   LayoutModeMapKey,
   MAP_FONT_FAMILY,
 } from '@/utils/maps';
-import { startMock, stopMock } from '@/utils/mocker';
 import { getAsyncLSSetter, getLS } from '@/utils/storage';
-import {
-  createListenerMiddleware,
-  createSlice,
-  PayloadAction as PA,
-} from '@reduxjs/toolkit';
+
+import { cleanMockData } from './api';
+
+let lazyMocker: typeof import('@/utils/mocker') | null = null;
 
 interface SortSettings {
   key: SortRuleMapKey;
@@ -57,7 +56,6 @@ export interface Settings {
   youName: string; // which to represent as 'YOU'
   petMergeID: string; // merge pet data when using global client with cn language patch
   shortNumber: boolean;
-  bigNumberMode: boolean;
   // display
   dispMode: DisplayModeMapKey;
   dispContent: DispContentSettings;
@@ -78,7 +76,6 @@ export interface Settings {
 
 export interface SettingsState extends Settings {
   showCombatants: boolean;
-  combatantsLocked: boolean;
   showSettings: boolean;
   blurName: boolean;
 }
@@ -96,7 +93,6 @@ export const defaultSettings: Settings = {
   youName: 'YOU',
   petMergeID: '',
   shortNumber: false,
-  bigNumberMode: false,
   dispMode: 'single',
   dispContent: { left: 'hps', right: 'dps' },
   hlYou: true,
@@ -114,7 +110,6 @@ export const defaultSettings: Settings = {
 };
 let initialState: SettingsState = {
   showCombatants: true,
-  combatantsLocked: false,
   showSettings: false,
   blurName: false,
   ...cloneDeep(defaultSettings),
@@ -207,14 +202,6 @@ export const settingsSlice = createSlice({
         state.showCombatants = !state.showCombatants;
       }
     },
-    toggleCombatantsLocked(state, { payload }: PA<boolean | undefined>) {
-      logDebug('Store::Settings::toggleCombatantsLocked', payload);
-      if (payload !== undefined) {
-        state.combatantsLocked = payload;
-      } else {
-        state.combatantsLocked = !state.combatantsLocked;
-      }
-    },
     toggleSettings(state) {
       logDebug('Store::Settings::toggleSettings');
       state.showSettings = !state.showSettings;
@@ -258,11 +245,6 @@ export const settingsSlice = createSlice({
       logDebug('Store::Settings::updateShortNumber', payload);
       state.shortNumber = payload;
       save({ shortNumber: state.shortNumber });
-    },
-    updateBigNumberMode(state, { payload }: PA<boolean>) {
-      logDebug('Store::Settings::updateBigNumberMode', payload);
-      state.bigNumberMode = payload;
-      save({ bigNumberMode: state.bigNumberMode });
     },
     // display
     updateDispMode(state, { payload }: PA<DisplayModeMapKey>) {
@@ -314,8 +296,24 @@ export const settingsSlice = createSlice({
     updateMock(state, { payload }: PA<boolean>) {
       logDebug('Store::Settings::updateMock', payload);
       state.mock = payload;
-      if (payload === true) startMock();
-      else stopMock();
+      if (payload === true) {
+        if (!lazyMocker) {
+          import('@/utils/mocker')
+            .then((mocker) => {
+              lazyMocker = mocker;
+              lazyMocker.startMock();
+            })
+            .catch((e) => {
+              logWarn('Store::Settings::updateMock::loadMockerFailed', e);
+            });
+        } else {
+          lazyMocker.startMock();
+        }
+      } else {
+        if (lazyMocker) {
+          lazyMocker.stopMock();
+        }
+      }
       save({ mock: state.mock });
     },
     updateLang(state, { payload }: PA<LangMapKey>) {
@@ -343,7 +341,6 @@ export const settingsSlice = createSlice({
 
 export const {
   toggleShowCombatants,
-  toggleCombatantsLocked,
   toggleSettings,
   toggleBlurName,
   updateSort,
@@ -353,7 +350,6 @@ export const {
   updateYouName,
   updatePetMergeID,
   updateShortNumber,
-  updateBigNumberMode,
   updateDispMode,
   updateDispContent,
   updateHlYou,
@@ -374,22 +370,6 @@ export const {
 
 export const listener = createListenerMiddleware();
 
-// when click to show combatants,
-// unlock them if locked
-listener.startListening({
-  actionCreator: toggleShowCombatants,
-  effect: ({ payload }, api) => {
-    const state = api.getState() as RootState;
-    if (
-      payload === true ||
-      (payload === undefined && state.settings.showCombatants === false)
-    ) {
-      logDebug('Listener::Settings::toggleShowCombatants::unlockCombatants');
-      api.dispatch(toggleCombatantsLocked(false));
-    }
-  },
-});
-
 // reset font weight if font family changed to incompatible one
 listener.startListening({
   actionCreator: updateFonts,
@@ -401,8 +381,7 @@ listener.startListening({
       const currentWeight = state.settings?.fonts?.weight;
       if (
         nextFamilyData &&
-        (currentWeight < nextFamilyData.weights[0] ||
-          currentWeight > nextFamilyData.weights[1])
+        (currentWeight < nextFamilyData.weights[0] || currentWeight > nextFamilyData.weights[1])
       ) {
         logDebug('Listener::Settings::updateFonts::resetFontWeight');
         api.dispatch(updateFonts({ weight: 400 }));

@@ -4,20 +4,13 @@ import { version, versionCode } from '@/assets/meta';
 /**
  * format number
  */
-export function fmtNumber(
-  number: number,
-  shortNumber = false,
-  bigNumberMode = false
-) {
+export function fmtNumber(number: number, shortNumber = false) {
   const decimal = 1;
 
   if (typeof number !== 'number') {
     number = Number(number);
   }
 
-  if (bigNumberMode) {
-    number = number * 10;
-  }
   if (!shortNumber) {
     return number ? `${number}` : '0';
   }

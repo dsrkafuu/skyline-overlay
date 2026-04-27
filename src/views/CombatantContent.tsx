@@ -1,10 +1,11 @@
+import { memo, useCallback } from 'react';
+
 import { CombatantData, LimitBreakData } from '@/api';
 import * as jobIcons from '@/assets/jobs';
 import { useAppSelector } from '@/hooks';
 import { fmtNumber } from '@/utils/formatters';
 import { MAP_DISPLAY_CONTENT } from '@/utils/maps';
 import { isLimitBreakData } from '@/utils/type';
-import { useCallback } from 'react';
 
 interface CombatantContentProps {
   player: CombatantData | LimitBreakData;
@@ -24,7 +25,6 @@ function CombatantContent({
   const dispMode = useAppSelector((state) => state.settings.dispMode);
   const dispContent = useAppSelector((state) => state.settings.dispContent);
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
-  const bigNumberMode = useAppSelector((state) => state.settings.bigNumberMode);
 
   const leftDisp = (player as CombatantData)[dispContent.left] || 0;
   const leftDispUnit = MAP_DISPLAY_CONTENT[dispContent.left].data.unit;
@@ -38,17 +38,13 @@ function CombatantContent({
   const onDetailLeave = useCallback(() => {
     !lockDetail && setShowDetail(false);
   }, [lockDetail, setShowDetail]);
-  const onSwitchDetailLock = useCallback(
-    () => setLockDetail((val) => !val),
-    [setLockDetail]
-  );
+  const onSwitchDetailLock = useCallback(() => setLockDetail((val) => !val), [setLockDetail]);
 
   // job icon component
   const Icon = isLimitBreakData(player)
     ? jobIcons.FFXIV
-    : jobIcons[
-        String.prototype.toUpperCase.apply(player.job) as keyof typeof jobIcons
-      ] || jobIcons.FFXIV;
+    : jobIcons[String.prototype.toUpperCase.apply(player.job) as keyof typeof jobIcons] ||
+      jobIcons.FFXIV;
 
   return (
     <div
@@ -61,9 +57,7 @@ function CombatantContent({
       {dispMode === 'dual' && (
         <div className='combatant-content-data'>
           <span className='g-number'>
-            {(typeof leftDisp === 'number' &&
-              fmtNumber(leftDisp, shortNumber, bigNumberMode)) ||
-              leftDisp}
+            {(typeof leftDisp === 'number' && fmtNumber(leftDisp, shortNumber)) || leftDisp}
           </span>
           <span className='g-counter'>{leftDispUnit}</span>
         </div>
@@ -73,9 +67,7 @@ function CombatantContent({
       </span>
       <div className='combatant-content-data'>
         <span className='g-number'>
-          {(typeof rightDisp === 'number' &&
-            fmtNumber(rightDisp, shortNumber, bigNumberMode)) ||
-            rightDisp}
+          {(typeof rightDisp === 'number' && fmtNumber(rightDisp, shortNumber)) || rightDisp}
         </span>
         <span className='g-counter'>{rightDispUnit}</span>
       </div>
@@ -83,4 +75,4 @@ function CombatantContent({
   );
 }
 
-export default CombatantContent;
+export default memo(CombatantContent);

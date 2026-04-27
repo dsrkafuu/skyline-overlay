@@ -1,8 +1,9 @@
 import './SSelect.scss';
-import { IChevronDown, IChevronUp } from '@/assets/icons';
-import { useOutsideClick } from '@/hooks';
 import clsx from 'clsx';
 import { useState, useRef, useCallback } from 'react';
+
+import { IChevronDown, IChevronUp } from '@/assets/icons';
+import { useOutsideClick } from '@/hooks';
 
 export interface SSelectMap {
   [key: string]: {
@@ -47,14 +48,7 @@ function SSelect<TMap extends SSelectMap>({
   });
 
   return (
-    <div
-      className={clsx(
-        's-select',
-        { 's-select--disabled': disabled },
-        className
-      )}
-      ref={clickRef}
-    >
+    <div className={clsx('s-select', { 's-select--disabled': disabled }, className)} ref={clickRef}>
       <div
         className={clsx('s-select-value', { 's-select-value--active': active })}
         onClick={() => setActive((val) => !disabled && !val)}

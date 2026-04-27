@@ -80,6 +80,5 @@ export default defineConfig({
   build: {
     sourcemap: true,
     emptyOutDir: true,
-    target: ['chrome111', 'edge111', 'firefox114', 'safari16.4'],
   },
 });

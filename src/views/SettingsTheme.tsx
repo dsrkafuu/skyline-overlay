@@ -1,20 +1,12 @@
+import { useCallback, useMemo } from 'react';
+
 import { IRefresh } from '@/assets/icons';
 import * as jobIcons from '@/assets/jobs';
 import { SInputColor, SSelect, SSelectMap } from '@/components';
-import {
-  useAppDispatch,
-  useAppSelector,
-  useColor,
-  useTranslation,
-} from '@/hooks';
-import {
-  updateColors,
-  updateTheme,
-  updateThemeMode,
-} from '@/store/slices/theme';
+import { useAppDispatch, useAppSelector, useColor, useTranslation } from '@/hooks';
+import { updateColors, updateTheme, updateThemeMode } from '@/store/slices/theme';
 import themes from '@/themes';
 import { MAP_THEMES, MAP_THEME_MODE, ThemeModeMapKey } from '@/utils/maps';
-import { useCallback, useMemo } from 'react';
 
 function SettingsTheme() {
   const t = useTranslation();
@@ -74,19 +66,13 @@ function SettingsTheme() {
       {
         title: t('Common'),
         render: () => (
-          <SInputColor
-            value={commonCl}
-            onChange={(v) => dispatch(updateColors({ common: v }))}
-          />
+          <SInputColor value={commonCl} onChange={(v) => dispatch(updateColors({ common: v }))} />
         ),
       },
       {
         title: t('Self Highlighting'),
         render: () => (
-          <SInputColor
-            value={selfCl}
-            onChange={(v) => dispatch(updateColors({ self: v }))}
-          />
+          <SInputColor value={selfCl} onChange={(v) => dispatch(updateColors({ self: v }))} />
         ),
       },
       {
@@ -123,19 +109,14 @@ function SettingsTheme() {
           <div className='settings-colors-grid'>
             {Object.keys(jobCls).map((key) => {
               const Icon =
-                jobIcons[
-                  String.prototype.toUpperCase.apply(
-                    key
-                  ) as keyof typeof jobIcons
-                ] || jobIcons.FFXIV;
+                jobIcons[String.prototype.toUpperCase.apply(key) as keyof typeof jobIcons] ||
+                jobIcons.FFXIV;
               return (
                 <SInputColor
                   key={key}
                   value={jobCls[key as keyof typeof jobCls]}
                   icon={<Icon />}
-                  onChange={(v) =>
-                    dispatch(updateColors({ job: { [key]: v } }))
-                  }
+                  onChange={(v) => dispatch(updateColors({ job: { [key]: v } }))}
                 />
               );
             })}
@@ -153,9 +134,7 @@ function SettingsTheme() {
               <SInputColor
                 key={key}
                 value={themeCls[key as keyof typeof themeCls]}
-                onChange={(v) =>
-                  dispatch(updateColors({ theme: { [key]: v } }))
-                }
+                onChange={(v) => dispatch(updateColors({ theme: { [key]: v } }))}
               />
             ))}
           </div>

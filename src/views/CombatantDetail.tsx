@@ -1,11 +1,12 @@
+import clsx from 'clsx';
+import { useCallback, useMemo } from 'react';
+
 import { CombatantData, LimitBreakData } from '@/api';
 import { SList, SListRow } from '@/components';
 import { useAppSelector, useTranslation } from '@/hooks';
 import { fmtNumber } from '@/utils/formatters';
 import { DisplayContentMapKey } from '@/utils/maps';
 import { isLimitBreakData } from '@/utils/type';
-import clsx from 'clsx';
-import { useCallback, useMemo } from 'react';
 
 interface CombatantDetailProps {
   player: CombatantData | LimitBreakData;
@@ -20,7 +21,6 @@ function CombatantDetail({ player, color, lockDetail }: CombatantDetailProps) {
   const bottomDisp = useAppSelector((state) => state.settings.bottomDisp);
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
   const ticker = useAppSelector((state) => state.settings.ticker);
-  const bigNumberMode = useAppSelector((state) => state.settings.bigNumberMode);
 
   // calculate top position according to tickerNum
   let tickerNum = 0;
@@ -36,9 +36,7 @@ function CombatantDetail({ player, color, lockDetail }: CombatantDetailProps) {
   const keyNotDisplayed = useCallback(
     (key: DisplayContentMapKey) =>
       (dispMode === 'single' && dispContent.right !== key) ||
-      (dispMode === 'dual' &&
-        dispContent.left !== key &&
-        dispContent.right !== key),
+      (dispMode === 'dual' && dispContent.left !== key && dispContent.right !== key),
     [dispContent.left, dispContent.right, dispMode]
   );
 
@@ -54,12 +52,12 @@ function CombatantDetail({ player, color, lockDetail }: CombatantDetailProps) {
     keyNotDisplayed('dps') &&
       items[items.length - 1].push({
         key: 'DPS',
-        value: fmtNumber(player.dps, shortNumber, bigNumberMode),
+        value: fmtNumber(player.dps, shortNumber),
       });
     keyNotDisplayed('hps') &&
       items[items.length - 1].push({
         key: 'HPS',
-        value: fmtNumber(player.hps, shortNumber, bigNumberMode),
+        value: fmtNumber(player.hps, shortNumber),
       });
     keyNotDisplayed('overHealPct') &&
       items[items.length - 1].push({
@@ -103,13 +101,13 @@ function CombatantDetail({ player, color, lockDetail }: CombatantDetailProps) {
       player.maxHit &&
       items[items.length - 1].push({
         key: player.maxHit,
-        value: fmtNumber(player.maxHitDamage, shortNumber, bigNumberMode),
+        value: fmtNumber(player.maxHitDamage, shortNumber),
       });
 
     // remove unused spliter
     !items[items.length - 1].length && items.pop();
     return items;
-  }, [bottomDisp, bigNumberMode, keyNotDisplayed, player, shortNumber, t]);
+  }, [bottomDisp, keyNotDisplayed, player, shortNumber, t]);
 
   if (isLimitBreakData(player)) {
     return null;

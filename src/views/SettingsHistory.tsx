@@ -1,8 +1,9 @@
+import clsx from 'clsx';
+import { useEffect, useState } from 'react';
+
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { showHistory } from '@/store/slices/api';
 import { fmtDuration, fmtNumber, fmtZoneName } from '@/utils/formatters';
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
 
 function parseTime(time: number) {
   const d = new Date(time);
@@ -23,7 +24,6 @@ interface SettingsHistoryRowProps {
   time?: number;
   onClick?: () => void;
   shortNumber?: boolean;
-  bigNumberMode?: boolean;
 }
 
 function SettingsHistoryRow({
@@ -34,13 +34,14 @@ function SettingsHistoryRow({
   time,
   onClick,
   shortNumber,
-  bigNumberMode,
 }: SettingsHistoryRowProps) {
   const [now, setNow] = useState(() => Date.now());
+  // only tick for the current live row (no fixed timestamp)
   useEffect(() => {
+    if (time !== undefined) return;
     const timer = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [time]);
 
   return (
     <div
@@ -49,19 +50,11 @@ function SettingsHistoryRow({
       })}
       onClick={onClick}
     >
-      <div className='settings-history-item settings-history-time'>
-        {parseTime(time || now)}
-      </div>
-      <div className='settings-history-item settings-history-duration'>
-        {fmtDuration(duration)}
-      </div>
-      <div className='settings-history-item settings-history-zone'>
-        {fmtZoneName(zoneName)}
-      </div>
+      <div className='settings-history-item settings-history-time'>{parseTime(time || now)}</div>
+      <div className='settings-history-item settings-history-duration'>{fmtDuration(duration)}</div>
+      <div className='settings-history-item settings-history-zone'>{fmtZoneName(zoneName)}</div>
       <div className='settings-history-item settings-history-dps'>
-        <span className='g-number'>
-          {fmtNumber(dps, shortNumber, bigNumberMode)}
-        </span>
+        <span className='g-number'>{fmtNumber(dps, shortNumber)}</span>
         <span className='g-counter'>DPS</span>
       </div>
     </div>
@@ -72,14 +65,13 @@ function SettingsHistory() {
   const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.api.data);
   const historys = useAppSelector((state) => state.api.historys);
-  const history = useAppSelector((state) => state.api.history);
+  const historyIdx = useAppSelector((state) => state.api.historyIdx);
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
-  const bigNumberMode = useAppSelector((state) => state.settings.bigNumberMode);
 
   return (
     <div className='settings-history'>
       <SettingsHistoryRow
-        current={history.idx === -1}
+        current={historyIdx === -1}
         duration={data.encounter.duration}
         dps={data.encounter.dps}
         zoneName={data.encounter.zoneName}
@@ -91,14 +83,13 @@ function SettingsHistory() {
         return (
           <SettingsHistoryRow
             key={idx}
-            current={history.idx === idx}
+            current={historyIdx === idx}
             time={item.time}
             duration={duration}
             dps={dps}
             zoneName={zoneName}
             onClick={() => dispatch(showHistory(idx))}
             shortNumber={shortNumber}
-            bigNumberMode={bigNumberMode}
           />
         );
       })}

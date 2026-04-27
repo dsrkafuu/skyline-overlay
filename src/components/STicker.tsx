@@ -1,5 +1,6 @@
 import './STicker.scss';
 import clsx from 'clsx';
+import { memo } from 'react';
 
 export type STickerClass = 'oh' | 'h' | 's' | 'cd' | 'c' | 'd' | 'space';
 
@@ -11,13 +12,7 @@ export interface STickerProps {
   className?: string;
 }
 
-function STicker({
-  pcts,
-  classes,
-  space = 0,
-  align = 'left',
-  className,
-}: STickerProps) {
+function STicker({ pcts, classes, space = 0, align = 'left', className }: STickerProps) {
   const localPcts = pcts.map((pct) => Math.floor(pct) || 0);
   const localClasses = [...classes];
   if (localPcts.length > 3) {
@@ -47,4 +42,4 @@ function STicker({
   );
 }
 
-export default STicker;
+export default memo(STicker);

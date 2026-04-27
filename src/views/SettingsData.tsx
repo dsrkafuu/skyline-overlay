@@ -1,8 +1,9 @@
+import { useMemo } from 'react';
+
 import { IChevronDown, IChevronUp } from '@/assets/icons';
 import { SInput, SInputNumber, SSelect, SSwitch } from '@/components';
 import { useAppDispatch, useAppSelector, useTranslation } from '@/hooks';
 import {
-  updateBigNumberMode,
   updatePetMergeID,
   updatePlayerLimit,
   updatePlayerPerRow,
@@ -12,7 +13,6 @@ import {
   updateYouName,
 } from '@/store/slices/settings';
 import { MAP_SORT_RULE } from '@/utils/maps';
-import { useMemo } from 'react';
 
 function SettingsData() {
   const t = useTranslation();
@@ -24,7 +24,6 @@ function SettingsData() {
   const youName = useAppSelector((state) => state.settings.youName);
   const petMergeID = useAppSelector((state) => state.settings.petMergeID);
   const shortNumber = useAppSelector((state) => state.settings.shortNumber);
-  const bigNumberMode = useAppSelector((state) => state.settings.bigNumberMode);
 
   const items = useMemo(
     () => [
@@ -75,44 +74,20 @@ function SettingsData() {
       },
       {
         title: t('Show Limit Break'),
-        render: () => (
-          <SSwitch value={showLB} onChange={(v) => dispatch(updateShowLB(v))} />
-        ),
+        render: () => <SSwitch value={showLB} onChange={(v) => dispatch(updateShowLB(v))} />,
       },
       {
         title: t('Custom ID'),
-        render: () => (
-          <SInput
-            value={youName}
-            onChange={(v) => dispatch(updateYouName(v))}
-          />
-        ),
+        render: () => <SInput value={youName} onChange={(v) => dispatch(updateYouName(v))} />,
       },
       {
         title: t('Pet-Merging ID'),
-        render: () => (
-          <SInput
-            value={petMergeID}
-            onChange={(v) => dispatch(updatePetMergeID(v))}
-          />
-        ),
+        render: () => <SInput value={petMergeID} onChange={(v) => dispatch(updatePetMergeID(v))} />,
       },
       {
         title: t('Auto Short Number'),
         render: () => (
-          <SSwitch
-            value={shortNumber}
-            onChange={(v) => dispatch(updateShortNumber(v))}
-          />
-        ),
-      },
-      {
-        title: t('Big Number Mode'),
-        render: () => (
-          <SSwitch
-            value={bigNumberMode}
-            onChange={(v) => dispatch(updateBigNumberMode(v))}
-          />
+          <SSwitch value={shortNumber} onChange={(v) => dispatch(updateShortNumber(v))} />
         ),
       },
     ],
@@ -127,7 +102,6 @@ function SettingsData() {
       youName,
       petMergeID,
       shortNumber,
-      bigNumberMode,
     ]
   );
 

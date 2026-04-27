@@ -1,20 +1,11 @@
 import { cloneDeep } from './lodash';
+import mockData from './mocker.json';
 import overlay from './overlay';
 
 let int: number = -1;
-let mockData: any = null;
 
 export const startMock = async () => {
-  let data = cloneDeep(mockData);
-  if (!data) {
-    const base = import.meta.env.BASE_URL ?? '';
-    const res = await fetch(
-      `${base.endsWith('/') ? base : base + '/'}mock.json`
-    );
-    const json = await res.json();
-    data = cloneDeep(json);
-    mockData = cloneDeep(json);
-  }
+  let data: any = cloneDeep(mockData);
   let mm = '0'.padStart(2, '0');
   let ss = '1'.padStart(2, '0');
   int = window.setInterval(() => {

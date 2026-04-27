@@ -1,8 +1,9 @@
 import './SInput.scss';
-import { ICreate } from '@/assets/icons';
-import { useTranslation } from '@/hooks';
 import clsx from 'clsx';
 import { useCallback, useState } from 'react';
+
+import { ICreate } from '@/assets/icons';
+import { useTranslation } from '@/hooks';
 
 interface SInputProps {
   value: string;
@@ -15,8 +16,8 @@ function SInput({ value, onChange, className }: SInputProps) {
   const [focused, setFocused] = useState(false);
 
   const handleInput = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      onChange(e.target.value);
+    (e: React.InputEvent<HTMLInputElement>) => {
+      onChange((e.target as HTMLInputElement).value);
     },
     [onChange]
   );

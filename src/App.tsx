@@ -1,19 +1,23 @@
 import './App.scss';
-import SW from './SW';
+import clsx from 'clsx';
+import { CSSProperties, useMemo } from 'react';
+
 import { CombatantData, LimitBreakData } from './api';
 import { useAppSelector } from './hooks';
+import SW from './SW';
 import { fmtMergePet } from './utils/formatters';
 import { cloneDeep } from './utils/lodash';
 import Combatant from './views/Combatant';
 import Encounter from './views/Encounter';
 import Settings from './views/Settings';
-import clsx from 'clsx';
-import { CSSProperties } from 'react';
 
 function App() {
-  const showCombatants = useAppSelector(
-    (state) => state.settings.showCombatants
-  );
+  const shouldCrash = import.meta.env.DEV && /crash=[^0&]/i.test(window.location.search);
+  if (shouldCrash) {
+    throw new Error('ErrorBoundary Test Error');
+  }
+
+  const showCombatants = useAppSelector((state) => state.settings.showCombatants);
   const sort = useAppSelector((state) => state.settings.sort);
   const playerLimit = useAppSelector((state) => state.settings.playerLimit);
   const showLB = useAppSelector((state) => state.settings.showLB);
@@ -24,31 +28,32 @@ function App() {
 
   // get data from store
   const data = useAppSelector((state) => state.api.data);
-  const history = useAppSelector((state) => state.api.history);
-  const { combatant, limitBreak } = cloneDeep(history.data || data);
+  const lockedData = useAppSelector((state) => state.api.lockedData);
 
-  let players = combatant;
-
-  // merge pet if enabled
-  if (petMergeID) {
-    players = fmtMergePet(players, petMergeID);
-  }
-
-  // sort combatant
-  players.sort((a, b) => sort.rule * (a[sort.key] - b[sort.key]));
-
-  // limit combatants
-  const temp = players;
-  players = [];
-  for (let i = 0; i < playerLimit; i++) {
-    temp[i] && temp[i].name && players.push(temp[i]);
-  }
-
-  // add lb if enabled
-  const playersWithLB: Array<CombatantData | LimitBreakData> = players;
-  if (showLB && limitBreak) {
-    playersWithLB.push(limitBreak);
-  }
+  const combatant = (lockedData || data).combatant;
+  const playersWithLB = useMemo<Array<CombatantData | LimitBreakData>>(() => {
+    const { combatant, limitBreak } = cloneDeep(lockedData || data);
+    let players = combatant;
+    // merge pet if enabled
+    if (petMergeID) {
+      players = fmtMergePet(players, petMergeID);
+    }
+    // sort combatant
+    players.sort((a, b) => sort.rule * (a[sort.key] - b[sort.key]));
+    // limit combatants
+    const limited: CombatantData[] = [];
+    for (let i = 0; i < playerLimit; i++) {
+      if (players[i] && players[i].name) {
+        limited.push(players[i]);
+      }
+    }
+    // add LB if enabled
+    const result: Array<CombatantData | LimitBreakData> = limited;
+    if (showLB && limitBreak) {
+      result.push(limitBreak);
+    }
+    return result;
+  }, [data, lockedData, petMergeID, sort, playerLimit, showLB]);
 
   const opacityStyle: CSSProperties = {
     opacity: opacity >= 0.1 && opacity <= 1 ? opacity : 1,
@@ -63,10 +68,7 @@ function App() {
     >
       <div className='container' style={opacityStyle}>
         {showCombatants && Boolean(combatant) && combatant.length > 0 && (
-          <div
-            className='combatants'
-            style={{ width: `${playerPerRow * 1.26 + 0.01}rem` }}
-          >
+          <div className='combatants' style={{ width: `${playerPerRow * 1.26 + 0.01}rem` }}>
             {playersWithLB.map((player, index) => (
               <Combatant player={player} index={index} key={player.name} />
             ))}
