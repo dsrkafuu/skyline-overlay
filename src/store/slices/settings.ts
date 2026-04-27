@@ -20,10 +20,11 @@ import {
   LayoutModeMapKey,
   MAP_FONT_FAMILY,
 } from '@/utils/maps';
-import { startMock, stopMock } from '@/utils/mocker';
 import { getAsyncLSSetter, getLS } from '@/utils/storage';
 
 import { cleanMockData } from './api';
+
+let lazyMocker: typeof import('@/utils/mocker') | null = null;
 
 interface SortSettings {
   key: SortRuleMapKey;
@@ -295,8 +296,24 @@ export const settingsSlice = createSlice({
     updateMock(state, { payload }: PA<boolean>) {
       logDebug('Store::Settings::updateMock', payload);
       state.mock = payload;
-      if (payload === true) startMock();
-      else stopMock();
+      if (payload === true) {
+        if (!lazyMocker) {
+          import('@/utils/mocker')
+            .then((mocker) => {
+              lazyMocker = mocker;
+              lazyMocker.startMock();
+            })
+            .catch((e) => {
+              logWarn('Store::Settings::updateMock::loadMockerFailed', e);
+            });
+        } else {
+          lazyMocker.startMock();
+        }
+      } else {
+        if (lazyMocker) {
+          lazyMocker.stopMock();
+        }
+      }
       save({ mock: state.mock });
     },
     updateLang(state, { payload }: PA<LangMapKey>) {

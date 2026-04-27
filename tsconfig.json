@@ -14,9 +14,10 @@
     "jsx": "react-jsx",
     "incremental": true,
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["./src/*"]
     },
+    "types": ["bun", "react", "react-dom"]
   },
   "include": ["./src", "./scripts"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules"]
 }

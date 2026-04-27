@@ -2,8 +2,9 @@ import './DevPanel.scss';
 import { useCallback, useState } from 'react';
 
 import { SInput, SSelect, SSwitch } from './components';
-import { startMock, stopMock } from './utils/mocker';
 import { getLS, setLS } from './utils/storage';
+
+let lazyMocker: typeof import('@/utils/mocker') | null = null;
 
 const bgImageMap = {
   combat: { text: 'Combat', data: { url: '/devbg/combat.jpg' } },
@@ -66,10 +67,23 @@ function DevPanel({ children }: DevPanelProps) {
   const [mocking, setMocking] = useState(false);
   const handleMockingChange = useCallback(async (value: boolean) => {
     if (value) {
-      startMock();
+      if (!lazyMocker) {
+        import('@/utils/mocker')
+          .then((mocker) => {
+            lazyMocker = mocker;
+            lazyMocker.startMock();
+          })
+          .catch((e) => {
+            console.warn('DevPanel::handleMockingChange::loadMockerFailed', e);
+          });
+      } else {
+        lazyMocker.startMock();
+      }
       setMocking(true);
     } else {
-      stopMock();
+      if (lazyMocker) {
+        lazyMocker.stopMock();
+      }
       setMocking(false);
     }
   }, []);
